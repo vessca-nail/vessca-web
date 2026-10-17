@@ -1,0 +1,14 @@
+{
+  "name": "VESSCA Korean Nail Lounge",
+  "short_name": "VESSCA",
+  "description": "Tiệm nail phong cách Hàn Quốc tại Gia Định, Bình Thạnh, TP. Hồ Chí Minh.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#111111",
+  "lang": "vi",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

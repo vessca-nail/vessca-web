@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESSCA Nail Lounge — Nail Hàn Quốc tại Bình Thạnh, TP.HCM</title>
+<meta name="description" content="VESSCA — tiệm nail phong cách Hàn Quốc tại Gia Định, Bình Thạnh, TP. Hồ Chí Minh. Kỹ thuật viên đào tạo bài bản, sản phẩm nhập khẩu chính hãng. Đặt lịch ngay hôm nay.">
+<meta name="keywords" content="nail Bình Thạnh, nail Hàn Quốc, tiệm nail Gia Định, nail salon Hồ Chí Minh, làm nail Hàn Quốc, VESSCA nail">
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="VESSCA Nail Lounge — Nail Hàn Quốc tại Bình Thạnh, TP.HCM">
+<meta property="og:description" content="Tiệm nail phong cách Hàn Quốc tại Gia Định, Bình Thạnh. Kỹ thuật viên đào tạo bài bản, sản phẩm nhập khẩu chính hãng.">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:url" content="https://vessca.com/">
+<meta property="og:image" content="https://vessca.com/assets/blog-default.jpg">
+<meta property="og:site_name" content="VESSCA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://vessca.com/">
+<link rel="alternate" type="application/rss+xml" title="Blog VESSCA" href="https://vessca.com/rss.xml">
+<meta name="geo.region" content="VN-SG">
+<meta name="geo.placename" content="Bình Thạnh, TP. Hồ Chí Minh">
+<meta name="geo.position" content="10.8045;106.6975">
+<meta name="ICBM" content="10.8045, 106.6975">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#111111">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#FFFFFF;
+    --panel:#F5F5F5;
+    --ink:#111111;
+    --ink-soft:#6E6E6E;
+    --rosewood:var(--ink);
+    --rosewood-deep:#2A2A2A;
+    --gold:#9A9A9A;
+    --gold-light:#C7C7C7;
+    --line: rgba(17,17,17,0.10);
+    --serif: 'Noto Serif KR', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--stone);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    opacity:0;transition:opacity .7s ease;
+  }
+  body.loaded{opacity:1;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  video{display:block;width:100%;height:100%;object-fit:cover;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:0.01em;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    color:var(--stone);
+    transition:color .4s ease;
+  }
+  .nav-row{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    gap:16px;padding:24px 44px;
+    transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
+  }
+  .nav.solid .nav-row{
+    background:rgba(255,255,255,0.94);backdrop-filter:blur(6px);
+    padding:15px 44px;box-shadow:0 1px 0 var(--line);color:var(--ink);
+  }
+  .nav-menu-btn{
+    justify-self:start;display:flex;align-items:center;gap:10px;
+    background:none;border:none;cursor:pointer;color:inherit;
+    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.14em;
+  }
+  .menu-icon{width:19px;height:12px;fill:none;stroke:currentColor;stroke-width:1.6;}
+  .nav .mark{justify-self:center;display:flex;align-items:center;gap:9px;color:inherit;}
+  .nav .mark .mark-icon{flex:none;width:20px;height:20px;color:inherit;}
+  .mark-icon{
+    opacity:0;transform:scale(.7);transform-origin:center;
+    animation:logoDraw 0.9s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay:.25s;
+  }
+  @keyframes logoDraw{to{opacity:1;transform:scale(1);}}
+  .nav .mark .mark-text{display:flex;flex-direction:column;line-height:1.1;}
+  .nav .mark .mark-name{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:0.18em;text-transform:uppercase;}
+  .nav .mark .mark-tag{font-size:8px;letter-spacing:0.14em;opacity:0.62;margin-top:3px;text-transform:uppercase;}
+  .nav-cta{
+    justify-self:end;display:flex;align-items:center;gap:18px;
+    font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0.1em;white-space:nowrap;
+  }
+  .nav-cta a{position:relative;padding-bottom:3px;}
+  .nav-cta a::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;
+    transform:scaleX(0);transform-origin:right;transition:transform .3s ease;
+  }
+  .nav-cta a:hover::after{transform:scaleX(1);transform-origin:left;}
+  .lang-switch{display:flex;align-items:center;gap:2px;}
+  .lang-switch button{
+    background:none;border:1px solid currentColor;color:inherit;opacity:0.55;
+    font-family:var(--sans);font-size:10px;letter-spacing:0.02em;padding:4px 8px;cursor:pointer;
+    transition:all .2s ease;
+  }
+  .lang-switch button.active{opacity:1;background:var(--ink);border-color:var(--ink);color:var(--stone);}
+  .nav.solid .lang-switch button.active{background:var(--ink);color:var(--stone);}
+  .lang-switch button:hover{opacity:1;}
+  .menu-panel{
+    position:absolute;top:100%;left:0;right:0;
+    background:var(--stone);color:var(--ink);
+    border-bottom:1px solid var(--line);
+    max-height:0;overflow:hidden;transition:max-height .45s ease;
+  }
+  .nav.menu-open .menu-panel{max-height:640px;}
+  .menu-panel-inner{max-width:1240px;margin:0 auto;}
+  .menu-panel a{
+    display:block;padding:16px 44px;
+    font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:0.03em;
+    color:var(--ink);border-top:1px solid var(--line);
+  }
+  .menu-panel a:first-child{border-top:none;}
+  .menu-panel a:hover{background:var(--panel);}
+  .menu-panel .menu-address{
+    font-weight:400;font-size:13px;color:var(--ink-soft);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;height:100vh;min-height:640px;overflow:hidden;
+  }
+  .hero img, .hero video{
+    filter:saturate(0.92) contrast(1.08) brightness(0.82);
+    animation:heroReveal 1.6s ease both;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,10,10,0.28) 0%, rgba(10,10,10,0.12) 40%, rgba(10,10,10,0.68) 100%);
+  }
+  @keyframes heroReveal{from{transform:scale(1.08);opacity:0.4;}to{transform:scale(1);opacity:1;}}
+  .hero-content{
+    position:absolute;left:44px;right:44px;bottom:64px;z-index:2;
+    color:#FFFFFF;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:40px;
+  }
+  .hero-content .eyebrow{
+    font-size:13px;letter-spacing:0.06em;color:#E0E0E0;margin-bottom:18px;opacity:0.9;
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero-content .eyebrow::before{content:"";display:inline-block;width:26px;height:2px;background:var(--gold-light);}
+  .hero-content h1{
+    font-size:clamp(40px,6vw,76px);font-weight:300;line-height:1.06;max-width:760px;
+  }
+  .hero-content h1 em{font-style:italic;font-weight:400;}
+  .hero-sub{max-width:280px;font-size:14px;color:#E0E0E0;text-align:right;}
+  .hero-sub .cta{
+    display:inline-block;margin-top:16px;font-size:13px;letter-spacing:0.06em;
+    border-bottom:1px solid #E0E0E0;padding-bottom:4px;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:140px 0;}
+  .head-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:64px;
+  }
+  .head-row h2{font-size:clamp(30px,4vw,46px);font-weight:300;line-height:1.15;position:relative;padding-top:22px;}
+  .head-row h2::before{content:"";position:absolute;top:0;left:0;width:34px;height:2px;background:var(--gold);}
+  .head-row p{font-size:15px;color:var(--ink-soft);max-width:420px;justify-self:end;text-align:left;}
+
+  /* ---------- ABOUT ---------- */
+  .about .wrap{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:center;}
+  .about-image{position:relative;aspect-ratio:3/4;}
+  .about-image .main-frame{width:100%;height:100%;overflow:hidden;}
+  .about-image img{filter:saturate(0.88) contrast(1.04) brightness(0.95);}
+  .about-image .inset-frame{
+    position:absolute;bottom:-30px;right:-32px;width:44%;aspect-ratio:1/1;
+    overflow:hidden;border:7px solid var(--stone);box-shadow:0 24px 44px rgba(17,17,17,0.28);
+  }
+  .about-text .num{
+    font-family:var(--serif);
+    font-size:clamp(19px,2.1vw,23px);
+    font-weight:400;
+    line-height:1.45;
+    color:var(--ink);
+    letter-spacing:0.055em;
+    margin-bottom:26px;
+    padding-bottom:20px;
+    display:block;
+    position:relative;
+  }
+  .about-text .num::after{
+    content:"";position:absolute;left:0;bottom:0;
+    width:44px;height:1px;background:var(--gold);
+  }
+  .about-text h2{font-size:clamp(28px,3.4vw,42px);font-weight:300;line-height:1.22;margin-bottom:28px;}
+  .about-text p{font-size:15.5px;color:var(--ink-soft);max-width:480px;margin-bottom:16px;}
+  .about-facts{display:flex;gap:48px;margin-top:40px;border-top:1px solid var(--line);padding-top:28px;}
+  .about-facts div span{display:block;}
+  .about-facts .f-num{font-family:var(--serif);font-size:26px;color:var(--rosewood-deep);}
+  .about-facts .f-label{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+
+  /* ---------- SERVICES / PRICING ---------- */
+  .services{background:var(--panel);}
+  .price-groups{display:grid;grid-template-columns:1fr 1fr;gap:0 90px;}
+  .price-group{margin-bottom:56px;}
+  .price-group h3{font-size:19px;font-weight:400;color:var(--rosewood-deep);margin-bottom:22px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .price-row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding:13px 0;border-bottom:1px dotted var(--line);
+  }
+  .price-row .name{font-size:15px;}
+  .price-row .desc{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:3px;font-weight:300;}
+  .price-row .price{font-size:14.5px;color:var(--ink-soft);white-space:nowrap;}
+
+  /* ---------- CATEGORY ACCORDION (trỏ chuột vào để bung video + bảng giá) ---------- */
+  .category-accordion{
+    display:flex;gap:1px;background:var(--ink);
+    height:72vh;min-height:520px;max-height:680px;
+  }
+  .acc-item{
+    position:relative;flex:1 1 0;min-width:70px;overflow:hidden;cursor:pointer;
+    transition:flex 0.7s cubic-bezier(.16,1,.3,1);background:var(--ink);
+  }
+  .acc-item.expanded{flex:7 1 0;cursor:default;}
+  .acc-cover{position:absolute;inset:0;transition:opacity .45s ease;}
+  .acc-item.expanded .acc-cover{opacity:0;pointer-events:none;}
+  .acc-cover img{filter:saturate(0.82) brightness(0.66) contrast(1.06);}
+  .acc-cover::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(17,17,17,0.05) 30%, rgba(17,17,17,0.8) 100%);
+  }
+  .acc-label{
+    position:absolute;left:18px;right:18px;top:20px;bottom:20px;z-index:2;
+    display:flex;align-items:flex-end;gap:12px;
+    writing-mode:vertical-rl;transform:rotate(180deg);
+  }
+  .acc-label .al-num{font-size:12px;color:var(--gold-light);letter-spacing:0.04em;}
+  .acc-label .al-title{font-family:var(--serif);font-size:19px;color:#FFFFFF;font-weight:400;white-space:nowrap;}
+  .acc-expanded{
+    position:absolute;inset:0;display:flex;opacity:0;pointer-events:none;
+    transition:opacity .5s ease .1s;
+  }
+  .acc-item.expanded .acc-expanded{opacity:1;pointer-events:auto;}
+  .acc-video-pane{flex:2 1 0;position:relative;background:#000;min-width:0;}
+  .acc-video-pane video{width:100%;height:100%;object-fit:cover;}
+  .acc-video-pane .avp-caption{position:absolute;left:30px;bottom:26px;z-index:2;pointer-events:none;}
+  .acc-video-pane .avp-caption span{display:block;font-size:11.5px;color:var(--gold-light);letter-spacing:0.04em;margin-bottom:6px;}
+  .acc-video-pane .avp-caption h3{font-family:var(--serif);font-size:24px;font-weight:400;color:#FFFFFF;}
+  .acc-price-pane{
+    flex:1 1 0;min-width:0;background:#161616;color:#F0F0F0;overflow-y:auto;
+    padding:34px 26px;border-left:1px solid rgba(255,255,255,0.14);
+  }
+  .acc-price-pane .app-eyebrow{font-size:11.5px;color:var(--gold-light);letter-spacing:0.04em;margin-bottom:16px;}
+  .acc-price-pane .app-row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    padding:13px 0;border-bottom:1px dotted rgba(255,255,255,0.16);
+  }
+  .acc-price-pane .app-row .app-name{font-size:14px;color:#F0F0F0;min-width:0;flex:1 1 auto;overflow-wrap:break-word;}
+  .acc-price-pane .app-row .app-desc{display:block;font-size:11.5px;color:#9A9A9A;margin-top:3px;}
+  .acc-price-pane .app-row .app-price{font-size:13px;color:#C7C7C7;white-space:nowrap;}
+  /* nhóm nhỏ trong cùng một bảng giá (Signature rituals, Nail art, Đính phụ kiện) */
+  .acc-price-pane .app-group{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.18);}
+  .acc-price-pane .app-note{font-size:11.5px;line-height:1.55;color:#9A9A9A;margin-top:16px;}
+  /* ảnh bảng màu: xem trọn tấm, không cắt xén như video */
+  .acc-video-pane.avp-contain{background:#0D0D0D;}
+  .acc-video-pane .avp-still{width:100%;height:100%;object-fit:contain;padding:26px 22px 76px;}
+  .price-note{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+
+  /* ---------- COLLECTION (ảnh lớn tràn viền, tông sáng xuyên suốt) ---------- */
+  .collection{background:var(--stone);}
+  .feature-row{
+    width:100vw;position:relative;left:50%;margin-left:-50vw;
+    display:flex;align-items:center;min-height:62vh;
+    background:var(--stone);
+  }
+  .feature-row.alt{background:var(--panel);}
+  .feature-row.reverse{flex-direction:row-reverse;}
+  .feature-row .fr-media{flex:1 1 55%;position:relative;overflow:hidden;aspect-ratio:auto;align-self:stretch;}
+  .feature-row .fr-media img{filter:saturate(0.94) contrast(1.02) brightness(1.0);transition:transform 1.1s cubic-bezier(.16,1,.3,1);}
+  .feature-row:hover .fr-media img{transform:scale(1.04);}
+  .feature-row .fr-text{flex:1 1 45%;padding:60px 80px;}
+  .feature-row .fr-tag{
+    font-size:12.5px;letter-spacing:0.04em;color:var(--gold);margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .feature-row .fr-tag::before{content:"";display:inline-block;width:24px;height:1px;background:var(--gold);}
+  .feature-row h3{font-family:var(--serif);font-weight:300;font-size:clamp(26px,2.6vw,34px);color:var(--ink);margin-bottom:16px;}
+  .feature-row p{font-size:14.5px;color:var(--ink-soft);line-height:1.75;max-width:420px;}
+
+  .collection-subhead{margin-top:90px;display:flex;align-items:baseline;gap:16px;}
+  .collection-subhead h3{font-family:var(--serif);font-weight:300;font-size:22px;color:var(--ink);}
+  .collection-subhead span{font-size:12.5px;color:var(--ink-soft);}
+  .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px;}
+  .trend-card .tc-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--panel);box-shadow:0 20px 40px rgba(17,17,17,0.08);}
+  .trend-card .tc-media img{filter:saturate(0.92) contrast(1.03) brightness(0.97);transition:transform .8s cubic-bezier(.16,1,.3,1);}
+  .trend-card:hover .tc-media img{transform:scale(1.045);}
+  .trend-card .tc-body{padding-top:20px;}
+  .trend-card .tc-tag{
+    font-size:11.5px;letter-spacing:0.04em;color:var(--gold);margin-bottom:8px;
+    display:block;font-weight:500;
+  }
+  .trend-card h3{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);margin-bottom:8px;}
+  .trend-card p{
+    font-size:13px;color:var(--ink-soft);line-height:1.6;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+
+  /* ---------- BOOKING ---------- */
+  .booking{background:var(--ink);color:#F0F0F0;}
+  .booking .head-row p{color:#B0B0B0;}
+  .booking .head-row h2{color:#FFFFFF;}
+  .booking-grid{display:grid;grid-template-columns:1fr;}
+  .booking-grid-single{max-width:560px;margin:0 auto;}
+  .booking-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.16);padding:36px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:12px;color:#9A9A9A;margin-bottom:7px;}
+  .field input, .field select, .field textarea{
+    width:100%;background:none;border:none;border-bottom:1px solid rgba(255,255,255,0.28);
+    color:#FFFFFF;font-family:var(--sans);font-size:14.5px;padding:8px 0;outline:none;
+  }
+  .field select option{color:#111111;}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--gold);}
+  .submit-btn{
+    width:100%;margin-top:8px;padding:15px 0;background:var(--gold-light);color:var(--ink);border:none;
+    font-family:var(--sans);font-size:14px;letter-spacing:0.04em;cursor:pointer;transition:background .25s ease;font-weight:600;
+  }
+  .submit-btn:hover{background:var(--stone);color:var(--ink);}
+  .submit-btn:disabled{background:rgba(255,255,255,0.14);color:#6E6E6E;cursor:not-allowed;font-weight:400;}
+  .confirm-msg{
+    display:none;text-align:center;padding:20px 0;
+  }
+  .confirm-msg.err-msg{display:none;}
+  .confirm-msg .call-btn{
+    display:inline-block;margin-top:14px;padding:13px 26px;
+    background:var(--gold-light);color:var(--ink);text-decoration:none;
+    font-size:15px;font-weight:600;letter-spacing:.03em;
+  }
+  .confirm-msg .ok-mark{font-family:var(--serif);font-size:30px;color:var(--gold);margin-bottom:12px;}
+  .confirm-msg p{font-size:14px;color:#B0B0B0;}
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1);}
+  [data-reveal].in{opacity:1;transform:translateY(0);}
+
+  /* ---------- CUSTOM CURSOR (desktop only) ---------- */
+  .cursor-dot, .cursor-ring{
+    position:fixed;top:0;left:0;pointer-events:none;z-index:9999;
+    border-radius:50%;transform:translate(-50%,-50%);
+  }
+  .cursor-dot{width:6px;height:6px;background:var(--gold);}
+  .cursor-ring{
+    width:34px;height:34px;border:1px solid var(--gold);
+    transition:width .25s ease, height .25s ease, opacity .25s ease, border-color .25s ease;
+  }
+  .cursor-ring.hover{width:54px;height:54px;border-color:var(--ink);}
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button{cursor:none;}
+
+  /* ---------- IMAGE CURTAIN REVEAL ---------- */
+  .reveal-media{position:relative;overflow:hidden;}
+  .reveal-media::after{
+    content:"";position:absolute;inset:0;background:var(--ink);z-index:2;
+    transform-origin:top;transform:scaleY(1);
+    transition:transform 1.1s cubic-bezier(.65,0,.35,1);
+  }
+  .reveal-media.in::after{transform:scaleY(0);}
+  .reveal-media img, .reveal-media video{transform:scale(1.12);transition:transform 1.3s cubic-bezier(.16,1,.3,1);}
+  .reveal-media.in img, .reveal-media.in video{transform:scale(1);}
+  [data-reveal].reveal-media{opacity:1;transform:none;}
+
+  /* ---------- STATS BAR ---------- */
+  .stats-bar{background:var(--panel);padding:56px 0;}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;}
+  .stats-grid .stat b{
+    display:block;font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.4vw,44px);color:var(--ink);
+  }
+  .stats-grid .stat span{display:block;margin-top:10px;font-size:12.5px;letter-spacing:0.03em;color:var(--rosewood-deep);}
+  .stats-grid .stat:not(:last-child){border-right:1px solid rgba(17,17,17,0.12);}
+
+  /* ---------- JOURNEY / PROCESS ---------- */
+  .journey-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:60px;}
+  .journey-step{position:relative;padding-top:30px;border-top:1px solid var(--line);}
+  .journey-step .js-num{
+    width:50px;height:50px;border-radius:50%;border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:19px;font-weight:400;color:var(--gold);margin-bottom:20px;
+  }
+  .journey-step h4{font-size:17px;font-weight:500;margin-bottom:10px;}
+  .journey-step p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;}
+
+
+  /* ---------- FAQ ---------- */
+  .faq-list{max-width:760px;margin-top:50px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-family:var(--serif);font-size:18px;font-weight:400;color:var(--ink);
+  }
+  .faq-q .faq-plus{font-family:var(--sans);font-size:20px;color:var(--gold);transition:transform .4s ease;flex:none;}
+  .faq-item.open .faq-plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .5s ease;}
+  .faq-a p{font-size:14.5px;color:var(--ink-soft);line-height:1.75;padding-bottom:24px;max-width:640px;}
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    display:none;
+    position:fixed;left:0;right:0;bottom:0;z-index:150;
+    background:var(--ink);padding:14px 20px;
+    justify-content:space-between;align-items:center;gap:16px;
+    transform:translateY(120%);transition:transform .4s ease;
+  }
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta span{font-family:var(--serif);color:#FFFFFF;font-size:15px;}
+  .sticky-cta a{
+    background:var(--gold);color:var(--ink);padding:11px 22px;font-size:13px;letter-spacing:0.03em;
+    text-decoration:none;white-space:nowrap;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:100px 0 50px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px;border-bottom:1px solid var(--line);}
+  .foot-grid h4{font-family:var(--serif);font-weight:400;font-size:15px;margin-bottom:18px;}
+  .foot-grid p, .foot-grid a{display:block;font-size:13.5px;color:var(--ink-soft);margin-bottom:9px;}
+  .foot-grid a:hover{color:var(--rosewood);}
+  .foot-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .foot-logo .fl-name{font-family:var(--serif);font-size:26px;letter-spacing:0.1em;line-height:1;}
+  .foot-logo .fl-tag{font-size:9.5px;letter-spacing:0.16em;opacity:0.65;margin-top:6px;text-transform:uppercase;display:block;}
+  .foot-map{aspect-ratio:16/9;background:var(--panel);margin-top:16px;overflow:hidden;}
+  .foot-map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(0.15) contrast(1.02);}
+  .bottom-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:26px;font-size:12px;color:var(--ink-soft);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .wrap{padding:0 24px;}
+    .nav-row{padding:18px 20px;gap:10px;}
+    .nav-menu-btn span{display:none;}
+    .nav-cta{gap:8px;}
+    .menu-panel a{padding:15px 20px;}
+    .hero-content{flex-direction:column;align-items:flex-start;gap:22px;left:24px;right:24px;bottom:44px;}
+    .hero-sub{text-align:left;max-width:100%;}
+    section{padding:88px 0;}
+    .head-row{grid-template-columns:1fr;gap:20px;}
+    .head-row p{justify-self:start;text-align:left;}
+    .about .wrap{grid-template-columns:1fr;gap:56px;}
+    .about-image .inset-frame{width:52%;right:-16px;bottom:-24px;border-width:5px;}
+    .about-facts{flex-wrap:wrap;gap:28px;}
+    .price-groups{grid-template-columns:1fr;}
+    .feature-row, .feature-row.reverse{flex-direction:column;min-height:0;}
+    .feature-row .fr-media{aspect-ratio:4/5;width:100%;}
+    .feature-row .fr-text{padding:36px 24px;}
+    .brand-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
+    .category-accordion{flex-direction:column;height:auto;max-height:none;}
+    .acc-item{flex:none;height:84px;transition:height .6s cubic-bezier(.16,1,.3,1);}
+    .acc-item.expanded{height:600px;}
+    .acc-label{writing-mode:horizontal-tb;transform:none;flex-direction:row;align-items:center;top:0;bottom:0;left:18px;right:18px;}
+    .acc-item.expanded .acc-label{opacity:0;pointer-events:none;}
+    .acc-expanded{flex-direction:column;}
+    .acc-video-pane{flex:1 1 56%;}
+    .acc-price-pane{flex:1 1 44%;border-left:none;border-top:1px solid rgba(255,255,255,0.14);padding:24px 20px;}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px;}
+    .stats-grid{grid-template-columns:1fr 1fr;gap:32px 20px;}
+    .stats-grid .stat:not(:last-child){border-right:none;}
+    .stats-grid .stat{border-bottom:1px solid rgba(255,255,255,0.14);padding-bottom:22px;}
+    .journey-grid{grid-template-columns:1fr 1fr;gap:36px;}
+    .sticky-cta{padding:12px 18px;display:flex;}
+  }
+  @media(max-width:480px){
+    .brand-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:400px){
+    /* màn hình rất hẹp (iPhone SE...): ẩn nút "Đặt lịch" trên thanh nav vì đã
+       có thanh CTA dính đáy màn hình lo việc đặt lịch, tránh bị tràn/che chữ */
+    .nav-cta{gap:10px;}
+    .nav-cta .nav-book-link{display:none;}
+    .lang-switch button{padding:4px 6px;font-size:9.5px;}
+  }
+  /* ---------- THIẾT BỊ CẢM ỨNG (iPad, điện thoại) — bất kể độ rộng màn hình ----------
+     iPad ở chế độ ngang (1024px) hoặc iPad Pro vẫn rộng hơn mốc 860px ở trên nên không
+     được hưởng layout gọn cho di động. Dùng (hover:none) để bắt đúng "thiết bị chạm,
+     không có chuột" thay vì đoán theo độ rộng màn hình — accordion dịch vụ vốn thiết kế
+     để trỏ chuột (hover) mới bung ra nên trên cảm ứng cần luôn ở dạng xếp dọc, dễ chạm. */
+  @media(hover:none){
+    .category-accordion{flex-direction:column;height:auto;max-height:none;}
+    .acc-item{flex:none;height:84px;transition:height .6s cubic-bezier(.16,1,.3,1);}
+    .acc-item.expanded{height:600px;}
+    .acc-label{writing-mode:horizontal-tb;transform:none;flex-direction:row;align-items:center;top:0;bottom:0;left:18px;right:18px;}
+    .acc-item.expanded .acc-label{opacity:0;pointer-events:none;}
+    .acc-expanded{flex-direction:column;}
+    .acc-video-pane{flex:1 1 56%;}
+    .acc-price-pane{flex:1 1 44%;border-left:none;border-top:1px solid rgba(255,255,255,0.14);padding:24px 20px;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .hero img{animation:none;}
+    *{transition:none !important;}
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NailSalon",
+  "@id": "https://vessca.com/#business",
+  "name": "VESSCA",
+  "alternateName": "VESSCA Korean Nail Lounge",
+  "image": "https://vessca.com/assets/blog-default.jpg",
+  "logo": "https://vessca.com/assets/vessca-logo.png",
+  "description": "VESSCA — tiệm nail phong cách Hàn Quốc tại Gia Định, Bình Thạnh, TP. Hồ Chí Minh. Kỹ thuật viên đào tạo bài bản, sản phẩm nhập khẩu chính hãng.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "251/30 Lê Quang Định",
+    "addressLocality": "Gia Định, Bình Thạnh",
+    "addressRegion": "TP. Hồ Chí Minh",
+    "postalCode": "70000",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 10.8045,
+    "longitude": 106.6975
+  },
+  "hasMap": "https://maps.google.com/?q=251/30+Le+Quang+Dinh+Gia+Dinh+Ho+Chi+Minh",
+  "telephone": "+84933528501",
+  "url": "https://vessca.com",
+  "openingHours": "Mo-Su 10:00-20:00",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "10:00",
+    "closes": "20:00"
+  },
+  "priceRange": "₫₫",
+  "currenciesAccepted": "VND",
+  "paymentAccepted": "Tiền mặt, Chuyển khoản, Ví điện tử",
+  "areaServed": [
+    {"@type": "City", "name": "TP. Hồ Chí Minh"},
+    {"@type": "AdministrativeArea", "name": "Bình Thạnh"},
+    {"@type": "AdministrativeArea", "name": "Gia Định"}
+  ],
+  "knowsLanguage": ["vi", "en", "zh"],
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sơn gel Hàn Quốc"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Úp móng / nối móng"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Nail art tối giản"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Chăm sóc & phục hồi móng"}}
+  ],
+  "sameAs": [
+    "https://www.instagram.com/vessca.nail/",
+    "https://www.facebook.com/profile.php?id=100089717754367"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cần đặt lịch trước bao lâu?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Bạn cứ để lại thông tin qua form đặt lịch hoặc liên hệ trực tiếp, VESSCA sẽ liên hệ lại để sắp xếp khung giờ thuận tiện nhất cho bạn."}
+    },
+    {
+      "@type": "Question",
+      "name": "Đến trễ có sao không?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Vui lòng báo trước qua số điện thoại nếu trễ hơn 15 phút, để VESSCA sắp xếp lại khung giờ hợp lý cho bạn và khách sau đó."}
+    },
+    {
+      "@type": "Question",
+      "name": "Móng yếu, dễ gãy có làm gel được không?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Được. Kỹ thuật viên sẽ kiểm tra tình trạng móng thật trước, có thể đề xuất thêm bước dưỡng phục hồi trước khi lên gel để tránh tổn thương thêm."}
+    },
+    {
+      "@type": "Question",
+      "name": "Có nhận thanh toán chuyển khoản không?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Có, VESSCA nhận tiền mặt, chuyển khoản và các ví điện tử phổ biến."}
+    },
+    {
+      "@type": "Question",
+      "name": "VESSCA - tiệm nail Bình Thạnh nằm ở đâu?",
+      "acceptedAnswer": {"@type": "Answer", "text": "VESSCA toạ lạc tại 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh — ngay khu vực Bình Thạnh, thuận tiện di chuyển từ các quận lân cận."}
+    },
+    {
+      "@type": "Question",
+      "name": "Nail kiểu Hàn Quốc khác gì so với nail thông thường?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Nail Hàn Quốc chú trọng form móng thanh mảnh, tự nhiên, đường nét tỉ mỉ và cập nhật liên tục các xu hướng màu, nail art mới từ Hàn Quốc — đây cũng là phong cách chủ đạo tại VESSCA."}
+    },
+    {
+      "@type": "Question",
+      "name": "Tiệm có chỗ để xe không?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Có, VESSCA có khu vực để xe ngay trước cửa tiệm, thuận tiện cho khách ghé làm nail."}
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="nav on-image" id="nav">
+  <div class="nav-row">
+    <button class="nav-menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
+      <svg class="menu-icon" viewBox="0 0 22 14" aria-hidden="true">
+        <line x1="0" y1="1" x2="22" y2="1"></line>
+        <line x1="0" y1="7" x2="22" y2="7"></line>
+        <line x1="0" y1="13" x2="22" y2="13"></line>
+      </svg>
+      <span data-i18n="nav.menu">MENU</span>
+    </button>
+    <div class="mark">
+      <svg class="mark-icon" viewBox="0 0 643 698" aria-hidden="true">
+        <g transform="translate(0,698) scale(0.1,-0.1)">
+          <path d="M3195 6489 c-368 -32 -752 -142 -1093 -313 -306 -153 -554 -337 -807
+-597 -477 -490 -765 -1114 -835 -1808 -13 -132 -13 -414 0 -556 65 -687 357
+-1322 835 -1814 375 -386 790 -638 1305 -794 1045 -317 2202 -24 2980 753 187
+187 399 459 400 512 0 27 -29 46 -50 33 -5 -3 -41 -50 -80 -105 -749 -1057
+-2095 -1498 -3324 -1088 -313 104 -641 283 -906 494 -230 183 -507 499 -665
+759 -383 629 -514 1381 -369 2110 148 744 598 1417 1234 1844 690 464 1530
+613 2337 415 658 -161 1239 -546 1644 -1089 141 -189 132 -179 157 -171 38 12
+27 53 -39 146 -108 150 -211 272 -339 400 -503 503 -1163 808 -1885 870 -139
+11 -357 11 -500 -1z M1020 4695 l0 -125 75 0 75 0 902 -1805 903 -1805 902
+1805 903 1805 80 0 80 0 0 125 0 125 -340 0 -340 0 0 -124 c0 -114 2 -125 19
+-128 16 -3 -81 -203 -643 -1326 l-661 -1322 -663 1325 c-621 1243 -660 1325
+-637 1325 l25 0 0 125 0 125 -340 0 -340 0 0 -125z" fill="currentColor" stroke="none"/>
+        </g>
+      </svg>
+      <span class="mark-text"><span class="mark-name">VESSCA</span><span class="mark-tag">Korean Nail Lounge</span></span>
+    </div>
+    <div class="nav-cta">
+      <div class="lang-switch" id="langSwitch">
+        <button type="button" data-lang="vi" class="active">VI</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="zh">中文</button>
+      </div>
+      <a href="#booking" class="nav-book-link" data-i18n="nav.booking">Đặt lịch</a>
+    </div>
+  </div>
+  <nav class="menu-panel" id="menuPanel">
+    <div class="menu-panel-inner">
+      <a href="#about" data-i18n="nav.about">Câu chuyện</a>
+      <a href="#services" data-i18n="nav.services">Dịch vụ</a>
+      <a href="#collection" data-i18n="nav.collection">Bộ sưu tập</a>
+      <a href="/blog" data-i18n="nav.blog">Blog</a>
+      <a href="#booking" data-i18n="nav.booking">Đặt lịch</a>
+      <a href="#contact" data-i18n="nav.contact">Ghé thăm</a>
+      <a href="https://maps.google.com/?q=251/30+Le+Quang+Dinh+Gia+Dinh+Ho+Chi+Minh" target="_blank" rel="noopener" class="menu-address" data-i18n="nav.address">Địa chỉ: 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ---------- HERO ---------- -->
+<section class="hero" style="padding:0;">
+  <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80">
+    <source src="videos/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div>
+      <span class="eyebrow" data-i18n="hero.eyebrow">vessca korean nail lounge — 251/30 Lê Quang Định</span>
+      <h1 data-i18n="hero.title">Chăm chút từng<br><em>đường nét</em>, chuẩn mực Hàn Quốc.</h1>
+    </div>
+    <div class="hero-sub">
+      <span data-i18n="hero.sub">Không gian riêng tư, kỹ thuật viên tay nghề cao, trải nghiệm như một khách mời — không phải một lượt khách.</span>
+      <a href="#booking" class="cta" data-i18n="hero.cta">Đặt lịch của bạn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- STATS BAR ---------- -->
+<section class="stats-bar">
+  <div class="wrap">
+    <div class="stats-grid" data-reveal>
+      <div class="stat"><b data-count="8" data-suffix="+">0</b><span data-i18n="stats.1">Năm kinh nghiệm đội ngũ</span></div>
+      <div class="stat"><b data-count="15" data-suffix="+">0</b><span data-i18n="stats.2">Phong cách nail độc quyền</span></div>
+      <div class="stat"><b data-count="100" data-suffix="%">0</b><span data-i18n="stats.3">Sản phẩm nhập khẩu chính hãng</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- ABOUT ---------- -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-image">
+      <div class="main-frame reveal-media" data-reveal>
+        <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1400&q=80" alt="Kỹ thuật viên đang chăm sóc nail cho khách tại tiệm">
+      </div>
+      <div class="inset-frame">
+        <img src="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?auto=format&fit=crop&w=1400&q=80" alt="Những lọ sơn gel nhiều màu sắp trên kệ">
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="num" data-i18n="about.num">VESSCA — khoảng lặng cho riêng bạn</span>
+      <h2 data-i18n="about.title">Một tiệm nail, nhưng được vận hành như một lounge riêng tư.</h2>
+      <p data-i18n="about.p1">VESSCA ra đời từ một điều đơn giản: cảm giác được chăm sóc kỹ lưỡng không nên là đặc quyền. Chúng tôi mang kỹ thuật nail Hàn Quốc — glass gel, ombre mịn, nail art tối giản — vào một không gian được thiết kế để bạn chậm lại.</p>
+      <p data-i18n="about.p2">Mỗi lịch hẹn được sắp xếp riêng, không chồng ca, không vội. Đó là tiêu chuẩn chúng tôi giữ từ ngày đầu.</p>
+      <div class="about-facts">
+        <div><span class="f-num">1:1</span><span class="f-label" data-i18n="about.f1">một kỹ thuật viên / một khách</span></div>
+        <div><span class="f-num">8+</span><span class="f-label" data-i18n="about.f2">năm kinh nghiệm đội ngũ</span></div>
+        <div><span class="f-num">01.10</span><span class="f-label" data-i18n="about.f3">ngày khai trương</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- JOURNEY ---------- -->
+<section id="journey">
+  <div class="wrap">
+    <div class="head-row" data-reveal>
+      <h2 data-i18n="journey.title">Trải nghiệm tại VESSCA</h2>
+      <p data-i18n="journey.sub">Một buổi chăm sóc nail tại VESSCA được thiết kế theo 4 bước, không vội vã.</p>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-step" data-reveal><span class="js-num">01</span><h4 data-i18n="journey.1.h">Đặt lịch</h4><p data-i18n="journey.1.p">Để lại thông tin qua website hoặc nhắn trực tiếp, VESSCA sẽ liên hệ sắp xếp giờ thuận tiện — không cần gọi điện chờ máy.</p></div>
+      <div class="journey-step" data-reveal><span class="js-num">02</span><h4 data-i18n="journey.2.h">Tư vấn</h4><p data-i18n="journey.2.p">Kỹ thuật viên xem tình trạng móng thật và gợi ý phong cách phù hợp trước khi bắt đầu.</p></div>
+      <div class="journey-step" data-reveal><span class="js-num">03</span><h4 data-i18n="journey.3.h">Thực hiện</h4><p data-i18n="journey.3.p">Từng bước được làm chậm rãi và chính xác, sản phẩm nhập khẩu chính hãng.</p></div>
+      <div class="journey-step" data-reveal><span class="js-num">04</span><h4 data-i18n="journey.4.h">Thư giãn</h4><p data-i18n="journey.4.p">Trà thảo mộc trong lúc chờ khô — kết thúc buổi chăm sóc trong không gian yên tĩnh.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- SERVICES / PRICING ---------- -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="head-row">
+      <h2 data-i18n="services.title">Dịch vụ &amp; bảng giá</h2>
+      <p data-i18n="services.sub">Đưa chuột đến từng nhóm dịch vụ để xem hình ảnh minh hoạ và bảng giá tương ứng.</p>
+    </div>
+  </div>
+  <div class="category-accordion" id="categoryAccordion">
+
+    <div class="acc-item expanded" data-cat="cs">
+      <div class="acc-cover">
+        <img src="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?auto=format&fit=crop&w=1400&q=80" alt="Chăm sóc móng &amp; thư giãn">
+        <span class="acc-label"><span class="al-num">01</span><span class="al-title" data-i18n="svc.cs.title">Chăm sóc móng &amp; thư giãn</span></span>
+      </div>
+      <div class="acc-expanded">
+        <div class="acc-video-pane">
+          <video muted loop playsinline autoplay preload="none" poster="https://images.unsplash.com/photo-1610992015762-45dca7fa3a85?auto=format&fit=crop&w=1400&q=80">
+            <source src="videos/cham-soc.mp4" type="video/mp4">
+          </video>
+          <div class="avp-caption"><span data-i18n="svc.caption">VESSCA — minh hoạ dịch vụ</span><h3 data-i18n="svc.cs.title">Chăm sóc móng &amp; thư giãn</h3></div>
+        </div>
+        <div class="acc-price-pane">
+          <div class="app-eyebrow" data-i18n="svc.pricelabel">Bảng giá</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r1">Cắt da, chỉnh form móng, dưỡng viền móng cao cấp (tay)</div><div class="app-price">60.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r2">Cắt da, chỉnh form móng, dưỡng viền móng cao cấp (chân)</div><div class="app-price">70.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r3">Sơn cứng móng</div><div class="app-price">40.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r4">Tạo cầu móng</div><div class="app-price">60.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r5">Dặm che khuyết điểm móng</div><div class="app-price">40.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r6">Phá gel, phá móng úp / đắp gel / bột</div><div class="app-price">30.000₫</div></div>
+          <div class="app-eyebrow app-group" data-i18n="svc.cs.sub7">Signature rituals</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r8">Hand Ritual — chăm sóc tay mềm mịn<span class="app-desc" data-i18n="svc.cs.r8d">30 phút</span></div><div class="app-price">250.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r9">Foot Ritual — chăm sóc chân thư giãn<span class="app-desc" data-i18n="svc.cs.r9d">45 phút</span></div><div class="app-price">350.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.cs.r10">Full Ritual — chăm sóc tay và chân<span class="app-desc" data-i18n="svc.cs.r10d">60 phút</span></div><div class="app-price">550.000₫</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" data-cat="sg">
+      <div class="acc-cover">
+        <img src="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?auto=format&fit=crop&w=1400&q=80" alt="Sơn gel cơ bản">
+        <span class="acc-label"><span class="al-num">02</span><span class="al-title" data-i18n="svc.sg.title">Sơn gel cơ bản</span></span>
+      </div>
+      <div class="acc-expanded">
+        <div class="acc-video-pane">
+          <video muted loop playsinline autoplay preload="none" poster="https://images.unsplash.com/photo-1619607146034-5a05296c8f9a?auto=format&fit=crop&w=1400&q=80">
+            <source src="videos/son-gel.mp4" type="video/mp4">
+          </video>
+          <div class="avp-caption"><span data-i18n="svc.caption">VESSCA — minh hoạ dịch vụ</span><h3 data-i18n="svc.sg.title">Sơn gel cơ bản</h3></div>
+        </div>
+        <div class="acc-price-pane">
+          <div class="app-eyebrow" data-i18n="svc.pricelabel">Bảng giá</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sg.r1">Sơn trơn</div><div class="app-price">130.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sg.r2">Sơn thạch</div><div class="app-price">150.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sg.r3">Sơn mắt mèo, nhũ</div><div class="app-price">170.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sg.r4">Sơn mix từ 2 màu</div><div class="app-price">+10.000₫ / màu</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sg.r5">Sơn lẻ</div><div class="app-price">từ 15.000₫</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" data-cat="sh">
+      <div class="acc-cover">
+        <img src="images/brand-auroraqueen-popsicle.jpg" alt="Sơn Hàn cao cấp">
+        <span class="acc-label"><span class="al-num">03</span><span class="al-title" data-i18n="svc.sh.title">Sơn Hàn cao cấp</span></span>
+      </div>
+      <div class="acc-expanded">
+        <div class="acc-video-pane avp-contain">
+          <img class="avp-still" src="images/brand-auroraqueen-popsicle.jpg" alt="Sơn Hàn cao cấp">
+          <div class="avp-caption"><span data-i18n="svc.caption">VESSCA — minh hoạ dịch vụ</span><h3 data-i18n="svc.sh.title">Sơn Hàn cao cấp</h3></div>
+        </div>
+        <div class="acc-price-pane">
+          <div class="app-eyebrow" data-i18n="svc.pricelabel">Bảng giá</div>
+          <div class="app-eyebrow app-group" data-i18n="svc.sh.sub1">Signature collection</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r2">Nhũ SHOW ME (top)</div><div class="app-price">220.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r3">Lông vũ Velvet SWEET CANDY (top)</div><div class="app-price">220.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r4">Xà cừ ánh trai SHOW ME</div><div class="app-price">280.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r5">Nhũ AURORA QUEEN</div><div class="app-price">280.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r6">Mắt mèo KISS NY / CATS ME</div><div class="app-price">280.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.sh.r7">Thạch SWEET CANDY</div><div class="app-price">280.000₫</div></div>
+          <p class="app-note" data-i18n="svc.sh.note">Sơn nhập khẩu chính hãng từ Kiss New York Gel Pro, Aurora Queen và 눈서림 Snow Velvet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" data-cat="um">
+      <div class="acc-cover">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80" alt="Nối móng, đắp gel">
+        <span class="acc-label"><span class="al-num">04</span><span class="al-title" data-i18n="svc.um.title">Nối móng, đắp gel</span></span>
+      </div>
+      <div class="acc-expanded">
+        <div class="acc-video-pane">
+          <video muted loop playsinline autoplay preload="none" poster="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80">
+            <source src="videos/up-mong.mp4" type="video/mp4">
+          </video>
+          <div class="avp-caption"><span data-i18n="svc.caption">VESSCA — minh hoạ dịch vụ</span><h3 data-i18n="svc.um.title">Nối móng, đắp gel</h3></div>
+        </div>
+        <div class="acc-price-pane">
+          <div class="app-eyebrow" data-i18n="svc.pricelabel">Bảng giá</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.um.r1">Úp móng</div><div class="app-price">130.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.um.r2">Úp móng Gel X</div><div class="app-price">190.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.um.r3">Đắp gel</div><div class="app-price">250.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.um.r4">Dual form</div><div class="app-price">350.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.um.r5">Fill gel</div><div class="app-price">190.000₫ / bộ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item" data-cat="dg">
+      <div class="acc-cover">
+        <img src="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1400&q=80" alt="Design, đính phụ kiện">
+        <span class="acc-label"><span class="al-num">05</span><span class="al-title" data-i18n="svc.dg.title">Design, đính phụ kiện</span></span>
+      </div>
+      <div class="acc-expanded">
+        <div class="acc-video-pane">
+          <video muted loop playsinline autoplay preload="none" poster="https://images.unsplash.com/photo-1607779097040-26e80aa78e66?auto=format&fit=crop&w=1400&q=80">
+            <source src="videos/design.mp4" type="video/mp4">
+          </video>
+          <div class="avp-caption"><span data-i18n="svc.caption">VESSCA — minh hoạ dịch vụ</span><h3 data-i18n="svc.dg.title">Design, đính phụ kiện</h3></div>
+        </div>
+        <div class="acc-price-pane">
+          <div class="app-eyebrow" data-i18n="svc.pricelabel">Bảng giá</div>
+          <div class="app-eyebrow app-group" data-i18n="svc.dg.sub1">Nail art</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r2">Vẽ<span class="app-desc" data-i18n="svc.dg.r2d">Tuỳ độ chi tiết</span></div><div class="app-price">10.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r3">Hoạt hình nặn 3D</div><div class="app-price">40.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r4">Hoạt hình bột 3D</div><div class="app-price">50.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r5">Đắp nhũ, rắc nhũ</div><div class="app-price">10.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r6">Tráng gương</div><div class="app-price">từ 15.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r7">Tráng gương nổi</div><div class="app-price">15.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r8">Loang, vân đá, galaxy</div><div class="app-price">15.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r9">French đầu móng</div><div class="app-price">từ 15.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r10">Ombre</div><div class="app-price">10.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r11">Ấn xà cừ, hoa khô, thuỷ tinh</div><div class="app-price">10.000₫</div></div>
+          <div class="app-eyebrow app-group" data-i18n="svc.dg.sub12">Đính phụ kiện</div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r13">Đính đá</div><div class="app-price">10.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r14">Đính đá Swarovski cao cấp</div><div class="app-price">20.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r15">Đính đá Hàn cao cấp</div><div class="app-price">100.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r16">Đính charm các loại</div><div class="app-price">10.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r17">Charm đổ khuôn</div><div class="app-price">20.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r18">Rắc đá</div><div class="app-price">từ 35.000₫</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r19">Ngọc trai</div><div class="app-price">từ 5.000₫ / viên</div></div>
+          <div class="app-row"><div class="app-name" data-i18n="svc.dg.r20">Sticker (lụa, 3D, Hàn)</div><div class="app-price">10.000₫</div></div>
+          <p class="app-note" data-i18n="svc.dg.note">Giá design tính theo từng chi tiết — kỹ thuật viên sẽ báo tổng trước khi làm.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ---------- COLLECTION ---------- -->
+<section class="collection" id="collection">
+  <div class="wrap">
+    <div class="head-row">
+      <h2 data-i18n="collection.title">Bộ sưu tập</h2>
+      <p data-i18n="collection.sub">Những phong cách đang dẫn đầu xu hướng nail mùa này, cùng bảng màu mới nhất từ các thương hiệu VESSCA tin dùng.</p>
+    </div>
+
+    <div class="feature-row" data-reveal>
+      <div class="fr-media reveal-media" data-reveal><img src="https://images.unsplash.com/photo-1630843599725-32ead7671867?auto=format&fit=crop&w=1200&q=80" alt="Nail glazed jelly trắng sữa bóng gương"></div>
+      <div class="fr-text">
+        <span class="fr-tag" data-i18n="col.1.tag">Đang được yêu thích nhất</span>
+        <h3>Glazed Jelly</h3>
+        <p data-i18n="col.1.p">Bóng gương như lớp men sứ, trong như thạch — hiệu ứng "glazed" khiến bàn tay trông được chăm sóc kỹ lưỡng mà không cần phô màu sắc. Đây là lựa chọn đầu tiên VESSCA gợi ý cho khách lần đầu thử glass gel.</p>
+      </div>
+    </div>
+
+    <div class="feature-row reverse alt" data-reveal>
+      <div class="fr-media reveal-media" data-reveal><img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=80" alt="Nail chrome nude tông trung tính"></div>
+      <div class="fr-text">
+        <span class="fr-tag" data-i18n="col.2.tag">Sang trọng, thầm lặng</span>
+        <h3>Neutral Chrome</h3>
+        <p data-i18n="col.2.p">Ánh kim phủ mỏng lên nền be, nude — chrome không còn rực rỡ mà trở nên tinh tế, đúng tinh thần "quiet luxury" đang được nhắc đến nhiều nhất trong giới làm đẹp mùa này.</p>
+      </div>
+    </div>
+
+    <div class="feature-row" data-reveal>
+      <div class="fr-media reveal-media" data-reveal><img src="https://images.unsplash.com/photo-1748163432725-454f46f68340?auto=format&fit=crop&w=1200&q=80" alt="Nail đỏ cà chua nổi bật"></div>
+      <div class="fr-text">
+        <span class="fr-tag" data-i18n="col.3.tag">Sắc màu chủ đạo mùa này</span>
+        <h3>Tomato Red</h3>
+        <p data-i18n="col.3.p">Một sắc đỏ ấm, chín tới — không gắt như đỏ cổ điển, cũng không ngọt như đỏ hồng. Dễ lên da tay châu Á và hợp với hầu hết mọi dịp, từ đi làm đến những buổi tối cuối tuần.</p>
+      </div>
+    </div>
+
+    <div class="feature-row reverse alt" data-reveal>
+      <div class="fr-media reveal-media" data-reveal><img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80" alt="Nail ánh nhũ lấp lánh"></div>
+      <div class="fr-text">
+        <span class="fr-tag" data-i18n="col.5.tag">Lấp lánh vừa đủ</span>
+        <h3>Sparkle Shimmer</h3>
+        <p data-i18n="col.5.p">Ánh nhũ mịn nằm ẩn dưới lớp gel bóng, chỉ thật sự lộ ra khi bắt sáng — lấp lánh mà không phô trương. Một lựa chọn an toàn cho cả môi trường công sở lẫn những dịp cần chỉn chu hơn.</p>
+      </div>
+    </div>
+
+    <div class="collection-subhead" data-reveal>
+      <h3 data-i18n="col.brand.tag">Bộ sưu tập theo mùa</h3>
+      <span data-i18n="col.brand.sub">Các hãng gel VESSCA đang sử dụng tại tiệm</span>
+    </div>
+    <div class="brand-grid" data-reveal>
+      <div class="trend-card">
+        <div class="tc-media reveal-media" data-reveal><img src="images/brand-kissny-tinkergel.jpg" alt="Bảng màu TinkerGel Neverland từ Kiss New York Gel Pro"></div>
+        <div class="tc-body">
+          <span class="tc-tag">Kiss New York Gel Pro</span>
+          <h3>TinkerGel Neverland</h3>
+          <p data-i18n="col.6.p">Dòng gel ánh nhũ mềm mại, lấy cảm hứng từ những sắc màu mộng mơ — một trong những bảng màu VESSCA đang sử dụng tại tiệm.</p>
+        </div>
+      </div>
+      <div class="trend-card">
+        <div class="tc-media reveal-media" data-reveal><img src="images/brand-auroraqueen-popsicle.jpg" alt="Bảng màu Popsicle Collection từ Aurora Queen"></div>
+        <div class="tc-body">
+          <span class="tc-tag">Aurora Queen</span>
+          <h3>Popsicle Collection</h3>
+          <p data-i18n="col.7.p">12 sắc kẹo mút rực rỡ, phù hợp cho khách muốn thử điều gì đó tươi mới, nổi bật hơn bảng màu trung tính thường ngày.</p>
+        </div>
+      </div>
+      <div class="trend-card">
+        <div class="tc-media reveal-media" data-reveal><img src="images/brand-snowvelvet-bottles.jpg" alt="Bộ sơn Snow Velvet Candy"></div>
+        <div class="tc-body">
+          <span class="tc-tag">눈서림</span>
+          <h3>Snow Velvet Candy</h3>
+          <p data-i18n="col.8.p">Tông màu velvet mờ nhẹ như nhung, đặc trưng mùa Đông — thêm một lựa chọn cho khách thích nail có chiều sâu, không quá bóng gương.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- FAQ ---------- -->
+<section id="faq" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="head-row" data-reveal>
+      <h2 data-i18n="faq.title">Câu hỏi thường gặp</h2>
+      <p data-i18n="faq.sub">Vài điều khách hay hỏi trước khi ghé VESSCA lần đầu.</p>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q1">Cần đặt lịch trước bao lâu?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a1">Bạn cứ để lại thông tin qua form đặt lịch hoặc liên hệ trực tiếp, VESSCA sẽ liên hệ lại để sắp xếp khung giờ thuận tiện nhất cho bạn.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q2">Đến trễ có sao không?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a2">Vui lòng báo trước qua số điện thoại nếu trễ hơn 15 phút, để VESSCA sắp xếp lại khung giờ hợp lý cho bạn và khách sau đó.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q3">Móng yếu, dễ gãy có làm gel được không?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a3">Được. Kỹ thuật viên sẽ kiểm tra tình trạng móng thật trước, có thể đề xuất thêm bước dưỡng phục hồi trước khi lên gel để tránh tổn thương thêm.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q4">Có nhận thanh toán chuyển khoản không?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a4">Có, VESSCA nhận tiền mặt, chuyển khoản và các ví điện tử phổ biến.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q5">VESSCA - tiệm nail Bình Thạnh nằm ở đâu?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a5">VESSCA toạ lạc tại 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh — ngay khu vực Bình Thạnh, thuận tiện di chuyển từ các quận lân cận.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q6">Nail kiểu Hàn Quốc khác gì so với nail thông thường?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a6">Nail Hàn Quốc chú trọng form móng thanh mảnh, tự nhiên, đường nét tỉ mỉ và cập nhật liên tục các xu hướng màu, nail art mới từ Hàn Quốc — đây cũng là phong cách chủ đạo tại VESSCA.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="faq.q7">Tiệm có chỗ để xe không?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p data-i18n="faq.a7">Có, VESSCA có khu vực để xe ngay trước cửa tiệm, thuận tiện cho khách ghé làm nail.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- BOOKING ---------- -->
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="head-row">
+      <h2 data-i18n="booking.title">Đặt lịch</h2>
+      <p data-i18n="booking.sub">Để lại thông tin bên dưới, VESSCA sẽ liên hệ xác nhận lịch hẹn với bạn trong thời gian sớm nhất.</p>
+    </div>
+    <div class="booking-grid booking-grid-single">
+      <div class="booking-form">
+        <form id="bookForm" action="https://api.web3forms.com/submit" method="POST">
+          <!-- access_key của Web3Forms: khoá này VỐN DĨ công khai, nằm trong mã
+               trang là đúng thiết kế, không phải mật khẩu. Thay YOUR_ACCESS_KEY
+               bằng khoá gửi về email khi đăng ký ở web3forms.com. -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Đặt lịch mới từ website VESSCA">
+          <input type="hidden" name="from_name" value="Website VESSCA">
+          <!-- Bẫy robot: người thật không thấy ô này nên không bao giờ điền. -->
+          <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true"
+                 style="display:none;">
+          <div class="field"><label data-i18n="booking.name">Họ và tên</label><input type="text" id="fName" name="Ho ten" required></div>
+          <div class="field"><label data-i18n="booking.phone">Số điện thoại</label><input type="tel" id="fPhone" name="So dien thoai" inputmode="tel" required></div>
+          <div class="field">
+            <label data-i18n="booking.service">Dịch vụ</label>
+            <select id="fService" name="Dich vu">
+              <option data-i18n="booking.opt1">Chăm sóc móng &amp; thư giãn</option>
+              <option data-i18n="booking.opt2">Sơn gel cơ bản</option>
+              <option data-i18n="booking.opt3">Sơn Hàn cao cấp</option>
+              <option data-i18n="booking.opt4">Nối móng, đắp gel</option>
+              <option data-i18n="booking.opt5">Design, đính phụ kiện</option>
+              <option data-i18n="booking.opt6">Chưa biết — nhờ tư vấn</option>
+            </select>
+          </div>
+          <div class="field"><label data-i18n="booking.preferred">Ngày giờ mong muốn</label><input type="text" id="fWhen" name="Ngay gio mong muon" placeholder="VD: Thứ 7 này, buổi chiều" data-i18n-ph="booking.preferredPh"></div>
+          <div class="field"><label data-i18n="booking.note">Ghi chú (không bắt buộc)</label><textarea id="fNote" name="Ghi chu" rows="2"></textarea></div>
+          <button type="submit" class="submit-btn" id="submitBtn" data-i18n="booking.submit">Gửi yêu cầu đặt lịch</button>
+        </form>
+        <div class="confirm-msg" id="confirmMsg">
+          <div class="ok-mark">✓</div>
+          <p data-i18n="booking.confirmed">Đã nhận yêu cầu của bạn. VESSCA sẽ liên hệ để xác nhận lịch hẹn qua số điện thoại đã cung cấp.</p>
+        </div>
+        <div class="confirm-msg err-msg" id="errMsg">
+          <p data-i18n="booking.failed">Rất tiếc, chưa gửi được yêu cầu. Bạn gọi giúp VESSCA theo số bên dưới nhé.</p>
+          <a class="call-btn" href="tel:+84933528501">093 352 8501</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- FOOTER ---------- -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <svg viewBox="0 0 643 698" width="20" height="20" aria-hidden="true">
+            <g transform="translate(0,698) scale(0.1,-0.1)">
+              <path d="M3195 6489 c-368 -32 -752 -142 -1093 -313 -306 -153 -554 -337 -807
+-597 -477 -490 -765 -1114 -835 -1808 -13 -132 -13 -414 0 -556 65 -687 357
+-1322 835 -1814 375 -386 790 -638 1305 -794 1045 -317 2202 -24 2980 753 187
+187 399 459 400 512 0 27 -29 46 -50 33 -5 -3 -41 -50 -80 -105 -749 -1057
+-2095 -1498 -3324 -1088 -313 104 -641 283 -906 494 -230 183 -507 499 -665
+759 -383 629 -514 1381 -369 2110 148 744 598 1417 1234 1844 690 464 1530
+613 2337 415 658 -161 1239 -546 1644 -1089 141 -189 132 -179 157 -171 38 12
+27 53 -39 146 -108 150 -211 272 -339 400 -503 503 -1163 808 -1885 870 -139
+11 -357 11 -500 -1z M1020 4695 l0 -125 75 0 75 0 902 -1805 903 -1805 902
+1805 903 1805 80 0 80 0 0 125 0 125 -340 0 -340 0 0 -124 c0 -114 2 -125 19
+-128 16 -3 -81 -203 -643 -1326 l-661 -1322 -663 1325 c-621 1243 -660 1325
+-637 1325 l25 0 0 125 0 125 -340 0 -340 0 0 -125z" fill="currentColor" stroke="none"/>
+            </g>
+          </svg>
+          <span><span class="fl-name">VESSCA</span><span class="fl-tag">Korean Nail Lounge</span></span>
+        </div>
+        <p style="max-width:260px;" data-i18n="footer.address">Korean nail lounge — 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh.</p>
+        <div class="foot-map"><iframe src="https://maps.google.com/maps?q=251%2F30+Le+Quang+Dinh%2C+Gia+Dinh%2C+Ho+Chi+Minh+City%2C+Vietnam&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="VESSCA trên Google Maps" aria-label="VESSCA trên Google Maps"></iframe></div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hours.title">Giờ mở cửa</h4>
+        <p data-i18n="footer.hours.days">Thứ 2 – Chủ nhật</p>
+        <p>10:00 – 20:00</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.contact.title">Liên hệ</h4>
+        <a href="tel:+84933528501">093 352 8501</a>
+        <a href="https://maps.google.com/maps?q=251%2F30+Le+Quang+Dinh%2C+Gia+Dinh%2C+Ho+Chi+Minh+City%2C+Vietnam" target="_blank" rel="noopener" data-i18n="footer.directions">Chỉ đường</a>
+        <a href="#booking" data-i18n="nav.booking">Đặt lịch</a>
+        <a href="/blog" data-i18n="nav.blog">Blog</a>
+      </div>
+      <div>
+        <h4 data-i18n="footer.follow.title">Theo dõi</h4>
+        <a href="https://www.instagram.com/vessca.nail/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=100089717754367" target="_blank" rel="noopener">Facebook</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <span data-i18n="footer.copyright">© 2026 VESSCA Nail Lounge.</span>
+      <span data-i18n="footer.partner">Đối tác cung cấp: Kiss New York Gel Pro</span>
+      <span data-i18n="footer.opening">Khai trương 01.10.2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ---------- STICKY MOBILE CTA ---------- -->
+<div class="sticky-cta" id="stickyCta">
+  <span>VESSCA Nail Lounge</span>
+  <a href="#booking" data-i18n="nav.booking">Đặt lịch</a>
+</div>
+
+<script>
+  const I18N = {
+  "vi": {
+    "nav.menu": "MENU",
+    "nav.address": "Địa chỉ: 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh",
+    "nav.blog": "Blog",
+    "nav.about": "Câu chuyện",
+    "nav.services": "Dịch vụ",
+    "nav.collection": "Bộ sưu tập",
+    "nav.booking": "Đặt lịch",
+    "nav.contact": "Ghé thăm",
+    "hero.eyebrow": "vessca korean nail lounge — 251/30 Lê Quang Định",
+    "hero.title": "Chăm chút từng<br><em>đường nét</em>, chuẩn mực Hàn Quốc.",
+    "hero.sub": "Không gian riêng tư, kỹ thuật viên tay nghề cao, trải nghiệm như một khách mời — không phải một lượt khách.",
+    "hero.cta": "Đặt lịch của bạn",
+    "stats.1": "Năm kinh nghiệm đội ngũ",
+    "stats.2": "Phong cách nail độc quyền",
+    "stats.3": "Sản phẩm nhập khẩu chính hãng",
+    "about.num": "VESSCA — khoảng lặng cho riêng bạn",
+    "about.title": "Một tiệm nail, nhưng được vận hành như một lounge riêng tư.",
+    "about.p1": "VESSCA ra đời từ một điều đơn giản: cảm giác được chăm sóc kỹ lưỡng không nên là đặc quyền. Chúng tôi mang kỹ thuật nail Hàn Quốc — glass gel, ombre mịn, nail art tối giản — vào một không gian được thiết kế để bạn chậm lại.",
+    "about.p2": "Mỗi lịch hẹn được sắp xếp riêng, không chồng ca, không vội. Đó là tiêu chuẩn chúng tôi giữ từ ngày đầu.",
+    "about.f1": "một kỹ thuật viên / một khách",
+    "about.f2": "năm kinh nghiệm đội ngũ",
+    "about.f3": "ngày khai trương",
+    "journey.title": "Trải nghiệm tại VESSCA",
+    "journey.sub": "Một buổi chăm sóc nail tại VESSCA được thiết kế theo 4 bước, không vội vã.",
+    "journey.1.h": "Đặt lịch",
+    "journey.1.p": "Để lại thông tin qua website hoặc nhắn trực tiếp, VESSCA sẽ liên hệ sắp xếp giờ thuận tiện — không cần gọi điện chờ máy.",
+    "journey.2.h": "Tư vấn",
+    "journey.2.p": "Kỹ thuật viên xem tình trạng móng thật và gợi ý phong cách phù hợp trước khi bắt đầu.",
+    "journey.3.h": "Thực hiện",
+    "journey.3.p": "Từng bước được làm chậm rãi và chính xác, sản phẩm nhập khẩu chính hãng.",
+    "journey.4.h": "Thư giãn",
+    "journey.4.p": "Trà thảo mộc trong lúc chờ khô — kết thúc buổi chăm sóc trong không gian yên tĩnh.",
+    "services.title": "Dịch vụ & bảng giá",
+    "services.sub": "Đưa chuột đến từng nhóm dịch vụ để xem hình ảnh minh hoạ và bảng giá tương ứng.",
+    "svc.caption": "VESSCA — minh hoạ dịch vụ",
+    "svc.pricelabel": "Bảng giá",
+    "svc.cs.title": "Chăm sóc móng & thư giãn",
+    "svc.cs.r1": "Cắt da, chỉnh form móng, dưỡng viền móng cao cấp (tay)",
+    "svc.cs.r2": "Cắt da, chỉnh form móng, dưỡng viền móng cao cấp (chân)",
+    "svc.cs.r3": "Sơn cứng móng",
+    "svc.cs.r4": "Tạo cầu móng",
+    "svc.cs.r5": "Dặm che khuyết điểm móng",
+    "svc.cs.r6": "Phá gel, phá móng úp / đắp gel / bột",
+    "svc.cs.sub7": "Signature rituals",
+    "svc.cs.r8": "Hand Ritual — chăm sóc tay mềm mịn",
+    "svc.cs.r8d": "30 phút",
+    "svc.cs.r9": "Foot Ritual — chăm sóc chân thư giãn",
+    "svc.cs.r9d": "45 phút",
+    "svc.cs.r10": "Full Ritual — chăm sóc tay và chân",
+    "svc.cs.r10d": "60 phút",
+    "svc.sg.title": "Sơn gel cơ bản",
+    "svc.sg.r1": "Sơn trơn",
+    "svc.sg.r2": "Sơn thạch",
+    "svc.sg.r3": "Sơn mắt mèo, nhũ",
+    "svc.sg.r4": "Sơn mix từ 2 màu",
+    "svc.sg.r5": "Sơn lẻ",
+    "svc.sh.title": "Sơn Hàn cao cấp",
+    "svc.sh.sub1": "Signature collection",
+    "svc.sh.r2": "Nhũ SHOW ME (top)",
+    "svc.sh.r3": "Lông vũ Velvet SWEET CANDY (top)",
+    "svc.sh.r4": "Xà cừ ánh trai SHOW ME",
+    "svc.sh.r5": "Nhũ AURORA QUEEN",
+    "svc.sh.r6": "Mắt mèo KISS NY / CATS ME",
+    "svc.sh.r7": "Thạch SWEET CANDY",
+    "svc.sh.note": "Sơn nhập khẩu chính hãng từ Kiss New York Gel Pro, Aurora Queen và 눈서림 Snow Velvet.",
+    "svc.um.title": "Nối móng, đắp gel",
+    "svc.um.r1": "Úp móng",
+    "svc.um.r2": "Úp móng Gel X",
+    "svc.um.r3": "Đắp gel",
+    "svc.um.r4": "Dual form",
+    "svc.um.r5": "Fill gel",
+    "svc.dg.title": "Design, đính phụ kiện",
+    "svc.dg.sub1": "Nail art",
+    "svc.dg.r2": "Vẽ",
+    "svc.dg.r2d": "Tuỳ độ chi tiết",
+    "svc.dg.r3": "Hoạt hình nặn 3D",
+    "svc.dg.r4": "Hoạt hình bột 3D",
+    "svc.dg.r5": "Đắp nhũ, rắc nhũ",
+    "svc.dg.r6": "Tráng gương",
+    "svc.dg.r7": "Tráng gương nổi",
+    "svc.dg.r8": "Loang, vân đá, galaxy",
+    "svc.dg.r9": "French đầu móng",
+    "svc.dg.r10": "Ombre",
+    "svc.dg.r11": "Ấn xà cừ, hoa khô, thuỷ tinh",
+    "svc.dg.sub12": "Đính phụ kiện",
+    "svc.dg.r13": "Đính đá",
+    "svc.dg.r14": "Đính đá Swarovski cao cấp",
+    "svc.dg.r15": "Đính đá Hàn cao cấp",
+    "svc.dg.r16": "Đính charm các loại",
+    "svc.dg.r17": "Charm đổ khuôn",
+    "svc.dg.r18": "Rắc đá",
+    "svc.dg.r19": "Ngọc trai",
+    "svc.dg.r20": "Sticker (lụa, 3D, Hàn)",
+    "svc.dg.note": "Giá design tính theo từng chi tiết — kỹ thuật viên sẽ báo tổng trước khi làm.",
+    "collection.title": "Bộ sưu tập",
+    "collection.sub": "Những phong cách đang dẫn đầu xu hướng nail mùa này, cùng bảng màu mới nhất từ các thương hiệu VESSCA tin dùng.",
+    "col.1.tag": "Đang được yêu thích nhất",
+    "col.1.p": "Bóng gương như lớp men sứ, trong như thạch — hiệu ứng \"glazed\" khiến bàn tay trông được chăm sóc kỹ lưỡng mà không cần phô màu sắc. Đây là lựa chọn đầu tiên VESSCA gợi ý cho khách lần đầu thử glass gel.",
+    "col.2.tag": "Sang trọng, thầm lặng",
+    "col.2.p": "Ánh kim phủ mỏng lên nền be, nude — chrome không còn rực rỡ mà trở nên tinh tế, đúng tinh thần \"quiet luxury\" đang được nhắc đến nhiều nhất trong giới làm đẹp mùa này.",
+    "col.3.tag": "Sắc màu chủ đạo mùa này",
+    "col.3.p": "Một sắc đỏ ấm, chín tới — không gắt như đỏ cổ điển, cũng không ngọt như đỏ hồng. Dễ lên da tay châu Á và hợp với hầu hết mọi dịp, từ đi làm đến những buổi tối cuối tuần.",
+    "col.4.tag": "Phiên bản tối giản của french",
+    "col.4.p": "Viền french được kéo mảnh lại chỉ còn một nét — đủ tinh tế để nhận ra là french, nhưng nhẹ nhàng hơn hẳn kiểu viền dày quen thuộc. Phù hợp với khách muốn nail gọn nhưng vẫn có điểm nhấn.",
+    "col.5.tag": "Lấp lánh vừa đủ",
+    "col.5.p": "Ánh nhũ mịn nằm ẩn dưới lớp gel bóng, chỉ thật sự lộ ra khi bắt sáng — lấp lánh mà không phô trương. Một lựa chọn an toàn cho cả môi trường công sở lẫn những dịp cần chỉn chu hơn.",
+    "col.brand.tag": "Bộ sưu tập theo mùa",
+    "col.brand.sub": "Các hãng gel VESSCA đang sử dụng tại tiệm",
+    "col.6.p": "Dòng gel ánh nhũ mềm mại, lấy cảm hứng từ những sắc màu mộng mơ — một trong những bảng màu VESSCA đang sử dụng tại tiệm.",
+    "col.7.p": "12 sắc kẹo mút rực rỡ, phù hợp cho khách muốn thử điều gì đó tươi mới, nổi bật hơn bảng màu trung tính thường ngày.",
+    "col.8.p": "Tông màu velvet mờ nhẹ như nhung, đặc trưng mùa Đông — thêm một lựa chọn cho khách thích nail có chiều sâu, không quá bóng gương.",
+    "faq.title": "Câu hỏi thường gặp",
+    "faq.sub": "Vài điều khách hay hỏi trước khi ghé VESSCA lần đầu.",
+    "faq.q1": "Cần đặt lịch trước bao lâu?",
+    "faq.a1": "Bạn cứ để lại thông tin qua form đặt lịch hoặc liên hệ trực tiếp, VESSCA sẽ liên hệ lại để sắp xếp khung giờ thuận tiện nhất cho bạn.",
+    "faq.q2": "Đến trễ có sao không?",
+    "faq.a2": "Vui lòng báo trước qua số điện thoại nếu trễ hơn 15 phút, để VESSCA sắp xếp lại khung giờ hợp lý cho bạn và khách sau đó.",
+    "faq.q3": "Móng yếu, dễ gãy có làm gel được không?",
+    "faq.a3": "Được. Kỹ thuật viên sẽ kiểm tra tình trạng móng thật trước, có thể đề xuất thêm bước dưỡng phục hồi trước khi lên gel để tránh tổn thương thêm.",
+    "faq.q4": "Có nhận thanh toán chuyển khoản không?",
+    "faq.a4": "Có, VESSCA nhận tiền mặt, chuyển khoản và các ví điện tử phổ biến.",
+    "faq.q5": "VESSCA - tiệm nail Bình Thạnh nằm ở đâu?",
+    "faq.a5": "VESSCA toạ lạc tại 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh — ngay khu vực Bình Thạnh, thuận tiện di chuyển từ các quận lân cận.",
+    "faq.q6": "Nail kiểu Hàn Quốc khác gì so với nail thông thường?",
+    "faq.a6": "Nail Hàn Quốc chú trọng form móng thanh mảnh, tự nhiên, đường nét tỉ mỉ và cập nhật liên tục các xu hướng màu, nail art mới từ Hàn Quốc — đây cũng là phong cách chủ đạo tại VESSCA.",
+    "faq.q7": "Tiệm có chỗ để xe không?",
+    "faq.a7": "Có, VESSCA có khu vực để xe ngay trước cửa tiệm, thuận tiện cho khách ghé làm nail.",
+    "booking.title": "Đặt lịch",
+    "booking.sub": "Để lại thông tin bên dưới, VESSCA sẽ liên hệ xác nhận lịch hẹn với bạn trong thời gian sớm nhất.",
+    "booking.name": "Họ và tên",
+    "booking.phone": "Số điện thoại",
+    "booking.service": "Dịch vụ",
+    "booking.opt1": "Chăm sóc móng & thư giãn",
+    "booking.opt2": "Sơn gel cơ bản",
+    "booking.opt3": "Sơn Hàn cao cấp",
+    "booking.opt4": "Nối móng, đắp gel",
+    "booking.opt5": "Design, đính phụ kiện",
+    "booking.preferred": "Ngày giờ mong muốn",
+    "booking.preferredPh": "VD: Thứ 7 này, buổi chiều",
+    "booking.note": "Ghi chú (không bắt buộc)",
+    "booking.submit": "Gửi yêu cầu đặt lịch",
+    "booking.failed": "Rất tiếc, chưa gửi được yêu cầu. Bạn gọi giúp VESSCA theo số bên dưới nhé.",
+    "booking.sending": "Đang gửi...",
+    "booking.opt6": "Chưa biết — nhờ tư vấn",
+    "booking.confirmed": "Đã nhận yêu cầu của bạn. VESSCA sẽ liên hệ để xác nhận lịch hẹn qua số điện thoại đã cung cấp.",
+    "footer.address": "Korean nail lounge — 251/30 Lê Quang Định, Gia Định, TP. Hồ Chí Minh.",
+    "footer.hours.title": "Giờ mở cửa",
+    "footer.hours.days": "Thứ 2 – Chủ nhật",
+    "footer.contact.title": "Liên hệ",
+    "footer.directions": "Chỉ đường",
+    "footer.follow.title": "Theo dõi",
+    "footer.copyright": "© 2026 VESSCA Nail Lounge.",
+    "footer.partner": "Đối tác cung cấp: Kiss New York Gel Pro",
+    "footer.opening": "Khai trương 01.10.2026",
+    "meta.title": "VESSCA Nail Lounge — Nail Hàn Quốc tại Bình Thạnh, TP.HCM"
+  },
+  "en": {
+    "nav.menu": "MENU",
+    "nav.address": "Address: 251/30 Le Quang Dinh, Gia Dinh, Ho Chi Minh City",
+    "nav.blog": "Blog",
+    "nav.about": "Story",
+    "nav.services": "Services",
+    "nav.collection": "Collection",
+    "nav.booking": "Booking",
+    "nav.contact": "Visit",
+    "hero.eyebrow": "vessca korean nail lounge — 251/30 Le Quang Dinh",
+    "hero.title": "Every <em>line</em> considered,<br>Korean standards throughout.",
+    "hero.sub": "A private space, skilled technicians, an experience built around you as a guest — not just another appointment.",
+    "hero.cta": "Book your visit",
+    "stats.1": "Years of team experience",
+    "stats.2": "Signature nail styles",
+    "stats.3": "Genuine imported products",
+    "about.num": "VESSCA — a quiet moment for you",
+    "about.title": "A nail studio, run like a private lounge.",
+    "about.p1": "VESSCA began with one simple belief: being cared for properly shouldn't be a privilege. We bring Korean nail techniques — glass gel, soft ombré, minimalist nail art — into a space designed to help you slow down.",
+    "about.p2": "Every appointment is scheduled individually, never overlapped, never rushed. That's a standard we've kept since day one.",
+    "about.f1": "one technician / one guest",
+    "about.f2": "years of team experience",
+    "about.f3": "opening day",
+    "journey.title": "The VESSCA experience",
+    "journey.sub": "A nail session at VESSCA follows four unhurried steps.",
+    "journey.1.h": "Book",
+    "journey.1.p": "Leave your details on the website or message us directly, and VESSCA will arrange a time that suits you — no waiting on the phone.",
+    "journey.2.h": "Consult",
+    "journey.2.p": "Your technician checks your nails' real condition and suggests a style before starting.",
+    "journey.3.h": "Create",
+    "journey.3.p": "Every step done slowly and precisely, with genuine imported products.",
+    "journey.4.h": "Unwind",
+    "journey.4.p": "Herbal tea while your nails dry — closing the session in a quiet space.",
+    "services.title": "Services & pricing",
+    "services.sub": "Hover over a category to see a preview and its price list.",
+    "svc.caption": "VESSCA — service preview",
+    "svc.pricelabel": "Price list",
+    "svc.cs.title": "Nail Care & Rituals",
+    "svc.cs.r1": "Cuticle care, shaping & premium edge treatment (hands)",
+    "svc.cs.r2": "Cuticle care, shaping & premium edge treatment (feet)",
+    "svc.cs.r3": "Strengthening coat",
+    "svc.cs.r4": "Nail arch building",
+    "svc.cs.r5": "Nail flaw concealing",
+    "svc.cs.r6": "Removal — gel, tips, builder gel or acrylic",
+    "svc.cs.sub7": "Signature rituals",
+    "svc.cs.r8": "Hand Ritual — softening hand care",
+    "svc.cs.r8d": "30 minutes",
+    "svc.cs.r9": "Foot Ritual — relaxing foot care",
+    "svc.cs.r9d": "45 minutes",
+    "svc.cs.r10": "Full Ritual — hands and feet",
+    "svc.cs.r10d": "60 minutes",
+    "svc.sg.title": "Classic Gel Polish",
+    "svc.sg.r1": "Solid colour",
+    "svc.sg.r2": "Jelly finish",
+    "svc.sg.r3": "Cat-eye & shimmer",
+    "svc.sg.r4": "Custom mix, from 2 colours",
+    "svc.sg.r5": "Single-nail polish",
+    "svc.sh.title": "Premium Korean Gel",
+    "svc.sh.sub1": "Signature collection",
+    "svc.sh.r2": "SHOW ME shimmer (top)",
+    "svc.sh.r3": "SWEET CANDY velvet feather (top)",
+    "svc.sh.r4": "SHOW ME mother-of-pearl",
+    "svc.sh.r5": "AURORA QUEEN shimmer",
+    "svc.sh.r6": "KISS NY / CATS ME cat-eye",
+    "svc.sh.r7": "SWEET CANDY jelly",
+    "svc.sh.note": "Genuine imported gels from Kiss New York Gel Pro, Aurora Queen and 눈서림 Snow Velvet.",
+    "svc.um.title": "Extensions & Gel Building",
+    "svc.um.r1": "Press-on tips",
+    "svc.um.r2": "Gel X tips",
+    "svc.um.r3": "Builder gel",
+    "svc.um.r4": "Dual form",
+    "svc.um.r5": "Gel fill",
+    "svc.dg.title": "Design & Embellishment",
+    "svc.dg.sub1": "Nail art",
+    "svc.dg.r2": "Hand-painted art",
+    "svc.dg.r2d": "Depending on detail",
+    "svc.dg.r3": "3D sculpted character",
+    "svc.dg.r4": "3D acrylic character",
+    "svc.dg.r5": "Glitter overlay",
+    "svc.dg.r6": "Chrome finish",
+    "svc.dg.r7": "Raised chrome",
+    "svc.dg.r8": "Marble, stone, galaxy",
+    "svc.dg.r9": "French tip",
+    "svc.dg.r10": "Ombré gradient",
+    "svc.dg.r11": "Pressed shell, dried flower, glass",
+    "svc.dg.sub12": "Embellishment",
+    "svc.dg.r13": "Rhinestones",
+    "svc.dg.r14": "Premium Swarovski crystals",
+    "svc.dg.r15": "Premium Korean crystals",
+    "svc.dg.r16": "Charms",
+    "svc.dg.r17": "Moulded charms",
+    "svc.dg.r18": "Scattered crystals",
+    "svc.dg.r19": "Pearls",
+    "svc.dg.r20": "Stickers (silk, 3D, Korean)",
+    "svc.dg.note": "Design is priced per detail — your technician quotes the total before starting.",
+    "collection.title": "Collection",
+    "collection.sub": "The styles leading this season's nail trends, alongside the newest colours from the brands VESSCA trusts.",
+    "col.1.tag": "Most loved right now",
+    "col.1.p": "Glossy as porcelain, clear as jelly — the \"glazed\" effect makes hands look well cared for without needing bold colour. It's the first thing VESSCA recommends to anyone trying glass gel for the first time.",
+    "col.2.tag": "Quietly luxurious",
+    "col.2.p": "A thin metallic sheen over beige and nude — chrome that's no longer loud but refined, right in step with the \"quiet luxury\" everyone in beauty is talking about this season.",
+    "col.3.tag": "This season's defining shade",
+    "col.3.p": "A warm, ripe red — not as sharp as a classic red, not as sweet as a pink-red. Flatters most Asian skin tones and suits almost any occasion, from work to weekend evenings.",
+    "col.4.tag": "The minimalist take on french",
+    "col.4.p": "The french line pulled down to a single fine stroke — subtle enough to still read as french, far softer than the thick borders of before. Great for guests who want something neat with a small detail.",
+    "col.5.tag": "Just enough sparkle",
+    "col.5.p": "Fine shimmer hidden beneath a glossy gel layer, only catching the light when it moves — sparkly without being loud. A safe choice for both the office and dressier occasions.",
+    "col.brand.tag": "Seasonal collection",
+    "col.brand.sub": "Gel brands VESSCA currently uses in-studio",
+    "col.6.p": "A soft shimmering gel line inspired by dreamlike colours — one of the palettes VESSCA currently uses in-studio.",
+    "col.7.p": "12 vivid candy-inspired shades, for guests who want something fresh and bold beyond the usual neutral palette.",
+    "col.8.p": "A soft, velvet-matte tone characteristic of winter — another option for guests who like depth in their nails rather than high shine.",
+    "faq.title": "Frequently asked questions",
+    "faq.sub": "A few things guests often ask before their first visit to VESSCA.",
+    "faq.q1": "How far in advance should I book?",
+    "faq.a1": "Just leave your details through the booking form or contact us directly — VESSCA will get back to you to arrange a time that works best for you.",
+    "faq.q2": "What if I'm running late?",
+    "faq.a2": "Please call ahead if you'll be more than 15 minutes late, so VESSCA can rearrange the schedule fairly for you and the guests after you.",
+    "faq.q3": "Can I still get gel if my nails are weak or brittle?",
+    "faq.a3": "Yes. Your technician will check your nails' actual condition first, and may suggest a restorative treatment before applying gel to avoid further damage.",
+    "faq.q4": "Do you accept bank transfer?",
+    "faq.a4": "Yes, VESSCA accepts cash, bank transfer, and popular e-wallets.",
+    "faq.q5": "Where is VESSCA nail salon located?",
+    "faq.a5": "VESSCA is located at 251/30 Le Quang Dinh, Gia Dinh, Ho Chi Minh City — in the Binh Thanh area, easy to reach from nearby districts.",
+    "faq.q6": "How is Korean-style nail different from regular nail?",
+    "faq.a6": "Korean-style nail focuses on a slim, natural nail shape, meticulous detailing, and the latest colors and nail art trends from Korea — the signature style at VESSCA.",
+    "faq.q7": "Is there parking available?",
+    "faq.a7": "Yes, VESSCA has parking space right in front of the salon for guests' convenience.",
+    "booking.title": "Book an appointment",
+    "booking.sub": "Leave your details below and VESSCA will contact you shortly to confirm your appointment.",
+    "booking.name": "Full name",
+    "booking.phone": "Phone number",
+    "booking.service": "Service",
+    "booking.opt1": "Nail Care & Rituals",
+    "booking.opt2": "Classic Gel Polish",
+    "booking.opt3": "Premium Korean Gel",
+    "booking.opt4": "Extensions & Gel Building",
+    "booking.opt5": "Design & Embellishment",
+    "booking.preferred": "Preferred date & time",
+    "booking.preferredPh": "e.g. This Saturday afternoon",
+    "booking.note": "Notes (optional)",
+    "booking.submit": "Send booking request",
+    "booking.failed": "Sorry, your request could not be sent. Please call VESSCA at the number below.",
+    "booking.sending": "Sending...",
+    "booking.opt6": "Not sure — please advise",
+    "booking.confirmed": "Your request has been received. VESSCA will contact you to confirm the appointment at the number you provided.",
+    "footer.address": "Korean nail lounge — 251/30 Le Quang Dinh, Gia Dinh, Ho Chi Minh City.",
+    "footer.hours.title": "Opening hours",
+    "footer.hours.days": "Monday – Sunday",
+    "footer.contact.title": "Contact",
+    "footer.directions": "Get directions",
+    "footer.follow.title": "Follow",
+    "footer.copyright": "© 2026 VESSCA Nail Lounge.",
+    "footer.partner": "Supply partner: Kiss New York Gel Pro",
+    "footer.opening": "Opening 01.10.2026",
+    "meta.title": "VESSCA Nail Lounge — Korean Nail Salon in Binh Thanh, Ho Chi Minh City"
+  },
+  "zh": {
+    "nav.menu": "菜单",
+    "nav.address": "地址：黎光定街251/30号，嘉定坊，胡志明市",
+    "nav.blog": "博客",
+    "nav.about": "品牌故事",
+    "nav.services": "服务项目",
+    "nav.collection": "作品系列",
+    "nav.booking": "预约",
+    "nav.contact": "到店",
+    "hero.eyebrow": "vessca korean nail lounge — 胡志明市黎光定街251/30号",
+    "hero.title": "精雕细琢每一处<em>线条</em>，<br>韩式美甲标准。",
+    "hero.sub": "私密空间，资深技师，把每一位客人当作贵宾对待——而不只是排队中的一位。",
+    "hero.cta": "立即预约",
+    "stats.1": "团队从业年限",
+    "stats.2": "独家美甲风格",
+    "stats.3": "正品进口产品",
+    "about.num": "VESSCA — 属于你的静谧时刻",
+    "about.title": "一间美甲店，却以私人休闲空间的方式运营。",
+    "about.p1": "VESSCA 的初衷很简单：被用心对待不应该是一种特权。我们将韩式美甲技术——玻璃甲、柔和渐变、极简美甲艺术——带入一个专为让你放慢脚步而设计的空间。",
+    "about.p2": "每一次预约都是单独安排，绝不叠场、绝不匆忙。这是我们从第一天起坚持的标准。",
+    "about.f1": "一位技师 / 一位客人",
+    "about.f2": "团队从业年限",
+    "about.f3": "开业日期",
+    "journey.title": "在 VESSCA 的体验",
+    "journey.sub": "VESSCA 的美甲护理分为从容不迫的四个步骤。",
+    "journey.1.h": "预约",
+    "journey.1.p": "在网站上留下信息，或直接留言，VESSCA会为您安排合适的时段——无需电话等候。",
+    "journey.2.h": "咨询",
+    "journey.2.p": "技师会先查看指甲实际状况，并在开始前推荐合适的款式。",
+    "journey.3.h": "制作",
+    "journey.3.p": "每一步都缓慢而精准地完成，选用正品进口产品。",
+    "journey.4.h": "放松",
+    "journey.4.p": "在等待干燥的时间里享用花草茶——在安静的空间中结束整个护理。",
+    "services.title": "服务与价格",
+    "services.sub": "将鼠标移到任一服务分类，即可查看示意图片与对应价格表。",
+    "svc.caption": "VESSCA — 服务示意",
+    "svc.pricelabel": "价目表",
+    "svc.cs.title": "基础护甲与放松",
+    "svc.cs.r1": "修皮、修形、高级护边（手）",
+    "svc.cs.r2": "修皮、修形、高级护边（足）",
+    "svc.cs.r3": "硬甲油",
+    "svc.cs.r4": "做甲弓",
+    "svc.cs.r5": "瑕疵修补",
+    "svc.cs.r6": "卸甲（甲油胶／贴片／延长）",
+    "svc.cs.sub7": "Signature rituals",
+    "svc.cs.r8": "Hand Ritual — 手部护理",
+    "svc.cs.r8d": "30 分钟",
+    "svc.cs.r9": "Foot Ritual — 足部放松护理",
+    "svc.cs.r9d": "45 分钟",
+    "svc.cs.r10": "Full Ritual — 手足全套",
+    "svc.cs.r10d": "60 分钟",
+    "svc.sg.title": "基础甲油胶",
+    "svc.sg.r1": "纯色",
+    "svc.sg.r2": "果冻感",
+    "svc.sg.r3": "猫眼、闪粉",
+    "svc.sg.r4": "双色以上混色",
+    "svc.sg.r5": "单指补色",
+    "svc.sh.title": "韩国高级甲油胶",
+    "svc.sh.sub1": "Signature collection",
+    "svc.sh.r2": "SHOW ME 闪粉（封层）",
+    "svc.sh.r3": "SWEET CANDY 丝绒羽毛（封层）",
+    "svc.sh.r4": "SHOW ME 贝母",
+    "svc.sh.r5": "AURORA QUEEN 闪粉",
+    "svc.sh.r6": "KISS NY / CATS ME 猫眼",
+    "svc.sh.r7": "SWEET CANDY 果冻",
+    "svc.sh.note": "正品进口：Kiss New York Gel Pro、Aurora Queen、눈서림 Snow Velvet。",
+    "svc.um.title": "延长与加固",
+    "svc.um.r1": "贴片",
+    "svc.um.r2": "Gel X 贴片",
+    "svc.um.r3": "延长胶",
+    "svc.um.r4": "Dual form 模具",
+    "svc.um.r5": "补甲",
+    "svc.dg.title": "彩绘与饰品",
+    "svc.dg.sub1": "彩绘",
+    "svc.dg.r2": "手绘",
+    "svc.dg.r2d": "视细节而定",
+    "svc.dg.r3": "3D 立体造型",
+    "svc.dg.r4": "3D 雕花造型",
+    "svc.dg.r5": "叠闪、撒闪",
+    "svc.dg.r6": "镜面",
+    "svc.dg.r7": "立体镜面",
+    "svc.dg.r8": "晕染、大理石、星空",
+    "svc.dg.r9": "法式",
+    "svc.dg.r10": "渐变",
+    "svc.dg.r11": "贝壳、干花、玻璃纸",
+    "svc.dg.sub12": "饰品",
+    "svc.dg.r13": "镶钻",
+    "svc.dg.r14": "施华洛世奇高级水钻",
+    "svc.dg.r15": "韩国高级水钻",
+    "svc.dg.r16": "各式挂饰",
+    "svc.dg.r17": "模具挂饰",
+    "svc.dg.r18": "撒钻",
+    "svc.dg.r19": "珍珠",
+    "svc.dg.r20": "贴纸（丝绸、3D、韩式）",
+    "svc.dg.note": "彩绘按细节计价——技师会在开始前报出总价。",
+    "collection.title": "作品系列",
+    "collection.sub": "本季引领潮流的美甲风格，以及VESSCA信赖的品牌最新色系。",
+    "col.1.tag": "目前最受欢迎",
+    "col.1.p": "如瓷器般光亮，如果冻般通透——「glazed」效果让双手看起来被精心呵护，却无需张扬的色彩。这是VESSCA给第一次尝试玻璃甲客人的首选推荐。",
+    "col.2.tag": "低调的奢华",
+    "col.2.p": "米色与裸色打底，薄薄一层金属光泽——铬色不再张扬，而是变得精致内敛，正契合本季美妆圈热议的「静奢风」。",
+    "col.3.tag": "本季主打色",
+    "col.3.p": "温暖成熟的红色——不像经典红那样浓烈，也不似粉红那般甜美。适合亚洲肤色，从日常上班到周末夜晚都很合适。",
+    "col.4.tag": "法式的极简版本",
+    "col.4.p": "法式甲的边线被拉细至一条纤细的线条——足够精致以辨认出法式的轮廓，却比以往厚重的边线柔和许多。适合想要简洁又带点细节的客人。",
+    "col.5.tag": "恰到好处的闪光",
+    "col.5.p": "细腻的闪粉藏于光泽凝胶之下，只在光线移动时若隐若现——闪耀却不张扬。无论职场还是需要精致造型的场合都适合。",
+    "col.brand.tag": "季节限定系列",
+    "col.brand.sub": "VESSCA 目前使用的凝胶品牌",
+    "col.6.p": "柔和闪亮的凝胶色系，灵感源自梦幻般的色彩——是VESSCA目前使用的色系之一。",
+    "col.7.p": "12款鲜明的糖果色，适合想尝试新鲜、亮眼风格、跳脱日常中性色的客人。",
+    "col.8.p": "如天鹅绒般柔雾的冬季代表色调——为喜欢有层次感、不追求高光泽的客人提供的另一选择。",
+    "faq.title": "常见问题",
+    "faq.sub": "首次到访VESSCA前，客人常问的几个问题。",
+    "faq.q1": "需要提前多久预约？",
+    "faq.a1": "您可以通过预约表单留下信息，或直接联系我们，VESSCA会尽快与您联系，为您安排最合适的时段。",
+    "faq.q2": "迟到了怎么办？",
+    "faq.a2": "如果预计迟到超过15分钟，请提前电话告知，以便VESSCA为您及后续客人合理调整时段。",
+    "faq.q3": "指甲脆弱易断，可以做凝胶甲吗？",
+    "faq.a3": "可以。技师会先检查指甲的实际状况，必要时会建议先进行修护，再上凝胶，以避免进一步受损。",
+    "faq.q4": "可以转账付款吗？",
+    "faq.a4": "可以，VESSCA接受现金、银行转账及常见电子钱包付款。",
+    "faq.q5": "VESSCA美甲店的地址在哪里？",
+    "faq.a5": "VESSCA位于胡志明市嘉定（Gia Định）251/30 Lê Quang Định，地处平盛（Bình Thạnh）区域，周边交通便利。",
+    "faq.q6": "韩式美甲和普通美甲有什么不同？",
+    "faq.a6": "韩式美甲注重纤细自然的甲型、精致的细节处理，并持续更新来自韩国的流行色彩与美甲艺术——这也是VESSCA的主打风格。",
+    "faq.q7": "店内有停车位吗？",
+    "faq.a7": "有的，VESSCA店门前设有停车区域，方便客人到店。",
+    "booking.title": "预约",
+    "booking.sub": "请留下您的信息，VESSCA将尽快与您联系确认预约。",
+    "booking.name": "姓名",
+    "booking.phone": "电话号码",
+    "booking.service": "服务项目",
+    "booking.opt1": "基础护甲与放松",
+    "booking.opt2": "基础甲油胶",
+    "booking.opt3": "韩国高级甲油胶",
+    "booking.opt4": "延长与加固",
+    "booking.opt5": "彩绘与饰品",
+    "booking.preferred": "希望的日期与时段",
+    "booking.preferredPh": "例如：这周六下午",
+    "booking.note": "备注（选填）",
+    "booking.submit": "发送预约请求",
+    "booking.failed": "很抱歉，请求未能发送。请拨打下方电话联系 VESSCA。",
+    "booking.sending": "发送中...",
+    "booking.opt6": "还没决定 — 请帮我推荐",
+    "booking.confirmed": "已收到您的请求。VESSCA将通过您提供的号码与您联系确认预约。",
+    "footer.address": "Korean nail lounge — 胡志明市嘉定坊黎光定街251/30号。",
+    "footer.hours.title": "营业时间",
+    "footer.hours.days": "周一至周日",
+    "footer.contact.title": "联系方式",
+    "footer.directions": "查看路线",
+    "footer.follow.title": "关注我们",
+    "footer.copyright": "© 2026 VESSCA Nail Lounge.",
+    "footer.partner": "供应合作品牌：Kiss New York Gel Pro",
+    "footer.opening": "开业日期 01.10.2026",
+    "meta.title": "VESSCA — 胡志明市平盛郡韩式美甲沙龙"
+  },
+  "dow": {
+    "vi": [
+      "CN",
+      "T2",
+      "T3",
+      "T4",
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "en": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "zh": [
+      "周日",
+      "周一",
+      "周二",
+      "周三",
+      "周四",
+      "周五",
+      "周六"
+    ]
+  }
+};
+
+  // ---- language switching ----
+  let currentLang = localStorage.getItem('vessca-lang') || 'vi';
+
+  function applyLanguage(lang){
+    if(!I18N[lang]) lang = 'vi';
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.title = I18N[lang]['meta.title'] || document.title;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      const val = I18N[lang][key];
+      if(val !== undefined) el.innerHTML = val;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-ph');
+      const val = I18N[lang][key];
+      if(val !== undefined) el.placeholder = val;
+    });
+    document.querySelectorAll('#langSwitch button').forEach(btn=>{
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    localStorage.setItem('vessca-lang', lang);
+  }
+
+  document.querySelectorAll('#langSwitch button').forEach(btn=>{
+    btn.addEventListener('click', ()=> applyLanguage(btn.dataset.lang));
+  });
+
+  // ---- dropdown menu (hamburger) ----
+  const navEl = document.getElementById('nav');
+  const menuBtn = document.getElementById('menuBtn');
+  const menuPanel = document.getElementById('menuPanel');
+  function closeMenu(){
+    navEl.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded','false');
+  }
+  function toggleMenu(){
+    const open = navEl.classList.toggle('menu-open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  menuBtn.addEventListener('click', toggleMenu);
+  menuPanel.querySelectorAll('a').forEach(a=> a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', (e)=>{ if(!navEl.contains(e.target)) closeMenu(); });
+
+  // ---- fade page in once loaded ----
+  window.addEventListener('load', ()=>{
+    requestAnimationFrame(()=> document.body.classList.add('loaded'));
+  });
+  // fallback in case 'load' already fired or is slow (e.g. video buffering)
+  setTimeout(()=> document.body.classList.add('loaded'), 1200);
+
+  // ---- custom cursor (desktop / mouse devices only) ----
+  const hasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if(hasHover){
+    document.body.classList.add('has-custom-cursor');
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    const cursorRing = document.createElement('div');
+    cursorRing.className = 'cursor-ring';
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(cursorRing);
+
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+    window.addEventListener('mousemove', (e)=>{
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
+    });
+    function ringLoop(){
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
+      requestAnimationFrame(ringLoop);
+    }
+    ringLoop();
+
+    const hoverTargets = 'a, button, .acc-item, input, select, textarea, .faq-q';
+    document.addEventListener('mouseover', (e)=>{
+      if(e.target.closest(hoverTargets)) cursorRing.classList.add('hover');
+    });
+    document.addEventListener('mouseout', (e)=>{
+      if(e.target.closest(hoverTargets)) cursorRing.classList.remove('hover');
+    });
+    document.addEventListener('mouseleave', ()=>{
+      cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', ()=>{
+      cursorDot.style.opacity = '1'; cursorRing.style.opacity = '1';
+    });
+  }
+
+  // ---- nav solid-on-scroll ----
+  const nav = document.getElementById('nav');
+  const hero = document.querySelector('.hero');
+  function onScroll(){
+    const past = window.scrollY > hero.offsetHeight - 90;
+    nav.classList.toggle('solid', past);
+    nav.classList.toggle('on-image', !past);
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // ---- category accordion: trỏ chuột để bung (máy có chuột thật) hoặc chạm để chọn (cảm ứng) ----
+  const accordion = document.getElementById('categoryAccordion');
+  const accItems = Array.from(accordion.querySelectorAll('.acc-item'));
+  const accHasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  function expandItem(item){
+    accItems.forEach(it=>{
+      it.classList.toggle('expanded', it === item);
+    });
+  }
+
+  accItems.forEach(item=>{
+    item.addEventListener('click', ()=> expandItem(item));
+    item.addEventListener('focus', ()=> expandItem(item));
+    // hover chỉ áp dụng cho máy có chuột thật — trên điện thoại/iPad, sự kiện hover
+    // "giả" phát sinh khi chạm rồi rời tay sẽ khiến tab vừa mở bị đóng lại ngay lập tức
+    if (accHasHover) {
+      item.addEventListener('mouseenter', ()=> expandItem(item));
+    }
+  });
+  if (accHasHover) {
+    accordion.addEventListener('mouseleave', ()=> expandItem(accItems[0]));
+  }
+
+
+  // ---- booking: simple "leave your info, staff will call back" form ----
+  // Chỉ hiện dấu ✓ khi máy chủ XÁC NHẬN đã nhận. Trước đây trang này hiện ✓
+  // ngay lập tức mà không gửi đi đâu cả — khách tin là đã đặt lịch rồi ngồi
+  // chờ điện thoại, còn tiệm thì không hề biết. Thà báo lỗi còn hơn.
+  document.getElementById('bookForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('submitBtn');
+    const nhan = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = (I18N[currentLang] && I18N[currentLang]['booking.sending']) || 'Đang gửi...';
+    try{
+      const r = await fetch(form.action, {
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(form)
+      });
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      form.style.display = 'none';
+      document.getElementById('confirmMsg').style.display = 'block';
+    }catch(err){
+      // Không nuốt lỗi: khách phải biết là chưa gửi được, và gọi được ngay.
+      document.getElementById('errMsg').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = nhan;
+    }
+  });
+
+  applyLanguage(currentLang);
+
+  // ---- reveal on scroll ----
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=> revealObserver.observe(el));
+
+  // ---- stats count-up ----
+  const statEls = document.querySelectorAll('.stats-grid b[data-count]');
+  let statsPlayed = false;
+  function playStats(){
+    if(statsPlayed) return;
+    statsPlayed = true;
+    statEls.forEach(el=>{
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+        el.textContent = value + suffix;
+        if(progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  const statsBar = document.querySelector('.stats-bar');
+  if(statsBar){
+    const statsObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{ if(entry.isIntersecting) playStats(); });
+    }, {threshold:0.4});
+    statsObserver.observe(statsBar);
+  }
+
+  // ---- FAQ accordion ----
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', ()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other=>{
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ---- sticky mobile CTA ----
+  const stickyCta = document.getElementById('stickyCta');
+  const bookingSection = document.getElementById('booking');
+  if(stickyCta && bookingSection){
+    window.addEventListener('scroll', ()=>{
+      const pastHero = window.scrollY > window.innerHeight * 0.6;
+      const bookingRect = bookingSection.getBoundingClientRect();
+      const nearBooking = bookingRect.top < window.innerHeight * 0.5;
+      stickyCta.classList.toggle('show', pastHero && !nearBooking);
+    }, {passive:true});
+  }
+</script>
+
+</body>
+</html>

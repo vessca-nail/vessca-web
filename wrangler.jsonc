@@ -14,8 +14,9 @@
     "binding": "ASSETS",
     // /blog/bai-viet  →  /blog/bai-viet/index.html
     "html_handling": "auto-trailing-slash",
-    // Vào đường dẫn không tồn tại thì hiện trang 404 của VESSCA
-    "not_found_handling": "404-page"
+    // Phải để "none" thì các đường dẫn không phải file tĩnh (như /admin)
+    // mới chạy được qua worker.js. Trang 404 do worker.js tự trả về.
+    "not_found_handling": "none"
   },
 
   "observability": {

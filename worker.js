@@ -30,6 +30,17 @@ export default {
     }
 
     // Trang chủ, blog, ảnh, video — lấy từ thư mục đã dựng sẵn
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+
+    // Đường dẫn không tồn tại → trả về trang 404 mang nhận diện VESSCA
+    if (res.status === 404) {
+      const page = await env.ASSETS.fetch(new URL('/404.html', url).toString());
+      return new Response(page.body, {
+        status: 404,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      });
+    }
+
+    return res;
   },
 };

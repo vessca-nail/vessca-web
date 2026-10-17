@@ -19,6 +19,18 @@
     "not_found_handling": "none"
   },
 
+  // Hai giá trị này không phải bí mật nên để thẳng trong file,
+  // mỗi lần build lại vẫn còn nguyên.
+  "vars": {
+    "GITHUB_REPO": "vessca-nail/vessca-web",
+    "GITHUB_BRANCH": "main"
+  },
+
+  // QUAN TRỌNG: giữ lại các biến đã đặt trong Cloudflare.
+  // Không có dòng này, mỗi lần build lại sẽ xoá sạch mật khẩu
+  // và token đã điền trên dashboard.
+  "keep_vars": true,
+
   "observability": {
     "enabled": true
   }

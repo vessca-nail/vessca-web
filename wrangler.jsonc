@@ -1,0 +1,24 @@
+{
+  // ==========================================================
+  //  Cấu hình triển khai lên Cloudflare Workers
+  //  Bạn không cần sửa file này.
+  // ==========================================================
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vessca-web",
+  "main": "worker.js",
+  "compatibility_date": "2025-10-01",
+
+  "assets": {
+    // Thư mục chứa web đã dựng xong (do build.mjs sinh ra)
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // /blog/bai-viet  →  /blog/bai-viet/index.html
+    "html_handling": "auto-trailing-slash",
+    // Vào đường dẫn không tồn tại thì hiện trang 404 của VESSCA
+    "not_found_handling": "404-page"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

@@ -13,7 +13,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, categories } from './site.config.mjs';
-import { renderBlogIndex, renderPost } from './lib/render.mjs';
+import { renderBlogIndex, renderPost, render404 } from './lib/render.mjs';
 import { escXml, truncate, sanitizeHtml } from './lib/utils.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -139,7 +139,7 @@ function enhanceHomepage(html) {
     const before = out;
     out = out.replace(
       /(<a\s[^>]*href=["']#booking["'][^>]*>)/i,
-      `<a href="/blog">Blog</a>\n      $1`
+      `<a href="/blog/">Blog</a>\n      $1`
     );
     if (out !== before) added.push('link Blog');
   }
@@ -152,7 +152,7 @@ function buildSitemap(posts) {
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     { loc: `${site.url}/`, changefreq: 'weekly', priority: '1.0', lastmod: today },
-    { loc: `${site.url}${site.blog.path}`, changefreq: 'daily', priority: '0.9', lastmod: today },
+    { loc: `${site.url}${site.blog.path}/`, changefreq: 'daily', priority: '0.9', lastmod: today },
     ...posts.map((p) => ({
       loc: `${site.url}${site.blog.path}/${p.slug}/`,
       changefreq: 'monthly',
@@ -276,6 +276,9 @@ async function main() {
   }
   if (posts.length) log(`Sinh ${posts.length} trang bài viết`);
 
+  // Trang 404 cho đường dẫn sai
+  await fs.writeFile(path.join(DIST, '404.html'), render404(), 'utf8');
+
   // 5. Sinh file cho Google
   await fs.writeFile(path.join(DIST, 'sitemap.xml'), buildSitemap(posts), 'utf8');
   await fs.writeFile(path.join(DIST, 'rss.xml'), buildRss(posts), 'utf8');
@@ -285,8 +288,8 @@ async function main() {
   // 6. Chuyển hướng /blog.php (link cũ) sang /blog — giữ thứ hạng Google
   await fs.writeFile(
     path.join(DIST, '_redirects'),
-    `/blog.php   /blog   301
-/post.php   /blog   301
+    `/blog.php   /blog/   301
+/post.php   /blog/   301
 `,
     'utf8'
   );

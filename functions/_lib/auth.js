@@ -32,6 +32,25 @@ function safeEqual(a = '', b = '') {
   return diff === 0;
 }
 
+/**
+ * Sinh ra một "chìa khoá" cố định cho máy móc dùng (ví dụ phần mềm ở tiệm
+ * hỏi đơn đặt lịch mới). Khoá này tính ra từ SESSION_SECRET nên:
+ *   • không phải thêm biến bí mật mới trên Cloudflare
+ *   • không nằm trong mã nguồn, dù kho GitHub để công khai
+ *   • đổi SESSION_SECRET là mọi khoá cũ hết hiệu lực
+ */
+export async function deriveKey(purpose, env) {
+  if (!env.SESSION_SECRET) return null;
+  return await hmac(`key:${purpose}`, env.SESSION_SECRET);
+}
+
+/** So khoá máy gửi lên với khoá đúng, theo kiểu không lộ qua thời gian xử lý */
+export async function checkKey(input, purpose, env) {
+  const want = await deriveKey(purpose, env);
+  if (!want) return false;
+  return safeEqual(String(input || ''), want);
+}
+
 export async function createSession(env) {
   const exp = Date.now() + MAX_AGE * 1000;
   const payload = String(exp);

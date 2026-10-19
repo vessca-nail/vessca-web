@@ -11,9 +11,9 @@
  *  Mọi thay đổi được ghi vào kho GitHub, Cloudflare tự dựng lại web.
  */
 
-import { isLoggedIn, createSession, clearSession, checkPassword, missingConfig } from '../_lib/auth.js';
+import { isLoggedIn, createSession, clearSession, checkPassword, missingConfig, deriveKey } from '../_lib/auth.js';
 import * as gh from '../_lib/github.js';
-import { loginPage, listPage, editorPage, designPage, mediaPage, statusPage } from '../_lib/pages.js';
+import { loginPage, listPage, editorPage, designPage, mediaPage, statusPage, bookingsPage } from '../_lib/pages.js';
 import { EDITOR_JS } from '../_lib/editor-js.js';
 import { slugify, sanitizeHtml } from '../../lib/utils.mjs';
 
@@ -119,6 +119,64 @@ export async function onRequest(context) {
           .filter((f) => f.type === 'file' && !f.name.startsWith('.'))
           .sort((a, b) => b.name.localeCompare(a.name));
         return html(mediaPage({ files, flash: url.searchParams.get('msg') }));
+      }
+
+      // ---------- Đơn đặt lịch từ website ----------
+      case path === 'bookings': {
+        if (!env.BOOKINGS) {
+          return html(
+            bookingsPage({
+              bookings: [],
+              pollKey: null,
+              error:
+                'Chưa gắn kho dữ liệu đặt lịch (BOOKINGS). Vào Cloudflare → Workers & Pages → ' +
+                'vessca-web → Settings → Bindings để nối tới D1 "vessca-bookings".',
+            })
+          );
+        }
+        const { results } = await env.BOOKINGS
+          .prepare(
+            `SELECT id, created_at, name, phone, service, preferred, note, status
+               FROM bookings ORDER BY id DESC LIMIT 200`
+          )
+          .all();
+        const fmt = new Intl.DateTimeFormat('vi-VN', {
+          timeZone: 'Asia/Ho_Chi_Minh',
+          day: '2-digit', month: '2-digit', year: 'numeric',
+          hour: '2-digit', minute: '2-digit', hour12: false,
+        });
+        return html(
+          bookingsPage({
+            bookings: (results || []).map((b) => ({
+              ...b,
+              created_at_vn: fmt.format(new Date(b.created_at)),
+            })),
+            pollKey: await deriveKey('instore-poll', env),
+            flash: url.searchParams.get('msg'),
+          })
+        );
+      }
+
+      // ---------- Đổi trạng thái một đơn đặt lịch ----------
+      case path === 'api/booking-status' && method === 'POST': {
+        if (!env.BOOKINGS) return text('Chưa gắn kho dữ liệu đặt lịch.', 503);
+        const { ids, status } = await request.json();
+        const list = (Array.isArray(ids) ? ids : [])
+          .map(Number)
+          .filter((n) => Number.isInteger(n) && n > 0)
+          .slice(0, 200);
+        if (!list.length) return text('Thiếu mã đơn.');
+        if (!['moi', 'da_xem', 'da_xac_nhan', 'huy'].includes(status)) {
+          return text('Trạng thái không hợp lệ.');
+        }
+        await env.BOOKINGS
+          .prepare(
+            `UPDATE bookings SET status = ?, seen_at = ?
+              WHERE id IN (${list.map(() => '?').join(',')})`
+          )
+          .bind(status, new Date().toISOString(), ...list)
+          .run();
+        return json({ ok: true });
       }
 
       // ---------- Kiểm tra hệ thống ----------

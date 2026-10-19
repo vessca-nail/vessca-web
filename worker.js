@@ -8,6 +8,7 @@
  */
 
 import { onRequest as admin } from './functions/admin/[[path]].js';
+import { onRequest as booking } from './functions/_lib/booking.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -16,6 +17,19 @@ export default {
     // Gõ /admin thiếu dấu gạch cuối → thêm vào cho đúng
     if (url.pathname === '/admin') {
       return Response.redirect(new URL('/admin/', url).toString(), 302);
+    }
+
+    // Đặt lịch từ trang chủ + đường cho phần mềm ở tiệm lấy đơn
+    if (url.pathname.startsWith('/api/booking')) {
+      try {
+        return await booking({ request, env, ctx });
+      } catch (err) {
+        console.error('Lỗi đặt lịch:', err?.stack || err);
+        return new Response(
+          JSON.stringify({ ok: false, error: 'Máy chủ gặp lỗi khi nhận đơn.' }),
+          { status: 500, headers: { 'Content-Type': 'application/json; charset=utf-8' } }
+        );
+      }
     }
 
     if (url.pathname.startsWith('/admin/')) {

@@ -151,6 +151,7 @@ export function shell({ title, body, active = '', wide = false }) {
       <a href="/admin/new" class="${active === 'new' ? 'on' : ''}">Viết bài</a>
       <a href="/admin/design" class="${active === 'design' ? 'on' : ''}">Giao diện</a>
       <a href="/admin/media" class="${active === 'media' ? 'on' : ''}">Ảnh</a>
+      <a href="/admin/bookings" class="${active === 'bookings' ? 'on' : ''}">Đặt lịch</a>
       <a href="/admin/status" class="${active === 'status' ? 'on' : ''}">Hệ thống</a>
       <a href="/admin/logout">Thoát</a>
     </nav>
@@ -602,6 +603,104 @@ document.querySelectorAll('[data-copy]').forEach(function(b){
 }
 
 /** Trang kiểm tra hệ thống */
+/** Trang xem đơn đặt lịch khách gửi từ website */
+export function bookingsPage({ bookings, pollKey, flash, error }) {
+  const NHAN = {
+    moi: ['Mới', 'draft'],
+    da_xem: ['Đã xem', 'draft'],
+    da_xac_nhan: ['Đã xác nhận', 'pub'],
+    huy: ['Đã huỷ', 'draft'],
+  };
+
+  const rows = bookings
+    .map((b) => {
+      const [nhan, lop] = NHAN[b.status] || ['—', 'draft'];
+      const tel = String(b.phone || '').replace(/[^\d+]/g, '');
+      return `<tr>
+  <td style="width:132px">
+    <div style="font-weight:600">${esc(b.created_at_vn)}</div>
+    <div class="muted">#${b.id}</div>
+  </td>
+  <td>
+    <div style="font-weight:600;margin-bottom:3px">${esc(b.name)}</div>
+    <div class="muted">${esc(b.service || 'Chưa chọn dịch vụ')}${
+      b.preferred ? ` · mong muốn: ${esc(b.preferred)}` : ''
+    }</div>
+    ${b.note ? `<div class="muted" style="margin-top:4px">Ghi chú: ${esc(b.note)}</div>` : ''}
+  </td>
+  <td style="width:150px"><a href="tel:${esc(tel)}" style="font-weight:600">${esc(b.phone)}</a></td>
+  <td style="width:120px"><span class="pill ${lop}">${nhan}</span></td>
+  <td style="width:210px">
+    <div class="bar">
+      ${
+        b.status === 'da_xac_nhan'
+          ? ''
+          : `<button class="btn ghost sm" data-mark="${b.id}" data-to="da_xac_nhan">Đã xác nhận</button>`
+      }
+      ${
+        b.status === 'huy'
+          ? ''
+          : `<button class="btn danger sm" data-mark="${b.id}" data-to="huy">Huỷ</button>`
+      }
+    </div>
+  </td>
+</tr>`;
+    })
+    .join('');
+
+  const soMoi = bookings.filter((b) => b.status === 'moi').length;
+
+  return shell({
+    active: 'bookings',
+    wide: true,
+    title: 'Đặt lịch',
+    body: `
+<h1>Đơn đặt lịch</h1>
+<p class="lede">Khách gửi từ form ở cuối trang chủ. Mỗi đơn mới đều có email báo về hộp thư của tiệm.</p>
+${flash ? `<div class="note ok">${esc(flash)}</div>` : ''}
+${error ? `<div class="note err">${esc(error)}</div>` : ''}
+${
+  soMoi
+    ? `<div class="note warn"><b>${soMoi}</b> đơn chưa xử lý. Gọi khách rồi bấm <b>Đã xác nhận</b> để khỏi lẫn.</div>`
+    : ''
+}
+
+<div class="card" style="padding:6px 16px">
+  ${
+    rows
+      ? `<table><thead><tr><th>Lúc nhận</th><th>Khách</th><th>Điện thoại</th><th>Trạng thái</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
+      : `<div class="empty"><p style="margin-bottom:8px">Chưa có đơn nào.</p>
+         <p class="muted">Thử gửi một đơn ở <a href="/#booking" target="_blank">form đặt lịch</a> để kiểm tra.</p></div>`
+  }
+</div>
+
+<div class="card">
+  <h2>Chìa khoá cho phần mềm ở tiệm</h2>
+  <p>Dán chuỗi này vào phần mềm trong tiệm để nó tự kéo đơn mới về. Giữ kín như mật khẩu —
+  ai có chuỗi này là đọc được thông tin khách.</p>
+  <p style="margin:10px 0"><code style="display:block;word-break:break-all;background:#F2F2F2;
+     padding:10px 12px;border-radius:8px;font-size:13px">${esc(pollKey || '—')}</code></p>
+  <p class="muted" style="margin-bottom:0">Đổi <b>SESSION_SECRET</b> trên Cloudflare là chuỗi này
+  đổi theo, khoá cũ hết dùng được.</p>
+</div>
+
+<script>
+document.querySelectorAll('[data-mark]').forEach(function(b){
+  b.addEventListener('click', async function(){
+    var to = b.dataset.to;
+    if(to === 'huy' && !confirm('Huỷ đơn này?')) return;
+    b.disabled = true; b.textContent = 'Đang lưu…';
+    var r = await fetch('/admin/api/booking-status', {method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ids:[Number(b.dataset.mark)], status:to})});
+    if(r.ok) location.reload();
+    else { alert('Không lưu được: ' + await r.text()); b.disabled=false; }
+  });
+});
+</script>`,
+  });
+}
+
 export function statusPage({ checks, repo }) {
   return shell({
     active: 'status',

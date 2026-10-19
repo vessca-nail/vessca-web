@@ -19,11 +19,31 @@
     "not_found_handling": "none"
   },
 
+  // Kho chứa đơn đặt lịch từ website
+  "d1_databases": [
+    {
+      "binding": "BOOKINGS",
+      "database_name": "vessca-bookings",
+      "database_id": "6a9042a3-a9dc-4dfb-a864-399c7f132176"
+    }
+  ],
+
+  // Quyền gửi mail báo đơn mới.
+  // Cố định đích đến là hộp thư của tiệm — nghĩa là dù có lỗ hổng nào
+  // trong mã, cái này cũng KHÔNG gửi thư đi đâu khác được.
+  "send_email": [
+    {
+      "name": "NOTIFY_EMAIL",
+      "destination_address": "lamiesnail@gmail.com"
+    }
+  ],
+
   // Hai giá trị này không phải bí mật nên để thẳng trong file,
   // mỗi lần build lại vẫn còn nguyên.
   "vars": {
     "GITHUB_REPO": "vessca-nail/vessca-web",
-    "GITHUB_BRANCH": "main"
+    "GITHUB_BRANCH": "main",
+    "NOTIFY_TO": "lamiesnail@gmail.com"
   },
 
   // QUAN TRỌNG: giữ lại các biến đã đặt trong Cloudflare.

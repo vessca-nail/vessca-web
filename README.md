@@ -15,6 +15,7 @@ Mọi thứ làm ở một chỗ: **https://vessca.com/admin**
 | Đổi giao diện trang chủ (thả file HTML mới) | **Giao diện** |
 | Quay lui giao diện cũ khi lỡ tay | **Giao diện** → Lịch sử thay đổi |
 | Tải ảnh lên dùng cho bài viết | **Ảnh** |
+| Xem đơn khách đặt lịch từ website | **Đặt lịch** |
 | Kiểm tra web có đang chạy đúng không | **Hệ thống** |
 
 > **Lưu ý:** sau khi bấm Lưu, chờ khoảng **1 phút** rồi tải lại trang web.
@@ -75,6 +76,50 @@ Trong Cloudflare → **Workers & Pages** → dự án này → **Settings**:
 | `GITHUB_BRANCH` | `main` |
 
 Thiếu biến nào, trang admin sẽ báo rõ tên biến đó khi bạn mở lên.
+
+---
+
+## Đặt lịch từ website
+
+Khách điền form ở cuối trang chủ → đơn chạy về `/api/booking` của chính
+website này. Không qua dịch vụ bên ngoài nào.
+
+```
+Khách bấm Gửi
+        ↓
+Đơn lưu vào D1 (vessca-bookings)   ← không bao giờ mất, kể cả khi mail hỏng
+        ↓
+Email báo về hộp thư của tiệm
+        ↓
+Phần mềm ở tiệm hỏi /api/booking/new vài chục giây một lần
+```
+
+Xem toàn bộ đơn ở **https://vessca.com/admin/bookings**.
+
+### Nối phần mềm ở tiệm vào
+
+Trang **Đặt lịch** trong admin có sẵn một chuỗi *chìa khoá*. Phần mềm ở tiệm
+gửi kèm chuỗi đó trong header `X-Vessca-Key` là lấy được đơn:
+
+```
+GET  https://vessca.com/api/booking/new?since=<mã đơn cuối đã lấy>
+POST https://vessca.com/api/booking/seen      { "ids": [12,13], "status": "da_xac_nhan" }
+```
+
+`/api/booking/new` trả về `bookings` (các đơn mới hơn `since`) và `lastId` —
+lần hỏi sau cứ truyền `lastId` vào `since` là không sót, không trùng.
+
+Chìa khoá được tính ra từ `SESSION_SECRET`, nên **không nằm trong mã nguồn**.
+Đổi `SESSION_SECRET` trên Cloudflare là chìa khoá cũ hết hiệu lực ngay.
+
+### Bindings bắt buộc trên Cloudflare
+
+| Binding | Loại | Trỏ tới |
+|---|---|---|
+| `BOOKINGS` | D1 | cơ sở dữ liệu `vessca-bookings` |
+| `NOTIFY_EMAIL` | Send email | `lamiesnail@gmail.com` (đã xác minh trong Email Routing) |
+
+Hai cái này khai sẵn trong `wrangler.jsonc`, Cloudflare tự gắn khi build.
 
 ---
 

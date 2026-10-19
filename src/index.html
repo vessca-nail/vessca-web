@@ -1043,21 +1043,17 @@
     </div>
     <div class="booking-grid booking-grid-single">
       <div class="booking-form">
-        <form id="bookForm" action="https://api.web3forms.com/submit" method="POST">
-          <!-- access_key của Web3Forms: khoá này VỐN DĨ công khai, nằm trong mã
-               trang là đúng thiết kế, không phải mật khẩu. Thay YOUR_ACCESS_KEY
-               bằng khoá gửi về email khi đăng ký ở web3forms.com. -->
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-          <input type="hidden" name="subject" value="Đặt lịch mới từ website VESSCA">
-          <input type="hidden" name="from_name" value="Website VESSCA">
+        <form id="bookForm" action="/api/booking" method="POST">
+          <!-- Đơn đi thẳng về máy chủ của VESSCA: lưu vào kho đơn rồi gửi mail
+               báo cho tiệm. Không qua dịch vụ ngoài nào nữa. -->
           <!-- Bẫy robot: người thật không thấy ô này nên không bao giờ điền. -->
           <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true"
                  style="display:none;">
-          <div class="field"><label data-i18n="booking.name">Họ và tên</label><input type="text" id="fName" name="Ho ten" required></div>
-          <div class="field"><label data-i18n="booking.phone">Số điện thoại</label><input type="tel" id="fPhone" name="So dien thoai" inputmode="tel" required></div>
+          <div class="field"><label data-i18n="booking.name">Họ và tên</label><input type="text" id="fName" name="name" required></div>
+          <div class="field"><label data-i18n="booking.phone">Số điện thoại</label><input type="tel" id="fPhone" name="phone" inputmode="tel" required></div>
           <div class="field">
             <label data-i18n="booking.service">Dịch vụ</label>
-            <select id="fService" name="Dich vu">
+            <select id="fService" name="service">
               <option data-i18n="booking.opt1">Chăm sóc móng &amp; thư giãn</option>
               <option data-i18n="booking.opt2">Sơn gel cơ bản</option>
               <option data-i18n="booking.opt3">Sơn Hàn cao cấp</option>
@@ -1066,8 +1062,8 @@
               <option data-i18n="booking.opt6">Chưa biết — nhờ tư vấn</option>
             </select>
           </div>
-          <div class="field"><label data-i18n="booking.preferred">Ngày giờ mong muốn</label><input type="text" id="fWhen" name="Ngay gio mong muon" placeholder="VD: Thứ 7 này, buổi chiều" data-i18n-ph="booking.preferredPh"></div>
-          <div class="field"><label data-i18n="booking.note">Ghi chú (không bắt buộc)</label><textarea id="fNote" name="Ghi chu" rows="2"></textarea></div>
+          <div class="field"><label data-i18n="booking.preferred">Ngày giờ mong muốn</label><input type="text" id="fWhen" name="preferred" placeholder="VD: Thứ 7 này, buổi chiều" data-i18n-ph="booking.preferredPh"></div>
+          <div class="field"><label data-i18n="booking.note">Ghi chú (không bắt buộc)</label><textarea id="fNote" name="note" rows="2"></textarea></div>
           <button type="submit" class="submit-btn" id="submitBtn" data-i18n="booking.submit">Gửi yêu cầu đặt lịch</button>
         </form>
         <div class="confirm-msg" id="confirmMsg">
@@ -1783,12 +1779,20 @@
         headers:{'Accept':'application/json'},
         body:new FormData(form)
       });
-      if(!r.ok) throw new Error('HTTP ' + r.status);
+      var data = null;
+      try{ data = await r.json(); }catch(e){}
+      if(!r.ok || !(data && data.ok)) throw new Error((data && data.error) || ('HTTP ' + r.status));
       form.style.display = 'none';
       document.getElementById('confirmMsg').style.display = 'block';
     }catch(err){
       // Không nuốt lỗi: khách phải biết là chưa gửi được, và gọi được ngay.
-      document.getElementById('errMsg').style.display = 'block';
+      var box = document.getElementById('errMsg');
+      // Máy chủ nói rõ lý do (ví dụ gửi dồn quá nhiều) thì hiện đúng lý do đó.
+      if(err && err.message && !/^HTTP /.test(err.message)){
+        var p = box.querySelector('p');
+        if(p) p.textContent = err.message;
+      }
+      box.style.display = 'block';
       btn.disabled = false;
       btn.textContent = nhan;
     }

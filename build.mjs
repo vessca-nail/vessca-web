@@ -55,6 +55,9 @@ async function copyDir(from, to) {
   return count;
 }
 
+/** Bài đã viết nhưng chưa tới ngày đăng — build in ra cho dễ theo dõi */
+const scheduled = [];
+
 /** Đọc toàn bộ bài viết đã lưu */
 async function loadPosts() {
   if (!(await exists(POSTS_DIR))) return [];
@@ -70,6 +73,13 @@ async function loadPosts() {
         continue;
       }
       if (post.status !== 'published') continue;
+
+      // Bài hẹn ngày: publishedAt nằm ở tương lai thì chưa hiện lên web.
+      // Mỗi ngày website được dựng lại một lần, tới ngày là bài tự xuất hiện.
+      if (post.publishedAt && new Date(post.publishedAt) > new Date()) {
+        scheduled.push({ slug: post.slug, at: post.publishedAt, title: post.title });
+        continue;
+      }
 
       post.content = sanitizeHtml(post.content || '');
       post.publishedAt = post.publishedAt || new Date().toISOString();
@@ -306,6 +316,11 @@ async function main() {
 
   const posts = await loadPosts();
   log(`Tìm thấy ${posts.length} bài đã đăng`);
+
+  if (scheduled.length) {
+    scheduled.sort((a, b) => new Date(a.at) - new Date(b.at));
+    log(`Còn ${scheduled.length} bài hẹn ngày, bài kế tiếp: ${scheduled[0].at.slice(0, 10)} — ${scheduled[0].title}`);
+  }
 
 
   // Ngôn ngữ nào chưa có bài nào thì không sinh trang — trang blog rỗng

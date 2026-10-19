@@ -44,7 +44,7 @@ export const site = {
   // --- Mạng xã hội ---
   social: {
     instagram: 'https://www.instagram.com/vessca.nail/',
-    facebook: 'https://www.facebook.com/profile.php?id=100089717754367',
+    facebook: 'https://www.facebook.com/profile.php?id=61595364530293',
     tiktok: '',
   },
 

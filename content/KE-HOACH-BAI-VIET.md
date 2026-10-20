@@ -29,6 +29,10 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
 - [x] Cách giữ nail lâu bong — `cach-giu-nail-lau-bong`
 - [x] Bộ sưu tập sơn Hàn tại VESSCA — `bo-suu-tap-son-han-quoc-tai-vessca`
 - [x] Nail Noel 2026 — `nail-noel-2026`
+- [x] Móng yếu, dễ gãy có làm gel được không — `mong-yeu-co-lam-gel-duoc-khong`
+- [x] Nail màu gì hợp tông da — `nail-mau-gi-hop-tong-da`
+- [x] Nail đi tiệc cuối năm — `nail-di-tiec-cuoi-nam`
+- [x] Úp móng và đắp gel khác nhau thế nào — `up-mong-va-dap-gel-khac-nhau`
 
 ---
 
@@ -38,7 +42,6 @@ Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 - [ ] **Nail Tết 2027** — nail Tết, nail đỏ Tết, mẫu nail Tết đơn giản
 - [ ] **Nail cô dâu** — nail cô dâu, nail cưới, nail trắng cô dâu
-- [ ] **Nail đi tiệc cuối năm** — nail đi tiệc, nail year end party
 - [ ] **Nail mùa thu tông đất** — nail mùa thu, nail nâu caramel
 - [ ] **Nail Valentine** — viết đầu tháng 1
 - [ ] **Nail 8/3 và 20/10** — viết trước 5 tuần
@@ -49,10 +52,7 @@ Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 ## Câu hỏi khách hay hỏi — nhóm giá trị cao nhất
 
-- [ ] **Móng yếu, dễ gãy có làm gel được không**
-- [ ] **Nail màu gì hợp da ngăm, da sáng, da vàng**
 - [ ] **Lần đầu làm nail cần biết gì** — làm có đau không
-- [ ] **Úp móng và đắp gel khác nhau thế nào** — khách hay nhầm
 - [ ] **Nấm móng: dấu hiệu và khi nào phải ngừng làm nail**
 - [ ] **Bà bầu làm nail được không** — rất hay gặp, ít tiệm viết
 - [ ] **Tự tháo gel ở nhà có được không**

@@ -33,6 +33,8 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
 - [x] Nail màu gì hợp tông da — `nail-mau-gi-hop-tong-da`
 - [x] Nail đi tiệc cuối năm — `nail-di-tiec-cuoi-nam`
 - [x] Úp móng và đắp gel khác nhau thế nào — `up-mong-va-dap-gel-khac-nhau`
+- [x] Lần đầu làm nail cần biết gì — `lan-dau-lam-nail-can-biet-gi`
+- [x] Tự tháo gel ở nhà có được không — `tu-thao-gel-o-nha-co-duoc-khong`
 
 ---
 
@@ -52,10 +54,10 @@ Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 ## Câu hỏi khách hay hỏi — nhóm giá trị cao nhất
 
-- [ ] **Lần đầu làm nail cần biết gì** — làm có đau không
+- [x] **Lần đầu làm nail cần biết gì** — `lan-dau-lam-nail-can-biet-gi`
 - [ ] **Nấm móng: dấu hiệu và khi nào phải ngừng làm nail**
 - [ ] **Bà bầu làm nail được không** — rất hay gặp, ít tiệm viết
-- [ ] **Tự tháo gel ở nhà có được không**
+- [x] **Tự tháo gel ở nhà có được không** — `tu-thao-gel-o-nha-co-duoc-khong`
 - [ ] **Móng có sọc dọc, đốm trắng là bị gì**
 - [ ] **Dị ứng sơn gel: dấu hiệu và cách xử lý**
 - [ ] **Hay cắn móng tay thì làm nail được không**

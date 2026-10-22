@@ -107,7 +107,11 @@ async function timPixabay(env, tuKhoa) {
     await new Promise((r) => setTimeout(r, 4000 * (lan + 1)));
     res = await fetch(url);
   }
-  if (!res.ok) throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status}`);
+  if (!res.ok) {
+    const h = (k) => res.headers.get(k);
+    throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status} (còn ${h('x-ratelimit-remaining')}/${h('x-ratelimit-limit')}, ` +
+      `mở lại sau ${h('x-ratelimit-reset')}s; ${(await res.text()).slice(0, 80)})`);
+  }
   const hits = ((await res.json()).hits || []).map((h) => ({
     id: `pb-${h.id}`, ten: h.user, link: h.pageURL, nguon: 'Pixabay',
     nhan: String(h.tags || '').toLowerCase(),

@@ -35,6 +35,8 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
 - [x] Úp móng và đắp gel khác nhau thế nào — `up-mong-va-dap-gel-khac-nhau`
 - [x] Lần đầu làm nail cần biết gì — `lan-dau-lam-nail-can-biet-gi`
 - [x] Tự tháo gel ở nhà có được không — `tu-thao-gel-o-nha-co-duoc-khong`
+- [x] Nail cô dâu — `nail-co-dau`
+- [x] Bà bầu làm nail được không — `ba-bau-lam-nail-duoc-khong`
 
 ---
 
@@ -43,7 +45,7 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
 Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 - [ ] **Nail Tết 2027** — nail Tết, nail đỏ Tết, mẫu nail Tết đơn giản
-- [ ] **Nail cô dâu** — nail cô dâu, nail cưới, nail trắng cô dâu
+- [x] **Nail cô dâu** — `nail-co-dau`
 - [ ] **Nail mùa thu tông đất** — nail mùa thu, nail nâu caramel
 - [ ] **Nail Valentine** — viết đầu tháng 1
 - [ ] **Nail 8/3 và 20/10** — viết trước 5 tuần
@@ -56,7 +58,7 @@ Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 - [x] **Lần đầu làm nail cần biết gì** — `lan-dau-lam-nail-can-biet-gi`
 - [ ] **Nấm móng: dấu hiệu và khi nào phải ngừng làm nail**
-- [ ] **Bà bầu làm nail được không** — rất hay gặp, ít tiệm viết
+- [x] **Bà bầu làm nail được không** — `ba-bau-lam-nail-duoc-khong`
 - [x] **Tự tháo gel ở nhà có được không** — `tu-thao-gel-o-nha-co-duoc-khong`
 - [ ] **Móng có sọc dọc, đốm trắng là bị gì**
 - [ ] **Dị ứng sơn gel: dấu hiệu và cách xử lý**

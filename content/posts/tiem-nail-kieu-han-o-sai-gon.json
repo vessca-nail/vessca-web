@@ -33,7 +33,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "korean nail salon manicure",
+      "tim": "nail salon",
       "alt": "Tiệm nail kiểu Hàn ở Sài Gòn",
       "altI18n": {
         "en": "Korean-style nail salon in Saigon",
@@ -43,7 +43,7 @@
     },
     "trong_bai": [
       {
-        "tim": "manicure appointment nail salon",
+        "tim": "manicure woman",
         "alt": "Làm nail theo lịch hẹn, một kỹ thuật viên một khách",
         "altI18n": {
           "en": "Appointment-based, one technician per guest",
@@ -52,7 +52,7 @@
         }
       },
       {
-        "tim": "nail polish reference photo manicure",
+        "tim": "nail polish",
         "alt": "Gửi ảnh mẫu nail trước khi đến tiệm",
         "altI18n": {
           "en": "Sending a reference photo before the visit",

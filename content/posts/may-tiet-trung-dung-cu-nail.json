@@ -38,7 +38,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "manicure tools steel nail clean",
+      "tim": "manicure tools",
       "alt": "Dụng cụ làm nail bằng kim loại được tiệt trùng",
       "altI18n": {
         "en": "Sterilised metal manicure tools",
@@ -48,7 +48,7 @@
     },
     "trong_bai": [
       {
-        "tim": "cuticle nipper manicure nail",
+        "tim": "nail scissors",
         "alt": "Kềm cắt da cần được tiệt trùng sau mỗi khách",
         "altI18n": {
           "en": "Cuticle nippers need sterilising after every guest",
@@ -57,7 +57,7 @@
         }
       },
       {
-        "tim": "nail technician gloves manicure",
+        "tim": "manicure set",
         "alt": "Kỹ thuật viên chuẩn bị dụng cụ sạch trước khi làm nail",
         "altI18n": {
           "en": "A technician preparing clean tools",

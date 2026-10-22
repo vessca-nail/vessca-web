@@ -38,7 +38,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "holographic nails shimmer manicure",
+      "tim": "holographic nails",
       "alt": "Nail nhũ aurora Hàn Quốc đổi màu theo góc nhìn",
       "altI18n": {
         "en": "Korean aurora nails shifting colour with the angle",
@@ -48,7 +48,7 @@
     },
     "trong_bai": [
       {
-        "tim": "iridescent nail polish rainbow",
+        "tim": "iridescent nails",
         "alt": "Ánh cầu vồng mịn của nhũ aurora",
         "altI18n": {
           "en": "The fine rainbow shimmer of aurora gel",
@@ -57,7 +57,7 @@
         }
       },
       {
-        "tim": "glitter nails party manicure",
+        "tim": "glitter nails",
         "alt": "Nhũ aurora nổi bật dưới đèn tiệc",
         "altI18n": {
           "en": "Aurora shining under party lights",

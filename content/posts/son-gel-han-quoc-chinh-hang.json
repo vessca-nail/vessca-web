@@ -39,7 +39,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "gel nail polish bottles colors",
+      "tim": "nail polish bottles",
       "alt": "Sơn gel Hàn Quốc chính hãng tại tiệm nail",
       "altI18n": {
         "en": "Authentic Korean gel polish at the salon",
@@ -49,7 +49,7 @@
     },
     "trong_bai": [
       {
-        "tim": "yellow stained nails gel polish",
+        "tim": "yellow nails",
         "alt": "Móng ố vàng do sơn gel kém chất lượng",
         "altI18n": {
           "en": "Yellowing caused by low-quality gel",
@@ -58,7 +58,7 @@
         }
       },
       {
-        "tim": "thin gel layer manicure brush",
+        "tim": "gel manicure",
         "alt": "Sơn gel Hàn nhiều lớp mỏng",
         "altI18n": {
           "en": "Korean gel applied in thin layers",

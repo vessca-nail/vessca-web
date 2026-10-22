@@ -38,7 +38,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "cat eye nails magnetic gel",
+      "tim": "shimmer nails",
       "alt": "Nail mắt mèo kiểu Hàn với dải sáng chéo",
       "altI18n": {
         "en": "Korean cat-eye nails with a diagonal band of light",
@@ -48,7 +48,7 @@
     },
     "trong_bai": [
       {
-        "tim": "magnetic nail polish shimmer",
+        "tim": "nail polish glitter",
         "alt": "Hạt từ trong sơn mắt mèo tạo dải sáng",
         "altI18n": {
           "en": "Magnetic particles forming the band of light",
@@ -57,7 +57,7 @@
         }
       },
       {
-        "tim": "dark nails shimmer manicure",
+        "tim": "dark nails",
         "alt": "Nail mắt mèo nền tối cho dịp tiệc",
         "altI18n": {
           "en": "Cat-eye on a dark base for evenings",

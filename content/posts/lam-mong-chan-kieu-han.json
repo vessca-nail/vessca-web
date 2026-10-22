@@ -38,7 +38,7 @@
   ],
   "anh": {
     "bia": {
-      "tim": "pedicure toenails red polish",
+      "tim": "pedicure",
       "alt": "Làm móng chân kiểu Hàn sơn gel đỏ",
       "altI18n": {
         "en": "Korean-style gel pedicure",
@@ -48,7 +48,7 @@
     },
     "trong_bai": [
       {
-        "tim": "pedicure foot care nails",
+        "tim": "toenails polish",
         "alt": "Cắt móng chân thẳng ngang để tránh móng quặp",
         "altI18n": {
           "en": "Cutting toenails straight across",
@@ -57,7 +57,7 @@
         }
       },
       {
-        "tim": "toenails nail polish summer",
+        "tim": "feet nails",
         "alt": "Màu sơn móng chân đậm hơn móng tay một tông",
         "altI18n": {
           "en": "Toes one shade deeper than fingers",

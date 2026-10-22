@@ -105,10 +105,29 @@ async function timPixabay(env, tuKhoa) {
     res = await fetch(url);
   }
   if (!res.ok) throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status}`);
-  return ((await res.json()).hits || []).map((h) => ({
+  const hits = ((await res.json()).hits || []).map((h) => ({
     id: `pb-${h.id}`, ten: h.user, link: h.pageURL, nguon: 'Pixabay',
+    nhan: String(h.tags || '').toLowerCase(),
     tai: () => h.largeImageURL,            // 1280px, Pixabay đã nén sẵn
   }));
+  return locTheoNhan(tuKhoa, hits);
+}
+
+/* Pixabay xếp theo độ phổ biến nên hay trả ảnh lạc đề (tìm "damaged peeling
+   nails" ra mặt người nứt nẻ). Lọc theo NHÃN của ảnh:
+   - từ khoá có chữ chủ đề (nail, manicure, polish, gel…) thì ảnh BẮT BUỘC có
+     nhãn chứa ít nhất một chữ chủ đề;
+   - còn lại xếp theo số từ khoá trùng với nhãn, nhiều trước. */
+const CHU_DE = ['nail', 'manicure', 'pedicure', 'polish', 'gel', 'cuticle', 'acrylic'];
+function locTheoNhan(tuKhoa, hits) {
+  const tu = tuKhoa.toLowerCase().split(/\s+/).filter((w) => w.length > 2);
+  const can = CHU_DE.filter((c) => tu.some((w) => w.startsWith(c)));
+  const diem = (h) => tu.filter((w) => h.nhan.includes(w.replace(/s$/, ''))).length;
+  return hits
+    .filter((h) => !can.length || can.some((c) => h.nhan.includes(c)))
+    .map((h, i) => ({ h, d: diem(h), i }))
+    .sort((a, b) => b.d - a.d || a.i - b.i)
+    .map((x) => x.h);
 }
 
 async function timPexels(env, tuKhoa) {
@@ -164,6 +183,12 @@ async function lamAnhChoBai(env, file, daDung, bao) {
   if (!raw) return null;
   const post = JSON.parse(raw);
   if (!post.anh || post.anh.xong) return null;
+
+  // Làm lại bài đã có ảnh: gỡ ảnh trong bài cũ, trả lại chỗ đánh dấu để
+  // ảnh mới vào đúng vị trí cũ (tên file giữ nguyên, ghi đè).
+  post.content = String(post.content || '').replace(
+    new RegExp(`<figure><img src="/media/blog/${post.slug}-(\\d)\\.jpg"[\\s\\S]*?</figure>`, 'g'),
+    (_, n) => `<!--anh:${n}-->`);
 
   const files = [];
   const bia = post.anh.bia;

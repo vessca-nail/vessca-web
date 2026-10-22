@@ -33,7 +33,8 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
 
    - `tim`: 2–5 từ **tiếng Anh**, tả đúng thứ cần thấy trong ảnh (kho ảnh
      tìm bằng tiếng Anh). Cụ thể: "red glitter nails party" chứ không phải
-     "nails".
+     "nails". **Luôn có một chữ về nail** (nails, manicure, nail polish, gel…) —
+     hệ thống chỉ nhận ảnh có nhãn chứa chữ đó, để khỏi lấy nhầm ảnh lạc đề.
    - `alt`: **tiếng Việt**, tả ảnh và chứa từ khoá chính của bài — đây là
      phần giúp SEO. Không nhồi từ khoá, đọc lên phải tự nhiên.
    - `trong_bai`: 1–2 ảnh. Đặt chỗ hiện ảnh trong `content` bằng

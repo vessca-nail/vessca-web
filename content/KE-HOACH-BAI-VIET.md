@@ -42,6 +42,19 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
      hệ thống tự chèn trước tiêu đề mục thứ 2 và thứ 4.
    - Ảnh được lấy 4 lần/ngày (08:31, 09:31, 14:31, 20:31), mỗi lần 1 bài —
      bài hẹn đăng sớm nhất được lấy ảnh trước.
+8. **Giọng văn: chuyên nghiệp, thân thiện vừa đủ** (Thiện Dương góp ý 22/10).
+   - Xưng **VESSCA** hoặc **tiệm**, gọi khách là **bạn**. Không dùng "chị/em",
+     "nàng", "tụi mình", "nhà mình", không viết câu thoại giả kiểu
+     "chị ơi… em…", không dùng "ạ", "nha", "nhé", không dấu chấm than.
+   - Không dùng tiếng lóng hay câu cảm thán: "xịn", "đỉnh", "chill", "siêu…",
+     "thật lòng", "thử… mà xem", "cứ…", "đừng ngại".
+   - Câu ngắn, đúng thuật ngữ nghề (form móng, viền da, base/top coat, đèn LED/UV),
+     giải thích thuật ngữ một lần khi dùng lần đầu.
+   - Thân thiện nhờ dặn dò cụ thể ("Bạn có thể đề nghị…", "VESSCA gợi ý…"), không nhờ tiếng lóng.
+   - Dữ kiện đã xác nhận được dùng: bảo hành 5 ngày; chủ tiệm được đào tạo
+     tại Hàn Quốc (chưa có tên khoá/chứng chỉ — không viết thêm chi tiết); có máy tiệt trùng dụng cụ; sơn do tiệm chọn và mang về từ
+     Hàn Quốc (dòng Kissny Tinker Gel, 눈서림 Snow Velvet / Snow Velvet Candy,
+     Aurora Queen); phục vụ giới hạn số khách cùng lúc.
 
 ---
 

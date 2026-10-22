@@ -180,9 +180,11 @@ async function taiAnh(photo, laBia) {
 
 const escAttr = (s) => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-function hinhTrongBai(src, alt, photo) {
+const CHU_ANH = { vi: 'Ảnh', en: 'Photo', ko: '사진', zh: '图片' };
+
+function hinhTrongBai(src, alt, photo, lang = 'vi') {
   return `<figure><img src="${src}" alt="${escAttr(alt)}" width="1000" loading="lazy" />` +
-    `<figcaption>${escAttr(alt)} · Ảnh: <a href="${escAttr(photo.link)}">${escAttr(photo.ten)} / ${photo.nguon}</a></figcaption></figure>`;
+    `<figcaption>${escAttr(alt)} · ${CHU_ANH[lang] || 'Photo'}: <a href="${escAttr(photo.link)}">${escAttr(photo.ten)} / ${photo.nguon}</a></figcaption></figure>`;
 }
 
 /** Đặt ảnh thứ i vào nội dung: chỗ đánh dấu <!--anh:i-->, không có thì trước h2 thứ (2i) */
@@ -207,9 +209,12 @@ async function lamAnhChoBai(env, file, daDung, bao) {
 
   // Làm lại bài đã có ảnh: gỡ ảnh trong bài cũ, trả lại chỗ đánh dấu để
   // ảnh mới vào đúng vị trí cũ (tên file giữ nguyên, ghi đè).
-  post.content = String(post.content || '').replace(
+  const goAnh = (html) => String(html || '').replace(
     new RegExp(`<figure><img src="/media/blog/${post.slug}-(\\d)\\.jpg"[\\s\\S]*?</figure>`, 'g'),
     (_, n) => `<!--anh:${n}-->`);
+  post.content = goAnh(post.content);
+  const banDich = post.i18n && typeof post.i18n === 'object' ? Object.entries(post.i18n) : [];
+  for (const [, t] of banDich) if (t && t.content) t.content = goAnh(t.content);
 
   const files = [];
   const bia = post.anh.bia;
@@ -222,6 +227,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
       daDung.add(p.id); daDung.add(`u:${p.ten}`);
       post.coverImage = `/media/blog/${post.slug}.jpg`;
       post.coverAlt = bia.alt || post.coverAlt || post.title;
+      if (bia.altI18n) for (const [lang, t] of banDich) if (t && bia.altI18n[lang]) t.coverAlt = bia.altI18n[lang];
       post.coverCredit = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
     } else bao.push(`${post.slug}: không tìm được ảnh bìa cho "${bia.tim}"`);
   }
@@ -237,6 +243,12 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
     daDung.add(p.id); daDung.add(`u:${p.ten}`);
     post.content = chenAnh(post.content || '', i + 1, hinhTrongBai(`/media/blog/${ten}`, a.alt || post.title, p));
+    // Bản dịch: dùng alt theo ngôn ngữ (a.altI18n.en …), không có thì lấy tiêu đề bản dịch
+    for (const [lang, t] of banDich) {
+      if (!t || !t.content) continue;
+      const alt = (a.altI18n && a.altI18n[lang]) || t.coverAlt || t.title;
+      t.content = chenAnh(t.content, i + 1, hinhTrongBai(`/media/blog/${ten}`, alt, p, lang));
+    }
   }
 
   post.anh.xong = new Date().toISOString();

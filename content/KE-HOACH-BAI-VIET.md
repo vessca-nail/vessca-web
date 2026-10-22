@@ -14,7 +14,7 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
    hiện thẳng lên kết quả tìm kiếm.
 5. **Không hứa hẹn quá lời, không bịa số liệu.** Nếu không chắc, viết
    chung chung còn hơn viết sai.
-6. **Tối đa 2 bài một ngày.** Nhiều hơn là rủi ro bị Google coi là
+6. **Tối đa 4 bài một ngày** (08:30, 09:30, 14:30, 20:30 — khớp 4 lượt cron; Thiện Dương chọn 22/10). Mỗi bài một ý riêng, không xào lại bài cũ, kẻo bị Google coi là
    nội dung sản xuất hàng loạt.
 7. **Mỗi bài phải có mục `anh`** để hệ thống tự lấy ảnh Pixabay (miễn phí,
    dùng thương mại được) và lưu ngay trên vessca.com. KHÔNG tự điền

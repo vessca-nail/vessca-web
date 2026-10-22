@@ -16,6 +16,31 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
    chung chung còn hơn viết sai.
 6. **Tối đa 2 bài một ngày.** Nhiều hơn là rủi ro bị Google coi là
    nội dung sản xuất hàng loạt.
+7. **Mỗi bài phải có mục `anh`** để hệ thống tự lấy ảnh Pexels (miễn phí,
+   dùng thương mại được) và lưu ngay trên vessca.com. KHÔNG tự điền
+   `coverImage` — hệ thống tự điền sau khi tải ảnh về. Cách ghi:
+
+   ```json
+   "anh": {
+     "bia": { "tim": "bride wedding nails white",
+              "alt": "Bộ nail trắng ngọc trai cho cô dâu" },
+     "trong_bai": [
+       { "tim": "wedding ring hands bride",
+         "alt": "Bàn tay cô dâu đeo nhẫn cưới" }
+     ]
+   }
+   ```
+
+   - `tim`: 2–5 từ **tiếng Anh**, tả đúng thứ cần thấy trong ảnh (Pexels
+     tìm bằng tiếng Anh). Cụ thể: "red glitter nails party" chứ không phải
+     "nails".
+   - `alt`: **tiếng Việt**, tả ảnh và chứa từ khoá chính của bài — đây là
+     phần giúp SEO. Không nhồi từ khoá, đọc lên phải tự nhiên.
+   - `trong_bai`: 1–2 ảnh. Đặt chỗ hiện ảnh trong `content` bằng
+     `<!--anh:1-->`, `<!--anh:2-->` (ngay trước một `<h2>`). Không đặt thì
+     hệ thống tự chèn trước tiêu đề mục thứ 2 và thứ 4.
+   - Ảnh được lấy 4 lần/ngày (08:31, 09:31, 14:31, 20:31), mỗi lần 1 bài —
+     bài hẹn đăng sớm nhất được lấy ảnh trước.
 
 ---
 

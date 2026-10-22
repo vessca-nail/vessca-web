@@ -293,6 +293,31 @@ Sitemap: ${site.url}/sitemap.xml
 
 // ============================================================
 //  CHẠY BUILD
+/** Bài hẹn giờ + bài còn thiếu ảnh — đọc thẳng file gốc, kể cả bài chưa tới giờ */
+async function soNoiBo() {
+  const out = { dungLuc: new Date().toISOString(), henGio: [], canAnh: [] };
+  if (!(await exists(POSTS_DIR))) return out;
+  for (const f of (await fs.readdir(POSTS_DIR)).filter((x) => x.endsWith('.json'))) {
+    try {
+      const p = JSON.parse(await fs.readFile(path.join(POSTS_DIR, f), 'utf8'));
+      if (p.status !== 'published' || !p.slug) continue;
+      if (p.publishedAt && new Date(p.publishedAt) > new Date()) {
+        out.henGio.push({ slug: p.slug, at: p.publishedAt });
+      }
+      if (p.anh && !p.anh.xong) out.canAnh.push({ slug: p.slug, file: f, at: p.publishedAt || '' });
+    } catch { /* file hỏng đã được báo ở loadPosts */ }
+  }
+  out.henGio.sort((a, b) => new Date(a.at) - new Date(b.at));
+  // Bài sắp đăng làm trước (sớm nhất trước), rồi tới bài đã đăng (mới nhất trước)
+  const bayGio = Date.now();
+  const sau = (x) => new Date(x.at || 0).getTime() > bayGio;
+  out.canAnh.sort((a, b) =>
+    sau(a) !== sau(b) ? (sau(a) ? -1 : 1)
+      : sau(a) ? String(a.at).localeCompare(String(b.at))
+      : String(b.at).localeCompare(String(a.at)));
+  return out;
+}
+
 // ============================================================
 async function main() {
   const t0 = Date.now();
@@ -379,6 +404,16 @@ async function main() {
   await fs.writeFile(path.join(DIST, 'sitemap.xml'), buildSitemap(posts), 'utf8');
   await fs.writeFile(path.join(DIST, 'robots.txt'), buildRobots(), 'utf8');
   log('Sinh sitemap.xml, rss.xml, robots.txt, 404.html');
+
+  // Sổ nội bộ cho việc chạy định kỳ trên Cloudflare (functions/_lib/anh-blog.js):
+  // bài nào đang chờ giờ đăng, bài nào còn thiếu ảnh. Chỉ có slug và giờ —
+  // không có gì bí mật, nhưng vẫn để ngoài sitemap.
+  await fs.mkdir(path.join(DIST, '_noi-bo'), { recursive: true });
+  await fs.writeFile(
+    path.join(DIST, '_noi-bo', 'bai-viet.json'),
+    JSON.stringify(await soNoiBo(), null, 1),
+    'utf8'
+  );
 
   await fs.writeFile(
     path.join(DIST, '_redirects'),

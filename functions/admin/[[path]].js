@@ -13,6 +13,7 @@
 
 import { isLoggedIn, createSession, clearSession, checkPassword, missingConfig, deriveKey } from '../_lib/auth.js';
 import * as gh from '../_lib/github.js';
+import { chayDinhKy } from '../_lib/anh-blog.js';
 import { loginPage, listPage, editorPage, designPage, mediaPage, statusPage, bookingsPage } from '../_lib/pages.js';
 import { EDITOR_JS } from '../_lib/editor-js.js';
 import { slugify, sanitizeHtml } from '../../lib/utils.mjs';
@@ -158,6 +159,12 @@ export async function onRequest(context) {
       }
 
       // ---------- Đổi trạng thái một đơn đặt lịch ----------
+      // ---------- Chạy tay việc định kỳ (ảnh blog + đăng bài tới giờ) ----------
+      case path === 'api/chay-dinh-ky' && method === 'POST': {
+        const kq = await chayDinhKy(env);
+        return json(kq);
+      }
+
       case path === 'api/booking-status' && method === 'POST': {
         if (!env.BOOKINGS) return text('Chưa gắn kho dữ liệu đặt lịch.', 503);
         const { ids, status } = await request.json();

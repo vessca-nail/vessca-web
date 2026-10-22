@@ -51,6 +51,12 @@
   // và token đã điền trên dashboard.
   "keep_vars": true,
 
+  // Chạy định kỳ — giờ UTC (Việt Nam = UTC+7): 08:31, 09:31, 14:31, 20:31.
+  // Đăng bài hẹn giờ đúng giờ + lấy ảnh Pexels cho bài blog.
+  "triggers": {
+    "crons": ["31 1 * * *", "31 2 * * *", "31 7 * * *", "31 13 * * *"]
+  },
+
   "observability": {
     "enabled": true
   }

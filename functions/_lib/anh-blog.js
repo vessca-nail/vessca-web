@@ -156,7 +156,9 @@ const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
 
 async function timAnh(env, tuKhoa, daDung) {
   const kq = env.PIXABAY_API_KEY ? await timPixabay(env, tuKhoa) : await timPexels(env, tuKhoa);
-  return kq.find((p) => !daDung.has(p.id)) || null;
+  // Không lặp ảnh, và mỗi người chụp chỉ dùng MỘT lần trên toàn blog: Pixabay
+  // có nhiều tấm của cùng một buổi chụp, khác id nhưng nhìn gần như y hệt.
+  return kq.find((p) => !daDung.has(p.id) && !daDung.has(`u:${p.ten}`)) || null;
 }
 
 async function taiAnh(photo, laBia) {
@@ -217,7 +219,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
       const bytes = await taiAnh(p, true);
       const path = `content/media/blog/${post.slug}.jpg`;
       files.push({ path, b64: bytesToB64(bytes) });
-      daDung.add(p.id);
+      daDung.add(p.id); daDung.add(`u:${p.ten}`);
       post.coverImage = `/media/blog/${post.slug}.jpg`;
       post.coverAlt = bia.alt || post.coverAlt || post.title;
       post.coverCredit = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
@@ -233,7 +235,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     const bytes = await taiAnh(p, false);
     const ten = `${post.slug}-${i + 1}.jpg`;
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
-    daDung.add(p.id);
+    daDung.add(p.id); daDung.add(`u:${p.ten}`);
     post.content = chenAnh(post.content || '', i + 1, hinhTrongBai(`/media/blog/${ten}`, a.alt || post.title, p));
   }
 

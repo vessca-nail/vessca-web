@@ -167,3 +167,15 @@ nhưng thứ hạng thấp hơn.
 - **Mẫu nail đang hot tại tiệm theo từng tháng**
 - **Câu chuyện khách cụ thể** (nhớ xin phép khách trước)
 - **Ảnh không gian tiệm, ảnh quy trình làm việc**
+
+## 9. Bản đa ngôn ngữ (EN / KO / ZH)
+
+- Mỗi bài có thể có `i18n.en`, `i18n.ko`, `i18n.zh` với đủ: `title`, `excerpt`, `metaTitle`, `metaDescription`, `keywords`, `coverAlt`, `faq`, `content`. Thiếu `title` hoặc `content` thì bản đó không được sinh trang.
+- Viết lại cho người đọc ngôn ngữ đó, không dịch từng chữ. Từ khoá theo cách người nước ngoài tìm:
+  - EN: "nail salon Binh Thanh", "Korean nails Saigon", "gel manicure Ho Chi Minh City".
+  - KO: "호치민 네일샵", "빈탄 네일", "한국 젤네일 호치민".
+  - ZH: "胡志明 美甲", "平盛郡 美甲店", "韩式美甲 胡志明".
+- Giữ giọng chuyên nghiệp như quy tắc 8. KO dùng đuôi -습니다/-세요; ZH dùng 简体, xưng 您.
+- Địa chỉ viết: 251/30 Lê Quang Định, phường Gia Định (Bình Thạnh); giờ 9:00–20:30; bảo hành 5 ngày.
+- Ảnh trong bài dùng lại file của bản tiếng Việt, chỉ dịch `alt` và chú thích.
+- Ưu tiên dịch bài có ý định tìm của khách nước ngoài: giá, nail Hàn, chọn tiệm uy tín, lần đầu làm nail, bộ sưu tập sơn Hàn.

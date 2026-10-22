@@ -104,7 +104,7 @@ export const languages = {
       ctaBook: 'Đặt lịch ngay',
       contact: 'Liên hệ',
       hours: 'Giờ mở cửa',
-      hoursText: '10:00 – 20:00, tất cả các ngày trong tuần',
+      hoursText: '9:00 – 20:30, tất cả các ngày trong tuần',
       blogLink: 'Blog &amp; cẩm nang nail',
       empty: 'Bài viết đầu tiên đang được chuẩn bị. Hẹn bạn sớm nhé.',
       home: 'Trang chủ',
@@ -145,7 +145,7 @@ export const languages = {
       ctaBook: 'Book an appointment',
       contact: 'Contact',
       hours: 'Opening hours',
-      hoursText: '10:00 – 20:00, every day',
+      hoursText: '9:00 – 20:30, every day',
       blogLink: 'Journal &amp; nail guides',
       empty: 'Our first article is on the way. See you soon.',
       home: 'Home',
@@ -155,6 +155,46 @@ export const languages = {
       seeBlog: 'Read the journal',
       tagline: 'Korean Nail Lounge',
       otherLangs: 'Other languages',
+    },
+  },
+
+  ko: {
+    code: 'ko',
+    htmlLang: 'ko',
+    hreflang: 'ko',
+    locale: 'ko_KR',
+    label: '한국어',
+    short: '한국어',
+    base: '/ko',
+    blogTitle: 'VESSCA 네일 저널 — 호치민 한국식 네일 가이드',
+    blogDescription:
+      '한국식 네일 시술, 홈 네일 케어, 젤 컬러 트렌드, 호치민 빈탄 지역에서 믿을 수 있는 ' +
+      '네일샵 고르는 법 — VESSCA 팀이 직접 씁니다.',
+    blogHeading: '한국식 네일 케어 가이드',
+    ui: {
+      eyebrow: '저널',
+      navAbout: '브랜드 스토리',
+      navServices: '서비스',
+      navBlog: '저널',
+      navBook: '예약',
+      all: '전체',
+      readTime: '분 소요',
+      related: '함께 읽으면 좋은 글',
+      ctaTitle: 'VESSCA에서 여유로운 시간을',
+      ctaText: '모든 예약은 1:1로 진행됩니다. 한 명의 테크니션이 한 분의 고객만 담당하며, 예약이 겹치지 않습니다.',
+      ctaBook: '예약하기',
+      contact: '연락처',
+      hours: '영업시간',
+      hoursText: '매일 9:00 – 20:30',
+      blogLink: '저널 &amp; 네일 가이드',
+      empty: '첫 번째 글을 준비하고 있습니다.',
+      home: '홈',
+      notFound: '페이지를 찾을 수 없습니다',
+      notFoundText: '링크가 변경되었거나 주소가 잘못 입력되었을 수 있습니다.',
+      backHome: '홈으로',
+      seeBlog: '저널 보기',
+      tagline: 'Korean Nail Lounge',
+      otherLangs: '다른 언어',
     },
   },
 
@@ -184,7 +224,7 @@ export const languages = {
       ctaBook: '立即预约',
       contact: '联系方式',
       hours: '营业时间',
-      hoursText: '每天 10:00 – 20:00',
+      hoursText: '每天 9:00 – 20:30',
       blogLink: '美甲志与护甲指南',
       empty: '第一篇文章正在准备中，敬请期待。',
       home: '首页',
@@ -199,7 +239,7 @@ export const languages = {
 };
 
 /** Thứ tự hiển thị nút đổi ngôn ngữ */
-export const langOrder = ['vi', 'en', 'zh'];
+export const langOrder = ['vi', 'en', 'ko', 'zh'];
 
 /** Đường dẫn blog của một ngôn ngữ: vi → /blog, en → /en/blog */
 export const blogPath = (lang) => `${languages[lang].base}${site.blog.path}`;
@@ -281,11 +321,11 @@ export const allKeywords = Object.values(keywordLibrary).flat();
  * Bài viết vẫn lưu danh mục bằng tiếng Việt; bảng này chỉ để hiển thị.
  */
 export const categoryLabels = {
-  'Xu hướng & Cảm hứng': { en: 'Trends & Inspiration', zh: '流行趋势' },
-  'Chăm sóc móng': { en: 'Nail Care', zh: '护甲知识' },
-  'Kiến thức nghề nail': { en: 'Nail Know-how', zh: '美甲技术' },
-  'Hậu trường VESSCA': { en: 'Inside VESSCA', zh: 'VESSCA 幕后' },
-  'Hỏi & Đáp': { en: 'Questions & Answers', zh: '常见问答' },
+  'Xu hướng & Cảm hứng': { en: 'Trends & Inspiration', ko: '트렌드 & 영감', zh: '流行趋势' },
+  'Chăm sóc móng': { en: 'Nail Care', ko: '네일 케어', zh: '护甲知识' },
+  'Kiến thức nghề nail': { en: 'Nail Know-how', ko: '네일 상식', zh: '美甲技术' },
+  'Hậu trường VESSCA': { en: 'Inside VESSCA', ko: 'VESSCA 이야기', zh: 'VESSCA 幕后' },
+  'Hỏi & Đáp': { en: 'Questions & Answers', ko: '자주 묻는 질문', zh: '常见问答' },
 };
 
 /** Lấy tên danh mục theo ngôn ngữ, không có bản dịch thì giữ nguyên tiếng Việt */

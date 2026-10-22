@@ -98,10 +98,13 @@ async function timPixabay(env, tuKhoa) {
   const url = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_API_KEY)}` +
     `&q=${encodeURIComponent(tuKhoa).slice(0, 100)}&image_type=photo&orientation=horizontal` +
     `&safesearch=true&min_width=1000&per_page=30`;
+  // Pixabay báo 429 "gọi nhanh quá" khi hai lượt tìm sát nhau (dù tài liệu
+  // nói 100 lượt/phút) → giãn mỗi lượt tìm ~1,5 giây, bị 429 thì chờ thêm
+  // rồi thử lại tối đa 2 lần. Thời gian chờ không tính vào giới hạn CPU.
+  await new Promise((r) => setTimeout(r, 1500));
   let res = await fetch(url);
-  if (res.status === 429) {
-    // Pixabay đôi lúc báo "gọi nhanh quá" dù mới vài lượt — chờ chút rồi thử lại 1 lần
-    await new Promise((r) => setTimeout(r, 2500));
+  for (let lan = 0; res.status === 429 && lan < 2; lan++) {
+    await new Promise((r) => setTimeout(r, 4000 * (lan + 1)));
     res = await fetch(url);
   }
   if (!res.ok) throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status}`);

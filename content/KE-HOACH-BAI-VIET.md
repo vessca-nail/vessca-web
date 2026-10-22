@@ -16,7 +16,7 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
    chung chung còn hơn viết sai.
 6. **Tối đa 2 bài một ngày.** Nhiều hơn là rủi ro bị Google coi là
    nội dung sản xuất hàng loạt.
-7. **Mỗi bài phải có mục `anh`** để hệ thống tự lấy ảnh Pexels (miễn phí,
+7. **Mỗi bài phải có mục `anh`** để hệ thống tự lấy ảnh Pixabay (miễn phí,
    dùng thương mại được) và lưu ngay trên vessca.com. KHÔNG tự điền
    `coverImage` — hệ thống tự điền sau khi tải ảnh về. Cách ghi:
 
@@ -31,7 +31,7 @@ thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và g
    }
    ```
 
-   - `tim`: 2–5 từ **tiếng Anh**, tả đúng thứ cần thấy trong ảnh (Pexels
+   - `tim`: 2–5 từ **tiếng Anh**, tả đúng thứ cần thấy trong ảnh (kho ảnh
      tìm bằng tiếng Anh). Cụ thể: "red glitter nails party" chứ không phải
      "nails".
    - `alt`: **tiếng Việt**, tả ảnh và chứa từ khoá chính của bài — đây là

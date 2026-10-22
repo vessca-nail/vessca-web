@@ -11,7 +11,7 @@
  *     Cloudflare dựng lại.
  *
  *  2. ẢNH CHO BÀI. Bài nào có mục `anh` (do người viết bài điền) mà chưa
- *     làm thì tìm ảnh trên Pexels, TẢI VỀ và lưu ngay trong kho của web
+ *     làm thì tìm ảnh trên Pixabay (hoặc Pexels), TẢI VỀ và lưu ngay trong kho của web
  *     (content/media/blog/) — ảnh nằm trên vessca.com, không mượn link nhà
  *     khác, tốt cho SEO và không bao giờ chết link.
  *
@@ -24,7 +24,7 @@
  *     Trong nội dung, chỗ đặt ảnh trong bài đánh dấu <!--anh:1-->, <!--anh:2-->.
  *     Không đánh dấu thì ảnh tự đặt trước tiêu đề mục (h2) thứ 2 / thứ 4.
  *
- *  Giấy phép Pexels: dùng thương mại miễn phí, không bắt buộc ghi nguồn —
+ *  Giấy phép Pixabay/Pexels: dùng thương mại miễn phí, không bắt buộc ghi nguồn —
  *  vẫn ghi tên tác giả dưới ảnh cho đàng hoàng.
  *
  *  Cloudflare gói miễn phí cho tối đa 50 lần gọi ra ngoài mỗi lượt, nên
@@ -88,22 +88,46 @@ async function ghiMotLan(env, files, message) {
 }
 
 // ------------------------------------------------------------
-//  Pexels
+//  Kho ảnh: Pixabay (đang dùng — Pexels tạm ngưng cấp khoá mới từ 10/2026),
+//  Pexels nếu có khoá. Cả hai cho dùng thương mại miễn phí. Pixabay BẮT BUỘC
+//  tải ảnh về máy chủ của mình, không được dùng link của họ lâu dài — đúng
+//  cách hệ thống này làm.
+//  Ảnh trả về dạng chung: { id, ten, link, nguon, tai(laBia) → URL tải }
 // ------------------------------------------------------------
-async function timAnh(env, tuKhoa, daDung) {
+async function timPixabay(env, tuKhoa) {
+  const url = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_API_KEY)}` +
+    `&q=${encodeURIComponent(tuKhoa).slice(0, 100)}&image_type=photo&orientation=horizontal` +
+    `&safesearch=true&min_width=1000&per_page=30`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status}`);
+  return ((await res.json()).hits || []).map((h) => ({
+    id: `pb-${h.id}`, ten: h.user, link: h.pageURL, nguon: 'Pixabay',
+    tai: () => h.largeImageURL,            // 1280px, Pixabay đã nén sẵn
+  }));
+}
+
+async function timPexels(env, tuKhoa) {
   const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(tuKhoa)}&orientation=landscape&per_page=20`;
   const res = await fetch(url, { headers: { Authorization: env.PEXELS_API_KEY } });
   if (!res.ok) throw new Error(`Pexels tìm "${tuKhoa}" → ${res.status}`);
-  const kq = (await res.json()).photos || [];
-  return kq.find((p) => !daDung.has(String(p.id))) || null;
+  return ((await res.json()).photos || []).map((p) => ({
+    id: `px-${p.id}`, ten: p.photographer, link: p.url, nguon: 'Pexels',
+    // Pexels tự cắt + nén: bìa 16:9 đúng khung 1000×563 của trang bài
+    tai: (laBia) => `${p.src.original}?auto=compress&cs=tinysrgb&fm=jpg&q=72&` +
+      (laBia ? 'w=1200&h=675&fit=crop' : 'w=1000'),
+  }));
+}
+
+const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
+
+async function timAnh(env, tuKhoa, daDung) {
+  const kq = env.PIXABAY_API_KEY ? await timPixabay(env, tuKhoa) : await timPexels(env, tuKhoa);
+  return kq.find((p) => !daDung.has(p.id)) || null;
 }
 
 async function taiAnh(photo, laBia) {
-  // Pexels tự cắt + nén theo tham số: bìa 16:9 đúng khung 1000×563 của trang bài
-  const src = `${photo.src.original}?auto=compress&cs=tinysrgb&fm=jpg&q=72&` +
-    (laBia ? 'w=1200&h=675&fit=crop' : 'w=1000');
-  const res = await fetch(src);
-  if (!res.ok) throw new Error(`Tải ảnh Pexels ${photo.id} → ${res.status}`);
+  const res = await fetch(photo.tai(laBia));
+  if (!res.ok) throw new Error(`Tải ảnh ${photo.id} → ${res.status}`);
   const bytes = new Uint8Array(await res.arrayBuffer());
   if (bytes.length > 900_000) throw new Error(`Ảnh ${photo.id} nặng quá (${bytes.length} byte)`);
   return bytes;
@@ -113,7 +137,7 @@ const escAttr = (s) => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&qu
 
 function hinhTrongBai(src, alt, photo) {
   return `<figure><img src="${src}" alt="${escAttr(alt)}" width="1000" loading="lazy" />` +
-    `<figcaption>${escAttr(alt)} · Ảnh: <a href="${escAttr(photo.url)}">${escAttr(photo.photographer)} / Pexels</a></figcaption></figure>`;
+    `<figcaption>${escAttr(alt)} · Ảnh: <a href="${escAttr(photo.link)}">${escAttr(photo.ten)} / ${photo.nguon}</a></figcaption></figure>`;
 }
 
 /** Đặt ảnh thứ i vào nội dung: chỗ đánh dấu <!--anh:i-->, không có thì trước h2 thứ (2i) */
@@ -144,10 +168,10 @@ async function lamAnhChoBai(env, file, daDung, bao) {
       const bytes = await taiAnh(p, true);
       const path = `content/media/blog/${post.slug}.jpg`;
       files.push({ path, b64: bytesToB64(bytes) });
-      daDung.add(String(p.id));
+      daDung.add(p.id);
       post.coverImage = `/media/blog/${post.slug}.jpg`;
       post.coverAlt = bia.alt || post.coverAlt || post.title;
-      post.coverCredit = { ten: p.photographer, link: p.url, nguon: 'Pexels', id: p.id };
+      post.coverCredit = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
     } else bao.push(`${post.slug}: không tìm được ảnh bìa cho "${bia.tim}"`);
   }
 
@@ -160,7 +184,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     const bytes = await taiAnh(p, false);
     const ten = `${post.slug}-${i + 1}.jpg`;
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
-    daDung.add(String(p.id));
+    daDung.add(p.id);
     post.content = chenAnh(post.content || '', i + 1, hinhTrongBai(`/media/blog/${ten}`, a.alt || post.title, p));
   }
 
@@ -180,7 +204,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
   const files = [];
 
   // 1) Ảnh
-  if (env.PEXELS_API_KEY && so.canAnh?.length) {
+  if (coKho(env) && so.canAnh?.length) {
     const daDungRaw = await docFile(env, DA_DUNG);
     const daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
     for (const b of so.canAnh.slice(0, BAI_MOI_LUOT)) {
@@ -192,8 +216,8 @@ export async function chayDinhKy(env, { ep = false } = {}) {
       }
     }
     if (files.length) files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
-  } else if (!env.PEXELS_API_KEY && so.canAnh?.length) {
-    bao.push(`Chưa có PEXELS_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
+  } else if (!coKho(env) && so.canAnh?.length) {
+    bao.push(`Chưa có PIXABAY_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
   }
 
   // 2) Bài tới giờ đăng mà web chưa dựng lại

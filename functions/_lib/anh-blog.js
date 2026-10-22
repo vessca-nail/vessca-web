@@ -98,7 +98,12 @@ async function timPixabay(env, tuKhoa) {
   const url = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_API_KEY)}` +
     `&q=${encodeURIComponent(tuKhoa).slice(0, 100)}&image_type=photo&orientation=horizontal` +
     `&safesearch=true&min_width=1000&per_page=30`;
-  const res = await fetch(url);
+  let res = await fetch(url);
+  if (res.status === 429) {
+    // Pixabay đôi lúc báo "gọi nhanh quá" dù mới vài lượt — chờ chút rồi thử lại 1 lần
+    await new Promise((r) => setTimeout(r, 2500));
+    res = await fetch(url);
+  }
   if (!res.ok) throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status}`);
   return ((await res.json()).hits || []).map((h) => ({
     id: `pb-${h.id}`, ten: h.user, link: h.pageURL, nguon: 'Pixabay',
@@ -207,12 +212,17 @@ export async function chayDinhKy(env, { ep = false } = {}) {
   if (coKho(env) && so.canAnh?.length) {
     const daDungRaw = await docFile(env, DA_DUNG);
     const daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
-    for (const b of so.canAnh.slice(0, BAI_MOI_LUOT)) {
+    // Sổ nội bộ chỉ mới lại sau khi web dựng xong — bài vừa làm ở lượt trước
+    // có thể vẫn nằm trong danh sách. Bài nào đã xong thì bỏ qua, xét tối đa 4 bài.
+    let lam = 0;
+    for (const b of so.canAnh.slice(0, 4)) {
+      if (lam >= BAI_MOI_LUOT) break;
       try {
         const f = await lamAnhChoBai(env, b.file, daDung, bao);
-        if (f) files.push(...f);
+        if (f) { files.push(...f); lam++; }
       } catch (e) {
         bao.push(`${b.slug}: lỗi — ${e.message}`);
+        break;
       }
     }
     if (files.length) files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });

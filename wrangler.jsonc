@@ -16,7 +16,9 @@
     "html_handling": "auto-trailing-slash",
     // Phải để "none" thì các đường dẫn không phải file tĩnh (như /admin)
     // mới chạy được qua worker.js. Trang 404 do worker.js tự trả về.
-    "not_found_handling": "none"
+    "not_found_handling": "none",
+    // Video phải đi qua worker.js để trả từng đoạn (Range) — Safari iPhone cần vậy
+    "run_worker_first": ["/videos/*"]
   },
 
   // Kho chứa đơn đặt lịch từ website

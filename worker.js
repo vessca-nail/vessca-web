@@ -44,6 +44,13 @@ export default {
       }
     }
 
+    // Video: trả từng đoạn theo yêu cầu (HTTP Range / 206). Safari trên iPhone/iPad
+    // KHÔNG chạy video nếu máy chủ không hỗ trợ việc này — trước đây kho tĩnh luôn
+    // trả nguyên file (200) nên video đầu trang đứng hình trên iPhone.
+    if (url.pathname.startsWith('/videos/')) {
+      return serveVideo(request, env);
+    }
+
     // Trang chủ, blog, ảnh, video — lấy từ thư mục đã dựng sẵn
     const res = await env.ASSETS.fetch(request);
 
@@ -69,3 +76,40 @@ export default {
     );
   },
 };
+
+/** Trả video có hỗ trợ Range (206 Partial Content) để Safari phát được. */
+async function serveVideo(request, env) {
+  const plain = new Request(request.url, { method: 'GET' });
+  const res = await env.ASSETS.fetch(plain);
+  if (!res.ok) return res;
+
+  const headers = new Headers(res.headers);
+  headers.set('Accept-Ranges', 'bytes');
+  headers.set('Cache-Control', 'public, max-age=604800');
+  headers.delete('Content-Encoding');
+
+  const range = request.headers.get('Range');
+  const m = range && /^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  if (request.method === 'HEAD' || !m) {
+    const body = request.method === 'HEAD' ? null : res.body;
+    return new Response(body, { status: 200, headers });
+  }
+
+  const buf = await res.arrayBuffer();
+  const size = buf.byteLength;
+  let start, end;
+  if (m[1] === '') {            // bytes=-500 → 500 byte cuối
+    const n = Math.min(Number(m[2]), size);
+    start = size - n; end = size - 1;
+  } else {
+    start = Number(m[1]);
+    end = m[2] === '' ? size - 1 : Math.min(Number(m[2]), size - 1);
+  }
+  if (!(start >= 0) || start >= size || end < start) {
+    headers.set('Content-Range', `bytes */${size}`);
+    return new Response(null, { status: 416, headers });
+  }
+  headers.set('Content-Range', `bytes ${start}-${end}/${size}`);
+  headers.set('Content-Length', String(end - start + 1));
+  return new Response(buf.slice(start, end + 1), { status: 206, headers });
+}

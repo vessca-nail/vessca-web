@@ -1951,11 +1951,9 @@
     return (n ? n.getBoundingClientRect().height : 0) + 8;
   }
   function bringToTop(item){
-    // đợi trình duyệt dựng lại xong rồi mới đo vị trí
-    requestAnimationFrame(()=>{
-      const top = item.getBoundingClientRect().top + window.scrollY - navOffset();
-      window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
-    });
+    // getBoundingClientRect buộc trình duyệt tính lại bố cục ngay, nên đo được vị trí mới
+    const top = item.getBoundingClientRect().top + window.scrollY - navOffset();
+    window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
   }
   function toggleStack(item){
     const willOpen = !item.classList.contains('expanded');

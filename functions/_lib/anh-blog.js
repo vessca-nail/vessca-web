@@ -129,12 +129,23 @@ async function timPixabay(env, tuKhoa) {
      nhãn chứa ít nhất một chữ chủ đề;
    - còn lại xếp theo số từ khoá trùng với nhãn, nhiều trước. */
 const CHU_DE = ['nail', 'manicure', 'pedicure', 'polish', 'gel', 'cuticle', 'acrylic'];
+/* Đợt 32 (26/10): chữ "nail(s)" trong tiếng Anh còn là ĐINH đóng gỗ và MÓNG
+   của chó mèo → từng ra búa, cờ lê, đinh rỉ, chó. Nên khi tìm ảnh nail, nhãn
+   ảnh phải có ít nhất một chữ THẬT SỰ về làm móng, và không được có chữ nào
+   trong danh sách cấm. */
+const LAM_MONG = ['manicure', 'pedicure', 'nail polish', 'nail art', 'nail design', 'nail salon',
+  'varnish', 'lacquer', 'fingernail', 'nail care', 'gel nails', 'nail varnish', 'polish', 'cosmetic', 'beauty'];
+const CAM = ['hammer', 'wrench', 'screw', 'rust', 'iron', 'hardware', 'carpentry', 'construction', 'workshop',
+  'pet', 'dog', 'cat ', 'puppy', 'animal', 'grooming', 'claw', 'paw', 'fruit', 'berr', 'apple', 'food',
+  'keyboard', 'laptop', 'computer', 'office', 'horror', 'fantasy', 'zombie', 'skull', 'wood', 'nails tool'];
 function locTheoNhan(tuKhoa, hits) {
   const tu = tuKhoa.toLowerCase().split(/\s+/).filter((w) => w.length > 2);
   const can = CHU_DE.filter((c) => tu.some((w) => w.startsWith(c)));
   const diem = (h) => tu.filter((w) => h.nhan.includes(w.replace(/s$/, ''))).length;
   return hits
     .filter((h) => !can.length || can.some((c) => h.nhan.includes(c)))
+    .filter((h) => !can.length || LAM_MONG.some((c) => h.nhan.includes(c)))
+    .filter((h) => !CAM.some((c) => (h.nhan + ' ').includes(c)))
     .map((h, i) => ({ h, d: diem(h), i }))
     .sort((a, b) => b.d - a.d || a.i - b.i)
     .map((x) => x.h);
@@ -154,11 +165,20 @@ async function timPexels(env, tuKhoa) {
 
 const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
 
-async function timAnh(env, tuKhoa, daDung) {
+async function timAnh(env, tuKhoa, daDung, duPhong = true) {
   const kq = env.PIXABAY_API_KEY ? await timPixabay(env, tuKhoa) : await timPexels(env, tuKhoa);
   // Không lặp ảnh, và mỗi người chụp chỉ dùng MỘT lần trên toàn blog: Pixabay
   // có nhiều tấm của cùng một buổi chụp, khác id nhưng nhìn gần như y hệt.
-  return kq.find((p) => !daDung.has(p.id) && !daDung.has(`u:${p.ten}`)) || null;
+  const p = kq.find((x) => !daDung.has(x.id) && !daDung.has(`u:${x.ten}`)) || null;
+  if (p || !duPhong) return p;
+  // Đợt 32: không tìm ra thì thử dần các từ khoá chung về làm móng, để bài
+  // không bao giờ bị bỏ trống ảnh bìa (ô xám trên trang blog).
+  for (const k of ['manicure', 'nail polish', 'manicure salon']) {
+    if (k === tuKhoa) continue;
+    const q = await timAnh(env, k, daDung, false);
+    if (q) return q;
+  }
+  return null;
 }
 
 async function taiAnh(photo, laBia) {

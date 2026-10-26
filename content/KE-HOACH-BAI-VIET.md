@@ -1,5 +1,10 @@
 # Kế hoạch bài viết — VESSCA
 
+> **Cập nhật 26/10/2026.** File này chỉ còn dùng để lấy ý chủ đề. Kế hoạch đăng và
+> danh sách chủ đề đang làm nằm ở `content/HUONG-DAN-VIET-BAI.md` (mục 2 và 3) — đọc file đó trước.
+> Giai đoạn 2 (9/11–31/12/2026) đã viết xong. Repo hiện có 105 bài; trước khi viết bất kỳ
+> chủ đề nào ở dưới, kiểm tra `ls content/posts/` để khỏi viết trùng.
+
 File này là danh sách chủ đề để viết dần. Mỗi chủ đề nhắm một câu khách
 thật sự gõ lên Google. Viết xong bài nào thì đánh dấu `[x]` và ghi slug.
 
@@ -85,66 +90,66 @@ Google cần vài tuần để xếp hạng. Đăng đúng mùa là đã trễ.
 
 - [ ] **Nail Tết 2027** — nail Tết, nail đỏ Tết, mẫu nail Tết đơn giản
 - [x] **Nail cô dâu** — `nail-co-dau`
-- [ ] **Nail mùa thu tông đất** — nail mùa thu, nail nâu caramel
+- [x] **Nail mùa thu tông đất** — `nail-mua-thu-tong-dat`
 - [ ] **Nail Valentine** — viết đầu tháng 1
 - [ ] **Nail 8/3 và 20/10** — viết trước 5 tuần
 - [ ] **Nail mùa hè tông trong, pastel** — viết tháng 3
-- [ ] **Nail đi biển, đi du lịch** — bền, không vướng
-- [ ] **Nail mùa mưa Sài Gòn** — giữ móng khi tay ướt thường xuyên
+- [x] **Nail đi biển, đi du lịch** — `nail-di-bien-du-lich`
+- [x] **Nail mùa mưa Sài Gòn** — `nail-mua-mua-sai-gon`
 - [ ] **Màu nail của năm** — bám theo bảng màu xu hướng đầu năm
 
 ## Câu hỏi khách hay hỏi — nhóm giá trị cao nhất
 
 - [x] **Lần đầu làm nail cần biết gì** — `lan-dau-lam-nail-can-biet-gi`
-- [ ] **Nấm móng: dấu hiệu và khi nào phải ngừng làm nail**
+- [x] **Nấm móng: dấu hiệu và khi nào phải ngừng làm nail** — `nam-mong-dau-hieu`
 - [x] **Bà bầu làm nail được không** — `ba-bau-lam-nail-duoc-khong`
 - [x] **Tự tháo gel ở nhà có được không** — `tu-thao-gel-o-nha-co-duoc-khong`
-- [ ] **Móng có sọc dọc, đốm trắng là bị gì**
-- [ ] **Dị ứng sơn gel: dấu hiệu và cách xử lý**
-- [ ] **Hay cắn móng tay thì làm nail được không**
-- [ ] **Nail cho người đi làm văn phòng** — mẫu nào không vướng gõ phím
-- [ ] **Nam giới chăm sóc móng** — thị trường ít ai viết
-- [ ] **Sau khi tháo gel nên làm gì cho móng hồi**
-- [ ] **Làm nail xong bao lâu thì rửa tay, tắm được**
-- [ ] **Móng tay yếu do thiếu chất gì**
+- [x] **Móng có sọc dọc, đốm trắng là bị gì** — `mong-soc-doc-dom-trang`
+- [x] **Dị ứng sơn gel: dấu hiệu và cách xử lý** — `di-ung-son-gel`
+- [x] **Hay cắn móng tay thì làm nail được không** — `hay-can-mong-tay-lam-nail-duoc-khong`
+- [x] **Nail cho người đi làm văn phòng** — `nail-van-phong-kieu-han`
+- [x] **Nam giới chăm sóc móng** — `nam-gioi-cham-soc-mong`
+- [x] **Sau khi tháo gel nên làm gì cho móng hồi** — `duong-mong-sau-khi-thao-gel`
+- [x] **Làm nail xong bao lâu thì rửa tay, tắm được** — `lam-nail-xong-bao-lau-rua-tay`
+- [x] **Móng tay yếu do thiếu chất gì** — `an-gi-cho-mong-tay-chac-khoe`
 
 ## Kỹ thuật & nghề
 
-- [ ] **Quy trình một buổi làm nail tại VESSCA, từng bước**
-- [ ] **Vì sao tháo gel đúng cách mất 20 phút**
-- [ ] **Dáng form móng: oval, vuông, almond — dáng nào hợp tay nào**
-- [ ] **Khử trùng dụng cụ ở tiệm nail: chuẩn nào là đủ**
-- [ ] **Gel X, dual form, đắp bột — phân biệt ba kiểu nối móng**
-- [ ] **Đèn UV và đèn LED khác nhau ra sao, có hại da không**
-- [ ] **Base coat và top coat làm nhiệm vụ gì**
-- [ ] **Vẽ tay và sticker: khác nhau thế nào về giá và độ bền**
+- [x] **Quy trình một buổi làm nail tại VESSCA, từng bước** — `quy-trinh-lam-nail-tai-vessca`
+- [x] **Vì sao tháo gel đúng cách mất 20 phút** — `vi-sao-thao-gel-mat-20-phut`
+- [x] **Dáng form móng: oval, vuông, almond — dáng nào hợp tay nào** — `form-mong-oval-vuong-almond`
+- [x] **Khử trùng dụng cụ ở tiệm nail: chuẩn nào là đủ** — `may-tiet-trung-dung-cu-nail`
+- [x] **Gel X, dual form, đắp bột — phân biệt ba kiểu nối móng** — `gel-x-dual-form-dap-bot`
+- [x] **Đèn UV và đèn LED khác nhau ra sao, có hại da không** — `den-uv-led-lam-nail-co-hai-khong`
+- [x] **Base coat và top coat làm nhiệm vụ gì** — `base-coat-top-coat-la-gi`
+- [x] **Vẽ tay và sticker: khác nhau thế nào về giá và độ bền** — `ve-nail-tay-hay-sticker`
 - [ ] **Vì sao lớp gel phải mỏng và nhiều lớp**
-- [ ] **Kỹ thuật viên chọn màu cho khách dựa trên gì**
+- [x] **Kỹ thuật viên chọn màu cho khách dựa trên gì** — `ky-thuat-vien-chon-mau-nail`
 
 ## Chăm sóc tại nhà
 
-- [ ] **Lịch dưỡng móng 4 tuần giữa hai lần làm nail**
-- [ ] **Dầu dưỡng cuticle: chọn và dùng sao cho đúng**
-- [ ] **Móng khô, xước măng rô — xử lý thế nào**
-- [ ] **Chăm móng chân: khác gì móng tay**
-- [ ] **Ăn gì, uống gì cho móng chắc khoẻ**
-- [ ] **Cắt móng đúng cách để không bị móng mọc ngược**
-- [ ] **Bảo vệ bộ nail khi làm việc nhà**
+- [x] **Lịch dưỡng móng 4 tuần giữa hai lần làm nail** — `lich-duong-mong-giua-hai-lan-lam-nail`
+- [x] **Dầu dưỡng cuticle: chọn và dùng sao cho đúng** — `dau-duong-vien-mong-cuticle-oil`
+- [x] **Móng khô, xước măng rô — xử lý thế nào** — `xuoc-mang-ro-quanh-mong`
+- [x] **Chăm móng chân: khác gì móng tay** — `lam-mong-chan-kieu-han`
+- [x] **Ăn gì, uống gì cho móng chắc khoẻ** — `an-gi-cho-mong-tay-chac-khoe`
+- [x] **Cắt móng đúng cách để không bị móng mọc ngược** — `cat-mong-tay-dung-cach`
+- [x] **Bảo vệ bộ nail khi làm việc nhà** — `bao-ve-nail-khi-lam-viec-nha`
 - [ ] **Dưỡng tay: bộ đôi kem tay và dầu móng**
 
 ## Địa phương — nhắm khách quanh tiệm
 
-- [ ] **Đường đi tới VESSCA: gửi xe, lối vào hẻm 251 Lê Quang Định**
+- [x] **Đường đi tới VESSCA: gửi xe, lối vào hẻm 251 Lê Quang Định** — `den-vessca-gui-xe-dat-lich`
 - [ ] **Giờ nào tiệm vắng, giờ nào nên đặt trước**
-- [ ] **Làm nail ở Gia Định: khu này có gì quanh tiệm**
+- [x] **Làm nail ở Gia Định: khu này có gì quanh tiệm** — `tiem-nail-phuong-gia-dinh`
 - [ ] **Đặt lịch thế nào cho nhanh** — qua web, Zalo, điện thoại
 
 ## Hậu trường tiệm — xây lòng tin
 
-- [ ] **Vì sao VESSCA chỉ nhận một khách cho một kỹ thuật viên**
+- [x] **Vì sao VESSCA chỉ nhận một khách cho một kỹ thuật viên** — `vi-sao-vessca-gioi-han-so-khach`
 - [ ] **Tiệm chọn sơn nhập khẩu theo tiêu chí nào**
 - [ ] **Một ngày ở VESSCA: tiệm chuẩn bị gì trước khi mở cửa**
-- [ ] **Tiêu chuẩn vệ sinh tại tiệm, làm thật chứ không nói suông**
+- [x] **Tiêu chuẩn vệ sinh tại tiệm, làm thật chứ không nói suông** — `may-tiet-trung-dung-cu-nail`
 - [ ] **Kỹ thuật viên được đào tạo những gì**
 
 ---

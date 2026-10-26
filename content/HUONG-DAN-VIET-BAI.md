@@ -23,40 +23,42 @@ Cập nhật: 26/10/2026. Đọc hết file này trước khi viết. File đi k
 | Giai đoạn | Thời gian | Nhịp | Giờ đăng |
 |---|---|---|---|
 | 1 | 28/10 – 8/11/2026 | 4 bài/ngày | **ĐÃ VIẾT XONG** |
-| 2 | 9/11 – 31/12/2026 | 3 bài/tuần (thứ 2, 4, 6) | 08:30 |
+| 2 | 9/11 – 31/12/2026 | 3 bài/tuần (thứ 2, 4, 6) | **ĐÃ VIẾT XONG** |
 | 3 | 1/1 – 15/2/2027 (Tết Nguyên Đán 6/2/2027) | 4 bài/tuần (thứ 2, 4, 6, CN) | 08:30 |
 | 4 | 16/2 – 31/12/2027 | 2–3 bài/tuần, dày hơn trước dịp lễ | 08:30 |
 
 - Bài theo dịp lễ đăng **trước dịp 3–4 tuần**.
 - Từ tháng 2/2027: mỗi tháng viết bài của tháng sau (giá, dòng sơn có thể đổi — hỏi chủ tiệm trước).
-- Đã viết tới **9/11/2026** (bài `son-gel-va-son-thuong-khac-nhau`). Viết tiếp từ **11/11/2026**.
+- Đã viết tới **30/12/2026** (bài `phuc-hoi-mong-sau-mua-tiec`). Giai đoạn 2 xong toàn bộ.
+- Việc tiếp theo: **giai đoạn 3**, từ 1/1/2027, nhịp 4 bài/tuần (thứ 2, 4, 6, CN) lúc 08:30.
+  Trước khi viết giai đoạn 3 cần hỏi chủ tiệm **giờ mở cửa dịp Tết** (chưa có, không được đoán).
 
-## 3. Danh sách chủ đề giai đoạn 2 (chưa viết — làm theo thứ tự)
+## 3. Danh sách chủ đề giai đoạn 2 — ĐÃ VIẾT XONG 26/10/2026
 
-| Ngày | Slug gợi ý | Chủ đề | Mục |
+| Ngày | Slug | Chủ đề | Mục |
 |---|---|---|---|
-| 11/11 | nail-cho-da-ngam | Màu nail đẹp trên da ngăm, màu nên cân nhắc | Xu hướng & Cảm hứng |
-| 13/11 | mong-chan-moc-quap | Móng chân mọc quặp: vì sao, phòng, khi nào cần khám | Hỏi & Đáp |
-| 16/11 | nail-van-da-marble | Nail vân đá | Xu hướng & Cảm hứng |
-| 18/11 | lam-nail-o-nha-hay-o-tiem | Tự làm ở nhà hay ra tiệm | Hỏi & Đáp |
-| 20/11 | nail-cho-ngon-tay-ngan | Form, màu cho ngón tay ngắn | Xu hướng & Cảm hứng |
-| 23/11 | thuat-ngu-nail | Giải thích thuật ngữ nail (base, top, cuticle, form…) | Kiến thức nghề nail |
-| 25/11 | nail-3d-nan-hoat-hinh | Nail nặn 3D, bột 3D (40.000–50.000₫) | Xu hướng & Cảm hứng |
-| 27/11 | nail-cho-me-nguoi-lon-tuoi | Nail cho mẹ, người lớn tuổi; quà tặng | Xu hướng & Cảm hứng |
-| 30/11 | nail-hoa-nhi-ve-tay | Nail hoa nhí vẽ tay | Xu hướng & Cảm hứng |
-| 2/12 | cham-soc-mong-mua-kho | Chăm móng mùa khô Sài Gòn (12–4) | Chăm sóc móng |
-| 4/12 | nail-noel-di-lam-don-gian | Nail Noel nhẹ nhàng đi làm (khác bài nail-noel-2026) | Xu hướng & Cảm hứng |
-| 7/12 | qua-noel-cham-soc-tay-chan | Tặng buổi chăm sóc tay chân dịp Noel | Hỏi & Đáp |
-| 9/12 | nail-ket-hop-trang-suc | Phối nail với trang sức vàng/bạc | Xu hướng & Cảm hứng |
-| 11/12 | nail-loang-galaxy | Nail loang, galaxy | Xu hướng & Cảm hứng |
-| 14/12 | nail-den-trang-toi-gian | Nail đen trắng tối giản | Xu hướng & Cảm hứng |
-| 16/12 | cau-hoi-thuong-gap-vessca | 10 câu hỏi thường gặp về VESSCA | Hỏi & Đáp |
-| 18/12 | nail-caro-cuoi-nam | Nail caro, tartan | Xu hướng & Cảm hứng |
-| 21/12 | nail-don-nam-moi-2027 | Nail đón năm mới | Xu hướng & Cảm hứng |
-| 23/12 | giu-nail-trong-ky-nghi-le | Giữ nail qua mùa lễ | Chăm sóc móng |
-| 25/12 | nail-tron-mot-mau-kieu-han | Nail trơn một màu kiểu Hàn | Xu hướng & Cảm hứng |
-| 28/12 | chuan-bi-nail-tet-2027 | Chuẩn bị nail Tết, đặt lịch sớm | Hỏi & Đáp |
-| 30/12 | phuc-hoi-mong-sau-mua-tiec | Phục hồi móng sau mùa tiệc | Chăm sóc móng |
+| [x] 11/11 | nail-cho-da-ngam | Màu nail đẹp trên da ngăm, màu nên cân nhắc | Xu hướng & Cảm hứng |
+| [x] 13/11 | mong-chan-moc-quap | Móng chân mọc quặp: vì sao, phòng, khi nào cần khám | Hỏi & Đáp |
+| [x] 16/11 | nail-van-da-marble | Nail vân đá | Xu hướng & Cảm hứng |
+| [x] 18/11 | lam-nail-o-nha-hay-o-tiem | Tự làm ở nhà hay ra tiệm | Hỏi & Đáp |
+| [x] 20/11 | nail-cho-ngon-tay-ngan | Form, màu cho ngón tay ngắn | Xu hướng & Cảm hứng |
+| [x] 23/11 | thuat-ngu-nail | Giải thích thuật ngữ nail (base, top, cuticle, form…) | Kiến thức nghề nail |
+| [x] 25/11 | nail-3d-nan-hoat-hinh | Nail nặn 3D, bột 3D (40.000–50.000₫) | Xu hướng & Cảm hứng |
+| [x] 27/11 | nail-cho-me-nguoi-lon-tuoi | Nail cho mẹ, người lớn tuổi; quà tặng | Xu hướng & Cảm hứng |
+| [x] 30/11 | nail-hoa-nhi-ve-tay | Nail hoa nhí vẽ tay | Xu hướng & Cảm hứng |
+| [x] 2/12 | cham-soc-mong-mua-kho | Chăm móng mùa khô Sài Gòn (12–4) | Chăm sóc móng |
+| [x] 4/12 | nail-noel-di-lam-don-gian | Nail Noel nhẹ nhàng đi làm (khác bài nail-noel-2026) | Xu hướng & Cảm hứng |
+| [x] 7/12 | qua-noel-cham-soc-tay-chan | Tặng buổi chăm sóc tay chân dịp Noel | Hỏi & Đáp |
+| [x] 9/12 | nail-ket-hop-trang-suc | Phối nail với trang sức vàng/bạc | Xu hướng & Cảm hứng |
+| [x] 11/12 | nail-loang-galaxy | Nail loang, galaxy | Xu hướng & Cảm hứng |
+| [x] 14/12 | nail-den-trang-toi-gian | Nail đen trắng tối giản | Xu hướng & Cảm hứng |
+| [x] 16/12 | cau-hoi-thuong-gap-vessca | 10 câu hỏi thường gặp về VESSCA | Hỏi & Đáp |
+| [x] 18/12 | nail-caro-cuoi-nam | Nail caro, tartan | Xu hướng & Cảm hứng |
+| [x] 21/12 | nail-don-nam-moi-2027 | Nail đón năm mới | Xu hướng & Cảm hứng |
+| [x] 23/12 | giu-nail-trong-ky-nghi-le | Giữ nail qua mùa lễ | Chăm sóc móng |
+| [x] 25/12 | nail-tron-mot-mau-kieu-han | Nail trơn một màu kiểu Hàn | Xu hướng & Cảm hứng |
+| [x] 28/12 | chuan-bi-nail-tet-2027 | Chuẩn bị nail Tết, đặt lịch sớm | Hỏi & Đáp |
+| [x] 30/12 | phuc-hoi-mong-sau-mua-tiec | Phục hồi móng sau mùa tiệc | Chăm sóc móng |
 
 Giai đoạn 3 (Tết 2027): nail Tết đỏ/vàng kiểu Hàn, nail Tết đơn giản, nên làm nail trước Tết bao lâu,
 lịch mở cửa dịp Tết (**hỏi chủ tiệm trước — chưa có thông tin**), Valentine 14/2, nail sau Tết (tháo, dưỡng).
@@ -85,7 +87,13 @@ son-cung-mong-la-gi, an-gi-cho-mong-tay-chac-khoe, nail-mau-dam-cuoi-nam, nam-mo
 vi-sao-vessca-gioi-han-so-khach, ky-thuat-vien-chon-mau-nail, nail-di-phong-van, nail-xa-cu-anh-trai,
 vi-sao-thao-gel-mat-20-phut, da-tay-kho-nut-ne, nail-nhu-kim-tuyen, nail-pastel-kieu-han, nail-sinh-nhat,
 dang-cho-con-bu-lam-nail-duoc-khong, mong-tay-bi-o-vang, nail-di-bien-du-lich, nail-tay-chan-dong-bo,
-son-gel-va-son-thuong-khac-nhau.
+son-gel-va-son-thuong-khac-nhau,
+nail-cho-da-ngam, mong-chan-moc-quap, nail-van-da-marble, lam-nail-o-nha-hay-o-tiem,
+nail-cho-ngon-tay-ngan, thuat-ngu-nail, nail-3d-nan-hoat-hinh, nail-cho-me-nguoi-lon-tuoi,
+nail-hoa-nhi-ve-tay, cham-soc-mong-mua-kho, nail-noel-di-lam-don-gian, qua-noel-cham-soc-tay-chan,
+nail-ket-hop-trang-suc, nail-loang-galaxy, nail-den-trang-toi-gian, cau-hoi-thuong-gap-vessca,
+nail-caro-cuoi-nam, nail-don-nam-moi-2027, giu-nail-trong-ky-nghi-le, nail-tron-mot-mau-kieu-han,
+chuan-bi-nail-tet-2027, phuc-hoi-mong-sau-mua-tiec.
 
 Kiểm tra nhanh: `ls content/posts/`.
 
@@ -166,5 +174,23 @@ Sau khi đăng, đánh dấu trong `content/KE-HOACH-BAI-VIET.md` nếu cần. �
 nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"xong": false` trong mục `anh`, sửa `tim`, push.
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
+
+- 26/10/2026 — phiên viết bài: **viết xong toàn bộ giai đoạn 2**, 22 bài từ 11/11 đến 30/12/2026,
+  đủ 4 ngôn ngữ, đúng nhịp thứ 2–4–6 lúc 08:30. Script: `tools/viet-bai/p2-dot1.py`, `p2-dot1b.py`,
+  `p2-dot2.py`, `p2-dot3.py`, `p2-dot4.py`, `p2-dot5.py`. Đã soát: 500–750 từ/bài, 4 FAQ, 3–5 link
+  nội bộ đều tồn tại, không bài nào tự điền `coverImage`, mọi con số giá khớp bảng giá mục 6
+  hoặc là tổng cộng đúng, không có khẳng định bịa.
+  **Ba việc chuyển cho phiên app/web:**
+  1. **FAQ không hiện trên trang.** `lib/render.mjs` (dòng ~635) đưa `faq` vào structured data
+     `FAQPage` nhưng không in ra HTML cho người đọc. Google yêu cầu nội dung FAQ phải hiển thị
+     trên trang mới tính rich result, nên hiện nay khả năng cao bị bỏ qua — và 250+ câu hỏi trên
+     toàn bộ bài đang không được đọc. Đề nghị render một mục "Câu hỏi thường gặp" ở cuối bài.
+  2. **Thời gian giữ gel không nhất quán.** Bài `cach-giu-nail-lau-bong` ghi "3 đến 4 tuần",
+     trong khi bài mẫu được chủ tiệm duyệt và toàn bộ bài sau này ghi "2–3 tuần". Nên chốt một số
+     với chủ tiệm rồi sửa cho khớp. Tôi không sửa vì bài đó đã đăng.
+  3. **Mốc đặt lịch trước.** Bản tiếng Hàn của `den-vessca-gui-xe-dat-lich` và
+     `vi-sao-vessca-gioi-han-so-khach` khuyên đặt trước 1–2 ngày. Hướng dẫn không có dữ kiện này,
+     nên bài `cau-hoi-thuong-gap-vessca` của tôi ghi là tiệm không công bố mốc cố định.
+     Nếu chủ tiệm có mốc thật thì nên thống nhất cả ba bài.
 
 - 26/10/2026 — phiên app/web: giao lại việc viết bài. Đã viết tới 9/11/2026. Đề cương bài 11/11 (nail-cho-da-ngam) chưa đăng — viết lại theo hướng dẫn.

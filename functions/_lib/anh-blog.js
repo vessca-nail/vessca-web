@@ -117,7 +117,7 @@ async function timPixabay(env, tuKhoa) {
     nhan: String(h.tags || '').toLowerCase(),
     // Ưu tiên máy chủ ảnh cdn.pixabay.com (bản 1280px, cùng ảnh với
     // largeImageURL); đường pixabay.com/get hay báo 429 khi tải từ Cloudflare.
-    tai: () => [String(h.webformatURL || '').replace(/_640\.(jpe?g|png)$/i, '_1280.$1'), h.largeImageURL]
+    tai: () => [String(h.webformatURL || '').replace(/_640\.(jpe?g|png)$/i, '_1280.$1'), h.largeImageURL, h.webformatURL]
       .filter((u) => u && /^https:/.test(u)),
   }));
   return locTheoNhan(tuKhoa, hits);
@@ -183,19 +183,21 @@ async function timAnh(env, tuKhoa, daDung, duPhong = true) {
 
 async function taiAnh(photo, laBia) {
   const urls = [].concat(photo.tai(laBia));
-  let res = null;
+  let loi = 'không gọi được';
   for (const u of urls) {
+    let res = null;
     for (let lan = 0; lan < 3; lan++) {
       res = await fetch(u, { headers: { 'User-Agent': 'Mozilla/5.0 (vessca.com blog)' } });
       if (res.status !== 429) break;
       await new Promise((r) => setTimeout(r, 3000 * (lan + 1)));
     }
-    if (res.ok && (res.headers.get('content-type') || '').startsWith('image/')) break;
+    if (!res.ok || !(res.headers.get('content-type') || '').startsWith('image/')) { loi = String(res.status); continue; }
+    const bytes = new Uint8Array(await res.arrayBuffer());
+    // Đợt 32: bản to quá thì thử bản nhỏ hơn (640px) thay vì kẹt mãi ở một ảnh
+    if (bytes.length > 900_000) { loi = `nặng quá (${bytes.length} byte)`; continue; }
+    return bytes;
   }
-  if (!res || !res.ok) throw new Error(`Tải ảnh ${photo.id} → ${res ? res.status : 'không gọi được'}`);
-  const bytes = new Uint8Array(await res.arrayBuffer());
-  if (bytes.length > 900_000) throw new Error(`Ảnh ${photo.id} nặng quá (${bytes.length} byte)`);
-  return bytes;
+  throw new Error(`Tải ảnh ${photo.id} → ${loi}`);
 }
 
 const escAttr = (s) => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');

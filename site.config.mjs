@@ -40,8 +40,9 @@ export const site = {
     longitude: 106.6920892,
   },
 
-  openingHours: 'Mo-Su 10:00-20:00',
-  openingHoursText: '10:00 – 20:00, tất cả các ngày trong tuần',
+  openingHours: 'Mo-Su 09:00-20:30',
+  openingHoursText: '9:00 – 20:30, tất cả các ngày trong tuần',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=VESSCA+Nail+251%2F30+L%C3%AA+Quang+%C4%90%E1%BB%8Bnh',
   priceRange: '₫₫',
 
   // --- Mạng xã hội ---
@@ -98,6 +99,8 @@ export const languages = {
       all: 'Tất cả',
       readTime: 'phút đọc',
       related: 'Bài viết liên quan',
+      napAddress: '251/30 Lê Quang Định, phường Gia Định (Bình Thạnh), TP.HCM',
+      napDirections: 'Xem chỉ đường',
       ctaTitle: 'Ghé VESSCA một buổi?',
       ctaText:
         'Mỗi lịch hẹn được sắp xếp riêng — một kỹ thuật viên cho một khách, không chồng ca, không vội.',
@@ -139,6 +142,8 @@ export const languages = {
       all: 'All',
       readTime: 'min read',
       related: 'Related reading',
+      napAddress: '251/30 Le Quang Dinh, Gia Dinh ward (Binh Thanh), Ho Chi Minh City',
+      napDirections: 'Get directions',
       ctaTitle: 'Come spend an hour with us',
       ctaText:
         'Every appointment is booked privately — one technician, one guest, no overlapping slots, no rush.',
@@ -180,6 +185,8 @@ export const languages = {
       all: '전체',
       readTime: '분 소요',
       related: '함께 읽으면 좋은 글',
+      napAddress: '호치민시 자딘동(빈탄) 251/30 Lê Quang Định',
+      napDirections: '길찾기',
       ctaTitle: 'VESSCA에서 여유로운 시간을',
       ctaText: '모든 예약은 1:1로 진행됩니다. 한 명의 테크니션이 한 분의 고객만 담당하며, 예약이 겹치지 않습니다.',
       ctaBook: '예약하기',
@@ -219,6 +226,8 @@ export const languages = {
       all: '全部',
       readTime: '分钟阅读',
       related: '相关文章',
+      napAddress: '胡志明市嘉定坊(平盛)251/30 Lê Quang Định',
+      napDirections: '查看路线',
       ctaTitle: '来 VESSCA 坐一个下午',
       ctaText: '每位客人单独预约 — 一位技师只服务一位客人，不排重，不赶时间。',
       ctaBook: '立即预约',

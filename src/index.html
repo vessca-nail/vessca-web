@@ -2020,6 +2020,7 @@
       if(!r.ok || !(data && data.ok)) throw new Error((data && data.error) || ('HTTP ' + r.status));
       form.style.display = 'none';
       document.getElementById('confirmMsg').style.display = 'block';
+      if (window.vsTk) vsTk('Gửi đặt lịch');
     }catch(err){
       // Không nuốt lỗi: khách phải biết là chưa gửi được, và gọi được ngay.
       var box = document.getElementById('errMsg');
@@ -2106,5 +2107,6 @@
   }
 </script>
 
+<script src="/tk.js" defer></script>
 </body>
 </html>

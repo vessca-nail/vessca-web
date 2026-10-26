@@ -10,6 +10,7 @@
 import { onRequest as admin } from './functions/admin/[[path]].js';
 import { onRequest as booking } from './functions/_lib/booking.js';
 import { chayDinhKy } from './functions/_lib/anh-blog.js';
+import { ghiLuot, donDep } from './functions/_lib/thong-ke.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -18,6 +19,12 @@ export default {
     // Gõ /admin thiếu dấu gạch cuối → thêm vào cho đúng
     if (url.pathname === '/admin') {
       return Response.redirect(new URL('/admin/', url).toString(), 302);
+    }
+
+    // Thống kê truy cập (tk.js gửi về). Lỗi gì cũng không được làm phiền khách.
+    if (url.pathname === '/api/tk') {
+      try { return await ghiLuot(request, env); }
+      catch (e) { console.error('Lỗi thống kê:', e?.message || e); return new Response(null, { status: 204 }); }
     }
 
     // Đặt lịch từ trang chủ + đường cho phần mềm ở tiệm lấy đơn
@@ -74,6 +81,7 @@ export default {
         .then((kq) => console.log('Chạy định kỳ:', JSON.stringify(kq)))
         .catch((e) => console.error('Chạy định kỳ lỗi:', e?.stack || e))
     );
+    ctx.waitUntil(donDep(env).catch((e) => console.error('Dọn thống kê lỗi:', e?.message || e)));
   },
 };
 

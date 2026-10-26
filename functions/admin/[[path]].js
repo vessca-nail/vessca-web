@@ -14,7 +14,8 @@
 import { isLoggedIn, createSession, clearSession, checkPassword, missingConfig, deriveKey } from '../_lib/auth.js';
 import * as gh from '../_lib/github.js';
 import { chayDinhKy } from '../_lib/anh-blog.js';
-import { loginPage, listPage, editorPage, designPage, mediaPage, statusPage, bookingsPage } from '../_lib/pages.js';
+import { layThongKe } from '../_lib/thong-ke.js';
+import { loginPage, listPage, editorPage, designPage, mediaPage, statusPage, bookingsPage, thongKePage } from '../_lib/pages.js';
 import { EDITOR_JS } from '../_lib/editor-js.js';
 import { slugify, sanitizeHtml } from '../../lib/utils.mjs';
 
@@ -120,6 +121,13 @@ export async function onRequest(context) {
           .filter((f) => f.type === 'file' && !f.name.startsWith('.'))
           .sort((a, b) => b.name.localeCompare(a.name));
         return html(mediaPage({ files, flash: url.searchParams.get('msg') }));
+      }
+
+      // ---------- Thống kê truy cập ----------
+      case path === 'thong-ke': {
+        if (!env.BOOKINGS) return html(thongKePage({ soNgay: 7, tu: '', tong: {} }));
+        const n = [1, 7, 30, 90, 365].includes(Number(url.searchParams.get('ngay'))) ? Number(url.searchParams.get('ngay')) : 7;
+        return html(thongKePage(await layThongKe(env, n)));
       }
 
       // ---------- Đơn đặt lịch từ website ----------

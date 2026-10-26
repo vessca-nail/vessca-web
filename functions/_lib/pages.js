@@ -152,6 +152,7 @@ export function shell({ title, body, active = '', wide = false }) {
       <a href="/admin/design" class="${active === 'design' ? 'on' : ''}">Giao diện</a>
       <a href="/admin/media" class="${active === 'media' ? 'on' : ''}">Ảnh</a>
       <a href="/admin/bookings" class="${active === 'bookings' ? 'on' : ''}">Đặt lịch</a>
+      <a href="/admin/thong-ke" class="${active === 'thongke' ? 'on' : ''}">Thống kê</a>
       <a href="/admin/status" class="${active === 'status' ? 'on' : ''}">Hệ thống</a>
       <a href="/admin/logout">Thoát</a>
     </nav>
@@ -736,5 +737,91 @@ export function statusPage({ checks, repo }) {
   thấy có file mới và tự dựng lại website → khoảng 1 phút sau thay đổi hiện trên vessca.com.
   Mọi phiên bản cũ đều giữ lại trên GitHub nên luôn quay lui được.</p>
 </div>`,
+  });
+}
+
+/** Trang thống kê truy cập website */
+export function thongKePage(tk) {
+  const so = (n) => Number(n || 0).toLocaleString('vi-VN');
+  const QG = { VN: 'Việt Nam', KR: 'Hàn Quốc', CN: 'Trung Quốc', TW: 'Đài Loan', HK: 'Hồng Kông', US: 'Mỹ', JP: 'Nhật Bản', SG: 'Singapore', AU: 'Úc', TH: 'Thái Lan', MY: 'Malaysia', FR: 'Pháp', DE: 'Đức', GB: 'Anh', CA: 'Canada' };
+  const NN = { vi: 'Tiếng Việt', en: 'Tiếng Anh', ko: 'Tiếng Hàn', zh: 'Tiếng Trung', 'zh-Hans': 'Tiếng Trung' };
+  const tenTrang = (p) => {
+    if (p === '/' ) return 'Trang chủ';
+    const m = /^\/(?:(en|ko|zh)\/)?blog\/?(.*?)\/?$/.exec(p);
+    if (m) return (m[2] ? m[2] : 'Danh sách blog') + (m[1] ? ` (${m[1].toUpperCase()})` : '');
+    if (/^\/(en|ko|zh)\/?$/.test(p)) return `Trang chủ (${p.replace(/\//g, '').toUpperCase()})`;
+    return p;
+  };
+  const bang = (tieuDe, rows, nhan = (k) => k, cotKhach = true, rong = '') => {
+    const max = Math.max(1, ...rows.map((r) => r.n));
+    return `<div class="card tk-c${rong}"><h2>${tieuDe}</h2>${
+      rows.length
+        ? `<table class="tk-t">${rows
+            .map((r) => `<tr><td class="tk-k">${esc(nhan(r.k))}<span class="tk-b" style="width:${Math.round((r.n / max) * 100)}%"></span></td><td class="tk-n">${so(r.n)}</td>${cotKhach ? `<td class="tk-n muted">${so(r.kh)} người</td>` : ''}</tr>`)
+            .join('')}</table>`
+        : '<p class="muted">Chưa có dữ liệu.</p>'
+    }</div>`;
+  };
+  const t = tk.tong || {};
+  const nut = Object.fromEntries((tk.nut || []).map((r) => [r.k, r.n]));
+  const daCo = Object.fromEntries((tk.theoNgay || []).map((d) => [d.ngay, d]));
+  const ngay = [];
+  if (tk.tu) {
+    for (let d = new Date(tk.tu + 'T12:00:00Z'); ngay.length < tk.soNgay; d = new Date(d.getTime() + 86400000)) {
+      const k = d.toISOString().slice(0, 10);
+      ngay.push(daCo[k] || { ngay: k, xem: 0, khach: 0 });
+    }
+  }
+  const nhanNgay = (i) => tk.soNgay <= 31 || i % Math.ceil(tk.soNgay / 15) === 0;
+  const maxN = Math.max(1, ...ngay.map((d) => d.xem));
+  const cot = ngay
+    .map((d, i) => `<div class="tk-col${tk.soNgay > 31 ? ' sm' : ''}" title="${esc(d.ngay.split('-').reverse().join('/'))}: ${d.xem} lượt xem, ${d.khach} người"><span style="height:${Math.round((d.xem / maxN) * 100)}%"></span><em>${nhanNgay(i) ? `${esc(d.ngay.slice(8))}/${esc(d.ngay.slice(5, 7))}` : ''}</em></div>`)
+    .join('');
+  const gioMap = Object.fromEntries((tk.theoGio || []).map((r) => [r.k, r.n]));
+  const maxG = Math.max(1, ...Object.values(gioMap));
+  const gio = Array.from({ length: 24 }, (_, h) => `<div class="tk-col sm" title="${h}h: ${gioMap[h] || 0} lượt"><span style="height:${Math.round(((gioMap[h] || 0) / maxG) * 100)}%"></span><em>${h % 3 === 0 ? h + 'h' : ''}</em></div>`).join('');
+  const chon = [1, 7, 30, 90, 365].map((n) => `<a class="btn ${n === tk.soNgay ? '' : 'ghost'} sm" href="/admin/thong-ke?ngay=${n}">${n === 1 ? 'Hôm nay' : n === 365 ? '1 năm' : n + ' ngày'}</a>`).join('');
+  const o = (nhan, gt, phu = '') => `<div class="card tk-o"><div class="muted">${nhan}</div><div class="tk-big">${gt}</div>${phu ? `<div class="muted">${phu}</div>` : ''}</div>`;
+  return shell({
+    active: 'thongke',
+    title: 'Thống kê',
+    wide: true,
+    body: `
+<style>
+.tk-g .card,.tk-g2 .card{margin:0!important}.tk-o{padding:16px 18px}.tk-big{font-size:30px;font-weight:700;line-height:1.2;margin:4px 0}
+.tk-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0 18px}
+.tk-g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:14px}
+.tk-c{margin:0}.tk-t{width:100%;border-collapse:collapse}.tk-t td{padding:6px 4px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+.tk-k{position:relative;word-break:break-word}.tk-b{display:block;height:4px;background:#111;border-radius:2px;margin-top:4px;opacity:.75}
+.tk-n{text-align:right;white-space:nowrap;width:1%;padding-left:12px!important}
+.tk-chart{display:flex;align-items:flex-end;gap:3px;height:170px;padding-top:10px;overflow-x:auto}
+.tk-col{flex:1;min-width:14px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.tk-col span{display:block;width:100%;background:#111;border-radius:3px 3px 0 0;min-height:1px}
+.tk-col em{font-style:normal;font-size:10px;color:var(--soft);margin-top:4px;white-space:nowrap;height:14px}
+.tk-col.sm{min-width:4px}.tk-chart.full{justify-content:space-between}
+</style>
+<h1>Thống kê truy cập</h1>
+<p class="lede">Từ ${esc(tk.tu.split('-').reverse().join('/'))} đến nay. Không tính lượt của trang quản trị và máy dò tìm (bot). Mỗi "người" là một thiết bị khác nhau trong một ngày.</p>
+<div class="bar">${chon}</div>
+<div class="tk-g">
+  ${o('Lượt xem trang', so(t.xem))}
+  ${o('Người truy cập', so(t.khach), 'tính theo thiết bị mỗi ngày')}
+  ${o('Bấm gọi điện', so(nut['Gọi điện']))}
+  ${o('Bấm chỉ đường', so(nut['Chỉ đường']))}
+  ${o('Đơn đặt lịch gửi', tk.donDatLich == null ? '—' : so(tk.donDatLich))}
+</div>
+<div class="card" style="margin-bottom:14px"><h2>Lượt xem theo ngày</h2>${ngay.length ? `<div class="tk-chart">${cot}</div>` : '<p class="muted">Chưa có dữ liệu.</p>'}</div>
+<div class="tk-g2">
+  ${bang('Thiết bị', tk.thietBi)}
+  ${bang('Khách đến từ đâu', tk.nguon)}
+  ${bang('Nút được bấm', tk.nut, (k) => k, true)}
+  ${bang('Trang được xem nhiều', tk.trang, tenTrang)}
+  ${bang('Quốc gia', tk.quocGia, (k) => QG[k] || k)}
+  ${bang('Thành phố', tk.thanhPho)}
+  ${bang('Ngôn ngữ đang xem', tk.ngonNgu, (k) => NN[k] || k)}
+  ${bang('Trình duyệt / ứng dụng', tk.trinhDuyet)}
+</div>
+<div class="card" style="margin-top:14px"><h2>Giờ khách vào web (giờ Việt Nam)</h2><div class="tk-chart">${gio}</div></div>
+<p class="muted" style="margin-top:14px">Từ khoá khách gõ trên Google không có ở đây — xem trong Google Search Console. Dữ liệu được giữ 400 ngày.</p>`,
   });
 }

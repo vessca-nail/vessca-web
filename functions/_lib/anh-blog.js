@@ -97,7 +97,7 @@ async function ghiMotLan(env, files, message) {
 async function timPixabay(env, tuKhoa) {
   const url = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_API_KEY)}` +
     `&q=${encodeURIComponent(tuKhoa).slice(0, 100)}&image_type=photo&orientation=horizontal` +
-    `&safesearch=true&min_width=1000&per_page=30`;
+    `&safesearch=true&min_width=1000&per_page=100`;
   // Pixabay báo 429 "gọi nhanh quá" khi hai lượt tìm sát nhau (dù tài liệu
   // nói 100 lượt/phút) → giãn mỗi lượt tìm ~1,5 giây, bị 429 thì chờ thêm
   // rồi thử lại tối đa 2 lần. Thời gian chờ không tính vào giới hạn CPU.
@@ -173,7 +173,7 @@ async function timAnh(env, tuKhoa, daDung, duPhong = true) {
   if (p || !duPhong) return p;
   // Đợt 32: không tìm ra thì thử dần các từ khoá chung về làm móng, để bài
   // không bao giờ bị bỏ trống ảnh bìa (ô xám trên trang blog).
-  for (const k of ['manicure', 'nail polish', 'manicure salon']) {
+  for (const k of ['manicure', 'nail polish', 'manicure hands', 'nail art', 'pedicure']) {
     if (k === tuKhoa) continue;
     const q = await timAnh(env, k, daDung, false);
     if (q) return q;

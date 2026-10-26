@@ -172,11 +172,14 @@ async function timAnh(env, tuKhoa, daDung, duPhong = true) {
   const kq = env.PIXABAY_API_KEY ? await timPixabay(env, tuKhoa) : await timPexels(env, tuKhoa);
   // Không lặp ảnh, và mỗi người chụp chỉ dùng MỘT lần trên toàn blog: Pixabay
   // có nhiều tấm của cùng một buổi chụp, khác id nhưng nhìn gần như y hệt.
-  const p = kq.find((x) => !daDung.has(x.id) && !daDung.has(`u:${x.ten}`)) || null;
+  // Không có ảnh của người chụp mới thì chấp nhận người chụp cũ (khác ảnh) —
+  // vẫn hơn là lấy ảnh lạc đề từ từ khoá chung chung.
+  const p = kq.find((x) => !daDung.has(x.id) && !daDung.has(`u:${x.ten}`))
+    || kq.find((x) => !daDung.has(x.id)) || null;
   if (p || !duPhong) return p;
   // Đợt 32: không tìm ra thì thử dần các từ khoá chung về làm móng, để bài
   // không bao giờ bị bỏ trống ảnh bìa (ô xám trên trang blog).
-  for (const k of ['manicure', 'nail polish', 'manicure hands', 'nail art', 'pedicure']) {
+  for (const k of ['manicure', 'nail polish', 'manicure hands', 'nail art']) {
     if (k === tuKhoa) continue;
     const q = await timAnh(env, k, daDung, false);
     if (q) return q;

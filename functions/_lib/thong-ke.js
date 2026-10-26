@@ -135,6 +135,8 @@ export async function donDep(env) {
   await taoBang(env.BOOKINGS);
   const moc = gioVN(new Date(Date.now() - 400 * 86400000)).ngay;
   await env.BOOKINGS.prepare(`DELETE FROM tk_luot WHERE ngay < ?`).bind(moc).run();
+  // Lượt thử nghiệm khi cài đặt (26/10/2026)
+  await env.BOOKINGS.prepare(`DELETE FROM tk_luot WHERE vid LIKE 'testclaude%'`).run();
 }
 
 // ------------------------------------------------------------

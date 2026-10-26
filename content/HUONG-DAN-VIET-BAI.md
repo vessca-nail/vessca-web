@@ -106,6 +106,32 @@ Kiểm tra nhanh: `ls content/posts/`.
 - Bài sức khoẻ (nấm, dị ứng, bầu…): thêm dòng *"Bài viết chỉ mang tính tham khảo…"*, khuyên gặp bác sĩ, không chẩn đoán.
 - **Không cần ghi địa chỉ/SĐT ở cuối** — web tự chèn khối tên tiệm, địa chỉ, giờ, SĐT, nút chỉ đường vào mọi bài.
 
+## 5b. Quy tắc đặt `keywords` (ảnh hưởng link nội bộ, không ảnh hưởng xếp hạng)
+
+`keywords` chỉ render ra `<meta name="keywords">` — Google **đã bỏ đọc thẻ này từ 2009**,
+nên đừng nhồi từ khoá vào đây để mong lên hạng. Nhưng nó có một tác dụng thật:
+`pickRelated()` trong `build.mjs` chọn **bài liên quan** bằng số từ khoá **trùng chuỗi
+chính xác** (`shared * 3 + cùng danh mục * 2`). Vì vậy:
+
+- **KHÔNG thêm từ khoá chung** kiểu "tiệm nail Bình Thạnh", "nail Bình Thạnh", "sơn gel",
+  "nail Hàn Quốc" vào bài không thật sự nhắm từ đó. Trước đây 22 bài cùng khai
+  "tiệm nail Bình Thạnh" làm 21% gợi ý bài liên quan trỏ lạc đề (đã dọn 26/10/2026).
+- **Mỗi bài 3–7 từ khoá**, từ đầu tiên là từ khoá chính riêng của bài.
+- **Dùng chung từ khoá có chủ đích để tạo cụm 3–5 bài cùng chủ đề** — đó là cách
+  duy nhất để hai bài nhận ra nhau. Khớp theo chuỗi chính xác, nên "dấu hiệu nấm móng"
+  KHÔNG khớp "nấm móng dấu hiệu". Viết bài mới thì chép đúng chuỗi từ khoá cụm đã có.
+- Cụm đang dùng: `nail cưới`, `tháo gel`, `phá gel`, `nối móng`, `Gel X Bình Thạnh`,
+  `fill gel`, `nấm móng`, `móng tay bị vàng`, `nail công sở`, `nail đi tiệc`, `phục hồi móng`.
+
+## 5c. Độ dài thẻ meta
+
+- `metaTitle` ≤ **60 ký tự** (đây chính là thẻ `<title>`), `metaDescription` ≤ **158**.
+  Dài hơn thì Google cắt đuôi — mà đuôi thường là "| VESSCA", phần đáng giữ nhất.
+- Bản **KO/ZH** phải đo bằng **đơn vị rộng** (chữ Hàn/Trung tính 2): vẫn ≤60 / ≤158 đơn vị,
+  tức khoảng 30 chữ Hàn cho title. Bản EN đo như tiếng Việt.
+- Đã rút gọn 34 bài ngày 26/10/2026. Kiểm nhanh:
+  `python3 -c "import json,glob;[print(f) for f in glob.glob('content/posts/*.json') if len(json.load(open(f)).get('metaTitle',''))>60]"`
+
 ## 6. Chỉ dùng thông tin đã xác nhận — KHÔNG bịa
 
 - Địa chỉ: 251/30 Lê Quang Định, phường Gia Định, TP.HCM (Bình Thạnh cũ), trong hẻm 251. Có chỗ để xe trước tiệm.
@@ -175,6 +201,12 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 26/10/2026 — phiên viết bài: dọn từ khoá chung chung (45 lần dùng ở 34 bài) vì làm 21% gợi ý
+  "bài liên quan" trỏ lạc đề; thêm 5 từ khoá nối cụm chủ đề. Rút gọn metaTitle/metaDescription
+  34 bài cho khỏi bị Google cắt. Xem quy tắc mới ở mục 5b và 5c. **Lưu ý cho phiên app/web:**
+  `pickRelated()` khớp từ khoá theo chuỗi chính xác nên khá giòn — nếu rảnh, cân nhắc chuẩn hoá
+  (bỏ dấu, hạ chữ thường) hoặc chấm điểm theo từ chung thay vì cả chuỗi. Hiện 59% gợi ý không
+  trùng từ khoá nào, phải rơi về "cùng danh mục".
 - 26/10/2026 — phiên viết bài: **viết xong toàn bộ giai đoạn 2**, 22 bài từ 11/11 đến 30/12/2026,
   đủ 4 ngôn ngữ, đúng nhịp thứ 2–4–6 lúc 08:30. Script: `tools/viet-bai/p2-dot1.py`, `p2-dot1b.py`,
   `p2-dot2.py`, `p2-dot3.py`, `p2-dot4.py`, `p2-dot5.py`. Đã soát: 500–750 từ/bài, 4 FAQ, 3–5 link

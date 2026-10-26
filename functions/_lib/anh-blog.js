@@ -134,8 +134,11 @@ const CHU_DE = ['nail', 'manicure', 'pedicure', 'polish', 'gel', 'cuticle', 'acr
    ảnh phải có ít nhất một chữ THẬT SỰ về làm móng, và không được có chữ nào
    trong danh sách cấm. */
 const LAM_MONG = ['manicure', 'pedicure', 'nail polish', 'nail art', 'nail design', 'nail salon',
+  'gel polish', 'gel nails', 'fingernail', 'nail varnish', 'nail care', 'varnish', 'lacquer'];
+const LAM_MONG_CU = ['manicure', 'pedicure', 'nail polish', 'nail art', 'nail design', 'nail salon',
   'varnish', 'lacquer', 'fingernail', 'nail care', 'gel nails', 'nail varnish', 'polish', 'cosmetic', 'beauty'];
-const CAM = ['hammer', 'wrench', 'screw', 'rust', 'iron', 'hardware', 'carpentry', 'construction', 'workshop',
+const CAM = ['landscape', 'meadow', 'park', 'tree', 'tattoo', 'sketch', 'drawing', 'illustration',
+  'abstract', 'pattern', 'book', 'reading', 'glitch', 'hammer', 'wrench', 'screw', 'rust', 'iron', 'hardware', 'carpentry', 'construction', 'workshop',
   'pet', 'dog', 'cat ', 'puppy', 'animal', 'grooming', 'claw', 'paw', 'fruit', 'berr', 'apple', 'food',
   'keyboard', 'laptop', 'computer', 'office', 'horror', 'fantasy', 'zombie', 'skull', 'wood', 'nails tool'];
 function locTheoNhan(tuKhoa, hits) {
@@ -231,16 +234,20 @@ async function lamAnhChoBai(env, file, daDung, bao) {
 
   // Làm lại bài đã có ảnh: gỡ ảnh trong bài cũ, trả lại chỗ đánh dấu để
   // ảnh mới vào đúng vị trí cũ (tên file giữ nguyên, ghi đè).
+  // Đợt 32: "lam_lai": ["bia", "2"] = chỉ làm lại đúng những ô đó (ảnh bìa,
+  // ảnh trong bài thứ 2), giữ nguyên ảnh đang đẹp. Không có = làm lại hết.
+  const chi = Array.isArray(post.anh.lam_lai) ? new Set(post.anh.lam_lai.map(String)) : null;
+  const lam = (k) => !chi || chi.has(String(k));
   const goAnh = (html) => String(html || '').replace(
     new RegExp(`<figure><img src="/media/blog/${post.slug}-(\\d)\\.jpg"[\\s\\S]*?</figure>`, 'g'),
-    (_, n) => `<!--anh:${n}-->`);
+    (m, n) => (lam(n) ? `<!--anh:${n}-->` : m));
   post.content = goAnh(post.content);
   const banDich = post.i18n && typeof post.i18n === 'object' ? Object.entries(post.i18n) : [];
   for (const [, t] of banDich) if (t && t.content) t.content = goAnh(t.content);
 
   const files = [];
   const bia = post.anh.bia;
-  if (bia && bia.tim) {
+  if (bia && bia.tim && lam('bia')) {
     const p = await timAnh(env, bia.tim, daDung);
     if (p) {
       const bytes = await taiAnh(p, true);
@@ -257,7 +264,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
   const trong = Array.isArray(post.anh.trong_bai) ? post.anh.trong_bai.slice(0, 2) : [];
   for (let i = 0; i < trong.length; i++) {
     const a = trong[i];
-    if (!a || !a.tim) continue;
+    if (!a || !a.tim || !lam(i + 1)) continue;
     const p = await timAnh(env, a.tim, daDung);
     if (!p) { bao.push(`${post.slug}: không tìm được ảnh "${a.tim}"`); continue; }
     const bytes = await taiAnh(p, false);
@@ -273,6 +280,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     }
   }
 
+  delete post.anh.lam_lai;
   post.anh.xong = new Date().toISOString();
   files.push({ path: duongDan, b64: textToB64(JSON.stringify(post, null, 2) + '\n') });
   bao.push(`${post.slug}: ${files.length - 1} ảnh`);

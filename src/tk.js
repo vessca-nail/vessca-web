@@ -1,11 +1,25 @@
 /* Thống kê truy cập VESSCA — gửi lượt xem trang và các nút quan trọng được bấm.
-   Không dùng cookie, không lưu gì trên máy khách, không gửi thông tin cá nhân. */
+   Không dùng cookie. Mỗi trình duyệt có một mã ngẫu nhiên (localStorage) để biết khách mới hay quay lại — không chứa thông tin cá nhân. */
 (function () {
   try {
     if (navigator.webdriver) return;
     // Máy đã đăng nhập trang quản trị (máy của tiệm) thì không đếm
     try { if (localStorage.getItem('vsNoTk') === '1') return; } catch (e) {}
+    var ma = function () {
+      return (window.crypto && crypto.randomUUID) ? crypto.randomUUID().replace(/-/g, '').slice(0, 16)
+        : (Math.random().toString(16).slice(2) + Date.now().toString(16)).slice(0, 16);
+    };
+    var vid = '', phien = '', moi = 0;
+    try {
+      vid = localStorage.getItem('vsId') || '';
+      if (!vid) { vid = ma(); localStorage.setItem('vsId', vid); moi = 1; }
+    } catch (e) {}
+    try {
+      phien = sessionStorage.getItem('vsSs') || '';
+      if (!phien) { phien = ma(); sessionStorage.setItem('vsSs', phien); }
+    } catch (e) {}
     var gui = function (d) {
+      d.v = vid; d.s = phien;
       d.p = location.pathname;
       d.l = document.documentElement.lang || '';
       d.m = navigator.maxTouchPoints || 0;
@@ -15,7 +29,7 @@
     };
     window.vsTk = function (nhan) { try { gui({ t: 'bam', n: String(nhan).slice(0, 60) }); } catch (e) {} };
 
-    gui({ t: 'xem', r: document.referrer || '' });
+    gui({ t: 'xem', r: document.referrer || '', nw: moi });
 
     var nhanCua = function (a) {
       if (a.dataset && a.dataset.tk) return a.dataset.tk;

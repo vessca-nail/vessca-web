@@ -782,6 +782,26 @@ export function thongKePage(tk) {
   const maxG = Math.max(1, ...Object.values(gioMap));
   const gio = Array.from({ length: 24 }, (_, h) => `<div class="tk-col sm" title="${h}h: ${gioMap[h] || 0} lượt"><span style="height:${Math.round(((gioMap[h] || 0) / maxG) * 100)}%"></span><em>${h % 3 === 0 ? h + 'h' : ''}</em></div>`).join('');
   const chon = [1, 7, 30, 90, 365].map((n) => `<a class="btn ${n === tk.soNgay ? '' : 'ghost'} sm" href="/admin/thong-ke?ngay=${n}">${n === 1 ? 'Hôm nay' : n === 365 ? '1 năm' : n + ' ngày'}</a>`).join('');
+  const gioFmt = new Intl.DateTimeFormat('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false });
+  const tg = (ts) => {
+    try {
+      const p = Object.fromEntries(gioFmt.formatToParts(new Date(ts)).map((x) => [x.type, x.value]));
+      return `${p.day}/${p.month} ${p.hour}:${p.minute}`;
+    } catch { return ''; }
+  };
+  const khachHtml = (tk.khachGan || []).length ? `<div class="card" style="margin-top:14px"><h2>Hành trình khách gần đây</h2>
+<p class="muted" style="margin-bottom:10px">Mỗi dòng là một trình duyệt (mã ẩn danh). Bấm vào để xem khách đã xem trang nào, bấm nút gì, theo thứ tự thời gian.</p>
+${tk.khachGan.map((k) => {
+  const tong = k.soLan + (k.ngayTruoc || 0);
+  const nhanDon = k.don && k.don.length ? `<span class="pill pub">Đã đặt lịch: ${esc(k.don.map((d) => d.name).join(', '))}</span>` : '';
+  let phienTruoc = '';
+  const buoc = k.buoc.map((b) => {
+    const moiPhien = b.phien !== phienTruoc; phienTruoc = b.phien;
+    const noi = b.loai === 'bam' ? `<b>Bấm: ${esc(b.nhan)}</b> <span class="muted">(${esc(tenTrang(b.trang))})</span>` : `Xem ${esc(tenTrang(b.trang))}${moiPhien && b.nguon && b.nguon !== 'Trong web' ? ` <span class="muted">· ${b.nguon === 'Vào thẳng' ? 'vào thẳng' : 'đến từ ' + esc(b.nguon)}</span>` : ''}`;
+    return `${moiPhien ? '<li class="tk-ph">Lượt vào mới</li>' : ''}<li><span class="muted tk-tm">${esc(tg(b.ts))}</span> ${noi}</li>`;
+  }).join('');
+  return `<details class="tk-kh"><summary><b>Khách #${esc(k.vid.slice(0, 6))}</b> · ${esc(k.thietBi || '')} · ${esc(k.nguon || '')} · ${esc(k.thanhPho || k.quocGia || '')} · ${tong > 1 ? `vào ${tong} lần` : 'lần đầu'} · <span class="muted">${esc(tg(k.cuoi))}</span> ${nhanDon}</summary><ul class="tk-hj">${buoc}</ul></details>`;
+}).join('')}</div>` : '';
   const o = (nhan, gt, phu = '') => `<div class="card tk-o"><div class="muted">${nhan}</div><div class="tk-big">${gt}</div>${phu ? `<div class="muted">${phu}</div>` : ''}</div>`;
   return shell({
     active: 'thongke',
@@ -799,7 +819,10 @@ export function thongKePage(tk) {
 .tk-col{flex:1;min-width:14px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
 .tk-col span{display:block;width:100%;background:#111;border-radius:3px 3px 0 0;min-height:1px}
 .tk-col em{font-style:normal;font-size:10px;color:var(--soft);margin-top:4px;white-space:nowrap;height:14px}
-.tk-col.sm{min-width:4px}.tk-chart.full{justify-content:space-between}
+.tk-col.sm{min-width:4px}
+.tk-kh{border-top:1px solid var(--line);padding:9px 2px}.tk-kh summary{cursor:pointer;font-size:14px;line-height:1.6}
+.tk-hj{margin:8px 0 4px 4px;font-size:13.5px;list-style:none}.tk-hj li{margin:2px 0}.tk-hj .tk-ph{list-style:none;margin:8px 0 2px 0;font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.tk-tm{display:inline-block;min-width:92px}.tk-chart.full{justify-content:space-between}
 </style>
 <h1>Thống kê truy cập</h1>
 <p class="lede">Từ ${esc(tk.tu.split('-').reverse().join('/'))} đến nay. Không tính lượt của trang quản trị và máy dò tìm (bot). Mỗi "người" là một thiết bị khác nhau trong một ngày.</p>
@@ -807,6 +830,8 @@ export function thongKePage(tk) {
 <div class="tk-g">
   ${o('Lượt xem trang', so(t.xem))}
   ${o('Người truy cập', so(t.khach), 'tính theo thiết bị mỗi ngày')}
+  ${o('Khách mới', so(tk.khachMoi), 'lần đầu vào web')}
+  ${o('Khách quay lại', so(tk.khachQuayLai), 'vào từ 2 lần trở lên')}
   ${o('Bấm gọi điện', so(nut['Gọi điện']))}
   ${o('Bấm chỉ đường', so(nut['Chỉ đường']))}
   ${o('Đơn đặt lịch gửi', tk.donDatLich == null ? '—' : so(tk.donDatLich))}
@@ -823,6 +848,7 @@ export function thongKePage(tk) {
   ${bang('Trình duyệt / ứng dụng', tk.trinhDuyet)}
 </div>
 <div class="card" style="margin-top:14px"><h2>Giờ khách vào web (giờ Việt Nam)</h2><div class="tk-chart">${gio}</div></div>
+${khachHtml}
 <p class="muted" style="margin-top:14px">Từ khoá khách gõ trên Google không có ở đây — xem trong Google Search Console. Dữ liệu được giữ 400 ngày.</p>`,
   });
 }

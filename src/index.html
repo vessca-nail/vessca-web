@@ -1053,6 +1053,7 @@
           <div class="field"><label data-i18n="booking.preferred">Ngày giờ mong muốn</label><input type="text" id="fWhen" name="preferred" placeholder="VD: Thứ 7 này, buổi chiều" data-i18n-ph="booking.preferredPh"></div>
           <div class="field"><label data-i18n="booking.note">Ghi chú (không bắt buộc)</label><textarea id="fNote" name="note" rows="2"></textarea></div>
           <button type="submit" class="submit-btn" id="submitBtn" data-i18n="booking.submit">Gửi yêu cầu đặt lịch</button>
+          <p class="privacy-note" data-i18n="booking.privacy" style="font-size:12px;opacity:.65;margin-top:10px;line-height:1.5">Website ghi nhận ẩn danh các trang bạn đã xem để VESSCA phục vụ tốt hơn. Thông tin bạn gửi chỉ dùng để liên hệ đặt lịch.</p>
         </form>
         <div class="confirm-msg" id="confirmMsg">
           <div class="ok-mark">✓</div>
@@ -1270,6 +1271,7 @@
     "booking.preferredPh": "VD: Thứ 7 này, buổi chiều",
     "booking.note": "Ghi chú (không bắt buộc)",
     "booking.submit": "Gửi yêu cầu đặt lịch",
+    "booking.privacy": "Website ghi nhận ẩn danh các trang bạn đã xem để VESSCA phục vụ tốt hơn. Thông tin bạn gửi chỉ dùng để liên hệ đặt lịch.",
     "booking.failed": "Rất tiếc, chưa gửi được yêu cầu. Bạn gọi giúp VESSCA theo số bên dưới nhé.",
     "booking.sending": "Đang gửi...",
     "booking.opt6": "Chưa biết — nhờ tư vấn",
@@ -1426,6 +1428,7 @@
     "booking.preferredPh": "e.g. This Saturday afternoon",
     "booking.note": "Notes (optional)",
     "booking.submit": "Send booking request",
+    "booking.privacy": "This site anonymously records the pages you view so VESSCA can serve you better. Your details are used only to confirm your booking.",
     "booking.failed": "Sorry, your request could not be sent. Please call VESSCA at the number below.",
     "booking.sending": "Sending...",
     "booking.opt6": "Not sure — please advise",
@@ -1582,6 +1585,7 @@
     "booking.preferredPh": "예: 이번 주 토요일 오후",
     "booking.note": "메모 (선택)",
     "booking.submit": "예약 요청 보내기",
+    "booking.privacy": "이 웹사이트는 더 나은 서비스를 위해 열람한 페이지를 익명으로 기록합니다. 입력하신 정보는 예약 확인에만 사용됩니다.",
     "booking.failed": "죄송합니다. 요청을 보내지 못했습니다. 아래 번호로 VESSCA에 전화해 주세요.",
     "booking.sending": "보내는 중...",
     "booking.opt6": "아직 모르겠어요 — 추천해 주세요",
@@ -1738,6 +1742,7 @@
     "booking.preferredPh": "例如：这周六下午",
     "booking.note": "备注（选填）",
     "booking.submit": "发送预约请求",
+    "booking.privacy": "本网站会匿名记录您浏览的页面,以便 VESSCA 提供更好的服务。您提交的信息仅用于确认预约。",
     "booking.failed": "很抱歉，请求未能发送。请拨打下方电话联系 VESSCA。",
     "booking.sending": "发送中...",
     "booking.opt6": "还没决定 — 请帮我推荐",
@@ -2013,7 +2018,7 @@
       const r = await fetch(form.action, {
         method:'POST',
         headers:{'Accept':'application/json'},
-        body:new FormData(form)
+        body:(function(){var fd=new FormData(form);try{var v=localStorage.getItem('vsId');if(v)fd.append('vid',v);}catch(e){}return fd;})()
       });
       var data = null;
       try{ data = await r.json(); }catch(e){}

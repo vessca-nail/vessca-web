@@ -152,6 +152,7 @@ async function nhanDon(request, env, ctx) {
   const service = trim(f('service') ?? f('Dich vu'), 80);
   const preferred = trim(f('preferred') ?? f('Ngay gio mong muon'), 120);
   const note = trim(f('note') ?? f('Ghi chu'), 500);
+  const vid = (trim(f('vid'), 32) || '').replace(/[^a-z0-9]/gi, '');
 
   if (!name || !phone) {
     return json({ ok: false, error: 'Thiếu họ tên hoặc số điện thoại.' }, 400);
@@ -185,6 +186,16 @@ async function nhanDon(request, env, ctx) {
     .first();
 
   const don = { id: row?.id, created_at, name, phone, service, preferred, note };
+
+  // Nối đơn với mã ẩn danh của trình duyệt (để trang Thống kê biết khách đặt lịch
+  // đã xem những gì). Lỗi gì cũng bỏ qua — không được làm hỏng việc nhận đơn.
+  if (vid && row?.id) {
+    const ghiVid = (async () => {
+      try { await env.BOOKINGS.prepare('ALTER TABLE bookings ADD COLUMN vid TEXT').run(); } catch {}
+      await env.BOOKINGS.prepare('UPDATE bookings SET vid = ? WHERE id = ?').bind(vid, row.id).run();
+    })().catch((e) => console.error('Ghi vid lỗi:', e?.message || e));
+    if (ctx?.waitUntil) ctx.waitUntil(ghiVid); else await ghiVid;
+  }
 
   // Đơn đã nằm trong kho rồi. Mail gửi sau, và CÓ HỎNG CŨNG KHÔNG SAO —
   // không được để khách thấy lỗi chỉ vì mail trục trặc.

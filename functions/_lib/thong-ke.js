@@ -23,6 +23,11 @@ async function taoBang(db) {
       quoc_gia TEXT, thanh_pho TEXT, ngon_ngu TEXT, khach TEXT)`),
     db.prepare(`CREATE INDEX IF NOT EXISTS tk_ngay ON tk_luot(ngay)`),
   ]);
+  // Đợt sau: mã ẩn danh của trình duyệt (vid) và phiên (phien)
+  for (const c of ['vid TEXT', 'phien TEXT']) {
+    try { await db.prepare(`ALTER TABLE tk_luot ADD COLUMN ${c}`).run(); } catch {}
+  }
+  try { await db.prepare(`CREATE INDEX IF NOT EXISTS tk_vid ON tk_luot(vid)`).run(); } catch {}
   daTaoBang = true;
 }
 
@@ -89,6 +94,8 @@ async function maKhach(request, ngay, env) {
   return [...new Uint8Array(buf)].slice(0, 8).map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
+const sach = (x) => (String(x || '').replace(/[^a-z0-9]/gi, '').slice(0, 32) || null);
+
 // ------------------------------------------------------------
 //  POST /api/tk
 // ------------------------------------------------------------
@@ -107,8 +114,8 @@ export async function ghiLuot(request, env) {
   const db = env.BOOKINGS;
   await taoBang(db);
   await db.prepare(
-    `INSERT INTO tk_luot (ts, ngay, gio, loai, trang, nguon, nhan, thiet_bi, hdh, trinh_duyet, quoc_gia, thanh_pho, ngon_ngu, khach)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+    `INSERT INTO tk_luot (ts, ngay, gio, loai, trang, nguon, nhan, thiet_bi, hdh, trinh_duyet, quoc_gia, thanh_pho, ngon_ngu, khach, vid, phien)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
   ).bind(
     new Date().toISOString(), ngay, gio, loai, trang,
     loai === 'xem' ? nguon(String(d.r || ''), ua) : null,
@@ -116,7 +123,8 @@ export async function ghiLuot(request, env) {
     thietBi(ua, Number(d.m) || 0), hdh(ua), trinhDuyet(ua),
     String(cf.country || '').slice(0, 4), String(cf.city || '').slice(0, 60),
     String(d.l || '').slice(0, 8),
-    await maKhach(request, ngay, env)
+    await maKhach(request, ngay, env),
+    sach(d.v), sach(d.s)
   ).run();
   return new Response(null, { status: 204 });
 }
@@ -138,20 +146,59 @@ export async function layThongKe(env, soNgay) {
   const tu = gioVN(new Date(Date.now() - (soNgay - 1) * 86400000)).ngay;
   const q = (sql, ...b) => db.prepare(sql).bind(tu, ...b).all().then((r) => r.results || []);
   const nhom = (cot, loai = 'xem', lim = 12) =>
-    q(`SELECT ${cot} AS k, COUNT(*) AS n, COUNT(DISTINCT khach || ngay) AS kh
-         FROM tk_luot WHERE ngay >= ? AND loai = ? AND ${cot} IS NOT NULL AND ${cot} != ''
+    q(`SELECT ${cot} AS k, COUNT(*) AS n, COUNT(DISTINCT COALESCE(vid, khach)) AS kh
+         FROM tk_luot WHERE ngay >= ? AND loai = ? AND ${cot} IS NOT NULL AND ${cot} != ''${cot === 'nguon' ? ` AND nguon != 'Trong web'` : ''}
         GROUP BY ${cot} ORDER BY n DESC LIMIT ${lim}`, loai);
 
   const [tong, theoNgay, thietBi, nguon, trang, nut, quocGia, thanhPho, ngonNgu, trinhDuyet, theoGio, don] =
     await Promise.all([
-      q(`SELECT SUM(loai='xem') AS xem, COUNT(DISTINCT CASE WHEN loai='xem' THEN khach || ngay END) AS khach,
+      q(`SELECT SUM(loai='xem') AS xem, COUNT(DISTINCT CASE WHEN loai='xem' THEN COALESCE(vid, khach) END) AS khach,
                 SUM(loai='bam') AS bam FROM tk_luot WHERE ngay >= ?`),
-      q(`SELECT ngay, SUM(loai='xem') AS xem, COUNT(DISTINCT CASE WHEN loai='xem' THEN khach END) AS khach
+      q(`SELECT ngay, SUM(loai='xem') AS xem, COUNT(DISTINCT CASE WHEN loai='xem' THEN COALESCE(vid, khach) END) AS khach
            FROM tk_luot WHERE ngay >= ? GROUP BY ngay ORDER BY ngay`),
       nhom('thiet_bi'), nhom('nguon'), nhom('trang', 'xem', 15), nhom('nhan', 'bam', 15),
       nhom('quoc_gia'), nhom('thanh_pho', 'xem', 10), nhom('ngon_ngu'), nhom('trinh_duyet'),
       q(`SELECT gio AS k, COUNT(*) AS n FROM tk_luot WHERE ngay >= ? AND loai='xem' GROUP BY gio ORDER BY gio`),
       db.prepare(`SELECT COUNT(*) AS n FROM bookings WHERE created_at >= ?`).bind(tu).first().catch(() => ({ n: null })),
     ]);
-  return { soNgay, tu, tong: tong[0] || {}, theoNgay, thietBi, nguon, trang, nut, quocGia, thanhPho, ngonNgu, trinhDuyet, theoGio, donDatLich: don?.n };
+  // ---- Khách mới / quay lại (theo mã ẩn danh của trình duyệt) ----
+  const [mq] = await q(
+    `SELECT COUNT(*) AS tong, SUM(dau >= ?1) AS moi, SUM(so_ngay >= 2) AS quay_lai FROM (
+       SELECT vid, MIN(ngay) AS dau, COUNT(DISTINCT COALESCE(phien, ngay)) AS so_ngay FROM tk_luot
+        WHERE vid IN (SELECT DISTINCT vid FROM tk_luot WHERE ngay >= ?1 AND vid IS NOT NULL)
+        GROUP BY vid)`);
+
+  // ---- Hành trình 40 khách gần nhất ----
+  const gan = await q(
+    `SELECT vid, MAX(ts) AS cuoi, MIN(ts) AS dau_ky, COUNT(DISTINCT phien) AS so_lan
+       FROM tk_luot WHERE ngay >= ? AND vid IS NOT NULL GROUP BY vid ORDER BY cuoi DESC LIMIT 40`);
+  let khachGan = [];
+  if (gan.length) {
+    const ds = gan.map((g) => g.vid);
+    const dau = ds.map(() => '?').join(',');
+    const ev = (await db.prepare(
+      `SELECT vid, ts, loai, trang, nhan, nguon, thiet_bi, thanh_pho, quoc_gia, phien FROM tk_luot
+        WHERE ngay >= ? AND vid IN (${dau}) ORDER BY ts`).bind(tu, ...ds).all()).results || [];
+    let don = [];
+    try {
+      don = (await db.prepare(`SELECT vid, name, created_at FROM bookings WHERE vid IN (${dau})`).bind(...ds).all()).results || [];
+    } catch {}
+    const [lanTruoc] = await Promise.all([
+      db.prepare(`SELECT vid, COUNT(DISTINCT ngay) AS n FROM tk_luot WHERE ngay < ? AND vid IN (${dau}) GROUP BY vid`).bind(tu, ...ds).all().then((r) => r.results || []).catch(() => []),
+    ]);
+    const truoc = Object.fromEntries(lanTruoc.map((r) => [r.vid, r.n]));
+    khachGan = gan.map((g) => {
+      const e = ev.filter((x) => x.vid === g.vid);
+      const xem1 = e.find((x) => x.loai === 'xem') || e[0] || {};
+      return {
+        vid: g.vid, cuoi: g.cuoi, soLan: g.so_lan, ngayTruoc: truoc[g.vid] || 0,
+        nguon: xem1.nguon, thietBi: xem1.thiet_bi, thanhPho: xem1.thanh_pho, quocGia: xem1.quoc_gia,
+        don: don.filter((d) => d.vid === g.vid),
+        buoc: e.slice(-40).map((x) => ({ ts: x.ts, loai: x.loai, trang: x.trang, nhan: x.nhan, nguon: x.nguon, phien: x.phien })),
+      };
+    });
+  }
+
+  return { soNgay, tu, tong: tong[0] || {}, theoNgay, thietBi, nguon, trang, nut, quocGia, thanhPho, ngonNgu, trinhDuyet, theoGio, donDatLich: don?.n,
+    khachMoi: mq?.moi || 0, khachQuayLai: mq?.quay_lai || 0, khachGan };
 }

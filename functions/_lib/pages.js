@@ -159,6 +159,7 @@ export function shell({ title, body, active = '', wide = false }) {
   </div>
 </header>
 <div class="wrap" ${wide ? 'style="max-width:1320px"' : ''}>${body}</div>
+<script>try{localStorage.setItem('vsNoTk','1')}catch(e){}</script>
 </body>
 </html>`;
 }

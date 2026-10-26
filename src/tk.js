@@ -3,6 +3,8 @@
 (function () {
   try {
     if (navigator.webdriver) return;
+    // Máy đã đăng nhập trang quản trị (máy của tiệm) thì không đếm
+    try { if (localStorage.getItem('vsNoTk') === '1') return; } catch (e) {}
     var gui = function (d) {
       d.p = location.pathname;
       d.l = document.documentElement.lang || '';

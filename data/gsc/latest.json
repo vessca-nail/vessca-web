@@ -1,6 +1,6 @@
 {
   "site": "sc-domain:vessca.com",
-  "fetchedAt": "2026-10-27T02:26:07.351Z",
+  "fetchedAt": "2026-10-27T03:20:47.057Z",
   "range": {
     "startDate": "2026-09-28",
     "endDate": "2026-10-25"
@@ -336,6 +336,20 @@
   ],
   "opportunities": [
     {
+      "page": "https://vessca.com/blog/up-mong-va-dap-gel-khac-nhau/",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 8.7
+    },
+    {
+      "page": "https://vessca.com/blog/nail-noel-2026/",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 7.8
+    },
+    {
       "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
       "query": "bao lâu nên làm móng 1 lần",
       "clicks": 0,
@@ -344,12 +358,54 @@
       "position": 12.3
     },
     {
+      "page": "https://vessca.com/blog/gia-lam-nail-binh-thanh/",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 5.2
+    },
+    {
       "page": "https://vessca.com/",
       "query": "vessca",
       "clicks": 0,
       "impressions": 3,
       "ctr": 0,
       "position": 6.7
+    },
+    {
+      "page": "https://vessca.com/blog/bo-suu-tap-son-han-quoc-tai-vessca/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 9.7
+    },
+    {
+      "page": "https://vessca.com/blog/mong-yeu-co-lam-gel-duoc-khong/",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 15.7
+    },
+    {
+      "page": "https://vessca.com/blog/nail-han-quoc-khac-gi-nail-thuong/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7
+    },
+    {
+      "page": "https://vessca.com/zh/blog/gia-lam-nail-binh-thanh/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6.5
+    },
+    {
+      "page": "https://vessca.com/zh/blog/nail-noel-2026/",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9
     }
   ],
   "chuaIndex": [

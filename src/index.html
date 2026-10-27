@@ -438,7 +438,9 @@
   .foot-grid a:hover{color:var(--rosewood);}
   .foot-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
   .foot-logo .fl-name{font-family:var(--serif);font-size:26px;letter-spacing:0.1em;line-height:1;}
-  .foot-logo .fl-tag{font-size:9.5px;letter-spacing:0.16em;opacity:0.65;margin-top:6px;text-transform:uppercase;display:block;}
+  .foot-logo svg{flex:none;width:38px;height:38px;}
+  .foot-logo .fl-name{display:block;}
+  .foot-logo .fl-tag{font-size:9.5px;letter-spacing:0.16em;opacity:0.65;margin-top:6px;text-transform:uppercase;display:block;white-space:nowrap;}
   .foot-map{aspect-ratio:16/9;background:var(--panel);margin-top:16px;overflow:hidden;}
   .foot-map iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(0.15) contrast(1.02);}
   .bottom-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:26px;font-size:12px;color:var(--ink-soft);}
@@ -455,6 +457,10 @@
     .nav .mark .mark-name,.nav.solid .mark .mark-name{font-size:17px;letter-spacing:0.16em;}
     .nav .mark .mark-tag,.nav.solid .mark .mark-tag{font-size:8.5px;letter-spacing:0.12em;}
     .menu-panel a{padding:15px 20px;}
+    /* điện thoại: logo nằm sát nút menu (không canh giữa) để chữ KOREAN NAIL LOUNGE đủ chỗ trên 1 dòng */
+    .nav-row,.nav.solid .nav-row{grid-template-columns:auto 1fr auto;}
+    .nav .mark{justify-self:start;min-width:0;}
+    .nav .mark .mark-tag,.nav .mark .mark-name{white-space:nowrap;}
     .hero-content{flex-direction:column;align-items:flex-start;gap:22px;left:24px;right:24px;bottom:44px;}
     .hero-sub{text-align:left;max-width:100%;}
     section{padding:88px 0;}
@@ -469,6 +475,9 @@
     .feature-row .fr-text{padding:36px 24px;}
     .brand-grid{grid-template-columns:repeat(2,1fr);gap:24px;}
     .foot-grid{grid-template-columns:1fr 1fr;gap:36px;}
+    /* cột logo + địa chỉ + bản đồ chiếm trọn chiều ngang trên điện thoại */
+    .foot-grid > div:first-child{grid-column:1 / -1;}
+    .foot-grid > div:first-child p{max-width:none !important;}
     .stats-grid{grid-template-columns:1fr 1fr;gap:32px 20px;}
     .stats-grid .stat:not(:last-child){border-right:none;}
     .stats-grid .stat{border-bottom:1px solid rgba(255,255,255,0.14);padding-bottom:22px;}
@@ -478,6 +487,15 @@
   @media(max-width:480px){
     .brand-grid{grid-template-columns:1fr;}
   }
+  @media(max-width:480px){
+    /* điện thoại: nút Đặt lịch đã có ở thanh dính đáy màn hình → ẩn trên nav để logo không bị đè */
+    .nav-cta .nav-book-link{display:none;}
+  }
+  @media(max-width:350px){
+    .nav .mark .mark-tag{display:none;}
+    .nav .mark{gap:7px;}
+    .nav .mark .mark-name,.nav.solid .mark .mark-name{font-size:15px;letter-spacing:0.12em;}
+  }
   @media(max-width:400px){
     /* màn hình rất hẹp (iPhone SE...): ẩn nút "Đặt lịch" trên thanh nav vì đã
        có thanh CTA dính đáy màn hình lo việc đặt lịch, tránh bị tràn/che chữ */
@@ -486,6 +504,7 @@
     .lang-switch button{padding:4px 6px;font-size:9.5px;}
     /* ở đây nút "Đặt lịch" đã ẩn nên vẫn còn chỗ, giữ logo to như các máy khác */
     .nav .mark{gap:9px;}
+    .nav .mark .mark-tag,.nav.solid .mark .mark-tag{letter-spacing:0.08em;}
   }
   /* Link sang trang bảng giá riêng (/bang-gia) — để gửi cho khách */
   .price-full{display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin-top:14px;font-size:13.5px;

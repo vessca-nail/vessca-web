@@ -120,10 +120,15 @@ async function main() {
     pageQuery: shape(pageQuery, ['page', 'query']),
   };
 
-  // Cơ hội: đang ở vị trí 5-20 và có ít nhất 3 lượt hiển thị.
-  // Đây là nhóm đẩy lên trang 1 rẻ nhất.
-  data.opportunities = data.pageQuery
-    .filter((r) => r.position >= 5 && r.position <= 20 && r.impressions >= 3)
+  // Cơ hội: đang ở vị trí 5-20 — nhóm đẩy lên trang 1 rẻ nhất.
+  // Ưu tiên cặp trang+truy vấn vì nó chỉ rõ phải sửa cái gì. Site còn ít
+  // dữ liệu thì Google giấu gần hết cặp này, nên bù thêm bằng mức trang
+  // để bảng không bị trống.
+  const trongTam = (r) => r.position >= 5 && r.position <= 20;
+  const theoCap = data.pageQuery.filter((r) => trongTam(r) && r.impressions >= 2);
+  const daCo = new Set(theoCap.map((r) => r.page));
+  const theoTrang = data.pages.filter((r) => trongTam(r) && r.impressions >= 2 && !daCo.has(r.page));
+  data.opportunities = [...theoCap, ...theoTrang]
     .sort((a, b) => b.impressions - a.impressions)
     .slice(0, 40);
 

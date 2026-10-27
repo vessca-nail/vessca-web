@@ -273,6 +273,7 @@
   .acc-price-pane .app-row .app-price{font-size:13px;color:#C7C7C7;white-space:nowrap;}
   /* nhóm nhỏ trong cùng một bảng giá (Signature rituals, Nail art, Đính phụ kiện) */
   .acc-price-pane .app-group{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.18);}
+  .acc-price-pane .app-eyebrow:first-child + .app-group{margin-top:12px;padding-top:0;border-top:none;}
   .acc-price-pane .app-note{font-size:11.5px;line-height:1.55;color:#9A9A9A;margin-top:16px;}
   /* ảnh bảng màu: xem trọn tấm, không cắt xén như video */
   .acc-video-pane.avp-contain{background:#0D0D0D;}
@@ -482,6 +483,7 @@
     /* cột logo + địa chỉ + bản đồ chiếm trọn chiều ngang trên điện thoại */
     .foot-grid > div:first-child{grid-column:1 / -1;}
     .foot-grid > div:first-child p{max-width:none !important;}
+    .foot-map{max-height:240px;aspect-ratio:auto;height:52vw;}
     /* các mục còn lại: mỗi mục một hàng — nhãn bên trái, nội dung bên phải, kẻ vạch phân cách đều nhau */
     .foot-grid{grid-template-columns:1fr;gap:0;padding-bottom:28px;}
     .foot-grid > div:first-child{padding-bottom:26px;}
@@ -529,7 +531,7 @@
      Không dùng accordion xếp dọc nữa (mở nhóm này là nhóm kia đóng, trang co
      giãn cả nghìn pixel → nhảy lung tung). Thay bằng THANH CHỌN NHÓM dính dưới
      menu: chạm một nhóm thì chỉ phần bảng giá bên dưới đổi, thanh chọn đứng yên. */
-  @media (max-width:860px), (hover:none){
+  @media (max-width:1180px), (hover:none){
     .acc-tabs{display:block;position:sticky;top:var(--nav-h,64px);z-index:20;background:var(--stone);
       border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
     .acc-tabs-in{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;
@@ -553,7 +555,7 @@
       border-top:1px solid rgba(255,255,255,0.14);padding:20px 20px 28px;}
     .acc-price-pane .app-row{padding:12px 0;}
   }
-  @media (min-width:600px) and (max-width:860px), (min-width:600px) and (hover:none){
+  @media (min-width:600px) and (max-width:1180px), (min-width:600px) and (hover:none){
     /* máy tính bảng: ảnh bên trái, bảng giá bên phải — đỡ phải cuộn dài */
     .acc-expanded{flex-direction:row;align-items:stretch;}
     .acc-video-pane,.acc-video-pane.avp-contain{flex:1 1 0;aspect-ratio:auto;max-height:none;min-height:420px;}
@@ -1875,7 +1877,7 @@
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const key = el.getAttribute('data-i18n');
       const touchKey = el.getAttribute('data-i18n-touch');
-      const useTouch = touchKey && window.matchMedia('(max-width:860px), (hover:none)').matches;
+      const useTouch = touchKey && window.matchMedia('(max-width:1180px), (hover:none)').matches;
       const val = I18N[lang][useTouch ? touchKey : key];
       if(val !== undefined) el.innerHTML = val;
     });
@@ -1999,7 +2001,7 @@
   const accordion = document.getElementById('categoryAccordion');
   const accItems = Array.from(accordion.querySelectorAll('.acc-item'));
   const accHasHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const stackMQ = window.matchMedia('(max-width:860px), (hover:none)');
+  const stackMQ = window.matchMedia('(max-width:1180px), (hover:none)');
   const isStack = ()=> stackMQ.matches;
 
   function syncVideos(){

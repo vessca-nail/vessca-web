@@ -1,6 +1,9 @@
 /** Giao diện trang quản trị VESSCA — toàn bộ HTML/CSS của khu vực /admin */
 
 import { keywordLibrary, categories } from '../../site.config.mjs';
+// Số liệu Google Search Console. GitHub Action ghi đè file này mỗi sáng,
+// nên nó đi kèm bản deploy — không gọi API lúc khách xem trang.
+import gsc from '../../data/gsc/latest.json' with { type: 'json' };
 
 const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -803,6 +806,61 @@ ${tk.khachGan.map((k) => {
   return `<details class="tk-kh"><summary><b>Khách #${esc(k.vid.slice(0, 6))}</b> · ${esc(k.thietBi || '')} · ${esc(k.nguon || '')} · ${esc(k.thanhPho || k.quocGia || '')} · ${tong > 1 ? `vào ${tong} lần` : 'lần đầu'} · <span class="muted">${esc(tg(k.cuoi))}</span> ${nhanDon}</summary><ul class="tk-hj">${buoc}</ul></details>`;
 }).join('')}</div>` : '';
   const o = (nhan, gt, phu = '') => `<div class="card tk-o"><div class="muted">${nhan}</div><div class="tk-big">${gt}</div>${phu ? `<div class="muted">${phu}</div>` : ''}</div>`;
+
+  // ---- Google Search Console -------------------------------------------
+  // Mục này trả lời câu "khách gõ gì trên Google rồi thấy mình".
+  // Vị trí 1-10 là trang 1, 11-20 là trang 2. Gần như không ai sang trang 2.
+  const gscHtml = (() => {
+    if (!gsc || !gsc.totals) return '';
+    const gt = gsc.totals;
+    const ctr = gt.impressions ? ((gt.clicks / gt.impressions) * 100).toFixed(1) + '%' : '—';
+    const viTri = (gsc.pages || []).length
+      ? (gsc.pages.reduce((a, r) => a + r.position * r.impressions, 0) /
+         Math.max(1, gsc.pages.reduce((a, r) => a + r.impressions, 0))).toFixed(1)
+      : '—';
+    const ngan = (u) => tenTrang(String(u).replace(/^https?:\/\/[^/]+/, ''));
+    const hang = (rows, cot1) => rows.length
+      ? `<table class="tk-t"><tr><th class="tk-k">${cot1}</th><th class="tk-n">Hiện ra</th><th class="tk-n">Vị trí</th></tr>${rows
+          .map((r) => {
+            const v = r.position;
+            const mau = v <= 3 ? 'ok' : v <= 10 ? 'mid' : 'far';
+            return `<tr><td class="tk-k">${esc(r.query || ngan(r.page))}</td><td class="tk-n">${so(r.impressions)}</td><td class="tk-n"><span class="gsc-v ${mau}">${String(v).replace('.', ',')}</span></td></tr>`;
+          })
+          .join('')}</table>`
+      : '<p class="muted">Chưa có dữ liệu.</p>';
+    const chuaIndex = (gsc.chuaIndex || []).length
+      ? `<div class="card tk-c"><h2>Google chưa đưa vào kết quả</h2>
+<p class="muted" style="margin-bottom:8px">Bài đã đăng nhưng Google chưa chịu lập chỉ mục. Thường là bài mới, hoặc chưa có trang nào trỏ link tới.</p>
+<table class="tk-t">${gsc.chuaIndex.map((u) => `<tr><td class="tk-k">${esc(ngan(u))}</td></tr>`).join('')}</table></div>`
+      : '';
+    const tu = (gsc.range?.startDate || '').split('-').reverse().join('/');
+    const den = (gsc.range?.endDate || '').split('-').reverse().join('/');
+    return `<style>
+.gsc-v{display:inline-block;min-width:38px;padding:1px 6px;border-radius:4px;font-size:13px}
+.gsc-v.ok{background:#e7f5ec}.gsc-v.mid{background:#fdf4e3}.gsc-v.far{background:#f6eaea;color:#8a4b4b}
+.tk-t th{text-align:left;font-size:12px;font-weight:600;color:var(--soft);padding:0 4px 6px;border-bottom:1px solid var(--line)}
+.tk-t th.tk-n{text-align:right}
+</style>
+<h1 style="margin-top:28px">Khách tìm thấy bạn trên Google</h1>
+<p class="lede">Từ ${esc(tu)} đến ${esc(den)}. "Hiện ra" là số lần web xuất hiện trong kết quả tìm kiếm. "Vị trí" là thứ hạng trung bình — từ 1 đến 10 là trang 1, trên 10 là trang 2 trở đi, gần như không ai bấm sang.</p>
+<div class="tk-g">
+  ${o('Lượt bấm từ Google', so(gt.clicks))}
+  ${o('Số lần hiện ra', so(gt.impressions))}
+  ${o('Tỷ lệ bấm', ctr, 'hiện ra bao nhiêu thì có người bấm')}
+  ${o('Vị trí trung bình', String(viTri).replace('.', ','), 'tính từ các trang bên dưới')}
+</div>
+<div class="tk-g2">
+  <div class="card tk-c"><h2>Gần trang 1 — đẩy lên là có khách</h2>
+  <p class="muted" style="margin-bottom:8px">Những trang đang ở vị trí 5–20. Đây là chỗ bỏ công ít mà được nhiều nhất, vì chỉ cần nhích vài hạng là lên trang 1.</p>
+  ${hang(gsc.opportunities || [], 'Trang')}</div>
+  <div class="card tk-c"><h2>Khách gõ gì để thấy mình</h2>
+  <p class="muted" style="margin-bottom:8px">Google giấu bớt các từ khoá hiếm, nên tổng ở đây ít hơn số lần hiện ra bên trên.</p>
+  ${hang(gsc.queries || [], 'Từ khoá')}</div>
+  <div class="card tk-c"><h2>Trang nào được Google cho hiện</h2>
+  ${hang((gsc.pages || []).slice(0, 15), 'Trang')}</div>
+  ${chuaIndex}
+</div>`;
+  })();
   return shell({
     active: 'thongke',
     title: 'Thống kê',
@@ -849,6 +907,7 @@ ${tk.khachGan.map((k) => {
 </div>
 <div class="card" style="margin-top:14px"><h2>Giờ khách vào web (giờ Việt Nam)</h2><div class="tk-chart">${gio}</div></div>
 ${khachHtml}
-<p class="muted" style="margin-top:14px">Từ khoá khách gõ trên Google không có ở đây — xem trong Google Search Console. Dữ liệu được giữ 400 ngày.</p>`,
+${gscHtml}
+<p class="muted" style="margin-top:14px">Dữ liệu truy cập được giữ 400 ngày. Phần Google ở trên lấy từ Search Console, cập nhật mỗi sáng.</p>`,
   });
 }

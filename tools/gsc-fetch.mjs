@@ -127,6 +127,13 @@ async function main() {
     .sort((a, b) => b.impressions - a.impressions)
     .slice(0, 40);
 
+  // Danh sách bài Google chưa lập chỉ mục phải lấy tay trong Search Console
+  // (API kiểm tra URL bị giới hạn quota nặng), nên giữ lại giá trị cũ.
+  try {
+    const cu = JSON.parse(await fs.readFile(path.join(OUT_DIR, 'latest.json'), 'utf8'));
+    if (cu.chuaIndex) data.chuaIndex = cu.chuaIndex;
+  } catch { /* lần chạy đầu chưa có file */ }
+
   await fs.mkdir(OUT_DIR, { recursive: true });
   await fs.writeFile(path.join(OUT_DIR, 'latest.json'), JSON.stringify(data, null, 2) + '\n');
   await fs.writeFile(path.join(OUT_DIR, `${range.endDate}.json`), JSON.stringify(data, null, 2) + '\n');

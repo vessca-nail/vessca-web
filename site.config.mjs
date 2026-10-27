@@ -42,7 +42,7 @@ export const site = {
 
   openingHours: 'Mo-Su 09:00-20:30',
   openingHoursText: '9:00 – 20:30, tất cả các ngày trong tuần',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=VESSCA+Nail+251%2F30+L%C3%AA+Quang+%C4%90%E1%BB%8Bnh',
+  mapsUrl: 'https://maps.app.goo.gl/ic8B2eEiF8PWipZg7',  // link Google Maps của chính tiệm (VESSCA Korean Nail Lounge)
   priceRange: '₫₫',
 
   // --- Mạng xã hội ---
@@ -94,6 +94,7 @@ export const languages = {
       eyebrow: 'Blog',
       navAbout: 'Câu chuyện',
       navServices: 'Dịch vụ',
+      navPrices: 'Bảng giá',
       navBlog: 'Blog',
       navBook: 'Đặt lịch',
       all: 'Tất cả',
@@ -137,6 +138,7 @@ export const languages = {
       eyebrow: 'Journal',
       navAbout: 'Our story',
       navServices: 'Services',
+      navPrices: 'Price list',
       navBlog: 'Journal',
       navBook: 'Book',
       all: 'All',
@@ -180,6 +182,7 @@ export const languages = {
       eyebrow: '저널',
       navAbout: '브랜드 스토리',
       navServices: '서비스',
+      navPrices: '가격표',
       navBlog: '저널',
       navBook: '예약',
       all: '전체',
@@ -221,6 +224,7 @@ export const languages = {
       eyebrow: '美甲志',
       navAbout: '关于我们',
       navServices: '服务项目',
+      navPrices: '价目表',
       navBlog: '美甲志',
       navBook: '预约',
       all: '全部',

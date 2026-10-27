@@ -1,0 +1,37 @@
+name: Số liệu Search Console
+
+# Chạy 7h sáng giờ VN mỗi ngày, và bấm tay được khi cần.
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lấy số liệu từ Search Console
+        env:
+          GSC_SA_KEY: ${{ secrets.GSC_SA_KEY }}
+        run: node tools/gsc-fetch.mjs
+
+      - name: Commit nếu có thay đổi
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gsc
+          if git diff --staged --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "chore(seo): số liệu Search Console $(date -u +%Y-%m-%d)"
+            git push
+          fi

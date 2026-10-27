@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { site, categories, languages, langOrder, blogPath } from './site.config.mjs';
 import { renderBlogIndex, renderPost, render404, postView, postLangs } from './lib/render.mjs';
 import { escXml, truncate, sanitizeHtml } from './lib/utils.mjs';
+import { trangBangGia, BANG_GIA_HREFLANG } from './lib/bang-gia.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, 'dist');
@@ -401,7 +402,21 @@ async function main() {
   }
 
   await fs.writeFile(path.join(DIST, '404.html'), render404('vi'), 'utf8');
-  await fs.writeFile(path.join(DIST, 'sitemap.xml'), buildSitemap(posts), 'utf8');
+  // Trang bảng giá riêng /bang-gia/ (+ en/ko/zh) — lấy giá từ trang chủ
+  const bangGia = trangBangGia(site, await fs.readFile(path.join(SRC, 'index.html'), 'utf8'));
+  for (const t of bangGia) {
+    await fs.mkdir(path.join(DIST, t.dir), { recursive: true });
+    await fs.writeFile(path.join(DIST, t.dir, 'index.html'), t.html, 'utf8');
+  }
+  if (bangGia.length) log(`Sinh ${bangGia.length} trang bảng giá (/bang-gia/)`);
+  let sitemap = buildSitemap(posts);
+  if (bangGia.length) {
+    const homNay = new Date().toISOString().slice(0, 10);
+    const altLinks = bangGia.map((b) => `\n    <xhtml:link rel="alternate" hreflang="${BANG_GIA_HREFLANG[b.lang]}" href="${b.loc}"/>`).join('');
+    const them = bangGia.map((b) => `  <url>\n    <loc>${b.loc}</loc>\n    <lastmod>${homNay}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>${altLinks}\n  </url>`).join('\n');
+    sitemap = sitemap.replace('</urlset>', them + '\n</urlset>');
+  }
+  await fs.writeFile(path.join(DIST, 'sitemap.xml'), sitemap, 'utf8');
   await fs.writeFile(path.join(DIST, 'robots.txt'), buildRobots(), 'utf8');
   log('Sinh sitemap.xml, rss.xml, robots.txt, 404.html');
 

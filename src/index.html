@@ -487,35 +487,43 @@
     /* ở đây nút "Đặt lịch" đã ẩn nên vẫn còn chỗ, giữ logo to như các máy khác */
     .nav .mark{gap:9px;}
   }
-  /* ---------- BẢNG GIÁ TRÊN ĐIỆN THOẠI / MÁY CẢM ỨNG ----------
-     Dạng danh sách xếp dọc: mỗi nhóm là một thanh tiêu đề cao 84px, chạm để
-     mở/đóng. Thanh tiêu đề luôn hiện (kể cả khi đang mở) để chạm lại là đóng.
-     JS cuộn đúng thanh tiêu đề lên sát dưới thanh menu sau mỗi lần mở/đóng,
-     nên trang không còn nhảy lung tung khi nhóm phía trên đóng lại. */
+  /* Link sang trang bảng giá riêng (/bang-gia) — để gửi cho khách */
+  .price-full{display:inline-flex;align-self:flex-start;width:fit-content;align-items:center;gap:6px;margin-top:14px;font-size:13.5px;
+    color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px;}
+  .acc-tabs{display:none;}
+  /* ---------- BẢNG GIÁ TRÊN ĐIỆN THOẠI / MÁY TÍNH BẢNG ----------
+     Không dùng accordion xếp dọc nữa (mở nhóm này là nhóm kia đóng, trang co
+     giãn cả nghìn pixel → nhảy lung tung). Thay bằng THANH CHỌN NHÓM dính dưới
+     menu: chạm một nhóm thì chỉ phần bảng giá bên dưới đổi, thanh chọn đứng yên. */
   @media (max-width:860px), (hover:none){
-    .category-accordion{flex-direction:column;height:auto;min-height:0;max-height:none;}
-    .acc-item,.acc-item.expanded{flex:none;height:auto;overflow:hidden;transition:none;cursor:default;}
-    .acc-cover{position:relative;inset:auto;height:84px;cursor:pointer;
-      -webkit-tap-highlight-color:transparent;}
-    .acc-item.expanded .acc-cover{opacity:1;pointer-events:auto;}
-    .acc-item.expanded .acc-cover img{filter:saturate(0.82) brightness(0.45) contrast(1.06);}
-    .acc-label{writing-mode:horizontal-tb;transform:none;flex-direction:row;
-      align-items:center;top:0;bottom:auto;left:18px;right:18px;height:84px;}
-    .acc-label::after{content:"";margin-left:auto;flex:none;width:9px;height:9px;
-      border-right:1.5px solid var(--gold-light);border-bottom:1.5px solid var(--gold-light);
-      transform:rotate(45deg);margin-bottom:3px;transition:transform .25s ease;}
-    .acc-item.expanded .acc-label::after{transform:rotate(-135deg);margin-bottom:-4px;}
-    .acc-label .al-title{white-space:normal;font-size:18px;line-height:1.25;}
-    .acc-expanded{position:static;inset:auto;display:none;flex-direction:column;
+    .acc-tabs{display:block;position:sticky;top:var(--nav-h,64px);z-index:20;background:var(--stone);
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+    .acc-tabs-in{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;}
+    .acc-tabs-in::-webkit-scrollbar{display:none;}
+    .acc-tabs button{flex:none;scroll-snap-align:start;border:1px solid var(--line);background:#fff;color:var(--ink);
+      font:inherit;font-size:13.5px;font-weight:400;padding:9px 15px;border-radius:999px;cursor:pointer;
+      white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .acc-tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+    .category-accordion{display:block;height:auto;min-height:0;max-height:none;background:#161616;}
+    .acc-item{display:none;height:auto;overflow:visible;cursor:default;transition:none;}
+    .acc-item.expanded{display:block;}
+    .acc-cover{display:none;}
+    .acc-expanded{position:static;inset:auto;display:flex;flex-direction:column;
       opacity:1;pointer-events:auto;transition:none;}
-    .acc-item.expanded .acc-expanded{display:flex;}
-    .acc-video-pane{flex:none;height:auto;aspect-ratio:16/9;}
+    .acc-video-pane{flex:none;height:auto;aspect-ratio:16/9;max-height:46vh;}
     .acc-video-pane.avp-contain{aspect-ratio:4/3;}
     .acc-video-pane .avp-caption{display:none;}
     .acc-video-pane .avp-still{padding:14px;}
     .acc-price-pane{flex:none;height:auto;overflow:visible;border-left:none;
-      border-top:1px solid rgba(255,255,255,0.14);padding:20px 20px 26px;}
+      border-top:1px solid rgba(255,255,255,0.14);padding:20px 20px 28px;}
     .acc-price-pane .app-row{padding:12px 0;}
+  }
+  @media (min-width:600px) and (max-width:860px), (min-width:600px) and (hover:none){
+    /* máy tính bảng: ảnh bên trái, bảng giá bên phải — đỡ phải cuộn dài */
+    .acc-expanded{flex-direction:row;align-items:stretch;}
+    .acc-video-pane,.acc-video-pane.avp-contain{flex:1 1 0;aspect-ratio:auto;max-height:none;min-height:420px;}
+    .acc-price-pane{flex:1 1 0;border-top:none;border-left:1px solid rgba(255,255,255,0.14);padding:26px 26px 30px;}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -761,6 +769,17 @@
     <div class="head-row">
       <h2 data-i18n="services.title">Dịch vụ &amp; bảng giá</h2>
       <p data-i18n="services.sub" data-i18n-touch="services.subTouch">Đưa chuột đến từng nhóm dịch vụ để xem hình ảnh minh hoạ và bảng giá tương ứng.</p>
+      <a class="price-full" id="priceFullLink" href="/bang-gia/" data-tk="Mở trang bảng giá"><span data-i18n="services.full">Xem toàn bộ bảng giá</span> <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <!-- Điện thoại / máy tính bảng: thanh chọn nhóm (dính dưới menu). Máy tính dùng accordion ngang. -->
+  <div class="acc-tabs" id="accTabs" role="tablist">
+    <div class="acc-tabs-in">
+      <button type="button" role="tab" data-cat="cs" class="on"><span data-i18n="svc.cs.title">Chăm sóc móng &amp; thư giãn</span></button>
+      <button type="button" role="tab" data-cat="sg"><span data-i18n="svc.sg.title">Sơn gel cơ bản</span></button>
+      <button type="button" role="tab" data-cat="sh"><span data-i18n="svc.sh.title">Sơn Hàn cao cấp</span></button>
+      <button type="button" role="tab" data-cat="um"><span data-i18n="svc.um.title">Nối móng, đắp gel</span></button>
+      <button type="button" role="tab" data-cat="dg"><span data-i18n="svc.dg.title">Design, đính phụ kiện</span></button>
     </div>
   </div>
   <div class="category-accordion" id="categoryAccordion">
@@ -1162,7 +1181,8 @@
     "journey.4.h": "Thư giãn",
     "journey.4.p": "Trà thảo mộc trong lúc chờ khô — kết thúc buổi chăm sóc trong không gian yên tĩnh.",
     "services.title": "Dịch vụ & bảng giá",
-    "services.subTouch": "Chạm vào từng nhóm dịch vụ để xem hình ảnh minh hoạ và bảng giá. Chạm lại để thu gọn.",
+    "services.subTouch": "Chọn nhóm dịch vụ bên dưới để xem bảng giá tương ứng.",
+    "services.full": "Xem toàn bộ bảng giá",
     "services.sub": "Đưa chuột đến từng nhóm dịch vụ để xem hình ảnh minh hoạ và bảng giá tương ứng.",
     "svc.caption": "VESSCA — minh hoạ dịch vụ",
     "svc.pricelabel": "Bảng giá",
@@ -1319,7 +1339,8 @@
     "journey.4.h": "Unwind",
     "journey.4.p": "Herbal tea while your nails dry — closing the session in a quiet space.",
     "services.title": "Services & pricing",
-    "services.subTouch": "Tap a category to see a preview and its price list. Tap again to close.",
+    "services.subTouch": "Choose a category below to see its prices.",
+    "services.full": "See the full price list",
     "services.sub": "Hover over a category to see a preview and its price list.",
     "svc.caption": "VESSCA — service preview",
     "svc.pricelabel": "Price list",
@@ -1476,7 +1497,8 @@
     "journey.4.h": "휴식",
     "journey.4.p": "손톱이 마르는 동안 허브티를 드시며 조용한 공간에서 시간을 마무리합니다.",
     "services.title": "서비스 & 가격",
-    "services.subTouch": "카테고리를 누르면 예시 이미지와 가격표가 열립니다. 다시 누르면 닫힙니다.",
+    "services.subTouch": "아래에서 카테고리를 선택하면 해당 가격표를 볼 수 있습니다.",
+    "services.full": "전체 가격표 보기",
     "services.sub": "카테고리에 마우스를 올리면 예시 이미지와 가격표를 보실 수 있습니다.",
     "svc.caption": "VESSCA — 서비스 예시",
     "svc.pricelabel": "가격표",
@@ -1633,7 +1655,8 @@
     "journey.4.h": "放松",
     "journey.4.p": "在等待干燥的时间里享用花草茶——在安静的空间中结束整个护理。",
     "services.title": "服务与价格",
-    "services.subTouch": "点击任一服务分类即可查看示意图片与价格表,再次点击可收起。",
+    "services.subTouch": "在下方选择服务分类即可查看对应价格。",
+    "services.full": "查看完整价目表",
     "services.sub": "将鼠标移到任一服务分类，即可查看示意图片与对应价格表。",
     "svc.caption": "VESSCA — 服务示意",
     "svc.pricelabel": "价目表",
@@ -1824,6 +1847,8 @@
     document.querySelectorAll('#langSwitch button').forEach(btn=>{
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
+    const pl = document.getElementById('priceFullLink');
+    if(pl) pl.setAttribute('href', lang === 'vi' ? '/bang-gia/' : '/' + lang + '/bang-gia/');
     document.querySelectorAll('a[data-i18n="nav.blog"]').forEach(a=>{
       a.setAttribute('href', lang === 'vi' ? '/blog/' : '/' + lang + '/blog/');
     });
@@ -1955,32 +1980,36 @@
     const n = document.getElementById('nav');
     return (n ? n.getBoundingClientRect().height : 0) + 8;
   }
-  function bringToTop(item){
-    // getBoundingClientRect buộc trình duyệt tính lại bố cục ngay, nên đo được vị trí mới
-    const top = item.getBoundingClientRect().top + window.scrollY - navOffset();
-    window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
+  // ---- điện thoại / máy tính bảng: thanh chọn nhóm ----
+  const accTabs = document.getElementById('accTabs');
+  const tabBtns = Array.from(accTabs.querySelectorAll('button'));
+  function setNavH(){
+    const n = document.getElementById('nav');
+    document.documentElement.style.setProperty('--nav-h', (n ? n.getBoundingClientRect().height : 64) + 'px');
   }
-  function toggleStack(item){
-    const willOpen = !item.classList.contains('expanded');
-    accItems.forEach(it=> it.classList.toggle('expanded', willOpen && it === item));
-    syncVideos();
-    const r = item.getBoundingClientRect();
-    // mở: luôn đưa tiêu đề lên đầu; đóng: chỉ kéo về nếu tiêu đề đã trôi khỏi màn hình
-    if(willOpen || r.top < navOffset() || r.top > window.innerHeight - 84) bringToTop(item);
+  setNavH(); window.addEventListener('resize', setNavH);
+  function chonNhom(cat){
+    const item = accItems.find(it=> it.dataset.cat === cat) || accItems[0];
+    expandItem(item);
+    tabBtns.forEach(b=>{ const on = b.dataset.cat === item.dataset.cat; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    const btn = tabBtns.find(b=> b.classList.contains('on'));
+    // cuộn NGANG thanh chọn cho nút đang chọn ra giữa — không dùng scrollIntoView vì
+    // với phần tử sticky nó còn kéo cả trang theo chiều dọc
+    if(btn){ const bar = btn.parentNode; bar.scrollLeft = btn.offsetLeft - (bar.clientWidth - btn.offsetWidth)/2; }
+    // Đang cuộn sâu trong bảng giá dài thì đưa về đầu bảng giá MỚI, tức thì
+    // (không trượt) — thanh chọn dính phía trên nên khách không mất chỗ.
+    const top = accordion.getBoundingClientRect().top + window.scrollY - accTabs.offsetHeight
+              - (document.getElementById('nav')?.getBoundingClientRect().height || 0);
+    if(window.scrollY > top + 2) window.scrollTo({top, behavior:'instant'});
   }
+  tabBtns.forEach(b=> b.addEventListener('click', ()=> chonNhom(b.dataset.cat)));
 
   accItems.forEach(item=>{
     const cover = item.querySelector('.acc-cover');
     cover.setAttribute('role','button');
     cover.setAttribute('tabindex','0');
-    cover.addEventListener('click', (e)=>{
-      if(isStack()){ e.preventDefault(); toggleStack(item); }
-    });
     cover.addEventListener('keydown', (e)=>{
-      if(e.key === 'Enter' || e.key === ' '){
-        e.preventDefault();
-        isStack() ? toggleStack(item) : expandItem(item);
-      }
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); expandItem(item); }
     });
     // máy có chuột, bố cục ngang: bấm hay rê đều mở
     item.addEventListener('click', ()=>{ if(!isStack()) expandItem(item); });
@@ -1992,12 +2021,12 @@
     accordion.addEventListener('mouseleave', ()=>{ if(!isStack()) expandItem(accItems[0]); });
   }
   function layoutInit(){
-    if(isStack()){
-      // điện thoại: mở sẵn nhóm đầu để khách thấy ngay ví dụ bảng giá
-      if(!accItems.some(it=> it.classList.contains('expanded'))) accItems[0].classList.add('expanded');
-    } else if(!accItems.some(it=> it.classList.contains('expanded'))){
-      accItems[0].classList.add('expanded');
-    }
+    const dang = accItems.find(it=> it.classList.contains('expanded')) || accItems[0];
+    chonNhomLang(dang.dataset.cat);
+  }
+  function chonNhomLang(cat){
+    accItems.forEach(it=> it.classList.toggle('expanded', it.dataset.cat === cat));
+    tabBtns.forEach(b=> b.classList.toggle('on', b.dataset.cat === cat));
     syncVideos();
   }
   layoutInit();

@@ -59,7 +59,8 @@
     "crons": ["31 1 * * *", "31 2 * * *", "31 7 * * *", "31 13 * * *"]
   },
 
+  // Tắt ghi log (Observability) để chắc chắn không phát sinh phí
   "observability": {
-    "enabled": true
+    "enabled": false
   }
 }

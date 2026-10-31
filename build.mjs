@@ -21,6 +21,7 @@ import { site, categories, languages, langOrder, blogPath } from './site.config.
 import { renderBlogIndex, renderPost, render404, postView, postLangs } from './lib/render.mjs';
 import { escXml, truncate, sanitizeHtml } from './lib/utils.mjs';
 import { trangBangGia, BANG_GIA_HREFLANG } from './lib/bang-gia.mjs';
+import { dungTrangChu, HOME_LANGS, homePath } from './lib/trang-chu-ngon-ngu.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(ROOT, 'dist');
@@ -181,13 +182,11 @@ function buildSitemap(posts) {
   const today = new Date().toISOString().slice(0, 10);
   const entries = [];
 
-  entries.push({
-    loc: `${site.url}/`,
-    lastmod: today,
-    changefreq: 'weekly',
-    priority: '1.0',
-    alts: [],
-  });
+  // Trang chủ: bản tiếng Việt ở "/", bản khác ở /en/, /ko/, /zh/ (lib/trang-chu-ngon-ngu.mjs)
+  const homeAlts = HOME_LANGS.map((l) => ({ lang: l, url: `${site.url}${homePath(l)}` }));
+  for (const { url } of homeAlts) {
+    entries.push({ loc: url, lastmod: today, changefreq: 'weekly', priority: '1.0', alts: homeAlts });
+  }
 
   // Trang blog của từng ngôn ngữ
   const active = langOrder.filter((l) => posts.some((p) => postView(p, l)));
@@ -336,6 +335,17 @@ async function main() {
   const indexPath = path.join(DIST, 'index.html');
   if (await exists(indexPath)) {
     await fs.writeFile(indexPath, enhanceHomepage(await fs.readFile(indexPath, 'utf8')), 'utf8');
+    // Trang chủ riêng cho từng ngôn ngữ, để khách nước ngoài tìm thấy trên Google
+    const tc = dungTrangChu(site, await fs.readFile(indexPath, 'utf8'), (w) => console.warn('   ⚠  Trang chủ:', w));
+    await fs.writeFile(indexPath, tc.vi, 'utf8');
+    const homeDone = [];
+    for (const l of HOME_LANGS) {
+      if (l === 'vi' || !tc[l]) continue;
+      await fs.mkdir(path.join(DIST, l), { recursive: true });
+      await fs.writeFile(path.join(DIST, l, 'index.html'), tc[l], 'utf8');
+      homeDone.push(homePath(l));
+    }
+    if (homeDone.length) log(`Sinh trang chủ ngôn ngữ: ${homeDone.join(', ')}`);
   } else {
     console.warn('   ⚠  Không tìm thấy src/index.html — trang chủ sẽ trống');
   }

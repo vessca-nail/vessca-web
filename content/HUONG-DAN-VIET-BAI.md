@@ -201,6 +201,24 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 31/10/2026 — phiên viết bài, **chủ tiệm cho phép sửa cả phần web**. Phiên app/web lưu ý, đã sửa:
+  1. **Trang chủ riêng cho từng ngôn ngữ: `/en/`, `/ko/`, `/zh/`** (file mới `lib/trang-chu-ngon-ngu.mjs`,
+     gọi trong `build.mjs` ngay sau `enhanceHomepage`). Trước đây trang chủ chỉ đổi chữ trong trình
+     duyệt nên Google chỉ có "/", khách nước ngoài không tìm thấy trang chủ. Giờ dựng sẵn từ bảng I18N,
+     có title/description/canonical/og/hreflang riêng, và có trong sitemap. **Không sửa `src/index.html`.**
+     Nhưng build có thay hai dòng JS trong bản dựng: (a) `currentLang = saved || …` → cố định theo địa chỉ
+     trang (trước đây trình duyệt tiếng Anh, có thể cả Googlebot, thấy "/" thành tiếng Anh);
+     (b) nút đổi ngôn ngữ chuyển sang `/`, `/en/`, `/ko/`, `/zh/` thay vì đổi chữ tại chỗ.
+     Nếu sửa hai dòng đó trong `src/index.html`, build sẽ in cảnh báo "Trang chủ: không tìm thấy đoạn…".
+     Thêm chữ/ảnh mới có alt trên trang chủ thì nhớ thêm bản dịch alt vào `NHAN` trong file mới.
+  2. **FAQ hiện ra cho người đọc** (`lib/render.mjs`, mục "Câu hỏi thường gặp" dưới thân bài) —
+     xử lý việc 1 trong ghi chú 26/10. 1.366 câu hỏi trước đây chỉ nằm trong JSON-LD.
+  3. Logo/“Về trang chủ” trên blog, trang 404 và bảng giá trỏ về trang chủ đúng ngôn ngữ.
+  4. Trang bảng giá dùng hreflang `vi-VN` (trước là `vi`, lệch với mọi trang khác).
+  5. Nội dung: 45 bài thêm 2–3 link nội bộ ("Bài nên đọc tiếp"); mở rộng `bao-lau-nen-lam-nail-mot-lan`
+     và `up-mong-va-dap-gel-khac-nhau` (hai bài hạng 8–9 trên Google).
+  **Chưa chốt:** giờ mở cửa — web/schema ghi 9:00–20:30, prompt tác vụ tự động ghi 10:00–20:00.
+
 - 26/10/2026 — phiên viết bài: dọn từ khoá chung chung (45 lần dùng ở 34 bài) vì làm 21% gợi ý
   "bài liên quan" trỏ lạc đề; thêm 5 từ khoá nối cụm chủ đề. Rút gọn metaTitle/metaDescription
   34 bài cho khỏi bị Google cắt. Xem quy tắc mới ở mục 5b và 5c. **Lưu ý cho phiên app/web:**

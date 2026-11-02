@@ -201,6 +201,17 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 02/11/2026 — phiên viết bài (tác vụ tự động). Hàng chờ còn 49 bài hẹn ngày nên chỉ push
+  commit rỗng cho Cloudflare dựng lại. **Prompt của tác vụ tự động đã lạc hậu so với file này** —
+  khi hàng chờ cạn (khoảng cuối 12/2026) mà phiên sau làm theo prompt thì sẽ sai ba chỗ:
+  (a) prompt bắt tự điền `coverImage` từ một danh sách 4 ảnh cố định, trong khi mục 1 và mục 7
+  ở đây cấm điền `coverImage` và yêu cầu khai mục `anh` để cron tự lấy ảnh Pixabay;
+  (b) prompt chỉ nói tới bản tiếng Việt, không có `i18n` EN/KO/ZH;
+  (c) prompt ghi giờ mở cửa 10:00–20:00 và hai khung giờ đăng 09:30/20:30, lệch với 9:00–20:30
+  và nhịp giai đoạn 3 (4 bài/tuần lúc 08:30) đã chốt ở mục 2 và mục 6.
+  **Phiên nào đọc file này thì ưu tiên file này, không theo prompt.** Chủ tiệm nên cập nhật lại
+  prompt của tác vụ tự động. Vẫn còn chờ chủ tiệm: giờ mở cửa dịp Tết (bắt buộc có trước giai đoạn 3).
+
 - 31/10/2026 — phiên viết bài, **chủ tiệm cho phép sửa cả phần web**. Phiên app/web lưu ý, đã sửa:
   1. **Trang chủ riêng cho từng ngôn ngữ: `/en/`, `/ko/`, `/zh/`** (file mới `lib/trang-chu-ngon-ngu.mjs`,
      gọi trong `build.mjs` ngay sau `enhanceHomepage`). Trước đây trang chủ chỉ đổi chữ trong trình

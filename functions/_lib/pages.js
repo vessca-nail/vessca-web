@@ -829,8 +829,8 @@ ${tk.khachGan.map((k) => {
           .join('')}</table>`
       : '<p class="muted">Chưa có dữ liệu.</p>';
     const chuaIndex = (gsc.chuaIndex || []).length
-      ? `<div class="card tk-c"><h2>Google chưa đưa vào kết quả</h2>
-<p class="muted" style="margin-bottom:8px">Bài đã đăng nhưng Google chưa chịu lập chỉ mục. Thường là bài mới, hoặc chưa có trang nào trỏ link tới.</p>
+      ? `<div class="card tk-c"><h2>Bài không ai thấy</h2>
+<p class="muted" style="margin-bottom:8px">Bài đã đăng trên 2 tuần mà suốt 28 ngày qua không hiện ra lần nào. Hoặc Google chưa lập chỉ mục, hoặc có mà xếp quá xa. Cách chữa giống nhau: cho thêm bài khác trỏ link tới.</p>
 <table class="tk-t">${gsc.chuaIndex.map((u) => `<tr><td class="tk-k">${esc(ngan(u))}</td></tr>`).join('')}</table></div>`
       : '';
     const tu = (gsc.range?.startDate || '').split('-').reverse().join('/');

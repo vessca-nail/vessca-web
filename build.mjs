@@ -108,18 +108,91 @@ async function loadPosts() {
   return posts;
 }
 
-/** Bài liên quan — ưu tiên trùng từ khoá, rồi cùng danh mục */
-function pickRelated(post, pool, limit = 3) {
-  return pool
-    .filter((p) => p.slug !== post.slug)
-    .map((p) => {
-      const shared = (p.keywords || []).filter((k) => (post.keywords || []).includes(k)).length;
-      const sameCat = p.category && p.category === post.category ? 2 : 0;
-      return { post: p, score: shared * 3 + sameCat };
-    })
-    .sort((a, b) => b.score - a.score || new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
-    .slice(0, limit)
-    .map((x) => x.post);
+/**
+ * Nhóm bài "ra khách": bài nói về tiệm, giá, địa chỉ, dịch vụ cụ thể ở
+ * Bình Thạnh. Đây là chỗ khách đọc rồi mới đặt lịch.
+ *
+ * Vì sao cần danh sách này: đo liên kết nội bộ trong dist/ ngày 2026-11-02
+ * cho thấy hàm chọn bài liên quan đang dồn liên kết vào bài thông tin
+ * chung — lich-duong-mong-giua-hai-lan-lam-nail 11 liên kết,
+ * nail-mat-meo-han-quoc 10 — còn đúng mấy bài ra khách lại ít nhất:
+ * den-vessca-gui-xe-dat-lich 2, up-mong-binh-thanh 3,
+ * nail-sinh-vien-binh-thanh 3, tiem-nail-kieu-han-o-sai-gon 3,
+ * chon-tiem-nail-uy-tin-binh-thanh 4. Tức là đang chảy ngược: trang
+ * đọc cho vui được dẫn nhiều, trang đặt lịch được dẫn ít.
+ *
+ * Số liệu Search Console 28 ngày tới 2026-10-31 cho thấy mấy bài này
+ * xếp hạng tốt nhưng gần như không ai thấy (tiem-nail-phuong-gia-dinh
+ * vị trí 4 / 1 hiển thị, den-vessca-gui-xe-dat-lich vị trí 4 / 1 hiển
+ * thị), nên việc cần làm là dẫn thêm liên kết vào chúng.
+ */
+const BAI_RA_KHACH = [
+  'tiem-nail-phuong-gia-dinh',
+  'gia-lam-nail-binh-thanh',
+  'tiem-nail-han-quoc-binh-thanh',
+  'up-mong-binh-thanh',
+  'chon-tiem-nail-uy-tin-binh-thanh',
+  'den-vessca-gui-xe-dat-lich',
+  'nail-sinh-vien-binh-thanh',
+  'tiem-nail-kieu-han-o-sai-gon',
+  'tiem-nail-gan-phu-nhuan-go-vap',
+];
+
+/** Điểm giống nhau giữa hai bài: trùng từ khoá nặng hơn cùng danh mục */
+function diemGiong(post, p) {
+  const shared = (p.keywords || []).filter((k) => (post.keywords || []).includes(k)).length;
+  const sameCat = p.category && p.category === post.category ? 2 : 0;
+  return shared * 3 + sameCat;
+}
+
+/**
+ * Bài liên quan — ưu tiên trùng từ khoá, rồi cùng danh mục.
+ *
+ * Giữ 3 ô như cũ, nhưng để riêng 1 ô cho bài ra khách (xem
+ * BAI_RA_KHACH). Bài ra khách tự nó cũng cần bài liên quan nên với
+ * chúng thì không giữ ô riêng, tránh mấy bài này chỉ dẫn lẫn nhau.
+ */
+function pickRelated(post, pool, limit = 3, dem = null) {
+  const xep = (arr) =>
+    arr
+      .map((p) => ({ post: p, score: diemGiong(post, p) }))
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          new Date(b.post.publishedAt) - new Date(a.post.publishedAt)
+      )
+      .map((x) => x.post);
+
+  const khac = pool.filter((p) => p.slug !== post.slug);
+  if (BAI_RA_KHACH.includes(post.slug)) return xep(khac).slice(0, limit);
+
+  const raKhach = xep(khac.filter((p) => BAI_RA_KHACH.includes(p.slug)));
+  const conLai = xep(khac.filter((p) => !BAI_RA_KHACH.includes(p.slug)));
+
+  // Hạn mức: không để một bài ra khách hút hết liên kết. Lần chạy đầu
+  // không có hạn mức thì den-vessca-gui-xe-dat-lich nhận 21 liên kết
+  // còn up-mong-binh-thanh vẫn 3 — dồn cục như vậy vừa không tự nhiên
+  // vừa bỏ sót mấy bài cần đẩy. Chọn bài hợp nhất mà chưa quá hạn mức.
+  let chon = [];
+  if (raKhach.length) {
+    let pick = raKhach[0];
+    if (dem) {
+      const hanMuc = Math.ceil(pool.length / raKhach.length) + 1;
+      pick =
+        raKhach.find((p) => (dem.get(p.slug) || 0) < hanMuc) ||
+        raKhach.reduce((a, b) =>
+          (dem.get(a.slug) || 0) <= (dem.get(b.slug) || 0) ? a : b
+        );
+      dem.set(pick.slug, (dem.get(pick.slug) || 0) + 1);
+    }
+    chon.push(pick);
+  }
+  for (const p of conLai) {
+    if (chon.length >= limit) break;
+    chon.push(p);
+  }
+  // Đặt bài ra khách xuống cuối: hai ô đầu vẫn là bài đọc tiếp tự nhiên
+  return chon.length > 1 ? [...chon.slice(1), chon[0]] : chon;
 }
 
 /** Các bản ngôn ngữ của một bài, để sinh thẻ hreflang */
@@ -374,6 +447,9 @@ async function main() {
     const dir = path.join(DIST, ...blogPath(lang).split('/').filter(Boolean));
     await fs.mkdir(dir, { recursive: true });
 
+    // Đếm riêng từng ngôn ngữ: mỗi bản dịch có số bài khác nhau
+    const demRaKhach = new Map();
+
     await fs.writeFile(
       path.join(dir, 'index.html'),
       renderBlogIndex({
@@ -395,7 +471,7 @@ async function main() {
         renderPost({
           lang,
           post,
-          related: pickRelated(post, inLang),
+          related: pickRelated(post, inLang, 3, demRaKhach),
           alternates: postAlternates(post),
           langSwitch: postLangSwitch(post, activeLangs),
         }),

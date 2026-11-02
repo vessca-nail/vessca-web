@@ -132,12 +132,18 @@ async function main() {
     .sort((a, b) => b.impressions - a.impressions)
     .slice(0, 40);
 
-  // Danh sách bài Google chưa lập chỉ mục phải lấy tay trong Search Console
-  // (API kiểm tra URL bị giới hạn quota nặng), nên giữ lại giá trị cũ.
-  try {
-    const cu = JSON.parse(await fs.readFile(path.join(OUT_DIR, 'latest.json'), 'utf8'));
-    if (cu.chuaIndex) data.chuaIndex = cu.chuaIndex;
-  } catch { /* lần chạy đầu chưa có file */ }
+  // Bài Google chưa thấy. Trước đây đây là danh sách gõ tay rồi chép
+  // nguyên sang file mới mỗi ngày, nên nó không bao giờ tự đúng lại:
+  // tới 2026-11-02 vẫn còn liệt son-gel-han-quoc-chinh-hang và
+  // nail-mat-meo-han-quoc là "chưa index", trong khi số liệu cùng file
+  // cho thấy hai bài đó đã có hiển thị (vị trí 3 và 11) — tức là đã
+  // được index từ lâu. Trang /admin/thong-ke vì vậy báo sai cho chủ tiệm.
+  //
+  // Nay tính thẳng từ số liệu: bài đã đăng quá 14 ngày mà suốt 28 ngày
+  // không có một lần hiển thị nào thì coi như Google chưa thấy hoặc
+  // thấy mà không bao giờ đưa ra. Hai trường hợp này cần làm cùng một
+  // việc (thêm liên kết nội bộ trỏ tới), nên gộp chung một danh sách.
+  data.chuaIndex = await timBaiChuaThay(data.pages, range.endDate);
 
   await fs.mkdir(OUT_DIR, { recursive: true });
   await fs.writeFile(path.join(OUT_DIR, 'latest.json'), JSON.stringify(data, null, 2) + '\n');
@@ -145,6 +151,40 @@ async function main() {
 
   console.log(`Xong: ${data.totals.clicks} nhấp / ${data.totals.impressions} hiển thị`);
   console.log(`${data.queries.length} truy vấn, ${data.pages.length} trang, ${data.opportunities.length} cơ hội`);
+}
+
+/**
+ * Bài đã đăng nhưng 28 ngày qua không có lần hiển thị nào.
+ * Chỉ xét bản tiếng Việt; bản dịch phụ thuộc bản gốc nên không tính riêng.
+ */
+async function timBaiChuaThay(pages, ngayChot) {
+  const coHienThi = new Set(
+    pages.filter((r) => r.impressions > 0).map((r) => r.page.replace(/\/+$/, '/'))
+  );
+  // Mốc 14 ngày tính theo ngày chốt số liệu, không phải hôm nay: bài đăng
+  // sát ngày chốt thì chưa đủ dữ liệu để kết luận Google có thấy hay chưa.
+  const hanMoi = new Date(ngayChot).getTime() - 14 * 86400000;
+  const ra = [];
+
+  let files;
+  try {
+    files = (await fs.readdir('content/posts')).filter((f) => f.endsWith('.json'));
+  } catch {
+    return ra; // chạy ngoài repo thì bỏ qua, thà trống còn hơn báo sai
+  }
+
+  for (const f of files.sort()) {
+    let post;
+    try {
+      post = JSON.parse(await fs.readFile(path.join('content/posts', f), 'utf8'));
+    } catch { continue; }
+    if (post.status !== 'published' || !post.slug) continue;
+    const dang = post.publishedAt ? new Date(post.publishedAt).getTime() : 0;
+    if (!dang || dang > hanMoi) continue; // chưa đăng, hoặc đăng chưa đủ 14 ngày
+    const url = `https://vessca.com/blog/${post.slug}/`;
+    if (!coHienThi.has(url)) ra.push(url);
+  }
+  return ra;
 }
 
 main().catch((err) => {

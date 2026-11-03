@@ -129,8 +129,24 @@ chính xác** (`shared * 3 + cùng danh mục * 2`). Vì vậy:
   Dài hơn thì Google cắt đuôi — mà đuôi thường là "| VESSCA", phần đáng giữ nhất.
 - Bản **KO/ZH** phải đo bằng **đơn vị rộng** (chữ Hàn/Trung tính 2): vẫn ≤60 / ≤158 đơn vị,
   tức khoảng 30 chữ Hàn cho title. Bản EN đo như tiếng Việt.
-- Đã rút gọn 34 bài ngày 26/10/2026. Kiểm nhanh:
-  `python3 -c "import json,glob;[print(f) for f in glob.glob('content/posts/*.json') if len(json.load(open(f)).get('metaTitle',''))>60]"`
+- Đã rút gọn 34 bài ngày 26/10/2026 (chỉ bản VI) và 33 bài ngày 03/11/2026 (gồm cả EN/KO).
+- Kiểm nhanh **đủ 4 ngôn ngữ, đo đúng đơn vị rộng** — chạy trước mỗi lần push:
+
+  ```bash
+  python3 -c "
+  import json,glob,unicodedata
+  w=lambda s:sum(2 if unicodedata.east_asian_width(c) in ('W','F') else 1 for c in s)
+  for f in sorted(glob.glob('content/posts/*.json')):
+      d=json.load(open(f))
+      for n,o in [('vi',d)]+[(l,d.get('i18n',{}).get(l)) for l in ('en','ko','zh')]:
+          if not o: continue
+          if w(o.get('metaTitle',''))>60: print('TITLE',f,n,w(o['metaTitle']))
+          if w(o.get('metaDescription',''))>158: print('DESC',f,n,w(o['metaDescription']))
+  "
+  ```
+
+  Không in ra gì là đạt. Lệnh cũ chỉ đo `metaTitle` bản VI, nên 41 thẻ EN/KO quá dài đã lọt
+  suốt từ 26/10 tới 03/11.
 
 ## 6. Chỉ dùng thông tin đã xác nhận — KHÔNG bịa
 
@@ -200,6 +216,19 @@ Sau khi đăng, đánh dấu trong `content/KE-HOACH-BAI-VIET.md` nếu cần. �
 nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"xong": false` trong mục `anh`, sửa `tim`, push.
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
+
+- 03/11/2026 — phiên viết bài (tác vụ tự động). Hàng chờ còn **46 bài hẹn ngày** (tới 30/12/2026)
+  nên không viết bài mới. Thay vào đó dọn **thẻ meta quá dài**: đợt rút gọn 26/10 chỉ làm bản
+  tiếng Việt, nên 41 thẻ của bản **EN/KO** vẫn bị Google cắt đuôi. Đã sửa 46 trường ở 33 bài
+  (14 `metaTitle`, 32 `metaDescription`; 5 trường VI còn sót + 41 trường i18n). Chỉ đổi cách
+  diễn đạt — đã soát tự động: không con số nào bị đổi hay bịa thêm, tên dòng sơn còn nguyên,
+  mọi thẻ giờ ≤60 / ≤158 đơn vị rộng. Kiểm lại bằng lệnh ở mục 5c (nhớ đo cả `i18n`, đơn vị rộng
+  cho KO/ZH — lệnh trong mục 5c hiện chỉ đo bản VI).
+  **Hai việc vẫn chờ chủ tiệm, nay đã gửi thông báo:**
+  1. **Giờ mở cửa dịp Tết** — bắt buộc có trước khi viết giai đoạn 3 (từ 1/1/2027). Không được đoán.
+  2. **Prompt tác vụ tự động đã lạc hậu** — xem ghi chú 02/11 bên dưới, ba chỗ lệch (`coverImage`,
+     thiếu `i18n`, giờ mở cửa và khung giờ đăng). Hàng chờ cạn khoảng cuối 12/2026; sửa prompt
+     trước mốc đó, kẻo phiên sau làm theo prompt sẽ ra bài sai định dạng.
 
 - 02/11/2026 — phiên viết bài (tác vụ tự động). Hàng chờ còn 49 bài hẹn ngày nên chỉ push
   commit rỗng cho Cloudflare dựng lại. **Prompt của tác vụ tự động đã lạc hậu so với file này** —

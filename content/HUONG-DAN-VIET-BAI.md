@@ -217,6 +217,66 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 04/11/2026 — phiên viết bài: **sửa lỗi 48 bài không có ảnh bìa.** Chủ tiệm thấy "bài thiếu ảnh
+  quá chừng" và giao sửa hết, nên lần này tôi có sửa `functions/_lib/anh-blog.js` và
+  `lib/render.mjs` — vốn thuộc phần của phiên app/web. Xin lưu ý khi hai bên cùng sửa.
+
+  **Nguyên nhân:** từ 01/11 Pixabay trả 429 "Rate limit exceeded" ở gần như mọi lượt cron, header
+  giới hạn trả `null` (bị chặn ở tầng ngoài, không phải vượt 100 lượt/phút — mỗi lượt chỉ gọi
+  chừng 10 lần). Ba lỗi trong code làm chuyện này thành tắc nghẽn toàn bộ:
+  1. `timAnh` chọn kho bằng `env.PIXABAY_API_KEY ? Pixabay : Pexels` → có khoá Pixabay thì
+     **không bao giờ** thử Pexels. Pixabay chặn là cả hàng chờ đứng.
+  2. Trong `chayDinhKy`, gặp lỗi là `break` → thoát cả lượt. Bài `nail-ombre-kieu-han` kẹt 3 lượt
+     liền và chặn luôn mọi bài xếp sau.
+  3. `lamAnhChoBai` đánh dấu `anh.xong` **vô điều kiện**, kể cả khi không tìm được ảnh nào. Lỗi
+     này chưa lộ vì 429 ném lỗi trước khi chạy tới đó — nhưng vừa bỏ `break` là nó sẽ đánh dấu
+     xong hàng loạt bài trắng ảnh, mất luôn cơ hội lấy lại. Đã sửa cùng lúc.
+
+  **Đã sửa:**
+  - Thử lần lượt các kho có khoá (`cacKho`): Pexels trước, Pixabay sau. Kho nào lỗi thì sang kho
+    kế. Lưu ý **Pexels ngưng cấp khoá mới từ 10/2026**, nên nếu chưa có `PEXELS_API_KEY` thì lưới
+    dự phòng này chưa chạy được — xem phần chuyển lại dưới.
+  - `khoHong`: kho hỏng một lần thì bỏ tới hết lượt. Mỗi lượt tìm lỗi mất ~13 giây (giãn 1,5s +
+    chờ thử lại), ba ô ảnh nhân bốn từ khoá dự phòng là hơn 200 giây — quá giới hạn Worker, lượt
+    chạy bị cắt giữa đường. Thêm `NGAN_SACH_MS` 20 giây cho cả lượt. Vòng thử lại 429 giảm từ
+    2 lần (4s, 8s) xuống 1 lần (3s) vì chặn dài ngày thì chờ thêm không giúp gì.
+  - `boNho`: sổ tạm theo từ khoá trong một lượt. Trước đây các từ khoá dự phòng
+    ("manicure", "nail art"…) bị gọi lặp cho từng ô ảnh của từng bài. Đo thử: 2 bài × 2 ô ảnh
+    cùng từ khoá giảm từ 4 lượt gọi xuống **1 lượt**. Phải xoá đầu mỗi lượt (`xoaBoNho`) vì
+    isolate của Worker sống qua nhiều lượt.
+  - Còn ô ảnh trống thì **giữ bài trong hàng chờ**, chỉ làm lại đúng ô thiếu qua `anh.lam_lai`,
+    đếm số lượt thử ở `anh.thu`. Thử 3 lượt không ra thì chấp nhận bỏ ô đó và đánh dấu xong, kẻo
+    một từ khoá không bao giờ ra ảnh chặn vĩnh viễn các bài xếp sau.
+  - `BAI_MOI_LUOT` 1 → **2** (8 bài/ngày) để rút hàng chờ 48 bài trong khoảng 6 ngày. Sổ tạm đã
+    cắt phần lớn lượt gọi nên vẫn dưới mức 50 lượt gọi ra ngoài mỗi lượt của gói miễn phí.
+  - Bỏ qua bài lỗi và làm bài kế (`continue` thay `break`), chỉ dừng khi lỗi dồn quá `LOI_TOI_DA`.
+  - Pexels: thêm `nhan` lấy từ `alt` để `locTheoNhan` lọc được. Ảnh nào Pexels để trống `alt` thì
+    bỏ hai bước lọc chủ đề (Pexels xếp theo độ khớp từ khoá, không theo độ phổ biến như Pixabay),
+    danh sách CẤM vẫn áp dụng.
+  - `lib/render.mjs`: thêm `anhBia(post)` — bài chưa có ảnh thật thì xoay vòng 4 ảnh của tiệm
+    (`brand-snowvelvet-bottles`, `brand-kissny-tinkergel`, `brand-auroraqueen-popsicle`,
+    `assets/blog-default`), chọn theo slug nên mỗi bài luôn ra cùng một ảnh và các bài cạnh nhau
+    không trùng ảnh. Trước đây trang danh sách đã lùi về `site.defaultImage` nhưng **trang bài
+    viết thì không** — nên 48 bài hụt hẳn khối ảnh bìa. Nay dùng chung `anhBia` cho cả trang danh
+    sách, trang bài và `og:image`. Cron lấy được ảnh thật thì `post.coverImage` ghi đè, không cần
+    sửa gì thêm.
+
+  **Đã kiểm:** chạy thử `chayDinhKy` với kho giả lập, 6 tình huống đều đạt — Pixabay 429 lùi
+  đúng sang Pexels; cả hai kho lỗi thì không bài nào bị đánh dấu xong oan; lượt thử thứ 3 thì bỏ
+  ô và đi tiếp; bài lỗi không chặn bài sau; sổ tạm 1 lượt gọi cho 4 ô ảnh; ảnh trong bài được
+  chèn và `coverCredit` ghi đúng. `node build.mjs` sạch, 0 thẻ meta quá dài, **0 bài còn thiếu
+  khối ảnh bìa** (trước đó 3 bài đã đăng bị trắng ảnh: `cat-mong-tay-dung-cach`,
+  `nail-ombre-kieu-han`, `tiem-nail-gan-phu-nhuan-go-vap`).
+
+  **Hai việc chuyển cho phiên app/web — cần chủ tiệm quyết, tôi không tự làm được:**
+  1. **Khoá kho ảnh.** Không đọc được biến bí mật nên không biết `PEXELS_API_KEY` có hay chưa.
+     Nếu chưa có mà Pixabay vẫn chặn thì mọi bài mới sẽ dùng ảnh tiệm thay vì ảnh thật — chạy
+     được nhưng 48 bài sẽ xoay vòng 4 ảnh. Nên kiểm khoá Pixabay trên dashboard, hoặc chuyển
+     hẳn sang ảnh thật của tiệm (chủ tiệm tải lên) — đúng ý mục "Cần CZ cung cấp" của kế hoạch.
+  2. **Không đọc được log.** Observability đang tắt để khỏi phát sinh phí, nên lỗi cron chỉ thấy
+     được qua thân commit. Chính vì vậy lỗi 429 âm thầm suốt 3 ngày. Cân nhắc bật log ở mức thấp
+     nhất, hoặc cho `chayDinhKy` ghi một dòng trạng thái vào repo khi lỗi lặp lại nhiều lượt.
+
 - 03/11/2026 — phiên viết bài (tác vụ tự động). Hàng chờ còn **46 bài hẹn ngày** (tới 30/12/2026)
   nên không viết bài mới. Thay vào đó dọn **thẻ meta quá dài**: đợt rút gọn 26/10 chỉ làm bản
   tiếng Việt, nên 41 thẻ của bản **EN/KO** vẫn bị Google cắt đuôi. Đã sửa 46 trường ở 33 bài

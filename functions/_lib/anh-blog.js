@@ -33,7 +33,12 @@
  */
 
 const API_GH = 'https://api.github.com';
-const BAI_MOI_LUOT = 1;   // gói miễn phí giới hạn thời gian xử lý mỗi lượt
+// Đợt 33: 2 bài/lượt (8 bài/ngày) để rút hàng chờ 48 bài đang đọng trong ~6
+// ngày. Sổ tạm boNho đã cắt phần lớn lượt gọi lặp nên vẫn dưới mức 50 lượt
+// gọi ra ngoài mỗi lượt của gói miễn phí: mỗi bài chừng 3 lượt tìm + 3 lượt
+// tải + 1 lượt đọc GitHub.
+const BAI_MOI_LUOT = 2;
+const LOI_TOI_DA = 3;     // quá số này thì dừng lượt, để lượt sau chạy tiếp
 const DA_DUNG = 'content/media/blog/_da-dung.json';
 
 const ghHeaders = (env) => ({
@@ -88,8 +93,12 @@ async function ghiMotLan(env, files, message) {
 }
 
 // ------------------------------------------------------------
-//  Kho ảnh: Pixabay (đang dùng — Pexels tạm ngưng cấp khoá mới từ 10/2026),
-//  Pexels nếu có khoá. Cả hai cho dùng thương mại miễn phí. Pixabay BẮT BUỘC
+//  Kho ảnh: thử lần lượt Pexels rồi Pixabay, kho nào có khoá và không lỗi thì
+//  dùng (xem cacKho). Pexels xếp trước vì Pixabay đang chặn 429 từ 01/11/2026,
+//  nhưng Pexels tạm ngưng cấp khoá mới từ 10/2026 nên có thể không có khoá —
+//  khi cả hai kho đều không ra ảnh, trang web lùi về ảnh thương hiệu của tiệm
+//  (anhBia trong lib/render.mjs), bài vẫn hiện bình thường.
+//  Cả hai cho dùng thương mại miễn phí. Pixabay BẮT BUỘC
 //  tải ảnh về máy chủ của mình, không được dùng link của họ lâu dài — đúng
 //  cách hệ thống này làm.
 //  Ảnh trả về dạng chung: { id, ten, link, nguon, tai(laBia) → URL tải }
@@ -103,8 +112,11 @@ async function timPixabay(env, tuKhoa) {
   // rồi thử lại tối đa 2 lần. Thời gian chờ không tính vào giới hạn CPU.
   await new Promise((r) => setTimeout(r, 1500));
   let res = await fetch(url);
-  for (let lan = 0; res.status === 429 && lan < 2; lan++) {
-    await new Promise((r) => setTimeout(r, 4000 * (lan + 1)));
+  // Đợt 33: còn 1 lần thử lại (trước là 2, chờ 4s rồi 8s). Khi Pixabay chặn
+  // dài ngày thì chờ thêm không giúp gì, chỉ ăn hết thời gian của lượt chạy;
+  // chặn thật thì khoHong lo phần còn lại.
+  if (res.status === 429) {
+    await new Promise((r) => setTimeout(r, 3000));
     res = await fetch(url);
   }
   if (!res.ok) {
@@ -146,8 +158,11 @@ function locTheoNhan(tuKhoa, hits) {
   const can = CHU_DE.filter((c) => tu.some((w) => w.startsWith(c)));
   const diem = (h) => tu.filter((w) => h.nhan.includes(w.replace(/s$/, ''))).length;
   return hits
-    .filter((h) => !can.length || can.some((c) => h.nhan.includes(c)))
-    .filter((h) => !can.length || LAM_MONG.some((c) => h.nhan.includes(c)))
+    // Không có nhãn (Pexels đôi khi để trống alt) thì bỏ hai bước lọc chủ đề:
+    // Pexels xếp theo độ khớp từ khoá, không theo độ phổ biến như Pixabay,
+    // nên không cần nhãn để chặn ảnh lạc đề. Danh sách CẤM vẫn áp dụng.
+    .filter((h) => !h.nhan || !can.length || can.some((c) => h.nhan.includes(c)))
+    .filter((h) => !h.nhan || !can.length || LAM_MONG.some((c) => h.nhan.includes(c)))
     .filter((h) => !CAM.some((c) => (h.nhan + ' ').includes(c)))
     .map((h, i) => ({ h, d: diem(h), i }))
     .sort((a, b) => b.d - a.d || a.i - b.i)
@@ -158,18 +173,78 @@ async function timPexels(env, tuKhoa) {
   const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(tuKhoa)}&orientation=landscape&per_page=20`;
   const res = await fetch(url, { headers: { Authorization: env.PEXELS_API_KEY } });
   if (!res.ok) throw new Error(`Pexels tìm "${tuKhoa}" → ${res.status}`);
-  return ((await res.json()).photos || []).map((p) => ({
+  const hits = ((await res.json()).photos || []).map((p) => ({
     id: `px-${p.id}`, ten: p.photographer, link: p.url, nguon: 'Pexels',
+    // Pexels có mô tả ảnh ở `alt` → dùng làm nhãn để lọc như Pixabay.
+    // Ảnh nào Pexels để trống alt thì locTheoNhan bỏ qua bước lọc chủ đề.
+    nhan: String(p.alt || '').toLowerCase(),
     // Pexels tự cắt + nén: bìa 16:9 đúng khung 1000×563 của trang bài
     tai: (laBia) => `${p.src.original}?auto=compress&cs=tinysrgb&fm=jpg&q=72&` +
       (laBia ? 'w=1200&h=675&fit=crop' : 'w=1000'),
   }));
+  return locTheoNhan(tuKhoa, hits);
 }
 
 const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
 
-async function timAnh(env, tuKhoa, daDung, duPhong = true) {
-  const kq = env.PIXABAY_API_KEY ? await timPixabay(env, tuKhoa) : await timPexels(env, tuKhoa);
+/* Đợt 33 (04/11/2026) — VÌ SAO 48 BÀI KẸT KHÔNG CÓ ẢNH.
+   Từ 01/11 Pixabay trả 429 "Rate limit exceeded" ở gần như mọi lượt, và
+   header giới hạn trả về null — nghĩa là bị chặn ở tầng ngoài chứ không phải
+   vượt 100 lượt/phút (mỗi lượt cron chỉ gọi chừng 10 lần). Code cũ chọn kho
+   bằng `env.PIXABAY_API_KEY ? Pixabay : Pexels`, nên khi có key Pixabay thì
+   KHÔNG BAO GIỜ thử Pexels — Pixabay chặn là cả hàng chờ đứng im.
+   Giờ thử lần lượt từng kho có key, kho nào lỗi thì sang kho kế. Pexels đi
+   trước vì Pixabay đang bị chặn; nếu sau này Pixabay thông thì nó vẫn là
+   lưới dự phòng, không cần sửa code lại. */
+function cacKho(env) {
+  const ds = [];
+  if (env.PEXELS_API_KEY) ds.push(timPexels);
+  if (env.PIXABAY_API_KEY) ds.push(timPixabay);
+  return ds;
+}
+
+/* Sổ tạm trong MỘT lượt chạy: cùng một từ khoá không gọi API hai lần.
+   Các từ khoá dự phòng ("manicure", "nail art"…) bị gọi lặp cho từng ô ảnh
+   của từng bài — chính chỗ này đốt lượt gọi và làm Pixabay chặn nặng hơn.
+   Phải xoá đầu mỗi lượt (xoaBoNho): isolate của Worker sống qua nhiều lượt. */
+let boNho = new Map();
+/* Kho đã hỏng trong lượt này: Pixabay bị chặn thì chặn cho MỌI từ khoá, nên
+   thử lại từng từ khoá là vô ích mà rất đắt — mỗi lượt tìm lỗi mất ~13 giây
+   (1,5s giãn + 4s + 8s chờ thử lại). Ba ô ảnh nhân bốn từ khoá dự phòng là
+   hơn 200 giây, quá giới hạn thời gian của Worker → lượt chạy bị cắt giữa
+   đường. Hỏng một lần thì bỏ kho đó tới hết lượt. */
+let khoHong = new Set();
+let hetGio = 0;
+const NGAN_SACH_MS = 20_000;   // quá mức này thì để phần còn lại cho lượt sau
+export const xoaBoNho = () => { boNho = new Map(); khoHong = new Set(); hetGio = Date.now() + NGAN_SACH_MS; };
+
+async function timTheoKho(env, tuKhoa, bao) {
+  if (boNho.has(tuKhoa)) return boNho.get(tuKhoa);
+  if (Date.now() > hetGio) return [];           // hết ngân sách thời gian
+  const loi = [];
+  for (const tim of cacKho(env)) {
+    if (khoHong.has(tim)) continue;
+    try {
+      const kq = await tim(env, tuKhoa);
+      boNho.set(tuKhoa, kq);
+      return kq;
+    } catch (e) {
+      loi.push(e.message);
+      khoHong.add(tim);
+    }
+  }
+  // Mọi kho đều lỗi: ghi vào báo cáo (thân commit) rồi trả rỗng, KHÔNG ném
+  // lỗi — bài này hụt ảnh thì để lượt sau thử lại, không chặn bài kế tiếp.
+  if (loi.length) bao.push(`tìm "${tuKhoa}" lỗi: ${loi.join(' | ')}`);
+  boNho.set(tuKhoa, []);
+  return [];
+}
+
+/** Còn kho nào dùng được trong lượt này không (hết thì khỏi thử tiếp cho nhanh) */
+const conKho = (env) => cacKho(env).some((t) => !khoHong.has(t)) && Date.now() < hetGio;
+
+async function timAnh(env, tuKhoa, daDung, bao, duPhong = true) {
+  const kq = await timTheoKho(env, tuKhoa, bao);
   // Không lặp ảnh, và mỗi người chụp chỉ dùng MỘT lần trên toàn blog: Pixabay
   // có nhiều tấm của cùng một buổi chụp, khác id nhưng nhìn gần như y hệt.
   // Không có ảnh của người chụp mới thì chấp nhận người chụp cũ (khác ảnh) —
@@ -181,7 +256,7 @@ async function timAnh(env, tuKhoa, daDung, duPhong = true) {
   // không bao giờ bị bỏ trống ảnh bìa (ô xám trên trang blog).
   for (const k of ['manicure', 'nail polish', 'manicure hands', 'nail art']) {
     if (k === tuKhoa) continue;
-    const q = await timAnh(env, k, daDung, false);
+    const q = await timAnh(env, k, daDung, bao, false);
     if (q) return q;
   }
   return null;
@@ -249,9 +324,10 @@ async function lamAnhChoBai(env, file, daDung, bao) {
   for (const [, t] of banDich) if (t && t.content) t.content = goAnh(t.content);
 
   const files = [];
+  const conThieu = [];      // ô ảnh cần làm mà lượt này không tìm được
   const bia = post.anh.bia;
   if (bia && bia.tim && lam('bia')) {
-    const p = await timAnh(env, bia.tim, daDung);
+    const p = await timAnh(env, bia.tim, daDung, bao);
     if (p) {
       const bytes = await taiAnh(p, true);
       const path = `content/media/blog/${post.slug}.jpg`;
@@ -261,15 +337,15 @@ async function lamAnhChoBai(env, file, daDung, bao) {
       post.coverAlt = bia.alt || post.coverAlt || post.title;
       if (bia.altI18n) for (const [lang, t] of banDich) if (t && bia.altI18n[lang]) t.coverAlt = bia.altI18n[lang];
       post.coverCredit = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
-    } else bao.push(`${post.slug}: không tìm được ảnh bìa cho "${bia.tim}"`);
+    } else { bao.push(`${post.slug}: không tìm được ảnh bìa cho "${bia.tim}"`); conThieu.push('bia'); }
   }
 
   const trong = Array.isArray(post.anh.trong_bai) ? post.anh.trong_bai.slice(0, 2) : [];
   for (let i = 0; i < trong.length; i++) {
     const a = trong[i];
     if (!a || !a.tim || !lam(i + 1)) continue;
-    const p = await timAnh(env, a.tim, daDung);
-    if (!p) { bao.push(`${post.slug}: không tìm được ảnh "${a.tim}"`); continue; }
+    const p = await timAnh(env, a.tim, daDung, bao);
+    if (!p) { bao.push(`${post.slug}: không tìm được ảnh "${a.tim}"`); conThieu.push(String(i + 1)); continue; }
     const bytes = await taiAnh(p, false);
     const ten = `${post.slug}-${i + 1}.jpg`;
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
@@ -283,11 +359,27 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     }
   }
 
-  delete post.anh.lam_lai;
-  post.anh.xong = new Date().toISOString();
+  /* Đợt 33: TRƯỚC ĐÂY đánh dấu `xong` vô điều kiện — kể cả khi không tìm
+     được ảnh nào. Lỗi này chưa lộ ra vì Pixabay 429 ném lỗi nên không chạy
+     tới đây; từ đợt này kho lỗi không còn ném lỗi, nên phải xử lý đúng:
+     còn ô trống thì GIỮ bài trong hàng chờ, chỉ làm lại đúng ô còn thiếu.
+     Thử tối đa 3 lượt rồi chấp nhận bỏ ô đó, kẻo một từ khoá không bao giờ
+     ra ảnh sẽ chặn vĩnh viễn các bài xếp sau. Bài thiếu bìa vẫn hiện được:
+     trang bài và trang danh sách đều lùi về ảnh mặc định. */
+  const soAnh = files.length;
+  const thu = Number(post.anh.thu || 0) + 1;
+  if (conThieu.length && thu < 3) {
+    post.anh.thu = thu;
+    post.anh.lam_lai = conThieu;
+  } else {
+    if (conThieu.length) bao.push(`${post.slug}: bỏ ${conThieu.join(', ')} sau ${thu} lượt thử`);
+    delete post.anh.thu;
+    delete post.anh.lam_lai;
+    post.anh.xong = new Date().toISOString();
+  }
   files.push({ path: duongDan, b64: textToB64(JSON.stringify(post, null, 2) + '\n') });
-  bao.push(`${post.slug}: ${files.length - 1} ảnh`);
-  return files;
+  bao.push(`${post.slug}: ${soAnh} ảnh${conThieu.length ? ` (thiếu ${conThieu.join(', ')})` : ''}`);
+  return { files, soAnh };
 }
 
 // ------------------------------------------------------------
@@ -295,6 +387,7 @@ async function lamAnhChoBai(env, file, daDung, bao) {
 // ------------------------------------------------------------
 export async function chayDinhKy(env, { ep = false } = {}) {
   const bao = [];
+  xoaBoNho();   // isolate Worker sống qua nhiều lượt — sổ tạm phải mới mỗi lượt
   const res = await env.ASSETS.fetch(new Request('https://vessca.com/_noi-bo/bai-viet.json'));
   const so = res.ok ? await res.json() : { henGio: [], canAnh: [], dungLuc: null };
   const files = [];
@@ -305,20 +398,28 @@ export async function chayDinhKy(env, { ep = false } = {}) {
     const daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
     // Sổ nội bộ chỉ mới lại sau khi web dựng xong — bài vừa làm ở lượt trước
     // có thể vẫn nằm trong danh sách. Bài nào đã xong thì bỏ qua, xét tối đa 4 bài.
-    let lam = 0;
-    for (const b of so.canAnh.slice(0, 4)) {
-      if (lam >= BAI_MOI_LUOT) break;
+    /* Đợt 33: trước đây gặp lỗi là `break` — thoát cả lượt. Một bài kẹt
+       (nail-ombre-kieu-han, 3 lượt liền) chặn luôn mọi bài xếp sau, nên
+       hàng chờ không nhúc nhích. Giờ bỏ qua bài lỗi và làm bài kế tiếp;
+       chỉ dừng khi lỗi dồn quá LOI_TOI_DA (hỏng kho ảnh, không phải hỏng
+       một bài) để khỏi đốt hết lượt gọi của gói miễn phí. */
+    let lam = 0, loi = 0;
+    for (const b of so.canAnh.slice(0, 8)) {
+      if (lam >= BAI_MOI_LUOT || loi >= LOI_TOI_DA) break;
+      if (!conKho(env)) { bao.push('hết kho ảnh dùng được trong lượt này — để lượt sau'); break; }
       try {
-        const f = await lamAnhChoBai(env, b.file, daDung, bao);
-        if (f) { files.push(...f); lam++; }
+        const kq = await lamAnhChoBai(env, b.file, daDung, bao);
+        if (!kq) continue;                      // bài đã xong, bỏ qua
+        if (kq.files.length) files.push(...kq.files);
+        if (kq.soAnh) lam++; else loi++;        // chỉ tính là làm được khi có ảnh
       } catch (e) {
         bao.push(`${b.slug}: lỗi — ${e.message}`);
-        break;
+        loi++;
       }
     }
     if (files.length) files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
   } else if (!coKho(env) && so.canAnh?.length) {
-    bao.push(`Chưa có PIXABAY_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
+    bao.push(`Chưa có PIXABAY_API_KEY lẫn PEXELS_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
   }
 
   // 2) Bài tới giờ đăng mà web chưa dựng lại

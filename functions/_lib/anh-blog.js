@@ -228,14 +228,33 @@ async function timOpenverse(env, tuKhoa) {
     '&page_size=20&license=cc0,pdm&mature=false';
   const res = await fetch(url, { headers: { 'User-Agent': 'vessca.com blog (lamiesnail@gmail.com)' } });
   if (!res.ok) throw new Error(`Openverse tìm "${tuKhoa}" → ${res.status}`);
-  const hits = ((await res.json()).results || []).map((p) => ({
-    id: `ov-${p.id}`, ten: p.creator || 'Openverse', link: p.foreign_landing_url || p.url || '',
-    nguon: 'Openverse',
-    nhan: [p.title, ...(p.tags || []).map((t) => t.name)].filter(Boolean).join(' ').toLowerCase(),
-    // Openverse trả link ảnh gốc, không có tham số cắt → lấy nguyên, thử cả
-    // ảnh nhỏ nếu bản gốc quá nặng (taiAnh tự lùi khi > 900KB)
-    tai: () => [p.url, p.thumbnail].filter(Boolean),
-  }));
+  /* Đợt 33c — lần chạy thật đầu tiên (04/11, bài nail-mau-dam-cuoi-nam) cho
+     thấy Openverse khác Pixabay ở chỗ nhãn rất nghèo (thường chỉ "manicure")
+     nên bộ lọc chủ đề cũ để lọt: ảnh cái bát thuỷ tinh 240×180 gắn alt "nail
+     xanh navy", ảnh ghép hướng dẫn tự làm gắn alt "nail đen bóng". Đã dọn
+     bài và siết ba lớp:
+     1) Đủ lớn: cạnh dài tối thiểu 1000px (nếu API báo kích thước).
+     2) Không phải ảnh ghép/hướng dẫn: cấm collage, tutorial, diy, how to…
+     3) ĐÚNG Ý TỪ KHOÁ: từ khoá tìm có chữ riêng (màu, kiểu: "navy", "black",
+        "french"…) thì tiêu đề hoặc nhãn ảnh PHẢI chứa ít nhất một chữ đó.
+        Không đạt thì thà không có ảnh (bài lùi về ảnh thương hiệu của tiệm)
+        còn hơn một ảnh sai gắn alt sai — alt sai là lỗi SEO và lừa người đọc. */
+  const CHUNG = new Set(['nail', 'nails', 'manicure', 'pedicure', 'polish', 'gel', 'hands', 'hand', 'art',
+    'design', 'close', 'closeup', 'salon', 'fingernail', 'fingernails', 'beauty', 'photo']);
+  const rieng = String(tuKhoa).toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !CHUNG.has(w));
+  const BO = ['collage', 'tutorial', 'diy', 'how to', 'step by step', 'before and after', 'infographic', 'logo', 'icon', 'drawing', 'clipart'];
+  const hits = ((await res.json()).results || [])
+    .map((p) => ({
+      id: `ov-${p.id}`, ten: p.creator || 'Openverse', link: p.foreign_landing_url || p.url || '',
+      nguon: 'Openverse', rong: Number(p.width) || 0, cao: Number(p.height) || 0,
+      nhan: [p.title, ...(p.tags || []).map((t) => t.name)].filter(Boolean).join(' ').toLowerCase(),
+      // Openverse trả link ảnh gốc, không có tham số cắt → lấy nguyên, thử cả
+      // ảnh nhỏ nếu bản gốc quá nặng (taiAnh tự lùi khi > 900KB)
+      tai: () => [p.url, p.thumbnail].filter(Boolean),
+    }))
+    .filter((h) => !(h.rong && h.cao) || Math.max(h.rong, h.cao) >= 1000)
+    .filter((h) => !BO.some((c) => h.nhan.includes(c)))
+    .filter((h) => !rieng.length || rieng.some((w) => h.nhan.includes(w.replace(/s$/, ''))));
   return locTheoNhan(tuKhoa, hits);
 }
 
@@ -320,9 +339,20 @@ async function timAnh(env, tuKhoa, daDung, bao, duPhong = true) {
   for (const k of ['manicure', 'nail polish', 'manicure hands', 'nail art']) {
     if (k === tuKhoa) continue;
     const q = await timAnh(env, k, daDung, bao, false);
-    if (q) return q;
+    // Đánh dấu ảnh lấy từ từ khoá chung: nó chỉ "có nail", KHÔNG chắc đúng màu/
+    // kiểu bài đang nói, nên alt phải trung tính (xem altChoAnh).
+    if (q) return { ...q, laDuPhong: true };
   }
   return null;
+}
+
+/** Alt thật thà: ảnh đúng từ khoá thì dùng alt người viết bài đã soạn; ảnh dự
+    phòng (chỉ biết là có nail) thì không được khẳng định màu/kiểu mà ảnh có
+    thể không có — dùng câu minh hoạ trung tính kèm tiêu đề bài. */
+function altChoAnh(photo, altViet, post, lang = 'vi') {
+  if (!photo.laDuPhong) return altViet;
+  const tienTo = { vi: 'Ảnh minh hoạ', en: 'Illustration', ko: '참고 이미지', zh: '示意图' }[lang] || 'Illustration';
+  return `${tienTo}: ${post.title}`;
 }
 
 async function taiAnh(photo, laBia) {
@@ -400,8 +430,9 @@ async function lamAnhChoBai(env, file, daDung, bao) {
       files.push({ path, b64: bytesToB64(bytes) });
       daDung.add(p.id); daDung.add(`u:${p.ten}`);
       post.coverImage = `/media/blog/${post.slug}.jpg`;
-      post.coverAlt = bia.alt || post.coverAlt || post.title;
-      if (bia.altI18n) for (const [lang, t] of banDich) if (t && bia.altI18n[lang]) t.coverAlt = bia.altI18n[lang];
+      post.coverAlt = altChoAnh(p, bia.alt || post.coverAlt || post.title, post);
+      // Ảnh dự phòng thì bỏ alt dịch (nó khẳng định màu/kiểu ảnh không chắc có)
+      if (bia.altI18n && !p.laDuPhong) for (const [lang, t] of banDich) if (t && bia.altI18n[lang]) t.coverAlt = bia.altI18n[lang];
       post.coverCredit = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
     } else { bao.push(`${post.slug}: không tìm được ảnh bìa cho "${bia.tim}"`); conThieu.push('bia'); }
   }
@@ -416,11 +447,12 @@ async function lamAnhChoBai(env, file, daDung, bao) {
     const ten = `${post.slug}-${i + 1}.jpg`;
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
     daDung.add(p.id); daDung.add(`u:${p.ten}`);
-    post.content = chenAnh(post.content || '', i + 1, hinhTrongBai(`/media/blog/${ten}`, a.alt || post.title, p));
+    post.content = chenAnh(post.content || '', i + 1, hinhTrongBai(`/media/blog/${ten}`, altChoAnh(p, a.alt || post.title, post), p));
     // Bản dịch: dùng alt theo ngôn ngữ (a.altI18n.en …), không có thì lấy tiêu đề bản dịch
     for (const [lang, t] of banDich) {
       if (!t || !t.content) continue;
-      const alt = (a.altI18n && a.altI18n[lang]) || t.coverAlt || t.title;
+      const alt = p.laDuPhong ? altChoAnh(p, '', { title: t.title || post.title }, lang)
+        : (a.altI18n && a.altI18n[lang]) || t.coverAlt || t.title;
       t.content = chenAnh(t.content, i + 1, hinhTrongBai(`/media/blog/${ten}`, alt, p, lang));
     }
   }

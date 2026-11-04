@@ -217,6 +217,26 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 04/11/2026 (tối) — phiên viết bài: **lượt cron đầu tiên có Openverse cho ảnh sai, đã dọn và siết lọc.**
+  Bài `nail-mau-dam-cuoi-nam` (nail màu đậm, hẹn 5/11 nên chưa lên web) nhận: bìa nail French trắng
+  trên tay cầm điện thoại; ảnh 1 là cái bát thuỷ tinh 240×180 gắn alt "Nail xanh navy bóng sang
+  trọng"; ảnh 2 là ảnh ghép hướng dẫn tự làm nail French vàng chanh gắn alt "Nail đen bóng". Nhãn
+  Openverse rất nghèo (thường chỉ "manicure") nên bộ lọc chủ đề cũ để lọt. **Alt sai là lỗi SEO và
+  lừa người đọc, nặng hơn là không có ảnh.** Đã trả bài về hàng chờ (khôi phục `<!--anh:N-->`, xoá
+  3 ảnh, gỡ `anh.xong`/`coverImage`/`coverCredit`) rồi sửa trong `functions/_lib/anh-blog.js`:
+  - `timOpenverse` lọc 3 lớp: cạnh dài ≥ 1000px; cấm `collage`, `tutorial`, `diy`, `how to`…;
+    từ khoá có chữ riêng (màu, kiểu như "navy", "black", "french") thì tiêu đề hoặc nhãn ảnh phải
+    chứa ít nhất một chữ đó. Không đạt thì để trống — thà lùi về ảnh thương hiệu còn hơn ảnh sai.
+  - `altChoAnh`: ảnh lấy từ từ khoá DỰ PHÒNG chung ("manicure", "nail art"…) chỉ chắc là "có nail",
+    không chắc đúng màu/kiểu, nên alt chuyển sang dạng trung tính "Ảnh minh hoạ: <tiêu đề bài>" (có
+    bản EN/KO/ZH), không dùng alt người viết bài soạn. Áp dụng cho mọi kho, kể cả Pixabay.
+  Kiểm bằng kho giả lập đúng các ca vừa gặp (bát nhỏ, ảnh ghép, French không khớp navy): chọn đúng
+  ảnh navy khi có; không lấy bát/ghép làm ảnh navy khi không có; hết ảnh dự phòng thì bài ở lại
+  hàng chờ. Hai bộ test cũ vẫn đạt.
+  **Còn lại:** Openverse vẫn yếu hơn Unsplash nhiều về ảnh nail. Nên thêm `UNSPLASH_ACCESS_KEY`.
+  Dài hạn tốt nhất là ảnh nail thật của tiệm.
+
+
 - 04/11/2026 (bổ sung, cùng ngày) — phiên viết bài: **thêm hai kho ảnh nữa.** Chủ tiệm chỉ ra
   rằng kho ảnh miễn phí còn nhiều chứ không chỉ Pixabay với Pexels, và đúng như vậy. Nay
   `cacKho()` là một dãy, thêm kho chỉ là viết một hàm rồi khai vào dãy:

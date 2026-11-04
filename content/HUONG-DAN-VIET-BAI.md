@@ -217,6 +217,39 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 04/11/2026 (bổ sung, cùng ngày) — phiên viết bài: **thêm hai kho ảnh nữa.** Chủ tiệm chỉ ra
+  rằng kho ảnh miễn phí còn nhiều chứ không chỉ Pixabay với Pexels, và đúng như vậy. Nay
+  `cacKho()` là một dãy, thêm kho chỉ là viết một hàm rồi khai vào dãy:
+
+  | Thứ tự | Kho | Biến môi trường | Ghi chú |
+  |---|---|---|---|
+  | 1 | Unsplash | `UNSPLASH_ACCESS_KEY` | Ảnh nail nhiều và đẹp nhất. Khoá miễn phí xin vài phút tại unsplash.com/developers, hạn mức 50 lượt/giờ bản thử và 5.000 khi đăng ký xong — hệ thống chỉ cần chừng 8 ảnh/ngày |
+  | 2 | Pexels | `PEXELS_API_KEY` | Giữ cho trường hợp đã có khoá cũ; ngưng cấp khoá mới từ 10/2026 |
+  | 3 | Pixabay | `PIXABAY_API_KEY` | Tụt xuống dưới vì đang bị chặn 429 từ 01/11/2026 |
+  | 4 | Openverse | **không cần khoá** | Lưới cuối, luôn có mặt. Lọc `license=cc0,pdm` nên chỉ lấy ảnh phạm vi công cộng, dùng thương mại không ràng buộc |
+
+  **Việc cần làm (chỉ 1 việc, 5 phút):** xin khoá Unsplash rồi thêm biến
+  `UNSPLASH_ACCESS_KEY` trong Cloudflare (Workers → vessca-web → Settings → Variables and
+  Secrets). `keep_vars: true` trong wrangler.jsonc nên thêm xong không bị mất khi dựng lại.
+  Chưa thêm cũng không sao: Openverse không cần khoá nên hàng chờ vẫn chạy, chỉ là ảnh nail ở
+  Openverse ít và kém hơn Unsplash.
+
+  Unsplash có thêm nghĩa vụ gọi `download_location` mỗi lần dùng ảnh (điều khoản API của họ) —
+  làm qua hook `photo.sauKhiTai`, gọi trong `taiAnh` sau khi tải xong và bọc try nên lỗi ở bước
+  này không làm hỏng việc lấy ảnh.
+
+  **CHƯA GỌI THỬ VÀO API THẬT.** Hai hàm `timUnsplash` và `timOpenverse` viết theo tài liệu API;
+  môi trường chạy thử của phiên này bị chặn ra ngoài nên không kiểm được dạng dữ liệu trả về.
+  Rủi ro đã chặn: kho nào trả dạng khác sẽ lỗi và bị `khoHong` loại ngay lượt đầu, các kho còn
+  lại vẫn chạy, bài vẫn có ảnh thương hiệu — **không hỏng gì**. Lượt cron đầu tiên sẽ ghi rõ lỗi
+  vào thân commit, xem ở đó là biết kho nào cần sửa.
+
+  Đã chạy thử với kho giả lập, 6 tình huống đều đạt: đủ 4 khoá thì dùng Unsplash; Unsplash lỗi
+  lùi Pexels; thêm Pexels lỗi lùi Pixabay; chỉ có Pixabay mà bị chặn thì lùi Openverse;
+  **không có khoá nào vẫn chạy được bằng Openverse**; cả 4 kho chết thì không bài nào bị đánh
+  dấu xong oan. Sổ tạm giữ đúng 1 lượt gọi cho 2 bài, `download_location` gọi đúng 1 lần/ảnh.
+
+
 - 04/11/2026 — phiên viết bài: **sửa lỗi 48 bài không có ảnh bìa.** Chủ tiệm thấy "bài thiếu ảnh
   quá chừng" và giao sửa hết, nên lần này tôi có sửa `functions/_lib/anh-blog.js` và
   `lib/render.mjs` — vốn thuộc phần của phiên app/web. Xin lưu ý khi hai bên cùng sửa.

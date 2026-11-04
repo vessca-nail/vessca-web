@@ -93,11 +93,10 @@ async function ghiMotLan(env, files, message) {
 }
 
 // ------------------------------------------------------------
-//  Kho ảnh: thử lần lượt Pexels rồi Pixabay, kho nào có khoá và không lỗi thì
-//  dùng (xem cacKho). Pexels xếp trước vì Pixabay đang chặn 429 từ 01/11/2026,
-//  nhưng Pexels tạm ngưng cấp khoá mới từ 10/2026 nên có thể không có khoá —
-//  khi cả hai kho đều không ra ảnh, trang web lùi về ảnh thương hiệu của tiệm
-//  (anhBia trong lib/render.mjs), bài vẫn hiện bình thường.
+//  Kho ảnh: thử lần lượt Unsplash → Pexels → Pixabay → Openverse (xem cacKho),
+//  kho nào có khoá và không lỗi thì dùng. Openverse không cần khoá nên luôn có
+//  mặt làm lưới cuối. Khi mọi kho đều không ra ảnh thì trang web lùi về ảnh
+//  thương hiệu của tiệm (anhBia trong lib/render.mjs), bài vẫn hiện bình thường.
 //  Cả hai cho dùng thương mại miễn phí. Pixabay BẮT BUỘC
 //  tải ảnh về máy chủ của mình, không được dùng link của họ lâu dài — đúng
 //  cách hệ thống này làm.
@@ -185,7 +184,62 @@ async function timPexels(env, tuKhoa) {
   return locTheoNhan(tuKhoa, hits);
 }
 
-const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
+/* Đợt 33b: thêm Unsplash và Openverse. Trước đây code chỉ biết Pixabay và
+   Pexels — Pixabay bị chặn, Pexels ngưng cấp khoá mới, thế là hết đường.
+   Kho ảnh miễn phí cho dùng thương mại còn nhiều, nên xếp thành một dãy để
+   sau này thêm kho chỉ là viết một hàm nữa rồi khai vào cacKho().
+
+   LƯU Ý: hai hàm dưới viết theo tài liệu API, CHƯA gọi thử được vào API
+   thật (môi trường chạy thử của phiên này bị chặn ra ngoài). Nếu dạng dữ
+   liệu trả về khác, kho đó sẽ lỗi và bị khoHong loại trong lượt đầu — các
+   kho còn lại vẫn chạy, bài vẫn có ảnh thương hiệu, không hỏng gì. Lượt cron
+   đầu tiên sẽ ghi rõ lỗi vào thân commit nếu có. */
+
+async function timUnsplash(env, tuKhoa) {
+  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(tuKhoa)}` +
+    '&per_page=30&orientation=landscape&content_filter=high';
+  const res = await fetch(url, {
+    headers: { Authorization: `Client-ID ${env.UNSPLASH_ACCESS_KEY}`, 'Accept-Version': 'v1' },
+  });
+  if (!res.ok) throw new Error(`Unsplash tìm "${tuKhoa}" → ${res.status}`);
+  const hits = ((await res.json()).results || []).map((p) => ({
+    id: `us-${p.id}`, ten: p.user?.name || 'Unsplash', link: p.links?.html || '', nguon: 'Unsplash',
+    // Nhãn: mô tả ảnh + các thẻ, gộp lại cho locTheoNhan lọc chủ đề
+    nhan: [p.alt_description, p.description, ...(p.tags || []).map((t) => t.title)]
+      .filter(Boolean).join(' ').toLowerCase(),
+    // urls.raw nhận tham số cắt/nén của Imgix → bìa 16:9 đúng khung 1000×563
+    tai: (laBia) => `${p.urls?.raw}&fm=jpg&q=72&` + (laBia ? 'w=1200&h=675&fit=crop' : 'w=1000'),
+    // Điều khoản API Unsplash buộc gọi download_location mỗi lần dùng ảnh.
+    // Lỗi ở bước này không được làm hỏng việc lấy ảnh → bọc try trong taiAnh.
+    sauKhiTai: p.links?.download_location
+      ? () => fetch(p.links.download_location, { headers: { Authorization: `Client-ID ${env.UNSPLASH_ACCESS_KEY}` } })
+      : null,
+  }));
+  return locTheoNhan(tuKhoa, hits);
+}
+
+/* Openverse (của Creative Commons) — KHÔNG CẦN KHOÁ. Đây là lưới cuối: dù
+   chủ tiệm chưa đăng ký khoá nào thì vẫn có ảnh. Lọc license=cc0,pdm tức
+   chỉ lấy ảnh thuộc phạm vi công cộng / miễn trừ bản quyền, dùng thương mại
+   không ràng buộc ghi nguồn — vẫn ghi tên người chụp cho đàng hoàng.
+   Hạn mức khi gọi không khoá khá thấp nên xếp cuối dãy. */
+async function timOpenverse(env, tuKhoa) {
+  const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(tuKhoa)}` +
+    '&page_size=20&license=cc0,pdm&mature=false';
+  const res = await fetch(url, { headers: { 'User-Agent': 'vessca.com blog (lamiesnail@gmail.com)' } });
+  if (!res.ok) throw new Error(`Openverse tìm "${tuKhoa}" → ${res.status}`);
+  const hits = ((await res.json()).results || []).map((p) => ({
+    id: `ov-${p.id}`, ten: p.creator || 'Openverse', link: p.foreign_landing_url || p.url || '',
+    nguon: 'Openverse',
+    nhan: [p.title, ...(p.tags || []).map((t) => t.name)].filter(Boolean).join(' ').toLowerCase(),
+    // Openverse trả link ảnh gốc, không có tham số cắt → lấy nguyên, thử cả
+    // ảnh nhỏ nếu bản gốc quá nặng (taiAnh tự lùi khi > 900KB)
+    tai: () => [p.url, p.thumbnail].filter(Boolean),
+  }));
+  return locTheoNhan(tuKhoa, hits);
+}
+
+const coKho = (env) => cacKho(env).length > 0;
 
 /* Đợt 33 (04/11/2026) — VÌ SAO 48 BÀI KẸT KHÔNG CÓ ẢNH.
    Từ 01/11 Pixabay trả 429 "Rate limit exceeded" ở gần như mọi lượt, và
@@ -198,8 +252,17 @@ const coKho = (env) => !!(env.PIXABAY_API_KEY || env.PEXELS_API_KEY);
    lưới dự phòng, không cần sửa code lại. */
 function cacKho(env) {
   const ds = [];
+  // Thứ tự: khoá tốt nhất trước, kho không cần khoá chốt cuối.
+  // - Unsplash: ảnh nail nhiều và đẹp nhất, khoá miễn phí xin trong vài phút
+  //   tại unsplash.com/developers (hạn mức 50 lượt/giờ bản thử, 5.000 khi
+  //   đăng ký xong) — gấp nhiều lần mức 8 ảnh/ngày hệ thống này cần.
+  // - Pexels: giữ lại cho trường hợp đã có khoá cũ (ngưng cấp khoá mới 10/2026).
+  // - Pixabay: tụt xuống dưới vì đang bị chặn 429 từ 01/11/2026.
+  // - Openverse: KHÔNG CẦN KHOÁ nên luôn có mặt, làm lưới cuối.
+  if (env.UNSPLASH_ACCESS_KEY) ds.push(timUnsplash);
   if (env.PEXELS_API_KEY) ds.push(timPexels);
   if (env.PIXABAY_API_KEY) ds.push(timPixabay);
+  ds.push(timOpenverse);
   return ds;
 }
 
@@ -276,6 +339,9 @@ async function taiAnh(photo, laBia) {
     const bytes = new Uint8Array(await res.arrayBuffer());
     // Đợt 32: bản to quá thì thử bản nhỏ hơn (640px) thay vì kẹt mãi ở một ảnh
     if (bytes.length > 900_000) { loi = `nặng quá (${bytes.length} byte)`; continue; }
+    // Unsplash buộc báo lại mỗi lần dùng ảnh. Lỗi ở đây không được làm hỏng
+    // việc lấy ảnh — ảnh đã tải xong rồi.
+    if (photo.sauKhiTai) { try { await photo.sauKhiTai(); } catch { /* bỏ qua */ } }
     return bytes;
   }
   throw new Error(`Tải ảnh ${photo.id} → ${loi}`);

@@ -63,6 +63,11 @@
           "zh": "走了一天后的放松足部护理"
         }
       }
+    ],
+    "thu": 1,
+    "lam_lai": [
+      "1",
+      "2"
     ]
   },
   "content": "<p>Nhiều khách du lịch và người nước ngoài ở Sài Gòn muốn làm nail trong vài ngày lưu trú nhưng ngại vì không biết hỏi giá, không chắc tiệm có nói được tiếng Anh hay vệ sinh có đảm bảo không. Bài này dành cho khách nước ngoài, hoặc để bạn gửi cho bạn bè ở xa sắp đến Sài Gòn.</p>\n\n<h2>Những điều khách nước ngoài hay lo</h2>\n\n<table>\n<thead><tr><th>Câu hỏi</th><th>Tại VESSCA</th></tr></thead>\n<tbody>\n<tr><td>Nhân viên nói được tiếng gì?</td><td>Tiếng Việt, tiếng Anh, tiếng Trung</td></tr>\n<tr><td>Giá có rõ ràng không?</td><td>Bảng giá công khai trên web, báo giá trước khi làm</td></tr>\n<tr><td>Vệ sinh dụng cụ?</td><td>Dụng cụ kim loại tiệt trùng bằng máy sau mỗi khách</td></tr>\n<tr><td>Sơn có phải hàng thật?</td><td>Sơn Hàn tiệm tự chọn và mang về từ Hàn Quốc</td></tr>\n<tr><td>Có cần đặt trước?</td><td>Nên đặt, tiệm phục vụ số khách giới hạn cùng lúc</td></tr>\n</tbody>\n</table>\n\n<!--anh:1-->\n<h2>Đến tiệm thế nào</h2>\n\n<p>VESSCA ở 251/30 Lê Quang Định, phường Gia Định, TP.HCM, cùng khu với chợ Bà Chiểu. Từ trung tâm quận 1, bạn có thể gọi Grab hoặc taxi và đặt điểm đến \"VESSCA Nail\". Tiệm nằm trong hẻm 251, tài xế có thể dừng ở đầu hẻm hoặc trước cửa. Xem thêm bài <a href=\"/blog/den-vessca-gui-xe-dat-lich/\">đến VESSCA: tìm hẻm, gửi xe và đặt lịch</a>.</p>\n\n<h2>Chọn dịch vụ khi chỉ ở vài ngày</h2>\n\n<ul>\n<li><strong>Đi du lịch ngắn ngày:</strong> sơn gel giữ được 2–3 tuần, đủ cho cả chuyến đi và vài ngày sau khi về.</li>\n<li><strong>Đi biển sau Sài Gòn:</strong> chọn móng ngắn, sơn gel, làm trước chuyến đi biển 1–2 ngày.</li>\n<li><strong>Muốn thư giãn sau ngày dài đi bộ:</strong> Foot Ritual (45 phút, 350.000₫) hoặc Full Ritual tay và chân (60 phút, 550.000₫).</li>\n<li><strong>Muốn thử nail Hàn:</strong> sơn thạch, mắt mèo, nhũ aurora hoặc velvet.</li>\n</ul>\n\n<!--anh:2-->\n<h2>Chuẩn bị trước khi về nước</h2>\n\n<p>Gel cần được phá đúng cách bằng dung dịch, không cạy. Nếu nơi bạn sống khó tìm tiệm tháo gel, hãy cân nhắc: chọn sơn gel trơn thay vì đắp gel hoặc úp móng, vì gel trơn tháo nhanh hơn. Bạn cũng có thể đọc bài <a href=\"/blog/tu-thao-gel-o-nha-co-duoc-khong/\">tự tháo gel ở nhà có được không</a> để biết cách làm an toàn.</p>\n\n<h2>Giá tham khảo</h2>\n\n<table>\n<thead><tr><th>Bộ</th><th>Ước tính</th></tr></thead>\n<tbody>\n<tr><td>Cắt da tay + sơn gel trơn</td><td>~190.000₫</td></tr>\n<tr><td>Cắt da tay + sơn thạch</td><td>~210.000₫</td></tr>\n<tr><td>Cắt da tay + sơn Hàn cao cấp</td><td>~280.000 – 340.000₫</td></tr>\n<tr><td>Cắt da chân + sơn gel trơn</td><td>~200.000₫</td></tr>\n<tr><td>Full Ritual tay và chân</td><td>550.000₫</td></tr>\n</tbody>\n</table>\n\n<p>Tiệm mở cửa 9:00–20:30 tất cả các ngày. Bạn có thể đặt lịch trên web, gọi 0933.528.501 hoặc nhắn tin qua Instagram, Facebook.</p>",
@@ -154,5 +159,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/lam-nail-cho-khach-du-lich-sai-gon.jpg",
+  "coverCredit": {
+    "ten": "angeljana_",
+    "link": "https://pixabay.com/photos/nails-fingers-manicure-hand-female-1677560/",
+    "nguon": "Pixabay",
+    "id": "pb-1677560"
   }
 }

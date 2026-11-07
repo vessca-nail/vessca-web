@@ -381,11 +381,12 @@ async function soNoiBo() {
     } catch { /* file hỏng đã được báo ở loadPosts */ }
   }
   out.henGio.sort((a, b) => new Date(a.at) - new Date(b.at));
-  // Bài sắp đăng làm trước (sớm nhất trước), rồi tới bài đã đăng (mới nhất trước)
+  // Đợt 37: bài ĐÃ LÊN WEB mà thiếu ảnh làm trước (khách đang thấy ô trống),
+  // rồi tới bài sắp đăng (sớm nhất trước) — để ảnh có sẵn trước ngày đăng.
   const bayGio = Date.now();
   const sau = (x) => new Date(x.at || 0).getTime() > bayGio;
   out.canAnh.sort((a, b) =>
-    sau(a) !== sau(b) ? (sau(a) ? -1 : 1)
+    sau(a) !== sau(b) ? (sau(a) ? 1 : -1)
       : sau(a) ? String(a.at).localeCompare(String(b.at))
       : String(b.at).localeCompare(String(a.at)));
   return out;

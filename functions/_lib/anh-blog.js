@@ -37,7 +37,7 @@ const API_GH = 'https://api.github.com';
 // ngày. Sổ tạm boNho đã cắt phần lớn lượt gọi lặp nên vẫn dưới mức 50 lượt
 // gọi ra ngoài mỗi lượt của gói miễn phí: mỗi bài chừng 3 lượt tìm + 3 lượt
 // tải + 1 lượt đọc GitHub.
-const BAI_MOI_LUOT = 2;
+const BAI_MOI_LUOT = 3;   // đợt 37: chạy mỗi giờ, 3 bài/lượt — hàng chờ cạn trong ngày
 const LOI_TOI_DA = 3;     // quá số này thì dừng lượt, để lượt sau chạy tiếp
 const DA_DUNG = 'content/media/blog/_da-dung.json';
 
@@ -297,7 +297,7 @@ let boNho = new Map();
    đường. Hỏng một lần thì bỏ kho đó tới hết lượt. */
 let khoHong = new Set();
 let hetGio = 0;
-const NGAN_SACH_MS = 20_000;   // quá mức này thì để phần còn lại cho lượt sau
+const NGAN_SACH_MS = 40_000;   // quá mức này thì để phần còn lại cho lượt sau
 export const xoaBoNho = () => { boNho = new Map(); khoHong = new Set(); hetGio = Date.now() + NGAN_SACH_MS; };
 
 async function timTheoKho(env, tuKhoa, bao) {
@@ -399,6 +399,27 @@ function chenAnh(html, i, figure) {
   return html.slice(0, viTri[k]) + figure + html.slice(viTri[k]);
 }
 
+/* Đợt 37 (07/11/2026) — VÌ SAO BÀI LẠI KẸT KHÔNG CÓ ẢNH.
+   Một ảnh Openverse (ov-2fa04446…) tìm thấy được nhưng TẢI về thì máy chủ
+   gốc trả 424. Code cũ: taiAnh ném lỗi → hỏng cả bài, mà ảnh hỏng không được
+   ghi lại → bài kế tiếp lại chọn đúng ảnh đó → hỏng tiếp → 3 lỗi là dừng
+   lượt. Lượt sau lặp y hệt, nên cả hàng chờ đứng im từ 06/11.
+   Giờ: tải hỏng thì ghi ảnh đó vào sổ "đã dùng" (không bao giờ chọn lại) và
+   thử ảnh kế tiếp, tối đa 4 lần cho mỗi ô ảnh. */
+async function layAnh(env, tuKhoa, daDung, bao, laBia) {
+  for (let lan = 0; lan < 4; lan++) {
+    const p = await timAnh(env, tuKhoa, daDung, bao);
+    if (!p) return null;
+    try {
+      return { p, bytes: await taiAnh(p, laBia) };
+    } catch (e) {
+      bao.push(`bỏ ảnh hỏng: ${e.message}`);
+      daDung.add(p.id);
+    }
+  }
+  return null;
+}
+
 async function lamAnhChoBai(env, file, daDung, bao) {
   const duongDan = `content/posts/${file}`;
   const raw = await docFile(env, duongDan);
@@ -423,9 +444,9 @@ async function lamAnhChoBai(env, file, daDung, bao) {
   const conThieu = [];      // ô ảnh cần làm mà lượt này không tìm được
   const bia = post.anh.bia;
   if (bia && bia.tim && lam('bia')) {
-    const p = await timAnh(env, bia.tim, daDung, bao);
-    if (p) {
-      const bytes = await taiAnh(p, true);
+    const kq = await layAnh(env, bia.tim, daDung, bao, true);
+    if (kq) {
+      const { p, bytes } = kq;
       const path = `content/media/blog/${post.slug}.jpg`;
       files.push({ path, b64: bytesToB64(bytes) });
       daDung.add(p.id); daDung.add(`u:${p.ten}`);
@@ -441,9 +462,9 @@ async function lamAnhChoBai(env, file, daDung, bao) {
   for (let i = 0; i < trong.length; i++) {
     const a = trong[i];
     if (!a || !a.tim || !lam(i + 1)) continue;
-    const p = await timAnh(env, a.tim, daDung, bao);
-    if (!p) { bao.push(`${post.slug}: không tìm được ảnh "${a.tim}"`); conThieu.push(String(i + 1)); continue; }
-    const bytes = await taiAnh(p, false);
+    const kq = await layAnh(env, a.tim, daDung, bao, false);
+    if (!kq) { bao.push(`${post.slug}: không tìm được ảnh "${a.tim}"`); conThieu.push(String(i + 1)); continue; }
+    const { p, bytes } = kq;
     const ten = `${post.slug}-${i + 1}.jpg`;
     files.push({ path: `content/media/blog/${ten}`, b64: bytesToB64(bytes) });
     daDung.add(p.id); daDung.add(`u:${p.ten}`);

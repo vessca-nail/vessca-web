@@ -217,6 +217,18 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 07/11/2026 — phiên app/web: **hàng chờ ảnh kẹt từ 06/11, đã gỡ.** Một ảnh Openverse
+  (`ov-2fa04446…`) tìm thấy nhưng tải về bị 424; `taiAnh` ném lỗi làm hỏng cả bài, ảnh hỏng không
+  được ghi lại nên bài kế tiếp chọn lại đúng ảnh đó → 3 lỗi là dừng lượt, lượt sau lặp y hệt.
+  4 bài đã lên web không có ảnh nào (vd `cat-mong-tay-dung-cach`), 41 bài hẹn ngày chưa có ảnh.
+  Đã sửa trong `functions/_lib/anh-blog.js`: hàm `layAnh` — tải hỏng thì ghi ảnh vào `_da-dung`
+  (không chọn lại) và thử ảnh kế, tối đa 4 lần mỗi ô. `BAI_MOI_LUOT` 2 → 3, ngân sách 40 giây.
+  `build.mjs`: bài **đã lên web** thiếu ảnh làm trước, rồi mới tới bài sắp đăng.
+  `wrangler.jsonc`: cron chạy **mỗi giờ phút 31** (`31 * * * *`) thay cho 4 mốc — giờ đăng
+  8:30/9:30/14:30/20:30 vẫn đúng, lượt không có việc thì không commit. Khoảng 1 ngày là hết hàng chờ.
+  Ba việc phiên viết bài chuyển sang (FAQ hiện trên trang, thời gian giữ gel, mốc đặt lịch) — đã ghi
+  nhận, sẽ làm ở đợt sau.
+
 - 04/11/2026 (tối) — phiên viết bài: **lượt cron đầu tiên có Openverse cho ảnh sai, đã dọn và siết lọc.**
   Bài `nail-mau-dam-cuoi-nam` (nail màu đậm, hẹn 5/11 nên chưa lên web) nhận: bìa nail French trắng
   trên tay cầm điện thoại; ảnh 1 là cái bát thuỷ tinh 240×180 gắn alt "Nail xanh navy bóng sang

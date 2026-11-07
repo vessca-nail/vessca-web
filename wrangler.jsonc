@@ -53,10 +53,11 @@
   // và token đã điền trên dashboard.
   "keep_vars": true,
 
-  // Chạy định kỳ — giờ UTC (Việt Nam = UTC+7): 08:31, 09:31, 14:31, 20:31.
+  // Chạy định kỳ mỗi giờ, phút 31 (đợt 37): bài hẹn 8:30/9:30/14:30/20:30 vẫn lên đúng giờ,
+  // và hàng chờ ảnh blog cạn nhanh. Lượt nào không có việc thì không commit gì.
   // Đăng bài hẹn giờ đúng giờ + lấy ảnh Pexels cho bài blog.
   "triggers": {
-    "crons": ["31 1 * * *", "31 2 * * *", "31 7 * * *", "31 13 * * *"]
+    "crons": ["31 * * * *"]
   },
 
   // Tắt ghi log (Observability) để chắc chắn không phát sinh phí

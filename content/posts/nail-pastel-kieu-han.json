@@ -65,11 +65,7 @@
         }
       }
     ],
-    "thu": 2,
-    "lam_lai": [
-      "bia",
-      "1"
-    ]
+    "xong": "2026-11-07T16:31:22.618Z"
   },
   "content": "<p>Pastel là những màu nhạt pha trắng: hồng phấn, xanh baby, tím lavender, vàng bơ, xanh mint. Ở Hàn Quốc, pastel thường được làm trên nền thạch hoặc pha sữa, cho cảm giác mềm như kẹo. Bài này gợi ý cách chọn pastel hợp da, cách phối và cách giữ màu không bị ngả.</p>\n\n<h2>Các màu pastel phổ biến</h2>\n\n<table>\n<thead><tr><th>Màu</th><th>Cảm giác</th><th>Hợp với</th></tr></thead>\n<tbody>\n<tr><td>Hồng phấn</td><td>Ngọt, nữ tính</td><td>Hầu hết tông da</td></tr>\n<tr><td>Tím lavender</td><td>Nhẹ, mơ màng</td><td>Da sáng, da lạnh</td></tr>\n<tr><td>Xanh baby</td><td>Tươi, mát</td><td>Da sáng, mùa nóng</td></tr>\n<tr><td>Xanh mint</td><td>Trẻ trung</td><td>Da ấm và trung tính</td></tr>\n<tr><td>Vàng bơ</td><td>Ấm, vui</td><td>Da ấm, da ngăm nhẹ</td></tr>\n<tr><td>Đào (peach)</td><td>Ấm, mềm</td><td>Da ấm, da ngăm</td></tr>\n</tbody>\n</table>\n\n<!--anh:1-->\n<h2>Pastel kiểu Hàn: sữa hoặc thạch</h2>\n\n<ul>\n<li><strong>Pastel sữa:</strong> màu đục nhẹ như kem, che móng thật, trông mịn và đều.</li>\n<li><strong>Pastel thạch:</strong> màu trong, thấy nhẹ móng thật bên dưới, như kẹo dẻo. Xem thêm <a href=\"/blog/nail-thach-han-quoc/\">nail thạch Hàn Quốc</a>.</li>\n</ul>\n\n<p>Với da ngăm, pastel quá nhạt có thể làm tay trông xám. Bạn nên chọn pastel có độ ấm như đào, vàng bơ, hoặc pastel đậm hơn một chút.</p>\n\n<h2>Cách phối pastel</h2>\n\n<ol>\n<li><strong>Mỗi ngón một màu pastel:</strong> năm màu khác nhau nhưng cùng độ nhạt, vui mà vẫn hài hoà.</li>\n<li><strong>Pastel + trắng sữa:</strong> xen kẽ, nhẹ nhàng hơn.</li>\n<li><strong>Pastel + hoạ tiết nhỏ:</strong> hoa, chấm bi, nơ trên một hai ngón. Xem bài <a href=\"/blog/ve-nail-tay-hay-sticker/\">vẽ nail tay hay sticker</a>.</li>\n<li><strong>Ombre pastel:</strong> hai màu pastel chuyển vào nhau.</li>\n</ol>\n\n<figure><img src=\"/media/blog/nail-pastel-kieu-han-2.jpg\" alt=\"Nail xanh mint tươi mát\" width=\"1000\" loading=\"lazy\" /><figcaption>Nail xanh mint tươi mát · Ảnh: <a href=\"https://www.flickr.com/photos/134585064@N05/22282391483\">waluntain / Openverse</a></figcaption></figure>\n<h2>Giữ pastel không ngả màu</h2>\n\n<p>Màu nhạt dễ bị ngả vàng nhẹ khi gặp nắng, kem chống nắng, nghệ hoặc thuốc nhuộm tóc. Top coat có khả năng chống tia UV giúp hạn chế. Bạn nên đeo găng khi nhuộm tóc hoặc nấu món có nghệ, và lau sạch tay sau khi thoa kem chống nắng.</p>\n\n<h2>Giá tham khảo tại VESSCA</h2>\n\n<table>\n<thead><tr><th>Bộ</th><th>Ước tính</th></tr></thead>\n<tbody>\n<tr><td>Cắt da tay + pastel trơn</td><td>~190.000₫</td></tr>\n<tr><td>Cắt da tay + pastel thạch</td><td>~210.000₫</td></tr>\n<tr><td>Cắt da tay + mix 5 màu pastel</td><td>~230.000₫</td></tr>\n</tbody>\n</table>\n\n<p>Mix nhiều màu tính thêm 10.000₫ cho mỗi màu từ màu thứ hai.</p>",
   "i18n": {
@@ -160,5 +156,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-pastel-kieu-han.jpg",
+  "coverCredit": {
+    "ten": "Mounthive",
+    "link": "https://pixabay.com/photos/nail-art-nails-nail-design-manicure-2688559/",
+    "nguon": "Pixabay",
+    "id": "pb-2688559"
   }
 }

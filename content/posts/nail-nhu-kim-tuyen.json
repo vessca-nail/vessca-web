@@ -64,6 +64,11 @@
           "zh": "甲根亮片渐变"
         }
       }
+    ],
+    "thu": 1,
+    "lam_lai": [
+      "1",
+      "2"
     ]
   },
   "content": "<p>Nail nhũ có hạt lấp lánh bắt sáng, từ hạt mịn như bụi đến kim tuyến lớn. Nhũ là lựa chọn quen thuộc cho tiệc, sinh nhật và dịp cuối năm. Bài này phân biệt các loại nhũ, cách dùng nhũ cho tinh tế và giá tại VESSCA.</p>\n\n<h2>Các loại nhũ thường gặp</h2>\n\n<table>\n<thead><tr><th>Loại</th><th>Đặc điểm</th><th>Hợp với</th></tr></thead>\n<tbody>\n<tr><td>Nhũ mịn trong gel</td><td>Hạt nhỏ đều, lấp lánh nhẹ</td><td>Đi làm, hằng ngày</td></tr>\n<tr><td>Nhũ dày</td><td>Hạt dày, phủ kín móng</td><td>Tiệc, chụp ảnh</td></tr>\n<tr><td>Kim tuyến lớn</td><td>Mảnh lớn, nhiều hình dạng</td><td>Điểm nhấn một hai ngón</td></tr>\n<tr><td>Nhũ aurora</td><td>Ánh đổi màu cầu vồng</td><td>Phong cách Hàn, tiệc tối</td></tr>\n<tr><td>Đắp nhũ</td><td>Rắc nhũ lên một phần móng</td><td>Ombre nhũ, viền French nhũ</td></tr>\n</tbody>\n</table>\n\n<!--anh:1-->\n<h2>Dùng nhũ cho tinh tế</h2>\n\n<ul>\n<li><strong>Nhũ trên nền thạch:</strong> nhũ mịn lơ lửng trong lớp thạch trong, như kẹo kim tuyến, đúng kiểu Hàn.</li>\n<li><strong>Ombre nhũ:</strong> nhũ dày ở chân móng, nhạt dần ra đầu, che phần móng mọc ra.</li>\n<li><strong>Một ngón nhấn:</strong> nhũ dày ở ngón áp út, các ngón còn lại sơn trơn cùng tông.</li>\n<li><strong>French nhũ:</strong> viền đầu móng bằng nhũ vàng hoặc bạc. Xem bài <a href=\"/blog/nail-french-kieu-han/\">nail French kiểu Hàn</a>.</li>\n</ul>\n\n<h2>Tháo nhũ có khó không</h2>\n\n<p>Nhũ dày và kim tuyến lớn tháo lâu hơn sơn trơn vì nhiều lớp và hạt nhũ cản dung dịch. Kỹ thuật viên sẽ dũa mỏng lớp nhũ trước khi ủ. Bạn không nên tự cạy nhũ, vì dễ bóc theo lớp móng thật. Đọc bài <a href=\"/blog/vi-sao-thao-gel-mat-20-phut/\">vì sao tháo gel đúng cách mất 20 phút</a>.</p>\n\n<!--anh:2-->\n<h2>Giá tại VESSCA</h2>\n\n<table>\n<thead><tr><th>Dịch vụ</th><th>Giá</th></tr></thead>\n<tbody>\n<tr><td>Sơn mắt mèo, nhũ (gel cơ bản)</td><td>170.000₫</td></tr>\n<tr><td>Nhũ SHOW ME (sơn Hàn cao cấp)</td><td>220.000₫</td></tr>\n<tr><td>Nhũ AURORA QUEEN (sơn Hàn cao cấp)</td><td>280.000₫</td></tr>\n<tr><td>Đắp nhũ, ombre nhũ</td><td>từ 10.000₫</td></tr>\n</tbody>\n</table>\n\n<p>Cộng thêm cắt da tay 60.000₫. Một bộ nhũ cơ bản khoảng 230.000₫. Xem thêm <a href=\"/blog/nail-nhu-aurora-han-quoc/\">nail nhũ aurora Hàn Quốc</a> nếu bạn thích ánh đổi màu.</p>",
@@ -155,5 +160,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-nhu-kim-tuyen.jpg",
+  "coverCredit": {
+    "ten": "waluntain",
+    "link": "https://www.flickr.com/photos/134585064@N05/22711108420",
+    "nguon": "Openverse",
+    "id": "ov-f052de30-737c-4834-b60e-94bc5d1189fc"
   }
 }

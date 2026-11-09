@@ -351,7 +351,7 @@ async function timAnh(env, tuKhoa, daDung, bao, duPhong = true) {
     thể không có — dùng câu minh hoạ trung tính kèm tiêu đề bài. */
 function altChoAnh(photo, altViet, post, lang = 'vi') {
   if (!photo.laDuPhong) return altViet;
-  const tienTo = { vi: 'Ảnh minh hoạ', en: 'Illustration', ko: '참고 이미지', zh: '示意图' }[lang] || 'Illustration';
+  const tienTo = { vi: 'Ảnh minh hoạ', en: 'Illustration', ko: '참고 이미지', zh: '示意圖' }[lang] || 'Illustration';
   return `${tienTo}: ${post.title}`;
 }
 
@@ -379,7 +379,7 @@ async function taiAnh(photo, laBia) {
 
 const escAttr = (s) => String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
-const CHU_ANH = { vi: 'Ảnh', en: 'Photo', ko: '사진', zh: '图片' };
+const CHU_ANH = { vi: 'Ảnh', en: 'Photo', ko: '사진', zh: '圖片' };
 
 function hinhTrongBai(src, alt, photo, lang = 'vi') {
   return `<figure><img src="${src}" alt="${escAttr(alt)}" width="1000" loading="lazy" />` +

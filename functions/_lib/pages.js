@@ -748,7 +748,7 @@ export function statusPage({ checks, repo }) {
 export function thongKePage(tk) {
   const so = (n) => Number(n || 0).toLocaleString('vi-VN');
   const QG = { VN: 'Việt Nam', KR: 'Hàn Quốc', CN: 'Trung Quốc', TW: 'Đài Loan', HK: 'Hồng Kông', US: 'Mỹ', JP: 'Nhật Bản', SG: 'Singapore', AU: 'Úc', TH: 'Thái Lan', MY: 'Malaysia', FR: 'Pháp', DE: 'Đức', GB: 'Anh', CA: 'Canada' };
-  const NN = { vi: 'Tiếng Việt', en: 'Tiếng Anh', ko: 'Tiếng Hàn', zh: 'Tiếng Trung', 'zh-Hans': 'Tiếng Trung' };
+  const NN = { vi: 'Tiếng Việt', en: 'Tiếng Anh', ko: 'Tiếng Hàn', zh: 'Tiếng Trung', 'zh-Hant': 'Tiếng Trung' };
   const tenTrang = (p) => {
     if (p === '/' ) return 'Trang chủ';
     const m = /^\/(?:(en|ko|zh)\/)?blog\/?(.*?)\/?$/.exec(p);

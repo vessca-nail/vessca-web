@@ -555,7 +555,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
     try {
       const raw = await docFile(env, YEU_CAU);
       const ds = raw ? JSON.parse(raw) : [];
-      const cho = ds.filter((x) => x && x.luu && x.tim && !x.xong && (x.thu || 0) < 3);
+      const cho = ds.filter((x) => x && x.luu && (x.tim || x.url) && !x.xong && (x.thu || 0) < 3);
       if (cho.length) {
         let daDung = daDungChung;
         if (!daDung) {
@@ -563,11 +563,17 @@ export async function chayDinhKy(env, { ep = false } = {}) {
           daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
         }
         let doi = false;
-        for (const x of cho.slice(0, 3)) {
+        for (const x of cho.slice(0, 4)) {
           if (!conKho(env)) break;
-          const kq = await layAnh(env, x.tim, daDung, bao, true, false).catch((e) => { bao.push(`${x.luu}: lỗi — ${e.message}`); return null; });
+          // Có "url" (ảnh đã chọn tay, vd từ Pexels) thì tải thẳng ảnh đó, khỏi tìm.
+          const kq = x.url
+            ? await (async () => {
+                const p = { id: `url:${x.url}`, ten: x.ten || '', link: x.link || x.url, nguon: x.kho || 'Pexels', tai: () => [x.url] };
+                return { p, bytes: await taiAnh(p, true) };
+              })().catch((e) => { bao.push(`${x.luu}: lỗi — ${e.message}`); return null; })
+            : await layAnh(env, x.tim, daDung, bao, true, false).catch((e) => { bao.push(`${x.luu}: lỗi — ${e.message}`); return null; });
           doi = true;
-          if (!kq) { x.thu = (x.thu || 0) + 1; bao.push(`${x.luu}: chưa tìm được ảnh "${x.tim}" (lần ${x.thu})`); continue; }
+          if (!kq) { x.thu = (x.thu || 0) + 1; bao.push(`${x.luu}: chưa lấy được ảnh "${x.tim || x.url}" (lần ${x.thu})`); continue; }
           const { p, bytes } = kq;
           files.push({ path: `content/media/${x.luu}`, b64: bytesToB64(bytes) });
           daDung.add(p.id); daDung.add(`u:${p.ten}`);

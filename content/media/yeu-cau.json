@@ -1,6 +1,26 @@
 [
-  { "luu": "goi-dau/goi-1.jpg", "tim": "hair wash salon shampoo" },
-  { "luu": "goi-dau/goi-2.jpg", "tim": "head spa scalp massage" },
-  { "luu": "goi-dau/goi-3.jpg", "tim": "facial sheet mask spa" },
-  { "luu": "goi-dau/goi-4.jpg", "tim": "head spa hair washing relax" }
+  {
+    "luu": "goi-dau/goi-1.jpg",
+    "url": "https://images.pexels.com/photos/23349900/pexels-photo-23349900/free-photo-of-washing-woman-hair-at-hairdresser.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "link": "https://www.pexels.com/photo/washing-woman-hair-at-hairdresser-23349900/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "goi-dau/goi-2.jpg",
+    "url": "https://images.pexels.com/photos/5659011/pexels-photo-5659011.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "link": "https://www.pexels.com/photo/5659011/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "goi-dau/goi-3.jpg",
+    "url": "https://images.pexels.com/photos/36436447/pexels-photo-36436447/free-photo-of-relaxing-facial-treatment-in-abuja-spa.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "link": "https://www.pexels.com/photo/36436447/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "goi-dau/goi-4.jpg",
+    "url": "https://images.pexels.com/photos/6663371/pexels-photo-6663371.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "link": "https://www.pexels.com/photo/6663371/",
+    "kho": "Pexels"
+  }
 ]

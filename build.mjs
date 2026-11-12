@@ -373,7 +373,7 @@ async function soNoiBo() {
   // Đợt 38: còn ảnh "theo yêu cầu" chưa lấy (content/media/yeu-cau.json) thì báo cho cron biết.
   try {
     const yc = JSON.parse(await fs.readFile(path.join(MEDIA_DIR, 'yeu-cau.json'), 'utf8'));
-    out.yeuCauAnh = yc.some((x) => x && x.luu && x.tim && !x.xong && (x.thu || 0) < 3);
+    out.yeuCauAnh = yc.some((x) => x && x.luu && (x.tim || x.url) && !x.xong && (x.thu || 0) < 3);
   } catch { out.yeuCauAnh = false; }
   if (!(await exists(POSTS_DIR))) return out;
   for (const f of (await fs.readdir(POSTS_DIR)).filter((x) => x.endsWith('.json'))) {

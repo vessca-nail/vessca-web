@@ -1,0 +1,30 @@
+name: Tải ảnh theo yêu cầu
+
+# Bấm tay: tải ngay các ảnh có "url" trong content/media/yeu-cau.json.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  tai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node tools/tai-anh-yeu-cau.mjs
+      - name: Commit nếu có thay đổi
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/media
+          if git diff --staged --quiet; then
+            echo "Không có thay đổi."
+          else
+            git commit -m "Ảnh theo yêu cầu: tải ảnh đã chọn"
+            git pull --rebase
+            git push
+          fi

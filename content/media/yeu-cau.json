@@ -29,7 +29,14 @@
     "luu": "goi-dau/goi-3.jpg",
     "url": "https://images.pexels.com/photos/3985331/pexels-photo-3985331.jpeg?auto=compress&cs=tinysrgb&w=1400",
     "link": "https://www.pexels.com/photo/3985331/",
-    "kho": "Pexels"
+    "kho": "Pexels",
+    "xong": "2026-11-12T10:16:02.553Z",
+    "nguon": {
+      "ten": "",
+      "link": "https://www.pexels.com/photo/3985331/",
+      "nguon": "Pexels",
+      "id": "url:https://images.pexels.com/photos/3985331/pexels-photo-3985331.jpeg?auto=compress&cs=tinysrgb&w=1400"
+    }
   },
   {
     "luu": "goi-dau/goi-4.jpg",

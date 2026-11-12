@@ -37,6 +37,7 @@ const API_GH = 'https://api.github.com';
 // ngày. Sổ tạm boNho đã cắt phần lớn lượt gọi lặp nên vẫn dưới mức 50 lượt
 // gọi ra ngoài mỗi lượt của gói miễn phí: mỗi bài chừng 3 lượt tìm + 3 lượt
 // tải + 1 lượt đọc GitHub.
+const YEU_CAU = 'content/media/yeu-cau.json';
 const BAI_MOI_LUOT = 3;   // đợt 37: chạy mỗi giờ, 3 bài/lượt — hàng chờ cạn trong ngày
 const LOI_TOI_DA = 3;     // quá số này thì dừng lượt, để lượt sau chạy tiếp
 const DA_DUNG = 'content/media/blog/_da-dung.json';
@@ -406,9 +407,9 @@ function chenAnh(html, i, figure) {
    lượt. Lượt sau lặp y hệt, nên cả hàng chờ đứng im từ 06/11.
    Giờ: tải hỏng thì ghi ảnh đó vào sổ "đã dùng" (không bao giờ chọn lại) và
    thử ảnh kế tiếp, tối đa 4 lần cho mỗi ô ảnh. */
-async function layAnh(env, tuKhoa, daDung, bao, laBia) {
+async function layAnh(env, tuKhoa, daDung, bao, laBia, duPhong = true) {
   for (let lan = 0; lan < 4; lan++) {
-    const p = await timAnh(env, tuKhoa, daDung, bao);
+    const p = await timAnh(env, tuKhoa, daDung, bao, duPhong);
     if (!p) return null;
     try {
       return { p, bytes: await taiAnh(p, laBia) };
@@ -512,9 +513,11 @@ export async function chayDinhKy(env, { ep = false } = {}) {
   const files = [];
 
   // 1) Ảnh
+  let daDungChung = null;      // sổ "ảnh đã dùng" của lượt này, bước 1b dùng chung
   if (coKho(env) && so.canAnh?.length) {
     const daDungRaw = await docFile(env, DA_DUNG);
     const daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
+    daDungChung = daDung;
     // Sổ nội bộ chỉ mới lại sau khi web dựng xong — bài vừa làm ở lượt trước
     // có thể vẫn nằm trong danh sách. Bài nào đã xong thì bỏ qua, xét tối đa 4 bài.
     /* Đợt 33: trước đây gặp lỗi là `break` — thoát cả lượt. Một bài kẹt
@@ -539,6 +542,47 @@ export async function chayDinhKy(env, { ep = false } = {}) {
     if (files.length) files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
   } else if (!coKho(env) && so.canAnh?.length) {
     bao.push(`Chưa có PIXABAY_API_KEY lẫn PEXELS_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
+  }
+
+  // 1b) Ảnh THEO YÊU CẦU (đợt 38 — 12/11/2026): ảnh cho trang không phải blog
+  // (vd bảng giá gội đầu). Danh sách ở content/media/yeu-cau.json:
+  //   [{ "luu": "goi-dau/goi-1.jpg", "tim": "hair wash salon" }, …]
+  // Mục nào chưa có "xong" thì lượt này tìm (tối đa 3 mục/lượt), lưu vào
+  // content/media/<luu> và ghi nguồn ảnh vào chính mục đó. KHÔNG dùng từ khoá
+  // dự phòng (chúng là từ khoá nail) — không ra ảnh đúng thì để trống, trang
+  // tự dùng ảnh có sẵn.
+  if (coKho(env) && so.yeuCauAnh) {
+    try {
+      const raw = await docFile(env, YEU_CAU);
+      const ds = raw ? JSON.parse(raw) : [];
+      const cho = ds.filter((x) => x && x.luu && x.tim && !x.xong && (x.thu || 0) < 3);
+      if (cho.length) {
+        let daDung = daDungChung;
+        if (!daDung) {
+          const daDungRaw = await docFile(env, DA_DUNG);
+          daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
+        }
+        let doi = false;
+        for (const x of cho.slice(0, 3)) {
+          if (!conKho(env)) break;
+          const kq = await layAnh(env, x.tim, daDung, bao, true, false).catch((e) => { bao.push(`${x.luu}: lỗi — ${e.message}`); return null; });
+          doi = true;
+          if (!kq) { x.thu = (x.thu || 0) + 1; bao.push(`${x.luu}: chưa tìm được ảnh "${x.tim}" (lần ${x.thu})`); continue; }
+          const { p, bytes } = kq;
+          files.push({ path: `content/media/${x.luu}`, b64: bytesToB64(bytes) });
+          daDung.add(p.id); daDung.add(`u:${p.ten}`);
+          x.xong = new Date().toISOString();
+          x.nguon = { ten: p.ten, link: p.link, nguon: p.nguon, id: p.id };
+          bao.push(`${x.luu}: đã lấy ảnh (${p.nguon})`);
+        }
+        if (doi) {
+          files.push({ path: YEU_CAU, b64: textToB64(JSON.stringify(ds, null, 2) + '\n') });
+          const i = files.findIndex((f) => f.path === DA_DUNG);
+          if (i >= 0) files.splice(i, 1);
+          files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
+        }
+      }
+    } catch (e) { bao.push(`ảnh theo yêu cầu: lỗi — ${e.message}`); }
   }
 
   // 2) Bài tới giờ đăng mà web chưa dựng lại

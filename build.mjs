@@ -21,6 +21,7 @@ import { site, categories, languages, langOrder, blogPath } from './site.config.
 import { renderBlogIndex, renderPost, render404, postView, postLangs } from './lib/render.mjs';
 import { escXml, truncate, sanitizeHtml } from './lib/utils.mjs';
 import { trangBangGia, BANG_GIA_HREFLANG } from './lib/bang-gia.mjs';
+import { trangGoiDau } from './lib/goi-dau.mjs';
 import { dungTrangChu, HOME_LANGS, homePath } from './lib/trang-chu-ngon-ngu.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -369,6 +370,11 @@ Sitemap: ${site.url}/sitemap.xml
 /** Bài hẹn giờ + bài còn thiếu ảnh — đọc thẳng file gốc, kể cả bài chưa tới giờ */
 async function soNoiBo() {
   const out = { dungLuc: new Date().toISOString(), henGio: [], canAnh: [] };
+  // Đợt 38: còn ảnh "theo yêu cầu" chưa lấy (content/media/yeu-cau.json) thì báo cho cron biết.
+  try {
+    const yc = JSON.parse(await fs.readFile(path.join(MEDIA_DIR, 'yeu-cau.json'), 'utf8'));
+    out.yeuCauAnh = yc.some((x) => x && x.luu && x.tim && !x.xong && (x.thu || 0) < 3);
+  } catch { out.yeuCauAnh = false; }
   if (!(await exists(POSTS_DIR))) return out;
   for (const f of (await fs.readdir(POSTS_DIR)).filter((x) => x.endsWith('.json'))) {
     try {
@@ -408,7 +414,12 @@ async function main() {
 
   const indexPath = path.join(DIST, 'index.html');
   if (await exists(indexPath)) {
-    await fs.writeFile(indexPath, enhanceHomepage(await fs.readFile(indexPath, 'utf8')), 'utf8');
+    // Ảnh 4 gói gội đầu ở trang chủ: ảnh kho ảnh (content/media/goi-dau) nếu đã về, chưa có thì ảnh cắt từ menu.
+    let anhGoi = [];
+    try { anhGoi = await fs.readdir(path.join(MEDIA_DIR, 'goi-dau')); } catch { /* chưa có */ }
+    const trangChuGoc = (await fs.readFile(indexPath, 'utf8')).replace(/\{\{GOI_IMG_(\d)\}\}/g,
+      (_, n) => (anhGoi.includes(`goi-${n}.jpg`) ? '/media' : '/images') + `/goi-dau/goi-${n}.jpg`);
+    await fs.writeFile(indexPath, enhanceHomepage(trangChuGoc), 'utf8');
     // Trang chủ riêng cho từng ngôn ngữ, để khách nước ngoài tìm thấy trên Google
     const tc = dungTrangChu(site, await fs.readFile(indexPath, 'utf8'), (w) => console.warn('   ⚠  Trang chủ:', w));
     await fs.writeFile(indexPath, tc.vi, 'utf8');
@@ -496,7 +507,22 @@ async function main() {
     await fs.writeFile(path.join(DIST, t.dir, 'index.html'), t.html, 'utf8');
   }
   if (bangGia.length) log(`Sinh ${bangGia.length} trang bảng giá (/bang-gia/)`);
+  // Trang bảng giá gội đầu /goi-dau/ (+ en/ko/zh) — đợt 38. Ảnh cron đã tải về thì dùng, chưa có thì dùng ảnh cắt từ menu.
+  let coAnhGoi = [];
+  try { coAnhGoi = await fs.readdir(path.join(MEDIA_DIR, 'goi-dau')); } catch { /* chưa có ảnh nào */ }
+  const goiDau = trangGoiDau(site, new Set(coAnhGoi));
+  for (const t of goiDau) {
+    await fs.mkdir(path.join(DIST, t.dir), { recursive: true });
+    await fs.writeFile(path.join(DIST, t.dir, 'index.html'), t.html, 'utf8');
+  }
+  log(`Sinh ${goiDau.length} trang gội đầu (/goi-dau/)`);
   let sitemap = buildSitemap(posts);
+  for (const nhom of [goiDau]) {
+    const homNay = new Date().toISOString().slice(0, 10);
+    const altLinks = nhom.map((b) => `\n    <xhtml:link rel="alternate" hreflang="${BANG_GIA_HREFLANG[b.lang]}" href="${b.loc}"/>`).join('');
+    const them = nhom.map((b) => `  <url>\n    <loc>${b.loc}</loc>\n    <lastmod>${homNay}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>${altLinks}\n  </url>`).join('\n');
+    sitemap = sitemap.replace('</urlset>', them + '\n</urlset>');
+  }
   if (bangGia.length) {
     const homNay = new Date().toISOString().slice(0, 10);
     const altLinks = bangGia.map((b) => `\n    <xhtml:link rel="alternate" hreflang="${BANG_GIA_HREFLANG[b.lang]}" href="${b.loc}"/>`).join('');

@@ -217,6 +217,18 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 12/11/2026 — phiên app/web: **tiệm mở thêm dịch vụ GỘI ĐẦU** (chủ tiệm gửi menu 12/11). Trang mới
+  `/goi-dau/` (+ `/en|ko|zh/goi-dau/`), nút chuyển Nail | Gội đầu ở `/bang-gia/`, mục gội đầu ở trang chủ,
+  form đặt lịch có lựa chọn "Gội đầu thư giãn" và "Nail và gội đầu". Dữ kiện ĐÃ XÁC NHẬN (đúng theo menu,
+  nguồn duy nhất là `lib/goi-dau.mjs` — viết bài thì lấy số ở đó, không tự thêm):
+  Gói 01 Gội sạch thơm 30' 99/129/149k · Gói 02 Gội + massage chăm da đầu 50' 229/259/279k ·
+  Gói 03 Gội + chăm da mặt 50' 269/299/319k · Gói 04 Gói thiên đường 75' 419/449/469k
+  (ba mức giá theo dầu gội: Nguyên Xuân / Gừng sả thiên nhiên / Unove Hàn Quốc). Mặt nạ Hàn Quốc chọn 1
+  loại, loại nâng cơ săn chắc phụ thu 30k. Dịch vụ lẻ chỉ dùng kèm gói. CHƯA có dữ kiện về: ngày bắt đầu
+  nhận khách gội, số giường gội, thợ nào làm — đừng viết các ý này.
+  Ảnh trang gội đầu: cron tự lấy theo `content/media/yeu-cau.json` (ảnh lưu `content/media/goi-dau/`),
+  chưa có thì trang dùng ảnh cắt từ menu ở `src/images/goi-dau/`.
+
 - 07/11/2026 — phiên app/web: **hàng chờ ảnh kẹt từ 06/11, đã gỡ.** Một ảnh Openverse
   (`ov-2fa04446…`) tìm thấy nhưng tải về bị 424; `taiAnh` ném lỗi làm hỏng cả bài, ảnh hỏng không
   được ghi lại nên bài kế tiếp chọn lại đúng ảnh đó → 3 lỗi là dừng lượt, lượt sau lặp y hệt.

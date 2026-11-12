@@ -281,6 +281,16 @@
   .price-note{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
 
   /* ---------- COLLECTION (ảnh lớn tràn viền, tông sáng xuyên suốt) ---------- */
+  .goidau{background:var(--panel);}
+  .goi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px;}
+  .goi-card{display:flex;flex-direction:column;background:var(--stone);color:var(--ink);text-decoration:none;min-width:0;}
+  .goi-img{display:block;aspect-ratio:4/3;overflow:hidden;background:#EDEDED;}
+  .goi-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .goi-card:hover .goi-img img{transform:scale(1.04);}
+  .goi-meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding:14px 14px 0;}
+  .goi-name{font-family:'Noto Serif KR',Georgia,serif;font-size:16px;line-height:1.35;padding:6px 14px 0;flex:1;overflow-wrap:anywhere;}
+  .goi-price{font-size:13.5px;padding:10px 14px 16px;}
+  @media(min-width:900px){.goi-grid{grid-template-columns:repeat(4,1fr);gap:20px;}.goi-name{font-size:18px;}}
   .collection{background:var(--stone);}
   .feature-row{
     width:100vw;position:relative;left:50%;margin-left:-50vw;
@@ -730,6 +740,7 @@
       <a href="#about" data-i18n="nav.about">Câu chuyện</a>
       <a href="#services" data-i18n="nav.services">Dịch vụ</a>
       <a href="/bang-gia/" data-i18n="nav.prices" data-tk="Menu: Bảng giá">Bảng giá</a>
+      <a href="/goi-dau/" data-i18n="nav.goi" data-goi-link data-tk="Menu: Gội đầu">Gội đầu</a>
       <a href="#collection" data-i18n="nav.collection">Bộ sưu tập</a>
       <a href="/blog/" data-i18n="nav.blog">Blog</a>
       <a href="#booking" data-i18n="nav.booking">Đặt lịch</a>
@@ -979,6 +990,43 @@
 </section>
 
 
+<!-- ---------- GỘI ĐẦU (đợt 38 — 12/11/2026) ---------- -->
+<section class="goidau" id="goi-dau">
+  <div class="wrap">
+    <div class="head-row">
+      <h2 data-i18n="goi.title">Gội đầu thư giãn</h2>
+      <p data-i18n="goi.sub">Bốn gói gội đầu, từ gội sạch thơm 30 phút đến Gói thiên đường 75 phút chăm sóc cả da đầu, da mặt và cổ vai gáy. Mỗi gói có ba loại dầu gội xả để chọn.</p>
+      <a class="price-full" href="/goi-dau/" data-goi-link data-tk="Mở trang gội đầu"><span data-i18n="goi.full">Xem menu gội đầu</span> <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="goi-grid">
+      <a class="goi-card" href="/goi-dau/#goi-1" data-goi-link="goi-1" data-tk="Gội đầu: gói 1" data-reveal>
+        <span class="goi-img"><img src="{{GOI_IMG_1}}" alt="" loading="lazy" width="506" height="483"></span>
+        <span class="goi-meta"><span data-i18n="goi.pack">Gói</span> 01 · 30 <span data-i18n="goi.min">phút</span></span>
+        <span class="goi-name" data-i18n="goi.c1">Gội sạch thơm</span>
+        <span class="goi-price"><span data-i18n="goi.from">từ</span> 99.000₫</span>
+      </a>
+      <a class="goi-card" href="/goi-dau/#goi-2" data-goi-link="goi-2" data-tk="Gội đầu: gói 2" data-reveal>
+        <span class="goi-img"><img src="{{GOI_IMG_2}}" alt="" loading="lazy" width="506" height="483"></span>
+        <span class="goi-meta"><span data-i18n="goi.pack">Gói</span> 02 · 50 <span data-i18n="goi.min">phút</span></span>
+        <span class="goi-name" data-i18n="goi.c2">Gội sạch thơm, massage chăm da đầu</span>
+        <span class="goi-price"><span data-i18n="goi.from">từ</span> 229.000₫</span>
+      </a>
+      <a class="goi-card" href="/goi-dau/#goi-3" data-goi-link="goi-3" data-tk="Gội đầu: gói 3" data-reveal>
+        <span class="goi-img"><img src="{{GOI_IMG_3}}" alt="" loading="lazy" width="506" height="483"></span>
+        <span class="goi-meta"><span data-i18n="goi.pack">Gói</span> 03 · 50 <span data-i18n="goi.min">phút</span></span>
+        <span class="goi-name" data-i18n="goi.c3">Gội sạch thơm, chăm da mặt</span>
+        <span class="goi-price"><span data-i18n="goi.from">từ</span> 269.000₫</span>
+      </a>
+      <a class="goi-card" href="/goi-dau/#goi-4" data-goi-link="goi-4" data-tk="Gội đầu: gói 4" data-reveal>
+        <span class="goi-img"><img src="{{GOI_IMG_4}}" alt="" loading="lazy" width="506" height="483"></span>
+        <span class="goi-meta"><span data-i18n="goi.pack">Gói</span> 04 · 75 <span data-i18n="goi.min">phút</span></span>
+        <span class="goi-name" data-i18n="goi.c4">Gói thiên đường</span>
+        <span class="goi-price"><span data-i18n="goi.from">từ</span> 419.000₫</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ---------- COLLECTION ---------- -->
 <section class="collection" id="collection">
   <div class="wrap">
@@ -1121,6 +1169,8 @@
               <option data-i18n="booking.opt3">Sơn Hàn cao cấp</option>
               <option data-i18n="booking.opt4">Nối móng, đắp gel</option>
               <option data-i18n="booking.opt5">Design, đính phụ kiện</option>
+              <option data-i18n="booking.opt7">Gội đầu thư giãn</option>
+              <option data-i18n="booking.opt8">Nail và gội đầu</option>
               <option data-i18n="booking.opt6">Chưa biết — nhờ tư vấn</option>
             </select>
           </div>
@@ -1180,6 +1230,7 @@
         <a href="https://maps.app.goo.gl/ic8B2eEiF8PWipZg7" target="_blank" rel="noopener" data-i18n="footer.directions">Chỉ đường</a>
         <a href="#booking" data-i18n="nav.booking">Đặt lịch</a>
         <a href="/bang-gia/" data-i18n="nav.prices">Bảng giá</a>
+        <a href="/goi-dau/" data-i18n="nav.goi" data-goi-link>Gội đầu</a>
         <a href="/blog/" data-i18n="nav.blog">Blog</a></div>
       </div>
       <div>
@@ -1209,6 +1260,19 @@
     "nav.about": "Câu chuyện",
     "nav.services": "Dịch vụ",
     "nav.prices": "Bảng giá",
+    "nav.goi": "Gội đầu",
+    "goi.title": "Gội đầu thư giãn",
+    "goi.sub": "Bốn gói gội đầu, từ gội sạch thơm 30 phút đến Gói thiên đường 75 phút chăm sóc cả da đầu, da mặt và cổ vai gáy. Mỗi gói có ba loại dầu gội xả để chọn.",
+    "goi.full": "Xem menu gội đầu",
+    "goi.pack": "Gói",
+    "goi.min": "phút",
+    "goi.from": "từ",
+    "goi.c1": "Gội sạch thơm",
+    "goi.c2": "Gội sạch thơm, massage chăm da đầu",
+    "goi.c3": "Gội sạch thơm, chăm da mặt",
+    "goi.c4": "Gói thiên đường",
+    "booking.opt7": "Gội đầu thư giãn",
+    "booking.opt8": "Nail và gội đầu",
     "nav.collection": "Bộ sưu tập",
     "nav.booking": "Đặt lịch",
     "nav.contact": "Ghé thăm",
@@ -1368,6 +1432,19 @@
     "nav.about": "Story",
     "nav.services": "Services",
     "nav.prices": "Price list",
+    "nav.goi": "Head spa",
+    "goi.title": "Head spa & hair wash",
+    "goi.sub": "Four hair wash packages, from a 30-minute Fresh Hair Wash to the 75-minute Paradise Ritual for scalp, face, neck and shoulders. Each comes with a choice of three shampoos.",
+    "goi.full": "See the head spa menu",
+    "goi.pack": "Package",
+    "goi.min": "min",
+    "goi.from": "from",
+    "goi.c1": "Fresh Hair Wash",
+    "goi.c2": "Hair Wash & Scalp Therapy",
+    "goi.c3": "Hair Wash & Facial Glow Care",
+    "goi.c4": "The Paradise Ritual",
+    "booking.opt7": "Head spa / hair wash",
+    "booking.opt8": "Nail and hair wash",
     "nav.collection": "Collection",
     "nav.booking": "Booking",
     "nav.contact": "Visit",
@@ -1527,6 +1604,19 @@
     "nav.about": "스토리",
     "nav.services": "서비스",
     "nav.prices": "가격표",
+    "nav.goi": "헤드 스파",
+    "goi.title": "헤드 스파 · 샴푸",
+    "goi.sub": "30분 프레시 헤어 워시부터 두피, 얼굴, 목과 어깨까지 케어하는 75분 파라다이스 리추얼까지 네 가지 코스. 코스마다 샴푸 3종 중 선택할 수 있습니다.",
+    "goi.full": "헤드 스파 메뉴 보기",
+    "goi.pack": "코스",
+    "goi.min": "분",
+    "goi.from": "",
+    "goi.c1": "프레시 헤어 워시",
+    "goi.c2": "헤어 워시 & 두피 테라피",
+    "goi.c3": "헤어 워시 & 페이셜 글로우 케어",
+    "goi.c4": "파라다이스 리추얼",
+    "booking.opt7": "헤드 스파 · 샴푸",
+    "booking.opt8": "네일 + 샴푸",
     "nav.collection": "컬렉션",
     "nav.booking": "예약",
     "nav.contact": "오시는 길",
@@ -1686,6 +1776,19 @@
     "nav.about": "品牌故事",
     "nav.services": "服務項目",
     "nav.prices": "價目表",
+    "nav.goi": "洗髮",
+    "goi.title": "頭皮舒壓洗髮",
+    "goi.sub": "四種洗髮套餐，從 30 分鐘清爽洗髮，到 75 分鐘呵護頭皮、臉部與肩頸的天堂儀式。每種套餐皆可選三款洗髮精。",
+    "goi.full": "查看洗髮價目表",
+    "goi.pack": "套餐",
+    "goi.min": "分鐘",
+    "goi.from": "",
+    "goi.c1": "清爽洗髮",
+    "goi.c2": "洗髮＋頭皮護理",
+    "goi.c3": "洗髮＋臉部亮采護理",
+    "goi.c4": "天堂儀式",
+    "booking.opt7": "頭皮舒壓洗髮",
+    "booking.opt8": "美甲＋洗髮",
     "nav.collection": "作品系列",
     "nav.booking": "預約",
     "nav.contact": "到店",
@@ -1910,6 +2013,10 @@
     if(pl) pl.setAttribute('href', lang === 'vi' ? '/bang-gia/' : '/' + lang + '/bang-gia/');
     document.querySelectorAll('a[data-i18n="nav.prices"]').forEach(a=>{
       a.setAttribute('href', lang === 'vi' ? '/bang-gia/' : '/' + lang + '/bang-gia/');
+    });
+    document.querySelectorAll('a[data-goi-link]').forEach(a=>{
+      const g = a.getAttribute('data-goi-link');
+      a.setAttribute('href', (lang === 'vi' ? '' : '/' + lang) + '/goi-dau/' + (g ? '#' + g : ''));
     });
     document.querySelectorAll('a[data-i18n="nav.blog"]').forEach(a=>{
       a.setAttribute('href', lang === 'vi' ? '/blog/' : '/' + lang + '/blog/');
@@ -2204,5 +2311,14 @@
 </script>
 
 <script src="/tk.js" defer></script>
+<script>
+/* Đợt 38: vào từ trang gội đầu (/?dv=goi#booking) thì chọn sẵn "Gội đầu" trong form đặt lịch */
+(function(){ try{
+  if(/[?&]dv=goi/.test(location.search)){
+    var o=document.querySelector('#fService option[data-i18n="booking.opt7"]');
+    if(o) o.selected=true;
+  }
+}catch(e){} })();
+</script>
 </body>
 </html>

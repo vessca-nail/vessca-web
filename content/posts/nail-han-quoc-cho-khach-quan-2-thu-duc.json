@@ -40,7 +40,8 @@
         "zh": "VESSCA 韩式美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-14T04:30:00.000Z"
   },
   "content": "<p>Khách ở khu Quận 2 cũ (Thảo Điền, An Phú) và Thủ Đức thường hỏi có nên đi qua Bình Thạnh để làm nail kiểu Hàn không. Bài này giúp bạn quyết định và lên kế hoạch để chuyến đi đáng thời gian.</p>\n\n<h2>Điều VESSCA có mà bạn có thể đang tìm</h2>\n\n<ul>\n<li>Chủ tiệm được đào tạo tại Hàn Quốc; phong cách móng mỏng, gọn, tông màu nhẹ.</li>\n<li>Sơn Hàn tiệm tự chọn và mang về: Kissny (KISS NY) Tinker Gel, Snow Velvet, Snow Velvet Candy (SWEET CANDY), Aurora Queen.</li>\n<li>Nhân viên nói tiếng Việt, Anh và Trung, tiện cho khách nước ngoài sống ở khu Thảo Điền.</li>\n<li>Phục vụ giới hạn số khách cùng lúc, bảo hành 5 ngày.</li>\n</ul>\n\n<h2>Lên kế hoạch cho một lần ghé</h2>\n\n<table>\n<thead><tr><th>Việc</th><th>Gợi ý</th></tr></thead>\n<tbody>\n<tr><td>Đặt lịch</td><td>Đặt trước qua form web hoặc 0933.528.501 để không phải chờ</td></tr>\n<tr><td>Chọn giờ</td><td>Tránh giờ tan tầm nếu đi xa; tiệm mở 9:00–20:30 mỗi ngày</td></tr>\n<tr><td>Gộp dịch vụ</td><td>Chọn \"Nail và gội đầu\" để làm cả hai trong một lần</td></tr>\n<tr><td>Gửi mẫu</td><td>Nhắn ảnh mẫu trước để kỹ thuật viên chuẩn bị màu</td></tr>\n<tr><td>Để xe</td><td>Có chỗ để xe trước tiệm, trong hẻm 251 Lê Quang Định</td></tr>\n</tbody>\n</table>\n\n<h2>Chọn dịch vụ bền để ít phải quay lại</h2>\n\n<p>Nếu đi xa, bạn có thể ưu tiên dịch vụ giữ được lâu như sơn gel, úp móng hoặc đắp gel, và hỏi kỹ thuật viên về lịch fill gel (190.000₫ mỗi bộ). Bài <a href=\"/blog/bao-lau-nen-lam-nail-mot-lan/\">bao lâu nên làm nail một lần</a> giúp bạn ước tính lần ghé tiếp theo. Bảng giá đầy đủ ở trang <a href=\"/bang-gia/\">bảng giá</a>.</p>\n\n<p>Địa chỉ: 251/30 Lê Quang Định, phường Gia Định, TP.HCM (Bình Thạnh cũ). Hướng dẫn tìm hẻm có ở bài <a href=\"/blog/den-vessca-gui-xe-dat-lich/\">đến VESSCA: tìm hẻm, gửi xe và đặt lịch</a>.</p>",
   "i18n": {
@@ -113,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-han-quoc-cho-khach-quan-2-thu-duc.jpg",
+  "coverCredit": {
+    "ten": "",
+    "link": "https://www.pexels.com/photo/18112334/",
+    "nguon": "Pexels",
+    "id": "px-18112334"
   }
 }

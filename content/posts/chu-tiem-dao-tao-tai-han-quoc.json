@@ -41,7 +41,8 @@
         "zh": "按韩式做法操作的技师"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-14T04:30:00.000Z"
   },
   "content": "<p>Nhiều tiệm gọi mình là \"nail Hàn\", nhưng điều đó có thể chỉ là tên gọi. Ở VESSCA, chữ \"kiểu Hàn\" gắn với một điều cụ thể: chủ tiệm được đào tạo tại Hàn Quốc và đưa cách làm đó về tiệm. Bài này nói rõ điều đó thể hiện ở đâu trên bộ móng của bạn.</p>\n\n<h2>Những gì thay đổi trên bộ móng</h2>\n\n<table>\n<thead><tr><th>Bước</th><th>Cách VESSCA làm</th></tr></thead>\n<tbody>\n<tr><td>Cắt da</td><td>Cắt da kiểu Hàn: làm sạch viền móng gọn, chú trọng dưỡng viền sau khi cắt</td></tr>\n<tr><td>Lớp sơn</td><td>Sơn gel nhiều lớp mỏng, hơ đèn từng lớp, nhìn tự nhiên</td></tr>\n<tr><td>Màu</td><td>Ưu tiên tông nhẹ, thạch, nude, mắt mèo, nhũ tinh tế</td></tr>\n<tr><td>Sơn</td><td>Sơn Hàn tiệm tự chọn và mang về từ Hàn</td></tr>\n</tbody>\n</table>\n\n<p>Chi tiết về bước cắt da có ở bài <a href=\"/blog/cat-da-kieu-han/\">cắt da kiểu Hàn</a>, và điểm khác giữa hai phong cách ở bài <a href=\"/blog/nail-han-quoc-khac-gi-nail-thuong/\">nail Hàn Quốc khác gì nail thường</a>.</p>\n\n<h2>Bộ sưu tập sơn mang về từ Hàn</h2>\n\n<p>Tiệm dùng Kissny (KISS NY) Tinker Gel, Snow Velvet, Snow Velvet Candy (SWEET CANDY) và Aurora Queen. Đây là các dòng sơn chủ tiệm tự chọn, không phải sơn mua sẵn trong nước. Xem thêm ở bài <a href=\"/blog/bo-suu-tap-son-han-quoc-tai-vessca/\">bộ sưu tập sơn Hàn Quốc tại VESSCA</a>.</p>\n\n<h2>Thành quy trình chung của tiệm</h2>\n\n<p>Cách làm này là nền cho quy trình chung của tiệm: cắt da kiểu Hàn, sơn gel nhiều lớp mỏng và dụng cụ kim loại tiệt trùng bằng máy sau mỗi khách. Quy trình từng bước có ở bài <a href=\"/blog/quy-trinh-lam-nail-tai-vessca/\">quy trình làm nail tại VESSCA</a>.</p>\n\n<h2>Điều nên biết trước khi đến</h2>\n\n<ul>\n<li>Nhân viên nói tiếng Việt, Anh và Trung, không nói tiếng Hàn.</li>\n<li>Tiệm phục vụ số khách giới hạn cùng lúc, nên đặt lịch trước.</li>\n<li>Bảo hành 5 ngày.</li>\n</ul>\n\n<p>Giá sơn gel trơn từ 130.000₫; các dòng sơn Hàn đặc biệt như Aurora Queen, mắt mèo KISS NY từ 280.000₫. Bảng giá đầy đủ ở trang <a href=\"/bang-gia/\">bảng giá</a>.</p>",
   "i18n": {
@@ -114,5 +115,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/chu-tiem-dao-tao-tai-han-quoc.jpg",
+  "coverCredit": {
+    "ten": "",
+    "link": "https://www.pexels.com/photo/6135681/",
+    "nguon": "Pexels",
+    "id": "px-6135681"
   }
 }

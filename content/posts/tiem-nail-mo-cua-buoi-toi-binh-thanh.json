@@ -40,7 +40,8 @@
         "zh": "下班后做美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-14T04:30:00.000Z"
   },
   "content": "<p>Đi làm về muộn, cuối ngày mới rảnh để chăm móng? VESSCA mở cửa 9:00–20:30 mỗi ngày, kể cả cuối tuần, nên bạn vẫn có thể làm nail hoặc gội đầu sau giờ làm. Bài này giúp bạn chọn dịch vụ vừa với khung giờ tối.</p>\n\n<h2>Chọn dịch vụ theo thời gian còn lại</h2>\n\n<table>\n<thead><tr><th>Bạn có</th><th>Gợi ý</th></tr></thead>\n<tbody>\n<tr><td>Khoảng 30 phút</td><td>Cắt da, chỉnh form, dưỡng viền; Hand Ritual 30 phút; gội đầu Gói 01</td></tr>\n<tr><td>Khoảng 45–50 phút</td><td>Foot Ritual 45 phút; gội đầu Gói 02 hoặc Gói 03</td></tr>\n<tr><td>Một tiếng trở lên</td><td>Full Ritual 60 phút; sơn gel kèm vẽ; Gói thiên đường 75 phút</td></tr>\n</tbody>\n</table>\n\n<p>Nếu đang có gel cũ, nhớ cộng thêm khoảng 20 phút phá gel (30.000₫). Lý do bước này cần thời gian có ở bài <a href=\"/blog/vi-sao-thao-gel-mat-20-phut/\">vì sao tháo gel mất 20 phút</a>.</p>\n\n<h2>Đặt lịch buổi tối</h2>\n\n<ul>\n<li>Khung tối thường kín sớm vì tiệm phục vụ số khách giới hạn cùng lúc. Đặt trước một hai ngày sẽ dễ có giờ hơn.</li>\n<li>Gọi 0933.528.501 nếu muốn hỏi giờ muộn nhất còn nhận cho dịch vụ bạn chọn.</li>\n<li>Gửi ảnh mẫu trước để buổi làm nhanh gọn.</li>\n</ul>\n\n<h2>Sau khi làm xong buổi tối</h2>\n\n<p>Với sơn gel, móng khô ngay sau khi chiếu đèn nên bạn có thể về nhà làm việc bình thường. Những lưu ý khi rửa tay, tắm và làm việc nhà có ở bài <a href=\"/blog/lam-nail-xong-bao-lau-rua-tay/\">làm nail xong bao lâu thì rửa tay</a>.</p>\n\n<p>VESSCA ở 251/30 Lê Quang Định, phường Gia Định (Bình Thạnh cũ), giáp Phú Nhuận và Gò Vấp, có chỗ để xe trước tiệm. Đặt lịch ở mục <a href=\"/#booking\">Đặt lịch</a>.</p>",
   "i18n": {
@@ -113,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/tiem-nail-mo-cua-buoi-toi-binh-thanh.jpg",
+  "coverCredit": {
+    "ten": "",
+    "link": "https://www.pexels.com/photo/7755218/",
+    "nguon": "Pexels",
+    "id": "px-7755218"
   }
 }

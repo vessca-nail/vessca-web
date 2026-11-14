@@ -1,4 +1,5 @@
-"""Lịch 5 bài/ngày 15/11–31/12/2026 (chủ tiệm yêu cầu 14/11). Chạy file này -> sinh lich-5-bai-ngay.json.
+"""GHI CHÚ: ĐÃ có bài tiem-nail-gan-phu-nhuan-go-vap, chon-tiem-nail-uy-tin-binh-thanh — không viết thêm bài trùng ý định tìm kiếm.
+Lịch 5 bài/ngày 15/11–31/12/2026 (chủ tiệm yêu cầu 14/11). Chạy file này -> sinh lich-5-bai-ngay.json.
 Mỗi mục: slug, danh mục, từ khoá chính, góc viết. Phiên viết bài lấy mục chưa có file content/posts/<slug>.json
 theo thứ tự ngày. KHÔNG đổi ngày bài đã xếp sẵn. Mùa vụ: Noel đăng trước 15/12, Tết 2027 (Đinh Mùi, 6/2/2027) từ 8/12."""
 import json, glob, os, datetime, collections
@@ -53,8 +54,8 @@ TOPICS = [
 ('goi-dau-va-nail-cho-ban-than',G,'đi nail cùng bạn','Hẹn bạn đi nail và gội đầu, đặt lịch nhóm',''),
 ('goi-dau-gan-binh-thanh-gia-dinh',G,'gội đầu Gia Định','Phường Gia Định (Bình Thạnh cũ), chợ Bà Chiểu, hẻm 251',''),
 # --- ĐỊA ĐIỂM / THƯƠNG HIỆU ---
-('tiem-nail-phu-nhuan',H,'tiệm nail Phú Nhuận','Riêng cho khách Phú Nhuận; không nêu khoảng cách; dịch vụ hợp đi về nhanh',''),
-('tiem-nail-go-vap',H,'tiệm nail Gò Vấp','Riêng cho khách Gò Vấp; không nêu khoảng cách',''),
+('chon-mau-nail-theo-trang-phuc',X,'chọn màu nail theo trang phục','Phối màu nail với tủ đồ công sở, dạo phố, tiệc',''),
+('nail-mau-cam-dao',X,'nail màu cam đào','Cam đào kiểu Hàn, hợp da',''),
 ('phuong-gia-dinh-la-quan-nao',Q,'phường Gia Định','Giải thích phường mới Gia Định (Bình Thạnh cũ) sau sắp xếp, tìm VESSCA',''),
 ('tiem-nail-cho-nguoi-han-o-sai-gon',H,'호치민 네일샵','KO trọng tâm: khách Hàn tìm tiệm kiểu Hàn; nhân viên KHÔNG nói tiếng Hàn',''),
 ('tiem-nail-noi-tieng-trung-sai-gon',H,'胡志明 美甲 中文','ZH trọng tâm: nhân viên nói tiếng Trung',''),
@@ -62,7 +63,7 @@ TOPICS = [
 ('bao-hanh-5-ngay-tai-vessca',Q,'bảo hành nail','Bảo hành 5 ngày là gì, khi nào áp dụng — chỉ nói điều đã xác nhận',''),
 ('dat-lich-nail-online',Q,'đặt lịch nail online','Cách đặt qua form, tiệm gọi xác nhận, đổi lịch',''),
 ('lam-nail-cho-ca-nhom',Q,'làm nail theo nhóm','Nhóm bạn/gia đình, liên hệ sớm vì giới hạn khách',''),
-('tiem-nail-gan-day-binh-thanh',Q,'tiệm nail gần đây','Cách chọn tiệm nail gần nhà: vệ sinh, bảng giá, đặt lịch; VESSCA ở đâu',''),
+('son-gel-mau-nao-ben-nhat',Q,'màu sơn gel nào bền','Màu nhạt/đậm, nhũ, thạch: màu nào lộ móng mọc, bong ít hơn',''),
 ('tiem-nail-mo-cua-cuoi-tuan',Q,'tiệm nail cuối tuần','Mở cả tuần 9:00–20:30, cuối tuần kín sớm',''),
 ('kiss-ny-tinker-gel',X,'KISS NY Tinker Gel','Dòng sơn tiệm mang về, mắt mèo KISS NY 280.000₫',''),
 ('snow-velvet-son-han',X,'Snow Velvet','Dòng lông vũ Velvet, SWEET CANDY',''),
@@ -220,7 +221,7 @@ def main():
     pools={k:[t for t in todo if t[4]==k] for k in ('','noel','tet','cuoinam')}
     out=[]
     for d in days:
-        free=[s for s in SLOTS if s not in used[d.isoformat()]]
+        free=[s for s in SLOTS if s not in used[d.isoformat()]][:max(0,5-len(used[d.isoformat()]))]
         for s in free:
             if d<=datetime.date(2026,12,14) and pools['noel'] and d>=datetime.date(2026,11,18) and len([o for o in out if o['ngay']==d.isoformat() and o['mua']=='noel'])<1: k='noel'
             elif d>=datetime.date(2026,12,8) and pools['tet'] and len([o for o in out if o['ngay']==d.isoformat() and o['mua']=='tet'])<1: k='tet'

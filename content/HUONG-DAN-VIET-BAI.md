@@ -156,7 +156,8 @@ chính xác** (`shared * 3 + cùng danh mục * 2`). Vì vậy:
 - Địa chỉ: 251/30 Lê Quang Định, phường Gia Định, TP.HCM (Bình Thạnh cũ), trong hẻm 251. Có chỗ để xe trước tiệm.
 - Giờ: 9:00–20:30 mỗi ngày. SĐT 0933.528.501. Đặt lịch: form trên web (`/#booking`, tiệm gọi lại xác nhận), gọi điện, Instagram/Facebook.
 - Bảo hành 5 ngày. Dụng cụ kim loại tiệt trùng bằng máy sau mỗi khách. Phục vụ giới hạn số khách cùng lúc.
-- Chủ tiệm được đào tạo tại Hàn Quốc (KHÔNG thêm tên khoá/chứng chỉ). Sơn Hàn do tiệm tự chọn và mang về từ Hàn:
+- Chủ tiệm học khoá nail nâng cao tại Hàn Quốc và có chứng chỉ chuyên môn từ khoá đó (chủ tiệm tự đăng trên Instagram 11/2026). KHÔNG nêu tên khoá/tên chứng chỉ, KHÔNG nói nhân viên có chứng chỉ Hàn.
+- Instagram tiệm tự giới thiệu là "Nail Lounge riêng tư", giới hạn số khách một lúc; cũng dùng từ "gội đầu dưỡng sinh". Ảnh Instagram là ảnh tiệm tự chụp, chủ tiệm cho phép dùng trên web. Sơn Hàn do tiệm tự chọn và mang về từ Hàn:
   Kissny (KISS NY) Tinker Gel, 눈서림 Snow Velvet / Snow Velvet Candy (SWEET CANDY), Aurora Queen.
 - Nhân viên nói tiếng Việt, Anh, Trung (**không nói tiếng Hàn**).
 - KHÔNG có: khuyến mãi, thẻ quà tặng, gói membership, giờ Tết, quy trình chi tiết bên trong gói Ritual — muốn viết thì hỏi chủ tiệm.

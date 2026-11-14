@@ -345,6 +345,7 @@ export const categoryLabels = {
   'Kiến thức nghề nail': { en: 'Nail Know-how', ko: '네일 상식', zh: '美甲技術' },
   'Hậu trường VESSCA': { en: 'Inside VESSCA', ko: 'VESSCA 이야기', zh: 'VESSCA 幕後' },
   'Hỏi & Đáp': { en: 'Questions & Answers', ko: '자주 묻는 질문', zh: '常見問答' },
+  'Gội đầu & Thư giãn': { en: 'Head Spa & Relax', ko: '헤드 스파', zh: '洗髮舒壓' },
 };
 
 /** Lấy tên danh mục theo ngôn ngữ, không có bản dịch thì giữ nguyên tiếng Việt */
@@ -358,4 +359,5 @@ export const categories = [
   'Kiến thức nghề nail',
   'Hậu trường VESSCA',
   'Hỏi & Đáp',
+  'Gội đầu & Thư giãn',
 ];

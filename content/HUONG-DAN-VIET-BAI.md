@@ -24,13 +24,16 @@ Cập nhật: 26/10/2026. Đọc hết file này trước khi viết. File đi k
 |---|---|---|---|
 | 1 | 28/10 – 8/11/2026 | 4 bài/ngày | **ĐÃ VIẾT XONG** |
 | 2 | 9/11 – 31/12/2026 | 3 bài/tuần (thứ 2, 4, 6) | **ĐÃ VIẾT XONG** |
+| 2b | từ 14/11/2026 (chủ tiệm yêu cầu 14/11) | **5 bài/ngày** = bài sẵn có trong ngày + bài mới gội đầu/SEO khu vực | 08:30 · 11:30 · 14:30 · 17:30 · 19:30/20:30 |
 | 3 | 1/1 – 15/2/2027 (Tết Nguyên Đán 6/2/2027) | 4 bài/tuần (thứ 2, 4, 6, CN) | 08:30 |
 | 4 | 16/2 – 31/12/2027 | 2–3 bài/tuần, dày hơn trước dịp lễ | 08:30 |
 
 - Bài theo dịp lễ đăng **trước dịp 3–4 tuần**.
 - Từ tháng 2/2027: mỗi tháng viết bài của tháng sau (giá, dòng sơn có thể đổi — hỏi chủ tiệm trước).
 - Đã viết tới **30/12/2026** (bài `phuc-hoi-mong-sau-mua-tiec`). Giai đoạn 2 xong toàn bộ.
-- Việc tiếp theo: **giai đoạn 3**, từ 1/1/2027, nhịp 4 bài/tuần (thứ 2, 4, 6, CN) lúc 08:30.
+- **Giai đoạn 2b:** đã viết đủ 5 bài/ngày cho 14–16/11 (14 bài mới, `tools/viet-bai/p3-*.py`). Việc kế tiếp: viết
+  tiếp từ **17/11** (ngày 17 mới có 2 bài), mỗi ngày thêm cho đủ 5, giữ nguyên ngày của bài đã xếp sẵn.
+- Việc tiếp theo sau đó: **giai đoạn 3**, từ 1/1/2027, nhịp 4 bài/tuần (thứ 2, 4, 6, CN) lúc 08:30.
   Trước khi viết giai đoạn 3 cần hỏi chủ tiệm **giờ mở cửa dịp Tết** (chưa có, không được đoán).
 
 ## 3. Danh sách chủ đề giai đoạn 2 — ĐÃ VIẾT XONG 26/10/2026
@@ -120,7 +123,7 @@ chính xác** (`shared * 3 + cùng danh mục * 2`). Vì vậy:
 - **Dùng chung từ khoá có chủ đích để tạo cụm 3–5 bài cùng chủ đề** — đó là cách
   duy nhất để hai bài nhận ra nhau. Khớp theo chuỗi chính xác, nên "dấu hiệu nấm móng"
   KHÔNG khớp "nấm móng dấu hiệu". Viết bài mới thì chép đúng chuỗi từ khoá cụm đã có.
-- Cụm đang dùng: `nail cưới`, `tháo gel`, `phá gel`, `nối móng`, `Gel X Bình Thạnh`,
+- Cụm đang dùng: `gội đầu thư giãn`, `gội đầu Bình Thạnh`, `tiệm nail Hàn`, `nail cưới`, `tháo gel`, `phá gel`, `nối móng`, `Gel X Bình Thạnh`,
   `fill gel`, `nấm móng`, `móng tay bị vàng`, `nail công sở`, `nail đi tiệc`, `phục hồi móng`.
 
 ## 5c. Độ dài thẻ meta
@@ -216,6 +219,18 @@ Sau khi đăng, đánh dấu trong `content/KE-HOACH-BAI-VIET.md` nếu cần. �
 nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"xong": false` trong mục `anh`, sửa `tim`, push.
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
+
+- 14/11/2026 — chủ tiệm yêu cầu **trở lại 5 bài/ngày**, trộn gội đầu và nail, nhắm Phú Nhuận, Bình Thạnh,
+  Quận 2, Gò Vấp, "tiệm nail Hàn", "nail riêng tư", "nhân viên có chứng nhận từ Hàn". Đã làm: danh mục mới
+  **`Gội đầu & Thư giãn`** (site.config.mjs), 8 bài gội đầu (giá/bước lấy đúng từ `lib/goi-dau.mjs`) + 6 bài SEO
+  (`tiem-nail-rieng-tu-yen-tinh-binh-thanh`, `nail-han-quoc-cho-khach-quan-2-thu-duc`, `chu-tiem-dao-tao-tai-han-quoc`,
+  `tiem-nail-gan-cho-ba-chieu`, `tiem-nail-mo-cua-buoi-toi-binh-thanh`, `nail-va-goi-dau-truoc-ngay-cuoi`).
+  **Giới hạn đang giữ (chưa có xác nhận):** "riêng tư" chỉ viết là *giới hạn số khách cùng lúc* (không nói phòng riêng,
+  không nói 1 kỹ thuật viên/khách); "chuẩn Hàn" chỉ viết *chủ tiệm được đào tạo tại Hàn* — KHÔNG viết nhân viên có
+  chứng nhận Hàn tới khi chủ tiệm gửi bằng chứng/tên chứng chỉ; Quận 2 không nêu khoảng cách. Ảnh bìa 8 bài gội đầu
+  chọn tay trên Pexels (mục `url` trong `content/media/yeu-cau.json`, chạy workflow `tai-anh-yeu-cau.yml` qua
+  `gh api -X POST .../dispatches -f ref=main`), bài đặt sẵn `coverImage` + `anh.xong` để cron không thay ảnh.
+  Bài gội đầu sau này nên làm y vậy — Openverse ra ảnh gội đầu rất kém.
 
 - 12/11/2026 — phiên app/web: **tiệm mở thêm dịch vụ GỘI ĐẦU** (chủ tiệm gửi menu 12/11). Trang mới
   `/goi-dau/` (+ `/en|ko|zh/goi-dau/`), nút chuyển Nail | Gội đầu ở `/bang-gia/`, mục gội đầu ở trang chủ,

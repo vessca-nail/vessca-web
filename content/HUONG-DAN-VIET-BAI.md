@@ -221,6 +221,17 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 15/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới**: prompt của tác vụ chỉ cho viết khi
+  hàng chờ còn **dưới 6 bài**, mà hàng chờ đang có **39 bài** (tới 30/12/2026). Đã push commit rỗng để
+  Cloudflare dựng lại (bài hẹn 15/11 đã tới giờ). Kiểm trước khi push: `node build.mjs` sạch, link nội bộ
+  đủ, 0 thẻ meta quá dài.
+  **Vấn đề cần chủ tiệm sửa prompt (mới, khác ba chỗ lệch ghi ngày 02/11):** yêu cầu 14/11 là **5 bài/ngày**,
+  nhưng hàng chờ chỉ dày theo *tổng số bài*, không dày theo *ngày*: 15/11 và 16/11 có 3 bài, còn **từ 17/11
+  tới 30/12 mỗi ngày chỉ 1 bài**. Vì tổng 39 ≫ 6, cửa chặn của prompt sẽ khoá bước viết bài trong suốt 45
+  ngày tới, nên tác vụ tự động **sẽ không bao giờ** đắp cho đủ 5 bài/ngày. Muốn giữ nhịp 5 bài/ngày thì sửa
+  điều kiện trong prompt: đếm **số bài của ngày trống gần nhất** (viết thêm khi ngày đó chưa đủ 5 bài) thay
+  vì đếm tổng hàng chờ; và nâng giới hạn 2 bài/lần chạy, hoặc tăng số lần chạy mỗi ngày.
+
 - 14/11/2026 — chủ tiệm yêu cầu **trở lại 5 bài/ngày**, trộn gội đầu và nail, nhắm Phú Nhuận, Bình Thạnh,
   Quận 2, Gò Vấp, "tiệm nail Hàn", "nail riêng tư", "nhân viên có chứng nhận từ Hàn". Đã làm: danh mục mới
   **`Gội đầu & Thư giãn`** (site.config.mjs), 8 bài gội đầu (giá/bước lấy đúng từ `lib/goi-dau.mjs`) + 6 bài SEO

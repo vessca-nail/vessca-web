@@ -828,15 +828,62 @@ ${tk.khachGan.map((k) => {
           })
           .join('')}</table>`
       : '<p class="muted">Chưa có dữ liệu.</p>';
+
+    // Người đang tìm tiệm để đi làm nail, hay người đọc cho biết? Đây là câu
+    // duy nhất đáng hỏi: hiển thị nhiều mà toàn người đọc tham khảo thì không
+    // ra khách. Xếp loại theo chữ trong truy vấn, đủ bốn thứ tiếng.
+    const DAU_HIEU = [
+      ['Tên tiệm', ['vessca']],
+      ['Tìm tiệm gần', ['gần đây', 'gần nhà', 'near me', 'nearby', '근처', '附近']],
+      ['Có tên địa phương', ['bình thạnh', 'binh thanh', 'gia định', 'gia dinh', 'sài gòn', 'sai gon', 'saigon', 'ho chi minh', 'hồ chí minh', 'tphcm', 'hcm', 'thủ đức', 'phú nhuận', 'gò vấp', 'bà chiểu', '호치민', '빈탄', '사이공', '베트남', '胡志明', '平盛', '西貢', '越南', 'vietnam', 'viet nam']],
+      ['Tìm tiệm', ['tiệm nail', 'tiem nail', 'tiệm làm nail', 'nail salon', 'salon nail', 'nail spa', '네일샵', '네일 샵', '美甲店', '추천', '推薦']],
+      ['Hỏi giá', ['giá', 'bảng giá', 'bao nhiêu tiền', 'price', '가격', '價格', '價錢', '費用']],
+    ];
+    const xepLoai = (q) => {
+      const s = String(q).toLowerCase();
+      for (const [ten, tu] of DAU_HIEU) if (tu.some((k) => s.includes(k))) return ten;
+      return 'Đọc tham khảo';
+    };
+    const yDinh = (() => {
+      const qs = gsc.queries || [];
+      if (!qs.length) return '';
+      const nhom = new Map();
+      for (const r of qs) {
+        const k = xepLoai(r.query);
+        const a = nhom.get(k) || { h: 0, n: 0, q: [] };
+        a.h += r.impressions; a.n += r.clicks; a.q.push(r);
+        nhom.set(k, a);
+      }
+      const tongH = [...nhom.values()].reduce((a, b) => a + b.h, 0) || 1;
+      const khach = [...nhom].filter(([k]) => k !== 'Đọc tham khảo');
+      const khachH = khach.reduce((a, [, v]) => a + v.h, 0);
+      const khachN = khach.reduce((a, [, v]) => a + v.n, 0);
+      const dong = [...nhom]
+        .sort((a, b) => b[1].h - a[1].h)
+        .map(([k, v]) => `<tr><td class="tk-k">${esc(k)}<span class="tk-b" style="width:${Math.round((v.h / tongH) * 100)}%"></span></td><td class="tk-n">${so(v.h)}</td><td class="tk-n">${so(v.n)}</td></tr>`)
+        .join('');
+      const ds = khach
+        .flatMap(([k, v]) => v.q.map((r) => ({ ...r, k })))
+        .sort((a, b) => b.impressions - a.impressions)
+        .slice(0, 12)
+        .map((r) => `<tr><td class="tk-k">${esc(r.query)} <span class="muted">· ${esc(r.k)}</span></td><td class="tk-n">${so(r.impressions)}</td><td class="tk-n"><span class="gsc-v ${r.position <= 3 ? 'ok' : r.position <= 10 ? 'mid' : 'far'}">${String(r.position).replace('.', ',')}</span></td></tr>`)
+        .join('');
+      return `<div class="card tk-c tk-w"><h2>Người tìm tiệm, hay người đọc cho biết?</h2>
+<p class="muted" style="margin-bottom:8px">Xếp theo chữ khách gõ. "Đọc tham khảo" là người tìm hiểu về nail nói chung — họ có thể ở bất cứ đâu và phần lớn không đi làm nail ở Bình Thạnh. Các nhóm còn lại là người đang thật sự tìm tiệm hoặc hỏi giá.</p>
+<p style="margin-bottom:10px"><b>${so(khachH)} trong ${so(tongH)} lần hiện ra (${((khachH / tongH) * 100).toFixed(1).replace('.', ',')}%)</b> là người đang tìm tiệm hoặc hỏi giá — được ${so(khachN)} lượt bấm.</p>
+<table class="tk-t"><tr><th class="tk-k">Nhóm</th><th class="tk-n">Hiện ra</th><th class="tk-n">Bấm</th></tr>${dong}</table>
+${ds ? `<h3 style="margin:16px 0 6px;font-size:15px">Các truy vấn của người đang tìm tiệm</h3><table class="tk-t"><tr><th class="tk-k">Từ khoá</th><th class="tk-n">Hiện ra</th><th class="tk-n">Vị trí</th></tr>${ds}</table>` : ''}</div>`;
+    })();
     const chuaIndex = (gsc.chuaIndex || []).length
       ? `<div class="card tk-c"><h2>Bài không ai thấy</h2>
-<p class="muted" style="margin-bottom:8px">Bài đã đăng trên 2 tuần mà suốt 28 ngày qua không hiện ra lần nào. Hoặc Google chưa lập chỉ mục, hoặc có mà xếp quá xa. Cách chữa giống nhau: cho thêm bài khác trỏ link tới.</p>
+<p class="muted" style="margin-bottom:8px">Bài đã đăng trên 2 tuần mà suốt 28 ngày qua không hiện ra lần nào. Hoặc Google chưa lập chỉ mục, hoặc có mà xếp quá xa. Thêm link nội bộ trỏ tới đã thử ngày 02/11 (dồn 34 lên 77 link) và không nhích được hạng nào — nếu nhiều bài cùng chủ đề nằm ở đây thì thường là Google coi chúng trùng nhau, nên gộp lại sẽ hợp hơn là viết thêm.</p>
 <table class="tk-t">${gsc.chuaIndex.map((u) => `<tr><td class="tk-k">${esc(ngan(u))}</td></tr>`).join('')}</table></div>`
       : '';
     const tu = (gsc.range?.startDate || '').split('-').reverse().join('/');
     const den = (gsc.range?.endDate || '').split('-').reverse().join('/');
     return `<style>
 .gsc-v{display:inline-block;min-width:38px;padding:1px 6px;border-radius:4px;font-size:13px}
+.tk-w{grid-column:1/-1}
 .gsc-v.ok{background:#e7f5ec}.gsc-v.mid{background:#fdf4e3}.gsc-v.far{background:#f6eaea;color:#8a4b4b}
 .tk-t th{text-align:left;font-size:12px;font-weight:600;color:var(--soft);padding:0 4px 6px;border-bottom:1px solid var(--line)}
 .tk-t th.tk-n{text-align:right}
@@ -849,7 +896,9 @@ ${tk.khachGan.map((k) => {
   ${o('Tỷ lệ bấm', ctr, 'hiện ra bao nhiêu thì có người bấm')}
   ${o('Vị trí trung bình', String(viTri).replace('.', ','), 'tính từ các trang bên dưới')}
 </div>
+<p class="muted" style="margin:-6px 0 18px">Bốn số trên <b>đang tăng chủ yếu vì Google lập chỉ mục thêm trang</b> (24 trang ngày 25/10 lên ${so((gsc.pages || []).length)} trang hôm nay), không phải vì thứ hạng tốt lên. Muốn biết có tiến bộ thật thì xem vị trí của cùng một trang giữa hai tuần, đừng xem tổng.</p>
 <div class="tk-g2">
+  ${yDinh}
   <div class="card tk-c"><h2>Gần trang 1 — đẩy lên là có khách</h2>
   <p class="muted" style="margin-bottom:8px">Những trang đang ở vị trí 5–20. Đây là chỗ bỏ công ít mà được nhiều nhất, vì chỉ cần nhích vài hạng là lên trang 1.</p>
   ${hang(gsc.opportunities || [], 'Trang')}</div>

@@ -221,6 +221,22 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 16/11/2026 — chủ tiệm yêu cầu **8 bài/ngày trong một tuần** (đề xuất 5–10, mình chốt 7–8 để giữ chất lượng),
+  vì mùa Noel và mùa cưới đang tới. Bài cũ giữ nguyên lịch, bài mới chèn vào khung trống.
+  **Khung giờ đang dùng:** 08:30 · 09:30 · 11:30 · 13:30 · 14:30 · 16:30 · 17:30 · 20:30.
+  Lịch chủ đề 196 bài tới 31/12 ở `tools/viet-bai/lich-5-bai-ngay.json` (chạy lại `lich-5-bai-ngay.py` để xếp).
+- **Khách đặt lịch chủ yếu tìm "tiệm nail quanh đây", "tiệm nail gần đây"** (chủ tiệm nghe trực tiếp từ khách).
+  Đã viết cụm: `tiem-nail-gan-day-chon-the-nao`, `nail-goi-dau-gan-benh-vien-gia-dinh`, `tiem-nail-duong-le-quang-dinh`,
+  `phuong-gia-dinh-o-dau`. **Mốc quanh tiệm đã đối chiếu Google Maps:** chợ Bà Chiểu, Lăng Ông Bà Chiểu (Lăng Lê Văn Duyệt),
+  Bệnh viện Nhân dân Gia Định (1 Nơ Trang Long), THCS Hà Huy Tập (7 Phan Đăng Lưu), TH Nguyễn Đình Chiểu (1 Lê Quang Định),
+  TH/THCS Yên Thế (377/399 Lê Quang Định). **KHÔNG ghi số km hay số phút** — chưa đo; chỉ nói cùng phường/cùng đường
+  và bảo khách mở Google Maps. Phường Gia Định = gộp phường 1, 2, 7, 17 của Bình Thạnh cũ từ 1/7/2025.
+- **Nhắc chủ tiệm:** từ khoá "gần đây" chủ yếu ra Google Maps, nên **Google Business Profile** (ảnh mới, giờ đúng,
+  đánh giá của khách) quan trọng hơn bài blog cho nhóm này.
+- Ảnh bìa: tiếp tục chọn tay trên Pexels qua khung trình duyệt, thêm vào `content/media/yeu-cau.json`, chạy
+  `gh api -X POST repos/vessca-nail/vessca-web/actions/workflows/tai-anh-yeu-cau.yml/dispatches -f ref=main`.
+  Đặt sẵn `coverImage` + `anh.xong` để cron không thay ảnh. Openverse cho ảnh nail/gội đầu rất kém.
+
 - 15/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới**: prompt của tác vụ chỉ cho viết khi
   hàng chờ còn **dưới 6 bài**, mà hàng chờ đang có **39 bài** (tới 30/12/2026). Đã push commit rỗng để
   Cloudflare dựng lại (bài hẹn 15/11 đã tới giờ). Kiểm trước khi push: `node build.mjs` sạch, link nội bộ

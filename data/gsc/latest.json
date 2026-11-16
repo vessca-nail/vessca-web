@@ -1,13 +1,13 @@
 {
   "site": "sc-domain:vessca.com",
-  "fetchedAt": "2026-11-15T00:40:33.129Z",
+  "fetchedAt": "2026-11-16T00:57:26.363Z",
   "range": {
-    "startDate": "2026-10-17",
-    "endDate": "2026-11-13"
+    "startDate": "2026-10-18",
+    "endDate": "2026-11-14"
   },
   "totals": {
     "clicks": 27,
-    "impressions": 1687
+    "impressions": 1689
   },
   "queries": [
     {
@@ -142,6 +142,13 @@
       "impressions": 2,
       "ctr": 0,
       "position": 60
+    },
+    {
+      "query": "builder gel",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
     },
     {
       "query": "builder gel la gì",
@@ -1128,8 +1135,8 @@
     {
       "page": "https://vessca.com/",
       "clicks": 8,
-      "impressions": 87,
-      "ctr": 9.2,
+      "impressions": 88,
+      "ctr": 9.09,
       "position": 3.9
     },
     {
@@ -1429,9 +1436,9 @@
     {
       "page": "https://vessca.com/blog/gel-builder-lam-cung-mong/",
       "clicks": 0,
-      "impressions": 47,
+      "impressions": 48,
       "ctr": 0,
-      "position": 9.1
+      "position": 10.6
     },
     {
       "page": "https://vessca.com/blog/hay-can-mong-tay-lam-nail-duoc-khong/",
@@ -2668,6 +2675,14 @@
       "impressions": 1,
       "ctr": 0,
       "position": 7
+    },
+    {
+      "page": "https://vessca.com/blog/gel-builder-lam-cung-mong/",
+      "query": "builder gel",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 78
     },
     {
       "page": "https://vessca.com/blog/gel-builder-lam-cung-mong/",
@@ -3961,11 +3976,13 @@
   ],
   "chuaIndex": [
     "https://vessca.com/blog/lam-mong-chan-kieu-han/",
+    "https://vessca.com/blog/nail-mau-do-kieu-han/",
     "https://vessca.com/blog/nail-nhu-aurora-han-quoc/",
     "https://vessca.com/blog/nail-nude-kieu-han/",
     "https://vessca.com/blog/nail-sinh-vien-binh-thanh/",
     "https://vessca.com/blog/nail-thach-han-quoc/",
     "https://vessca.com/blog/nail-van-phong-kieu-han/",
+    "https://vessca.com/blog/nam-gioi-cham-soc-mong/",
     "https://vessca.com/blog/tiem-nail-han-quoc-binh-thanh/"
   ]
 }

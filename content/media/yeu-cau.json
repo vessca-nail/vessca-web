@@ -1246,5 +1246,53 @@
       "nguon": "Pexels",
       "id": "url:https://images.pexels.com/photos/4783290/pexels-photo-4783290.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop"
     }
+  },
+  {
+    "luu": "blog/nail-cay-thong-noel.jpg",
+    "url": "https://images.pexels.com/photos/5472926/pexels-photo-5472926.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/5472926/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/nail-noel-nhu-vang.jpg",
+    "url": "https://images.pexels.com/photos/10632142/pexels-photo-10632142.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/10632142/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/nail-hoa-tiet-bong-tuyet.jpg",
+    "url": "https://images.pexels.com/photos/5485042/pexels-photo-5485042.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/5485042/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/goi-dau-cho-toc-dau-nhanh-bet.jpg",
+    "url": "https://images.pexels.com/photos/5241044/pexels-photo-5241044.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/5241044/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/goi-dau-cho-toc-kho-xo.jpg",
+    "url": "https://images.pexels.com/photos/23349891/pexels-photo-23349891/free-photo-of-hairdresser-washing-customer-hair.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/23349891/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/nail-tat-nien-cong-ty.jpg",
+    "url": "https://images.pexels.com/photos/7321747/pexels-photo-7321747.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/7321747/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/nail-dem-giao-thua.jpg",
+    "url": "https://images.pexels.com/photos/5472971/pexels-photo-5472971.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/5472971/",
+    "kho": "Pexels"
+  },
+  {
+    "luu": "blog/bao-lau-nen-goi-dau-o-tiem.jpg",
+    "url": "https://images.pexels.com/photos/17553843/pexels-photo-17553843/free-photo-of-hairdresser-washing-man-head.jpeg?auto=compress&cs=tinysrgb&w=1200&h=675&fit=crop",
+    "link": "https://www.pexels.com/photo/17553843/",
+    "kho": "Pexels"
   }
 ]

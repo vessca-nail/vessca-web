@@ -1,13 +1,13 @@
 {
   "site": "sc-domain:vessca.com",
-  "fetchedAt": "2026-11-19T05:50:13.234Z",
+  "fetchedAt": "2026-11-20T05:39:20.385Z",
   "range": {
-    "startDate": "2026-10-21",
-    "endDate": "2026-11-17"
+    "startDate": "2026-10-22",
+    "endDate": "2026-11-18"
   },
   "totals": {
     "clicks": 29,
-    "impressions": 1731
+    "impressions": 1700
   },
   "queries": [
     {
@@ -74,18 +74,11 @@
       "position": 54
     },
     {
-      "query": "bao lâu làm móng 1 lần",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
       "query": "bao lâu nên làm móng 1 lần",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 4,
       "ctr": 0,
-      "position": 12.8
+      "position": 15
     },
     {
       "query": "base coat là gì",
@@ -839,7 +832,7 @@
     {
       "query": "sơn móng tay gel có hại không",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
       "position": 93
     },
@@ -923,9 +916,9 @@
     {
       "query": "vessca",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 8,
       "ctr": 0,
-      "position": 4
+      "position": 3.6
     },
     {
       "query": "what are hangnails",
@@ -1184,9 +1177,9 @@
     {
       "page": "https://vessca.com/",
       "clicks": 10,
-      "impressions": 113,
-      "ctr": 8.85,
-      "position": 3.8
+      "impressions": 108,
+      "ctr": 9.26,
+      "position": 3.9
     },
     {
       "page": "https://vessca.com/blog/nail-di-tiec-cuoi-nam/",
@@ -1226,9 +1219,9 @@
     {
       "page": "https://vessca.com/blog/gia-lam-nail-binh-thanh/",
       "clicks": 1,
-      "impressions": 11,
-      "ctr": 9.09,
-      "position": 11.5
+      "impressions": 9,
+      "ctr": 11.11,
+      "position": 12.9
     },
     {
       "page": "https://vessca.com/blog/lam-nail-xong-bao-lau-rua-tay/",
@@ -1247,16 +1240,16 @@
     {
       "page": "https://vessca.com/blog/nail-han-quoc-khac-gi-nail-thuong/",
       "clicks": 1,
-      "impressions": 3,
-      "ctr": 33.33,
-      "position": 5.3
+      "impressions": 1,
+      "ctr": 100,
+      "position": 2
     },
     {
       "page": "https://vessca.com/blog/nail-noel-2026/",
       "clicks": 1,
-      "impressions": 29,
-      "ctr": 3.45,
-      "position": 7.6
+      "impressions": 26,
+      "ctr": 3.85,
+      "position": 7.8
     },
     {
       "page": "https://vessca.com/en/blog/nail-thach-han-quoc/",
@@ -1380,9 +1373,9 @@
     {
       "page": "https://vessca.com/blog/",
       "clicks": 0,
-      "impressions": 10,
+      "impressions": 8,
       "ctr": 0,
-      "position": 5.6
+      "position": 6.5
     },
     {
       "page": "https://vessca.com/blog/ba-bau-lam-nail-duoc-khong/",
@@ -1394,9 +1387,9 @@
     {
       "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
       "clicks": 0,
-      "impressions": 79,
+      "impressions": 72,
       "ctr": 0,
-      "position": 7.7
+      "position": 7.6
     },
     {
       "page": "https://vessca.com/blog/base-coat-top-coat-la-gi/",
@@ -1408,14 +1401,14 @@
     {
       "page": "https://vessca.com/blog/bo-suu-tap-son-han-quoc-tai-vessca/",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 7.5
+      "position": 6
     },
     {
       "page": "https://vessca.com/blog/cach-giu-nail-lau-bong/",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 9,
       "ctr": 0,
       "position": 3.9
     },
@@ -1436,9 +1429,9 @@
     {
       "page": "https://vessca.com/blog/chon-tiem-nail-uy-tin-binh-thanh/",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 1,
       "ctr": 0,
-      "position": 32.3
+      "position": 85
     },
     {
       "page": "https://vessca.com/blog/dau-duong-vien-mong-cuticle-oil/",
@@ -1534,7 +1527,7 @@
     {
       "page": "https://vessca.com/blog/mong-yeu-co-lam-gel-duoc-khong/",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 6,
       "ctr": 0,
       "position": 10
     },
@@ -1646,7 +1639,7 @@
     {
       "page": "https://vessca.com/blog/son-gel-co-hai-cho-mong-khong/",
       "clicks": 0,
-      "impressions": 11,
+      "impressions": 8,
       "ctr": 0,
       "position": 36.4
     },
@@ -2531,9 +2524,9 @@
       "page": "https://vessca.com/",
       "query": "vessca",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 7,
       "ctr": 0,
-      "position": 4.4
+      "position": 4
     },
     {
       "page": "https://vessca.com/?rwg_token=ALcMQYZff7x5HM7F5KiTLeVKRV9SQfCwTLh_aPxkvgnalQhzoKaSxQswqsFI2FoAcn_Pr0gFesBTMUVLZ6SL5g4UR_JwcmDosg%3D%3D&source=cat#booking",
@@ -2577,19 +2570,11 @@
     },
     {
       "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
-      "query": "bao lâu làm móng 1 lần",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
       "query": "bao lâu nên làm móng 1 lần",
       "clicks": 0,
-      "impressions": 6,
+      "impressions": 4,
       "ctr": 0,
-      "position": 12.8
+      "position": 15
     },
     {
       "page": "https://vessca.com/blog/base-coat-top-coat-la-gi/",
@@ -2651,9 +2636,9 @@
       "page": "https://vessca.com/blog/bo-suu-tap-son-han-quoc-tai-vessca/",
       "query": "vessca",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 7.5
+      "position": 6
     },
     {
       "page": "https://vessca.com/blog/cat-mong-tay-dung-cach/",
@@ -2979,7 +2964,7 @@
       "page": "https://vessca.com/blog/son-gel-co-hai-cho-mong-khong/",
       "query": "sơn móng tay gel có hại không",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
       "position": 93
     },
@@ -3835,9 +3820,9 @@
     {
       "page": "https://vessca.com/blog/nail-noel-2026/",
       "clicks": 1,
-      "impressions": 29,
-      "ctr": 3.45,
-      "position": 7.6
+      "impressions": 26,
+      "ctr": 3.85,
+      "position": 7.8
     },
     {
       "page": "https://vessca.com/zh/blog/lam-nail-xong-bao-lau-rua-tay/",
@@ -3897,13 +3882,6 @@
       "position": 7.8
     },
     {
-      "page": "https://vessca.com/blog/gia-lam-nail-binh-thanh/",
-      "clicks": 1,
-      "impressions": 11,
-      "ctr": 9.09,
-      "position": 11.5
-    },
-    {
       "page": "https://vessca.com/ko/blog/bao-lau-nen-lam-nail-mot-lan/",
       "clicks": 0,
       "impressions": 11,
@@ -3924,13 +3902,6 @@
       "impressions": 10,
       "ctr": 0,
       "position": 17.4
-    },
-    {
-      "page": "https://vessca.com/blog/",
-      "clicks": 0,
-      "impressions": 10,
-      "ctr": 0,
-      "position": 5.6
     },
     {
       "page": "https://vessca.com/blog/hay-can-mong-tay-lam-nail-duoc-khong/",
@@ -3987,6 +3958,13 @@
       "position": 8.6
     },
     {
+      "page": "https://vessca.com/blog/gia-lam-nail-binh-thanh/",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 11.11,
+      "position": 12.9
+    },
+    {
       "page": "https://vessca.com/ko/blog/cach-giu-nail-lau-bong/",
       "clicks": 0,
       "impressions": 9,
@@ -4017,11 +3995,11 @@
       "position": 10.5
     },
     {
-      "page": "https://vessca.com/blog/mong-yeu-co-lam-gel-duoc-khong/",
+      "page": "https://vessca.com/blog/",
       "clicks": 0,
       "impressions": 8,
       "ctr": 0,
-      "position": 10
+      "position": 6.5
     },
     {
       "page": "https://vessca.com/en/blog/up-mong-va-dap-gel-khac-nhau/",
@@ -4082,14 +4060,6 @@
       "position": 7.4
     },
     {
-      "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
-      "query": "bao lâu nên làm móng 1 lần",
-      "clicks": 0,
-      "impressions": 6,
-      "ctr": 0,
-      "position": 12.8
-    },
-    {
       "page": "https://vessca.com/blog/base-coat-top-coat-la-gi/",
       "query": "base coat và top coat là gì",
       "clicks": 0,
@@ -4114,11 +4084,25 @@
       "position": 10
     },
     {
+      "page": "https://vessca.com/blog/mong-yeu-co-lam-gel-duoc-khong/",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 10
+    },
+    {
       "page": "https://vessca.com/en/blog/cat-da-kieu-han/",
       "clicks": 0,
       "impressions": 6,
       "ctr": 0,
       "position": 6
+    },
+    {
+      "page": "https://vessca.com/en/blog/tiem-nail-han-quoc-binh-thanh/",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 6.8
     }
   ],
   "chuaIndex": [

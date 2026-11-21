@@ -1,13 +1,13 @@
 {
   "site": "sc-domain:vessca.com",
-  "fetchedAt": "2026-11-20T05:39:20.385Z",
+  "fetchedAt": "2026-11-21T05:33:27.597Z",
   "range": {
-    "startDate": "2026-10-22",
-    "endDate": "2026-11-18"
+    "startDate": "2026-10-23",
+    "endDate": "2026-11-19"
   },
   "totals": {
     "clicks": 29,
-    "impressions": 1700
+    "impressions": 1699
   },
   "queries": [
     {
@@ -76,9 +76,9 @@
     {
       "query": "bao lâu nên làm móng 1 lần",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 3,
       "ctr": 0,
-      "position": 15
+      "position": 16.3
     },
     {
       "query": "base coat là gì",
@@ -601,9 +601,16 @@
     {
       "query": "korean nail",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 3
+      "position": 2.3
+    },
+    {
+      "query": "korean nail art",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "query": "korean nail salon",
@@ -1177,8 +1184,8 @@
     {
       "page": "https://vessca.com/",
       "clicks": 10,
-      "impressions": 108,
-      "ctr": 9.26,
+      "impressions": 112,
+      "ctr": 8.93,
       "position": 3.9
     },
     {
@@ -1247,9 +1254,9 @@
     {
       "page": "https://vessca.com/blog/nail-noel-2026/",
       "clicks": 1,
-      "impressions": 26,
-      "ctr": 3.85,
-      "position": 7.8
+      "impressions": 22,
+      "ctr": 4.55,
+      "position": 7.6
     },
     {
       "page": "https://vessca.com/en/blog/nail-thach-han-quoc/",
@@ -1296,7 +1303,7 @@
     {
       "page": "https://vessca.com/#booking",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 4,
       "ctr": 0,
       "position": 1
     },
@@ -1359,9 +1366,9 @@
     {
       "page": "https://vessca.com/bang-gia/",
       "clicks": 0,
-      "impressions": 23,
+      "impressions": 24,
       "ctr": 0,
-      "position": 6
+      "position": 5.8
     },
     {
       "page": "https://vessca.com/bang-gia/?lang=vi",
@@ -1387,9 +1394,9 @@
     {
       "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
       "clicks": 0,
-      "impressions": 72,
+      "impressions": 68,
       "ctr": 0,
-      "position": 7.6
+      "position": 7.5
     },
     {
       "page": "https://vessca.com/blog/base-coat-top-coat-la-gi/",
@@ -1408,9 +1415,9 @@
     {
       "page": "https://vessca.com/blog/cach-giu-nail-lau-bong/",
       "clicks": 0,
-      "impressions": 9,
+      "impressions": 8,
       "ctr": 0,
-      "position": 3.9
+      "position": 4
     },
     {
       "page": "https://vessca.com/blog/cat-da-kieu-han/",
@@ -2178,9 +2185,9 @@
     {
       "page": "https://vessca.com/zh/blog/",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 4,
       "ctr": 0,
-      "position": 8
+      "position": 8.3
     },
     {
       "page": "https://vessca.com/zh/blog/ba-bau-lam-nail-duoc-khong/",
@@ -2428,9 +2435,17 @@
       "page": "https://vessca.com/",
       "query": "korean nail",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 3,
       "ctr": 0,
-      "position": 3
+      "position": 2.3
+    },
+    {
+      "page": "https://vessca.com/",
+      "query": "korean nail art",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 2
     },
     {
       "page": "https://vessca.com/",
@@ -2572,9 +2587,9 @@
       "page": "https://vessca.com/blog/bao-lau-nen-lam-nail-mot-lan/",
       "query": "bao lâu nên làm móng 1 lần",
       "clicks": 0,
-      "impressions": 4,
+      "impressions": 3,
       "ctr": 0,
-      "position": 15
+      "position": 16.3
     },
     {
       "page": "https://vessca.com/blog/base-coat-top-coat-la-gi/",
@@ -3818,13 +3833,6 @@
       "position": 6.7
     },
     {
-      "page": "https://vessca.com/blog/nail-noel-2026/",
-      "clicks": 1,
-      "impressions": 26,
-      "ctr": 3.85,
-      "position": 7.8
-    },
-    {
       "page": "https://vessca.com/zh/blog/lam-nail-xong-bao-lau-rua-tay/",
       "clicks": 0,
       "impressions": 26,
@@ -3834,9 +3842,9 @@
     {
       "page": "https://vessca.com/bang-gia/",
       "clicks": 0,
-      "impressions": 23,
+      "impressions": 24,
       "ctr": 0,
-      "position": 6
+      "position": 5.8
     },
     {
       "page": "https://vessca.com/en/blog/nail-han-quoc-khac-gi-nail-thuong/",
@@ -3844,6 +3852,13 @@
       "impressions": 23,
       "ctr": 0,
       "position": 6.5
+    },
+    {
+      "page": "https://vessca.com/blog/nail-noel-2026/",
+      "clicks": 1,
+      "impressions": 22,
+      "ctr": 4.55,
+      "position": 7.6
     },
     {
       "page": "https://vessca.com/blog/di-ung-son-gel/",

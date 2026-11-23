@@ -519,3 +519,27 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
      Nếu chủ tiệm có mốc thật thì nên thống nhất cả ba bài.
 
 - 26/10/2026 — phiên app/web: giao lại việc viết bài. Đã viết tới 9/11/2026. Đề cương bài 11/11 (nail-cho-da-ngam) chưa đăng — viết lại theo hướng dẫn.
+
+- 23/11/2026 — **đợt 42, 50 bài**. Script: `tools/viet-bai/p12-goi-dau.py`, `p13-noel-cuoi.py`,
+  `p14-mau.py`, `p15-mong-ngan.py`, `p16-tet.py`, và `p17-lich.py` gán ngày đăng.
+  Nhịp: 10 bài lên ngay 23/11 (17:30/18:30/19:30/20:30), 40 bài chia 24/11–3/12 ở bốn khung
+  **09:30 · 11:30 · 13:30 · 16:30**. Ba khung 08:30, 14:30, 20:30 để nguyên cho bài hẹn từ
+  trước, nên tổng là 5 bài mỗi ngày.
+  **Từ khoá đều lấy từ gợi ý tìm kiếm thật**, truy vấn từ máy ở TP.HCM qua khung trình duyệt
+  (endpoint gợi ý của công cụ tìm kiếm, tham số ngôn ngữ vi và vùng vn). Không tự nghĩ chủ đề.
+  Phát hiện đáng nhớ: nhóm "gội đầu dưỡng sinh" có cụm câu hỏi thực dụng chưa khai thác
+  (giá bao nhiêu, bao nhiêu bước, có cần cởi áo không, có lấy ráy tai không); nhóm "nail tết"
+  và "nail cô dâu" long-tail rất rõ.
+  **Ba quy tắc giữ trong đợt này:**
+  1. Số liệu gói gội đầu và tên từng bước lấy đúng từ `lib/goi-dau.mjs`, không được đặt thêm.
+  2. Mốc giá nail tham chiếu bài `gia-lam-nail-binh-thanh` (~190k gọn gàng, ~340k phổ biến,
+     ~640k dự tiệc; phá gel cũ 30.000₫).
+  3. Mùng 1 Tết Nguyên Đán 2027 là **thứ Bảy 6/2/2027** — khớp bài `chuan-bi-nail-tet-2027`.
+     Giờ mở cửa dịp Tết tiệm chưa công bố, không bài nào được bịa.
+  **Hai bài trả lời "không", cần chủ tiệm xác nhận:**
+  `goi-dau-duong-sinh-co-lay-ray-tai-khong` nói tiệm không có dịch vụ lấy ráy tai;
+  `tiem-goi-dau-buoi-toi-binh-thanh` nói tiệm nhận khách tới 20:30, không làm khuya.
+  Nếu thực tế khác thì phải sửa hai bài này trước.
+  **Hàng chờ ảnh:** 50 bài vào hàng chờ cùng lúc. Cron chạy mỗi giờ, 3 bài mỗi lượt
+  (`BAI_MOI_LUOT` trong `functions/_lib/anh-blog.js`), và `build.mjs` xếp bài đã tới giờ lên
+  đầu hàng. Bài đẩy lên ngày hiện tại sẽ có ảnh trong vài giờ, không cần can thiệp.

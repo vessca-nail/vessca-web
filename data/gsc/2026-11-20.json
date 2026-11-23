@@ -4129,15 +4129,115 @@
     }
   ],
   "chuaIndex": [
-    "https://vessca.com/blog/chon-tiem-nail-uy-tin-binh-thanh/",
-    "https://vessca.com/blog/lam-mong-chan-kieu-han/",
-    "https://vessca.com/blog/nail-dinh-da-kieu-han/",
-    "https://vessca.com/blog/nail-mau-do-kieu-han/",
-    "https://vessca.com/blog/nail-mua-mua-sai-gon/",
-    "https://vessca.com/blog/nail-nude-kieu-han/",
-    "https://vessca.com/blog/nail-sinh-vien-binh-thanh/",
-    "https://vessca.com/blog/nail-thach-han-quoc/",
-    "https://vessca.com/blog/nam-gioi-cham-soc-mong/",
-    "https://vessca.com/blog/tiem-nail-han-quoc-binh-thanh/"
+    {
+      "url": "https://vessca.com/blog/chon-tiem-nail-uy-tin-binh-thanh/",
+      "slug": "chon-tiem-nail-uy-tin-binh-thanh",
+      "title": "Chọn tiệm nail uy tín ở Bình Thạnh: 7 dấu hiệu nên biết",
+      "banDich": {
+        "en": 1,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 1
+    },
+    {
+      "url": "https://vessca.com/blog/lam-mong-chan-kieu-han/",
+      "slug": "lam-mong-chan-kieu-han",
+      "title": "Làm móng chân kiểu Hàn: cắt đúng để không quặp, sơn gel bền 4–6 tuần",
+      "banDich": {
+        "en": 2,
+        "ko": 1,
+        "zh": 3
+      },
+      "banDichHien": 6
+    },
+    {
+      "url": "https://vessca.com/blog/nail-dinh-da-kieu-han/",
+      "slug": "nail-dinh-da-kieu-han",
+      "title": "Nail đính đá kiểu Hàn: đính ít mà đẹp, không rơi đá",
+      "banDich": {
+        "en": 0,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 0
+    },
+    {
+      "url": "https://vessca.com/blog/nail-mau-do-kieu-han/",
+      "slug": "nail-mau-do-kieu-han",
+      "title": "Nail màu đỏ kiểu Hàn: chọn sắc đỏ hợp tông da và dịp",
+      "banDich": {
+        "en": 4,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 4
+    },
+    {
+      "url": "https://vessca.com/blog/nail-mua-mua-sai-gon/",
+      "slug": "nail-mua-mua-sai-gon",
+      "title": "Nail mùa mưa Sài Gòn: chọn kiểu gì và giữ móng thế nào",
+      "banDich": {
+        "en": 0,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 0
+    },
+    {
+      "url": "https://vessca.com/blog/nail-nude-kieu-han/",
+      "slug": "nail-nude-kieu-han",
+      "title": "Nail nude kiểu Hàn: chọn đúng sắc nude cho tay bạn",
+      "banDich": {
+        "en": 0,
+        "ko": 0,
+        "zh": 2
+      },
+      "banDichHien": 2
+    },
+    {
+      "url": "https://vessca.com/blog/nail-sinh-vien-binh-thanh/",
+      "slug": "nail-sinh-vien-binh-thanh",
+      "title": "Nail cho sinh viên ở Bình Thạnh: bộ gọn đẹp dưới 250.000₫",
+      "banDich": {
+        "en": 0,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 0
+    },
+    {
+      "url": "https://vessca.com/blog/nail-thach-han-quoc/",
+      "slug": "nail-thach-han-quoc",
+      "title": "Nail thạch Hàn Quốc: là gì, hợp với ai và vì sao khó làm đẹp",
+      "banDich": {
+        "en": 3,
+        "ko": 1,
+        "zh": 0
+      },
+      "banDichHien": 4
+    },
+    {
+      "url": "https://vessca.com/blog/nam-gioi-cham-soc-mong/",
+      "slug": "nam-gioi-cham-soc-mong",
+      "title": "Nam giới chăm sóc móng: một buổi gồm gì, mất bao lâu, bao nhiêu tiền",
+      "banDich": {
+        "en": 13,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 13
+    },
+    {
+      "url": "https://vessca.com/blog/tiem-nail-han-quoc-binh-thanh/",
+      "slug": "tiem-nail-han-quoc-binh-thanh",
+      "title": "Tiệm nail chuẩn Hàn Quốc ở Bình Thạnh: thế nào mới gọi là chuẩn Hàn",
+      "banDich": {
+        "en": 6,
+        "ko": 0,
+        "zh": 0
+      },
+      "banDichHien": 6
+    }
   ]
 }

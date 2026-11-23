@@ -4,6 +4,7 @@ import { keywordLibrary, categories } from '../../site.config.mjs';
 // Số liệu Google Search Console. GitHub Action ghi đè file này mỗi sáng,
 // nên nó đi kèm bản deploy — không gọi API lúc khách xem trang.
 import gsc from '../../data/gsc/latest.json' with { type: 'json' };
+import gscLichSu from '../../data/gsc/lich-su.json' with { type: 'json' };
 
 const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -866,19 +867,65 @@ ${tk.khachGan.map((k) => {
         .flatMap(([k, v]) => v.q.map((r) => ({ ...r, k })))
         .sort((a, b) => b.impressions - a.impressions)
         .slice(0, 12)
-        .map((r) => `<tr><td class="tk-k">${esc(r.query)} <span class="muted">· ${esc(r.k)}</span></td><td class="tk-n">${so(r.impressions)}</td><td class="tk-n"><span class="gsc-v ${r.position <= 3 ? 'ok' : r.position <= 10 ? 'mid' : 'far'}">${String(r.position).replace('.', ',')}</span></td></tr>`)
+        .map((r) => `<tr><td class="tk-k">${esc(r.query)} <span class="muted">· ${esc(r.k)}</span></td><td class="tk-n">${so(r.impressions)}</td><td class="tk-n">${so(r.clicks)}</td><td class="tk-n"><span class="gsc-v ${r.position <= 3 ? 'ok' : r.position <= 10 ? 'mid' : 'far'}">${String(r.position).replace('.', ',')}</span></td></tr>`)
         .join('');
       return `<div class="card tk-c tk-w"><h2>Người tìm tiệm, hay người đọc cho biết?</h2>
 <p class="muted" style="margin-bottom:8px">Xếp theo chữ khách gõ. "Đọc tham khảo" là người tìm hiểu về nail nói chung — họ có thể ở bất cứ đâu và phần lớn không đi làm nail ở Bình Thạnh. Các nhóm còn lại là người đang thật sự tìm tiệm hoặc hỏi giá.</p>
 <p style="margin-bottom:10px"><b>${so(khachH)} trong ${so(tongH)} lần hiện ra (${((khachH / tongH) * 100).toFixed(1).replace('.', ',')}%)</b> là người đang tìm tiệm hoặc hỏi giá — được ${so(khachN)} lượt bấm.</p>
 <table class="tk-t"><tr><th class="tk-k">Nhóm</th><th class="tk-n">Hiện ra</th><th class="tk-n">Bấm</th></tr>${dong}</table>
-${ds ? `<h3 style="margin:16px 0 6px;font-size:15px">Các truy vấn của người đang tìm tiệm</h3><table class="tk-t"><tr><th class="tk-k">Từ khoá</th><th class="tk-n">Hiện ra</th><th class="tk-n">Vị trí</th></tr>${ds}</table>` : ''}</div>`;
+${ds ? `<h3 style="margin:16px 0 6px;font-size:15px">Các truy vấn của người đang tìm tiệm</h3>
+<p class="muted" style="margin-bottom:8px">Đọc cột <b>Vị trí</b> cạnh cột <b>Bấm</b>. Nhiều dòng đứng hạng 1–5 mà vẫn 0 bấm: khách gõ xong là bấm ngay vào khối bản đồ ở đầu trang Google, không cuộn xuống tới link web. Đó không phải lỗi thứ hạng và sửa trên web không chữa được.</p>
+<table class="tk-t"><tr><th class="tk-k">Từ khoá</th><th class="tk-n">Hiện ra</th><th class="tk-n">Bấm</th><th class="tk-n">Vị trí</th></tr>${ds}</table>` : ''}</div>`;
     })();
-    const chuaIndex = (gsc.chuaIndex || []).length
-      ? `<div class="card tk-c"><h2>Bài không ai thấy</h2>
-<p class="muted" style="margin-bottom:8px">Bài đã đăng trên 2 tuần mà suốt 28 ngày qua không hiện ra lần nào. Hoặc Google chưa lập chỉ mục, hoặc có mà xếp quá xa. Thêm link nội bộ trỏ tới đã thử ngày 02/11 (dồn 34 lên 77 link) và không nhích được hạng nào — nếu nhiều bài cùng chủ đề nằm ở đây thì thường là Google coi chúng trùng nhau, nên gộp lại sẽ hợp hơn là viết thêm.</p>
-<table class="tk-t">${gsc.chuaIndex.map((u) => `<tr><td class="tk-k">${esc(ngan(u))}</td></tr>`).join('')}</table></div>`
-      : '';
+    // Nhấp theo từng bản số liệu đã chốt. Mỗi bản là một cửa sổ 28 ngày
+    // trượt đi một ngày, nên chênh lệch giữa hai bản cách nhau một tuần là
+    // thước đo thật sự duy nhất ở quy mô nhỏ như web này: tổng thì luôn
+    // trông như đang tăng, còn hiệu số thì không nói dối.
+    const duong = (() => {
+      const moc = (gscLichSu?.moc || []).filter((m) => m.hienThi > 0);
+      if (moc.length < 2) return '';
+      const chon = [];
+      for (let i = moc.length - 1; i >= 0 && chon.length < 6; i -= 7) chon.unshift(moc[i]);
+      if (chon[0] !== moc[0]) chon.unshift(moc[0]);
+      const maxN = Math.max(...chon.map((m) => m.nhap), 1);
+      const dong = chon.map((m, i) => {
+        const truoc = i ? chon[i - 1] : null;
+        const d = truoc ? m.nhap - truoc.nhap : null;
+        const nhan = d === null ? '' : d > 0 ? `+${d}` : d < 0 ? String(d) : '0';
+        // Xanh chỉ dành cho mức tăng thật sự đọc được. Nền web này nhỏ tới
+        // mức ±1 nhấp là nhiễu, tô xanh cho +1 là báo tin vui giả.
+        const mau = d === null ? '' : d >= 2 ? 'ok' : d >= -1 ? 'mid' : 'far';
+        return `<tr><td class="tk-k">${esc(m.ngay.split('-').reverse().join('/'))}<span class="tk-b" style="width:${Math.round((m.nhap / maxN) * 100)}%"></span></td><td class="tk-n">${so(m.nhap)}</td><td class="tk-n">${nhan ? `<span class="gsc-v ${mau}">${nhan}</span>` : '—'}</td><td class="tk-n">${so(m.hienThi)}</td><td class="tk-n">${so(m.soTrang)}</td></tr>`;
+      }).join('');
+      const dau = chon[0], cuoi = chon[chon.length - 1];
+      const tangTrang = cuoi.soTrang - dau.soTrang;
+      const tangNhap = cuoi.nhap - dau.nhap;
+      return `<div class="card tk-c tk-w" style="margin-bottom:18px"><h2>Nhấp có đang lên không?</h2>
+<p class="muted" style="margin-bottom:8px">Mỗi dòng là một lần chốt số liệu, mỗi lần tính 28 ngày gần nhất. Cột <b>Đổi</b> là chênh lệch so với dòng trên. Đây là chỗ duy nhất trên trang này nói được tuần nay hơn tuần trước hay không.</p>
+<table class="tk-t"><tr><th class="tk-k">Chốt ngày</th><th class="tk-n">Nhấp</th><th class="tk-n">Đổi</th><th class="tk-n">Hiện ra</th><th class="tk-n">Trang</th></tr>${dong}</table>
+<p class="muted" style="margin-top:10px">Từ ${esc(dau.ngay.split('-').reverse().join('/'))} tới ${esc(cuoi.ngay.split('-').reverse().join('/'))}: số trang Google cho hiện ${tangTrang >= 0 ? 'tăng' : 'giảm'} ${so(Math.abs(tangTrang))}, nhấp ${tangNhap > 0 ? 'tăng ' + so(tangNhap) : tangNhap < 0 ? 'giảm ' + so(Math.abs(tangNhap)) : 'đi ngang'}.</p></div>`;
+    })();
+    // Bài bản tiếng Việt không hiện. Tách hai nhóm vì nguyên nhân khác nhau
+    // hẳn: bản dịch còn hiện nghĩa là Google đã lập chỉ mục bài đó rồi.
+    const chuaIndex = (() => {
+      const ds = (gsc.chuaIndex || []).map((x) =>
+        typeof x === 'string' ? { url: x, slug: '', title: '', banDich: {}, banDichHien: 0 } : x
+      );
+      if (!ds.length) return '';
+      const daIndex = ds.filter((x) => x.banDichHien > 0);
+      const im = ds.filter((x) => !x.banDichHien);
+      const bang = (rows, coCot) => `<table class="tk-t">${coCot ? '<tr><th class="tk-k">Bài</th><th class="tk-n">EN</th><th class="tk-n">KO</th><th class="tk-n">ZH</th></tr>' : ''}${rows
+        .map((x) => `<tr><td class="tk-k">${esc(x.title || ngan(x.url))}</td>${coCot ? `<td class="tk-n">${so(x.banDich?.en || 0)}</td><td class="tk-n">${so(x.banDich?.ko || 0)}</td><td class="tk-n">${so(x.banDich?.zh || 0)}</td>` : ''}</tr>`)
+        .join('')}</table>`;
+      return `<div class="card tk-c tk-w"><h2>Bài bản tiếng Việt không ai thấy</h2>
+<p class="muted" style="margin-bottom:8px">Bài đã đăng trên 2 tuần mà suốt 28 ngày qua bản tiếng Việt không hiện ra lần nào.</p>
+${daIndex.length ? `<h3 style="margin:14px 0 6px;font-size:15px">${so(daIndex.length)} bài Google ĐÃ thấy — chỉ bản tiếng Việt xếp sau</h3>
+<p class="muted" style="margin-bottom:8px">Bản tiếng Anh/Hàn/Trung của chính những bài này vẫn hiện ra bình thường (số bên phải là số lần hiện), nên Google đã đọc và lập chỉ mục bài rồi. Nghẽn nằm ở chỗ kết quả tiếng Việt cho mấy từ khoá này đang bị các trang khác chiếm, không phải ở chỉ mục. Thêm link nội bộ đã thử ngày 02/11 (dồn 34 lên 77 link) và không nhích hạng nào — muốn ăn thì phải viết hơn trang đang đứng trên, hoặc chấp nhận bỏ từ khoá đó.</p>
+${bang(daIndex, true)}` : ''}
+${im.length ? `<h3 style="margin:16px 0 6px;font-size:15px">${so(im.length)} bài im cả bốn bản</h3>
+<p class="muted" style="margin-bottom:8px">Không bản nào hiện ra lần nào. Đây mới là nhóm đáng nghi Google chưa thu thập tới.</p>
+${bang(im, false)}` : ''}</div>`;
+    })();
     const tu = (gsc.range?.startDate || '').split('-').reverse().join('/');
     const den = (gsc.range?.endDate || '').split('-').reverse().join('/');
     return `<style>
@@ -896,11 +943,12 @@ ${ds ? `<h3 style="margin:16px 0 6px;font-size:15px">Các truy vấn của ngư�
   ${o('Tỷ lệ bấm', ctr, 'hiện ra bao nhiêu thì có người bấm')}
   ${o('Vị trí trung bình', String(viTri).replace('.', ','), 'tính từ các trang bên dưới')}
 </div>
-<p class="muted" style="margin:-6px 0 18px">Bốn số trên <b>đang tăng chủ yếu vì Google lập chỉ mục thêm trang</b> (24 trang ngày 25/10 lên ${so((gsc.pages || []).length)} trang hôm nay), không phải vì thứ hạng tốt lên. Muốn biết có tiến bộ thật thì xem vị trí của cùng một trang giữa hai tuần, đừng xem tổng.</p>
+<p class="muted" style="margin:-6px 0 10px">Từ 25/10 tới nay bốn số này tăng <b>chủ yếu vì Google lập chỉ mục thêm trang</b> (24 trang lên ${so((gsc.pages || []).length)} trang), không phải vì thứ hạng tốt lên. Bảng dưới cho thấy đợt đó đã dừng.</p>
+  ${duong}
 <div class="tk-g2">
   ${yDinh}
-  <div class="card tk-c"><h2>Gần trang 1 — đẩy lên là có khách</h2>
-  <p class="muted" style="margin-bottom:8px">Những trang đang ở vị trí 5–20. Đây là chỗ bỏ công ít mà được nhiều nhất, vì chỉ cần nhích vài hạng là lên trang 1.</p>
+  <div class="card tk-c"><h2>Gần trang 1</h2>
+  <p class="muted" style="margin-bottom:8px">Những trang đang ở vị trí 5–20. <b>Lên trang 1 không có nghĩa là có khách:</b> trang chủ đang đứng hạng 1 cho "tiệm nail gần đây" và hạng 1–9 cho hơn mười từ khoá tìm tiệm khác mà suốt 28 ngày không ai bấm. Bảng này cho biết Google xếp mình ở đâu, không cho biết sẽ có khách.</p>
   ${hang(gsc.opportunities || [], 'Trang')}</div>
   <div class="card tk-c"><h2>Khách gõ gì để thấy mình</h2>
   <p class="muted" style="margin-bottom:8px">Google giấu bớt các từ khoá hiếm, nên tổng ở đây ít hơn số lần hiện ra bên trên.</p>

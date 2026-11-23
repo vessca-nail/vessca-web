@@ -140,27 +140,46 @@ async function main() {
   // được index từ lâu. Trang /admin/thong-ke vì vậy báo sai cho chủ tiệm.
   //
   // Nay tính thẳng từ số liệu: bài đã đăng quá 14 ngày mà suốt 28 ngày
-  // không có một lần hiển thị nào thì coi như Google chưa thấy hoặc
-  // thấy mà không bao giờ đưa ra. Hai trường hợp này cần làm cùng một
-  // việc (thêm liên kết nội bộ trỏ tới), nên gộp chung một danh sách.
+  // không có một lần hiển thị nào.
+  //
+  // Sửa 2026-11-23: trước đây gộp tất cả vào một rổ và khuyên "thêm liên
+  // kết nội bộ". Số liệu 20/11 cho thấy cách gộp đó sai: 8 trong 11 bài
+  // tiếng Việt không hiện lại CÓ bản dịch EN/KO/ZH đang hiện bình thường
+  // (nam-gioi-cham-soc-mong: bản Việt 0, bản Anh 13 hiển thị + 2 nhấp).
+  // Bản dịch hiện được nghĩa là Google đã thu thập và lập chỉ mục bài đó
+  // rồi — vấn đề không phải chỉ mục mà là bản tiếng Việt xếp sau đối thủ
+  // trong kết quả tiếng Việt. Thêm liên kết nội bộ không chữa được việc
+  // đó (đã thử 02/11, không nhích hạng nào). Nên tách hai nhóm ra, vì
+  // chúng cần hai cách xử lý khác nhau.
   data.chuaIndex = await timBaiChuaThay(data.pages, range.endDate);
 
   await fs.mkdir(OUT_DIR, { recursive: true });
   await fs.writeFile(path.join(OUT_DIR, 'latest.json'), JSON.stringify(data, null, 2) + '\n');
   await fs.writeFile(path.join(OUT_DIR, `${range.endDate}.json`), JSON.stringify(data, null, 2) + '\n');
 
+  const soMoc = await ghiLichSu();
+
   console.log(`Xong: ${data.totals.clicks} nhấp / ${data.totals.impressions} hiển thị`);
+  console.log(`Lịch sử: ${soMoc} mốc trong data/gsc/lich-su.json`);
   console.log(`${data.queries.length} truy vấn, ${data.pages.length} trang, ${data.opportunities.length} cơ hội`);
 }
 
 /**
- * Bài đã đăng nhưng 28 ngày qua không có lần hiển thị nào.
- * Chỉ xét bản tiếng Việt; bản dịch phụ thuộc bản gốc nên không tính riêng.
+ * Bài đã đăng nhưng 28 ngày qua bản tiếng Việt không có lần hiển thị nào.
+ *
+ * Trả về cả tình trạng của ba bản dịch, vì đó là thứ phân biệt hai ca
+ * hoàn toàn khác nhau:
+ *   - banDichHien > 0  → Google đã lập chỉ mục bài này (bản dịch đang
+ *     hiện), bản tiếng Việt chỉ đơn giản là xếp sau đối thủ Việt. Thêm
+ *     liên kết nội bộ vô ích; muốn ăn thì phải viết hơn đối thủ.
+ *   - banDichHien = 0  → cả bốn bản đều im, mới đáng nghi là chưa được
+ *     thu thập.
  */
 async function timBaiChuaThay(pages, ngayChot) {
-  const coHienThi = new Set(
-    pages.filter((r) => r.impressions > 0).map((r) => r.page.replace(/\/+$/, '/'))
+  const hienThiTheoUrl = new Map(
+    pages.map((r) => [r.page.replace(/\/+$/, '/'), r])
   );
+  const coHienThi = (url) => (hienThiTheoUrl.get(url)?.impressions || 0) > 0;
   // Mốc 14 ngày tính theo ngày chốt số liệu, không phải hôm nay: bài đăng
   // sát ngày chốt thì chưa đủ dữ liệu để kết luận Google có thấy hay chưa.
   const hanMoi = new Date(ngayChot).getTime() - 14 * 86400000;
@@ -182,12 +201,57 @@ async function timBaiChuaThay(pages, ngayChot) {
     const dang = post.publishedAt ? new Date(post.publishedAt).getTime() : 0;
     if (!dang || dang > hanMoi) continue; // chưa đăng, hoặc đăng chưa đủ 14 ngày
     const url = `https://vessca.com/blog/${post.slug}/`;
-    if (!coHienThi.has(url)) ra.push(url);
+    if (coHienThi(url)) continue;
+
+    const banDich = {};
+    let banDichHien = 0;
+    for (const ma of ['en', 'ko', 'zh']) {
+      const r = hienThiTheoUrl.get(`https://vessca.com/${ma}/blog/${post.slug}/`);
+      const h = r?.impressions || 0;
+      banDich[ma] = h;
+      banDichHien += h;
+    }
+    ra.push({ url, slug: post.slug, title: post.title || post.slug, banDich, banDichHien });
   }
   return ra;
 }
 
-main().catch((err) => {
-  console.error(err.message);
-  process.exit(1);
-});
+/**
+ * Sổ tay nhấp/hiển thị theo từng bản đã chốt, để trang /admin/thong-ke vẽ
+ * được đường đi lên hay đi ngang. Không có nó thì chủ tiệm chỉ thấy con số
+ * của 28 ngày gần nhất và không cách nào biết tuần này hơn tuần trước hay
+ * không — đúng chỗ dễ hiểu sai nhất.
+ */
+async function ghiLichSu() {
+  const files = (await fs.readdir(OUT_DIR))
+    .filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f))
+    .sort();
+  const moc = [];
+  for (const f of files) {
+    try {
+      const s = JSON.parse(await fs.readFile(path.join(OUT_DIR, f), 'utf8'));
+      moc.push({
+        ngay: f.replace('.json', ''),
+        nhap: s.totals?.clicks ?? 0,
+        hienThi: s.totals?.impressions ?? 0,
+        soTrang: (s.pages || []).length,
+      });
+    } catch { /* bản lỗi thì bỏ qua, không làm sập cả lượt chạy */ }
+  }
+  await fs.writeFile(
+    path.join(OUT_DIR, 'lich-su.json'),
+    JSON.stringify({ dungLuc: new Date().toISOString(), moc }, null, 1) + '\n'
+  );
+  return moc.length;
+}
+
+// Chỉ chạy khi gọi thẳng file này. Có export để tools/gsc-tinh-lai.mjs
+// dùng lại đúng hàm này mà không chép lại logic lần hai.
+if (process.argv[1] && process.argv[1].endsWith('gsc-fetch.mjs')) {
+  main().catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+  });
+}
+
+export { timBaiChuaThay, ghiLichSu, OUT_DIR };

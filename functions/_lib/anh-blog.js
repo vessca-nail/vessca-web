@@ -38,8 +38,13 @@ const API_GH = 'https://api.github.com';
 // gọi ra ngoài mỗi lượt của gói miễn phí: mỗi bài chừng 3 lượt tìm + 3 lượt
 // tải + 1 lượt đọc GitHub.
 const YEU_CAU = 'content/media/yeu-cau.json';
-const BAI_MOI_LUOT = 3;   // đợt 37: chạy mỗi giờ, 3 bài/lượt — hàng chờ cạn trong ngày
-const LOI_TOI_DA = 3;     // quá số này thì dừng lượt, để lượt sau chạy tiếp
+const BAI_MOI_LUOT = 4;   // đợt 42: 4 bài/lượt, mỗi giờ. Ước chừng 4 × 7 = 28 lượt
+                          // gọi ra ngoài, vẫn dưới mức 50 của gói miễn phí.
+const LOI_TOI_DA = 5;     // quá số này thì dừng lượt, để lượt sau chạy tiếp.
+                          // Đợt 42: nâng từ 3 lên 5. Trước đây một vài bài có từ
+                          // khoá tìm ảnh không khớp nhãn nào đã đốt hết hạn lỗi
+                          // ngay đầu lượt, nên một lượt chỉ làm được 1 bài và cả
+                          // hàng chờ 34 bài gần như không nhúc nhích trong một ngày.
 const DA_DUNG = 'content/media/blog/_da-dung.json';
 
 const ghHeaders = (env) => ({

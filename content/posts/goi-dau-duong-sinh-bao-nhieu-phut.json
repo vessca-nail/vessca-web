@@ -40,10 +40,7 @@
       }
     },
     "trong_bai": [],
-    "thu": 1,
-    "lam_lai": [
-      "bia"
-    ]
+    "xong": "2026-11-24T03:31:16.923Z"
   },
   "content": "<p>Câu hỏi này thường đi kèm một câu hỏi thật phía sau: tôi tranh được bao nhiêu thời gian trong ngày. Bốn gói của VESSCA tương ứng bốn khoảng rất khác nhau.</p>\n<h2>30 phút — gói 01</h2>\n<p>Vừa đủ cho giờ nghỉ trưa hoặc một lần ghé trên đường về. Có tẩy trang rửa mặt, gội hai lần, xả, sấy ion âm, dầu dưỡng tóc, nước uống. Không có phần massage dài.</p>\n<h2>50 phút — gói 02 và gói 03</h2>\n<p>Đây là mốc nhiều người chọn. Cùng 50 phút nhưng hai hướng khác nhau: gói 02 dồn vào da đầu với massage đầu hai lần, gói 03 dồn vào da mặt với mặt nạ Hàn Quốc, massage mặt và chiếu đèn sinh học. Bạn chọn theo thứ mình cần, không phải theo giá.</p>\n<h2>75 phút — gói thiên đường</h2>\n<p>Gói signature, gộp cả da đầu và da mặt, 14 bước. Nên đặt vào buổi rảnh thật, đừng ghép sát một hẹn khác.</p>\n<h2>Nhớ cộng thêm thời gian ngoài gói</h2>\n<p>Thời lượng trên là thời gian làm. Thực tế nên tính thêm 5 tới 10 phút cho lúc trao đổi với kỹ thuật viên về dầu gội và mặt nạ, và lúc tóc nguội trước khi ra ngoài. Nếu bạn làm cùng một bộ nail trong cùng buổi thì nên nói trước khi đặt lịch để tiệm xếp giờ liền mạch.</p>\n<h2>Gợi ý chọn nhanh</h2>\n<ul>\n<li>Có dưới 45 phút: gói 01</li>\n<li>Mỏi cổ vai, cần massage: gói 02</li>\n<li>Đi tiệc, muốn da mặt sáng: gói 03</li>\n<li>Có hơn 90 phút và muốn một buổi trọn: gói 04</li>\n</ul>\n<p>Bảng giá bốn gói ở trang <a href=\"/goi-dau/\">Gội đầu dưỡng sinh</a>. Muốn làm cùng lúc với nail thì xem bài <a href=\"/blog/nail-va-goi-dau-cung-mot-buoi/\">nail và gội đầu cùng một buổi</a>.</p>",
   "i18n": {
@@ -116,5 +113,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/goi-dau-duong-sinh-bao-nhieu-phut.jpg",
+  "coverCredit": {
+    "ten": "KaiMiano",
+    "link": "https://pixabay.com/photos/massage-wellness-japanese-1929064/",
+    "nguon": "Pixabay",
+    "id": "pb-1929064"
   }
 }

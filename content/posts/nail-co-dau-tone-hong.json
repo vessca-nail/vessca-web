@@ -15,7 +15,7 @@
     "nail cưới hồng phấn",
     "nail cô dâu hồng nhẹ"
   ],
-  "coverAlt": "Bộ nail cô dâu tông hồng",
+  "coverAlt": "Ảnh minh hoạ: Nail cô dâu tone hồng: chọn sắc hồng theo tông da",
   "faq": [
     {
       "q": "Da ngăm có làm hồng được không?",
@@ -41,10 +41,7 @@
       }
     },
     "trong_bai": [],
-    "thu": 2,
-    "lam_lai": [
-      "bia"
-    ]
+    "xong": "2026-11-24T11:31:20.955Z"
   },
   "content": "<p>Hồng là tông cô dâu tìm nhiều nhất, vì nó vừa nhẹ vừa làm tay trông có sức sống hơn màu nude thuần. Nhưng hồng có rất nhiều sắc, và sắc sai thì hiệu ứng ngược.</p>\n<h2>Chọn theo tông da</h2>\n<ul>\n<li><b>Da sáng, ngả hồng:</b> hồng phấn lạnh hoặc hồng sữa. Tránh hồng đất vì dễ làm tay trông đục.</li>\n<li><b>Da sáng, ngả vàng:</b> hồng đào, hồng ngả cam nhẹ. Hồng lạnh dễ làm tay vàng hơn.</li>\n<li><b>Da trung tính:</b> gần như sắc nào cũng được, hồng phấn là lựa chọn an toàn.</li>\n<li><b>Da ngăm:</b> hồng đất ngả nâu, hoặc hồng đậm hơn một bậc so với bạn nghĩ. Hồng quá nhạt làm tay trông xám.</li>\n</ul>\n<h2>Hồng sữa và hồng phấn khác nhau ở đâu</h2>\n<p>Hồng sữa có sắc trắng pha vào nên đục, phủ kín móng, che được khuyết điểm. Hồng phấn trong hơn, nhìn tự nhiên hơn nhưng không che được đốm hay vệt. Nếu móng bạn không đều màu, chọn hồng sữa.</p>\n<h2>Cách làm bộ hồng không bị đơn điệu</h2>\n<p>Hồng trơn mười móng là lựa chọn kinh điển và không bao giờ sai. Nếu muốn thêm chiều sâu mà vẫn tiết chế:</p>\n<ul>\n<li>Một móng hồng phấn ánh nhũ mịn giữa chín móng hồng trơn</li>\n<li>Đường viền trắng mảnh ở chân móng hai ngón áp út</li>\n<li>Hai tới ba viên đá nhỏ xếp lệch ở một móng, đặt ở chân móng để không cản khi cầm hoa</li>\n</ul>\n<h2>Phối với váy và áo dài</h2>\n<p>Váy trắng ngà thì hồng đào ăn hơn hồng lạnh. Áo dài đỏ hoặc hồng sen thì nên hạ sắc móng xuống thật nhạt, vì hai sắc hồng gần nhau mà khác nhiệt độ màu sẽ đánh nhau trong ảnh.</p>\n<p>Bài <a href=\"/blog/nail-mau-gi-hop-tong-da/\">nail màu gì hợp tông da</a> nói kỹ về cách đọc tông da. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -117,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-co-dau-tone-hong.jpg",
+  "coverCredit": {
+    "ten": "wrinkledgal",
+    "link": "https://www.flickr.com/photos/184513163@N07/49948880571",
+    "nguon": "Openverse",
+    "id": "ov-cb1186c5-8155-4c16-a688-25d0851dceaa"
   }
 }

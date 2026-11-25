@@ -48,6 +48,32 @@ const LOI_TOI_DA = 3;     // quá số này thì dừng lượt, để lượt s
 // đó mới là chỗ làm hỏng thông lượng.
 const DA_DUNG = 'content/media/blog/_da-dung.json';
 
+/* Đợt 42 (25/11/2026) — SỔ ẢNH ĐÃ DÙNG CÓ NGÀY. Trước đây sổ là một danh
+   sách id: ảnh đã dùng một lần là cấm vĩnh viễn. Chủ tiệm chốt luật mới:
+   KHÔNG DÙNG LẠI ẢNH TRONG VÒNG MỘT THÁNG, quá một tháng thì được trộn lại.
+   Giờ sổ là { id: 'YYYY-MM-DD' } — ngày ảnh xuất hiện trên web gần nhất.
+   - has(id): ảnh còn trong hạn cấm (dùng trong NGAY_CHO_DUNG_LAI ngày qua)
+   - daTungDung(id): đã từng dùng bao giờ chưa — timAnh vẫn ƯU TIÊN ảnh mới
+     tinh trước, chỉ khi hết ảnh mới mới lấy ảnh cũ quá hạn.
+   Sổ cũ dạng mảng vẫn đọc được: coi như dùng hôm nay (cấm thêm 30 ngày) để
+   không bao giờ lỡ tay dùng lại ảnh vừa đăng tuần trước. Lần chuyển sổ đầu
+   tiên (25/11) đã gán ngày thật cho 499 ảnh cũ theo ngày đăng của bài chứa
+   ảnh, ảnh không tìm ra bài thì theo ngày ảnh vào sổ trong lịch sử git. */
+const NGAY_CHO_DUNG_LAI = 30;
+const ngayVN = (ms = Date.now()) => new Date(ms + 7 * 3600e3).toISOString().slice(0, 10);
+function moSoAnh(raw) {
+  const du = raw ? JSON.parse(raw) : {};
+  const homNay = ngayVN();
+  const map = new Map(Array.isArray(du) ? du.map((id) => [id, homNay]) : Object.entries(du));
+  const han = ngayVN(Date.now() - NGAY_CHO_DUNG_LAI * 864e5);
+  return {
+    has: (id) => map.has(id) && map.get(id) > han,
+    daTungDung: (id) => map.has(id),
+    add: (id) => { map.set(id, homNay); },
+    luu: () => JSON.stringify(Object.fromEntries([...map].sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))), null, 0) + '\n',
+  };
+}
+
 const ghHeaders = (env) => ({
   Authorization: `Bearer ${env.GITHUB_TOKEN}`,
   Accept: 'application/vnd.github+json',
@@ -109,10 +135,23 @@ async function ghiMotLan(env, files, message) {
 //  cách hệ thống này làm.
 //  Ảnh trả về dạng chung: { id, ten, link, nguon, tai(laBia) → URL tải }
 // ------------------------------------------------------------
-async function timPixabay(env, tuKhoa) {
+/* Đợt 42 (25/11/2026) — VÌ SAO CRON BÁO "KHÔNG TÌM ĐƯỢC ẢNH" DÙ KHO CÓ HÀNG
+   NGHÌN ẢNH NAIL. Mỗi lần tìm trước đây chỉ đọc TRANG ĐẦU (Pexels 20 ảnh,
+   Unsplash 30, Openverse 20). Kho thì lớn nhưng hệ thống chỉ bao giờ thấy 20
+   tấm đứng đầu; dùng hết 20 tấm đó là mọi bài sau với từ khoá na ná đều trắng.
+   Chủ tiệm chỉ ra chỗ vô lý này. Giờ mỗi lần tìm chọn ngẫu nhiên một trang
+   trong TRANG_TOI_DA trang đầu. Trang đó rỗng hoặc bị từ chối (từ khoá ít kết
+   quả, hoặc Openverse không khoá chỉ cho đọc nông) thì lùi về trang 1 — chỉ
+   lúc đó mới tốn thêm một lượt gọi, đường thường vẫn một lượt như cũ. */
+const TRANG_TOI_DA = 6;
+const trangNgauNhien = () => 1 + Math.floor(Math.random() * TRANG_TOI_DA);
+
+async function timPixabay(env, tuKhoa, trang = Math.min(trangNgauNhien(), 3)) {
+  // Pixabay 100 ảnh/trang và báo lỗi 400 nếu trang vượt quá số kết quả, nên
+  // chỉ chọn trong 3 trang đầu (300 ảnh) và lỗi ở trang > 1 thì thử lại trang 1.
   const url = `https://pixabay.com/api/?key=${encodeURIComponent(env.PIXABAY_API_KEY)}` +
     `&q=${encodeURIComponent(tuKhoa).slice(0, 100)}&image_type=photo&orientation=horizontal` +
-    `&safesearch=true&min_width=1000&per_page=100`;
+    `&safesearch=true&min_width=1000&per_page=100&page=${trang}`;
   // Pixabay báo 429 "gọi nhanh quá" khi hai lượt tìm sát nhau (dù tài liệu
   // nói 100 lượt/phút) → giãn mỗi lượt tìm ~1,5 giây, bị 429 thì chờ thêm
   // rồi thử lại tối đa 2 lần. Thời gian chờ không tính vào giới hạn CPU.
@@ -125,12 +164,15 @@ async function timPixabay(env, tuKhoa) {
     await new Promise((r) => setTimeout(r, 3000));
     res = await fetch(url);
   }
+  if (res.status === 400 && trang > 1) return timPixabay(env, tuKhoa, 1);
   if (!res.ok) {
     const h = (k) => res.headers.get(k);
     throw new Error(`Pixabay tìm "${tuKhoa}" → ${res.status} (còn ${h('x-ratelimit-remaining')}/${h('x-ratelimit-limit')}, ` +
       `mở lại sau ${h('x-ratelimit-reset')}s; ${(await res.text()).slice(0, 80)})`);
   }
-  const hits = ((await res.json()).hits || []).map((h) => ({
+  const raw = (await res.json()).hits || [];
+  if (!raw.length && trang > 1) return timPixabay(env, tuKhoa, 1);
+  const hits = raw.map((h) => ({
     id: `pb-${h.id}`, ten: h.user, link: h.pageURL, nguon: 'Pixabay',
     nhan: String(h.tags || '').toLowerCase(),
     // Ưu tiên máy chủ ảnh cdn.pixabay.com (bản 1280px, cùng ảnh với
@@ -175,11 +217,14 @@ function locTheoNhan(tuKhoa, hits) {
     .map((x) => x.h);
 }
 
-async function timPexels(env, tuKhoa) {
-  const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(tuKhoa)}&orientation=landscape&per_page=20`;
+async function timPexels(env, tuKhoa, trang = trangNgauNhien()) {
+  const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(tuKhoa)}&orientation=landscape&per_page=20&page=${trang}`;
   const res = await fetch(url, { headers: { Authorization: env.PEXELS_API_KEY } });
+  if (!res.ok && trang > 1) return timPexels(env, tuKhoa, 1);
   if (!res.ok) throw new Error(`Pexels tìm "${tuKhoa}" → ${res.status}`);
-  const hits = ((await res.json()).photos || []).map((p) => ({
+  const raw = (await res.json()).photos || [];
+  if (!raw.length && trang > 1) return timPexels(env, tuKhoa, 1);
+  const hits = raw.map((p) => ({
     id: `px-${p.id}`, ten: p.photographer, link: p.url, nguon: 'Pexels',
     // Pexels có mô tả ảnh ở `alt` → dùng làm nhãn để lọc như Pixabay.
     // Ảnh nào Pexels để trống alt thì locTheoNhan bỏ qua bước lọc chủ đề.
@@ -202,14 +247,17 @@ async function timPexels(env, tuKhoa) {
    kho còn lại vẫn chạy, bài vẫn có ảnh thương hiệu, không hỏng gì. Lượt cron
    đầu tiên sẽ ghi rõ lỗi vào thân commit nếu có. */
 
-async function timUnsplash(env, tuKhoa) {
+async function timUnsplash(env, tuKhoa, trang = trangNgauNhien()) {
   const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(tuKhoa)}` +
-    '&per_page=30&orientation=landscape&content_filter=high';
+    `&per_page=30&orientation=landscape&content_filter=high&page=${trang}`;
   const res = await fetch(url, {
     headers: { Authorization: `Client-ID ${env.UNSPLASH_ACCESS_KEY}`, 'Accept-Version': 'v1' },
   });
+  if (!res.ok && trang > 1) return timUnsplash(env, tuKhoa, 1);
   if (!res.ok) throw new Error(`Unsplash tìm "${tuKhoa}" → ${res.status}`);
-  const hits = ((await res.json()).results || []).map((p) => ({
+  const raw = (await res.json()).results || [];
+  if (!raw.length && trang > 1) return timUnsplash(env, tuKhoa, 1);
+  const hits = raw.map((p) => ({
     id: `us-${p.id}`, ten: p.user?.name || 'Unsplash', link: p.links?.html || '', nguon: 'Unsplash',
     // Nhãn: mô tả ảnh + các thẻ, gộp lại cho locTheoNhan lọc chủ đề
     nhan: [p.alt_description, p.description, ...(p.tags || []).map((t) => t.title)]
@@ -230,10 +278,14 @@ async function timUnsplash(env, tuKhoa) {
    chỉ lấy ảnh thuộc phạm vi công cộng / miễn trừ bản quyền, dùng thương mại
    không ràng buộc ghi nguồn — vẫn ghi tên người chụp cho đàng hoàng.
    Hạn mức khi gọi không khoá khá thấp nên xếp cuối dãy. */
-async function timOpenverse(env, tuKhoa) {
+async function timOpenverse(env, tuKhoa, trang = trangNgauNhien()) {
   const url = `https://api.openverse.org/v1/images/?q=${encodeURIComponent(tuKhoa)}` +
-    '&page_size=20&license=cc0,pdm&mature=false';
-  const res = await fetch(url, { headers: { 'User-Agent': 'vessca.com blog (lamiesnail@gmail.com)' } });
+    `&page_size=20&license=cc0,pdm&mature=false&page=${trang}`;
+  // Đợt 42: bỏ email cá nhân khỏi chuỗi định danh — repo công khai, và
+  // Openverse chỉ cần một đầu mối liên hệ, địa chỉ web là đủ.
+  const res = await fetch(url, { headers: { 'User-Agent': 'vessca.com blog (https://vessca.com)' } });
+  // Gọi không khoá, Openverse có thể từ chối trang sâu → lùi về trang 1.
+  if (!res.ok && trang > 1) return timOpenverse(env, tuKhoa, 1);
   if (!res.ok) throw new Error(`Openverse tìm "${tuKhoa}" → ${res.status}`);
   /* Đợt 33c — lần chạy thật đầu tiên (04/11, bài nail-mau-dam-cuoi-nam) cho
      thấy Openverse khác Pixabay ở chỗ nhãn rất nghèo (thường chỉ "manicure")
@@ -250,7 +302,9 @@ async function timOpenverse(env, tuKhoa) {
     'design', 'close', 'closeup', 'salon', 'fingernail', 'fingernails', 'beauty', 'photo']);
   const rieng = String(tuKhoa).toLowerCase().split(/\s+/).filter((w) => w.length > 2 && !CHUNG.has(w));
   const BO = ['collage', 'tutorial', 'diy', 'how to', 'step by step', 'before and after', 'infographic', 'logo', 'icon', 'drawing', 'clipart'];
-  const hits = ((await res.json()).results || [])
+  const raw = (await res.json()).results || [];
+  if (!raw.length && trang > 1) return timOpenverse(env, tuKhoa, 1);
+  const hits = raw
     .map((p) => ({
       id: `ov-${p.id}`, ten: p.creator || 'Openverse', link: p.foreign_landing_url || p.url || '',
       nguon: 'Openverse', rong: Number(p.width) || 0, cao: Number(p.height) || 0,
@@ -338,7 +392,13 @@ async function timAnh(env, tuKhoa, daDung, bao, duPhong = true) {
   // có nhiều tấm của cùng một buổi chụp, khác id nhưng nhìn gần như y hệt.
   // Không có ảnh của người chụp mới thì chấp nhận người chụp cũ (khác ảnh) —
   // vẫn hơn là lấy ảnh lạc đề từ từ khoá chung chung.
-  const p = kq.find((x) => !daDung.has(x.id) && !daDung.has(`u:${x.ten}`))
+  // Đợt 42: thứ tự ưu tiên — (1) ảnh chưa dùng bao giờ của người chụp chưa
+  // dùng gần đây; (2) ảnh chưa dùng bao giờ; (3) ảnh cũ đã quá hạn một tháng
+  // của người chụp chưa dùng gần đây; (4) ảnh cũ quá hạn bất kỳ.
+  const moi = (x) => !daDung.daTungDung(x.id);
+  const p = kq.find((x) => moi(x) && !daDung.has(`u:${x.ten}`))
+    || kq.find(moi)
+    || kq.find((x) => !daDung.has(x.id) && !daDung.has(`u:${x.ten}`))
     || kq.find((x) => !daDung.has(x.id)) || null;
   if (p || !duPhong) return p;
   // Đợt 32: không tìm ra thì thử dần các từ khoá chung về làm móng, để bài
@@ -522,7 +582,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
   let daDungChung = null;      // sổ "ảnh đã dùng" của lượt này, bước 1b dùng chung
   if (coKho(env) && so.canAnh?.length) {
     const daDungRaw = await docFile(env, DA_DUNG);
-    const daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
+    const daDung = moSoAnh(daDungRaw);
     daDungChung = daDung;
     // Sổ nội bộ chỉ mới lại sau khi web dựng xong — bài vừa làm ở lượt trước
     // có thể vẫn nằm trong danh sách. Bài nào đã xong thì bỏ qua, xét tối đa 4 bài.
@@ -545,7 +605,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
         loi++;
       }
     }
-    if (files.length) files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
+    if (files.length) files.push({ path: DA_DUNG, b64: textToB64(daDung.luu()) });
   } else if (!coKho(env) && so.canAnh?.length) {
     bao.push(`Chưa có PIXABAY_API_KEY lẫn PEXELS_API_KEY — ${so.canAnh.length} bài đang chờ ảnh`);
   }
@@ -566,7 +626,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
         let daDung = daDungChung;
         if (!daDung) {
           const daDungRaw = await docFile(env, DA_DUNG);
-          daDung = new Set(daDungRaw ? JSON.parse(daDungRaw) : []);
+          daDung = moSoAnh(daDungRaw);
         }
         let doi = false;
         for (const x of cho.slice(0, 4)) {
@@ -591,7 +651,7 @@ export async function chayDinhKy(env, { ep = false } = {}) {
           files.push({ path: YEU_CAU, b64: textToB64(JSON.stringify(ds, null, 2) + '\n') });
           const i = files.findIndex((f) => f.path === DA_DUNG);
           if (i >= 0) files.splice(i, 1);
-          files.push({ path: DA_DUNG, b64: textToB64(JSON.stringify([...daDung]) + '\n') });
+          files.push({ path: DA_DUNG, b64: textToB64(daDung.luu()) });
         }
       }
     } catch (e) { bao.push(`ảnh theo yêu cầu: lỗi — ${e.message}`); }

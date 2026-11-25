@@ -15,7 +15,7 @@
     "nail xanh dương",
     "nail xanh nước"
   ],
-  "coverAlt": "Bộ nail màu xanh biển",
+  "coverAlt": "Ảnh minh hoạ: Nail màu xanh biển: từ xanh navy tới xanh nước nhạt",
   "faq": [
     {
       "q": "Navy có hợp đi làm không?",
@@ -37,10 +37,7 @@
       }
     },
     "trong_bai": [],
-    "thu": 1,
-    "lam_lai": [
-      "bia"
-    ]
+    "xong": "2026-11-25T12:31:23.478Z"
   },
   "content": "<p>Khi khách nói muốn màu xanh biển, hai người có thể đang nghĩ tới hai màu rất khác: navy đậm gần đen, hoặc xanh nước nhạt kiểu nước biển cạn. Nên nói rõ trước khi làm.</p>\n<h2>Navy đậm</h2>\n<p>Đây là sắc dễ mặc nhất trong nhóm xanh. Nó đủ đậm để trông như một màu trung tính, gần như đen nhưng mềm hơn. Hợp mùa cuối năm, hợp tiệc tối, và là nền rất tốt cho đá trắng trong hoặc nhũ bạc. Navy cũng ít làm tối tay hơn xanh trung bình, vì ở độ đậm đó mắt đọc nó là màu nền chứ không so sánh với da.</p>\n<h2>Xanh nước nhạt</h2>\n<p>Sắc này tươi, lạnh và nhẹ, thuộc nhóm màu mùa nắng. Trên tông da ngả vàng, nó tạo tương phản lạnh nên có thể làm tay trông xám. Cách xử lý giống Tiffany blue: chọn sắc đục hơn, hoặc dùng ở dạng hai móng nhấn trong bộ trắng sữa.</p>\n<h2>Sắc giữa: xanh dương trung bình</h2>\n<p>Đây là sắc khó nhất. Không đủ đậm để thành trung tính, không đủ nhạt để thành pastel, nên nó nổi theo kiểu hơi thô trên tay. Nếu thích xanh dương, nên đi về một trong hai đầu.</p>\n<h2>Dịp nào dùng sắc nào</h2>\n<ul>\n<li><b>Tiệc cuối năm, tất niên:</b> navy đậm với một chất liệu nhấn.</li>\n<li><b>Đi biển, du lịch:</b> xanh nước nhạt, dạng trơn hoặc hai móng nhấn.</li>\n<li><b>Đi làm:</b> navy đậm trơn, không chi tiết.</li>\n</ul>\n<p>Bài <a href=\"/blog/nail-di-bien-du-lich/\">nail đi biển, du lịch</a> và <a href=\"/blog/nail-tat-nien-cong-ty/\">nail tất niên công ty</a> nói riêng từng dịp. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -113,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-mau-xanh-bien.jpg",
+  "coverCredit": {
+    "ten": "Openverse",
+    "link": "https://collection.cooperhewitt.org/view/objects/asitem/id/103561",
+    "nguon": "Openverse",
+    "id": "ov-afd93997-81d6-4974-904f-3d362e26bc39"
   }
 }

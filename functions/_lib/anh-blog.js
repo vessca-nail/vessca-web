@@ -339,7 +339,13 @@ function cacKho(env) {
   // - Pexels: giữ lại cho trường hợp đã có khoá cũ (ngưng cấp khoá mới 10/2026).
   // - Pixabay: tụt xuống dưới vì đang bị chặn 429 từ 01/11/2026.
   // - Openverse: KHÔNG CẦN KHOÁ nên luôn có mặt, làm lưới cuối.
-  if (env.UNSPLASH_ACCESS_KEY) ds.push(timUnsplash);
+  /* Đợt 42 (25/11/2026): TẮT Unsplash dù có khoá. Điều khoản API của Unsplash
+     bắt buộc nhúng ảnh thẳng từ link images.unsplash.com (hotlinking), không
+     được tải về lưu trên máy chủ mình — mà hệ thống này tải ảnh về repo.
+     Thêm khoá vào là vi phạm điều khoản ngay lượt đầu. Muốn bật lại thì phải
+     đổi cách hiển thị ảnh Unsplash sang hotlink trước. Hàm timUnsplash giữ
+     lại để dùng nếu có ngày làm việc đó. */
+  if (env.UNSPLASH_ACCESS_KEY && env.UNSPLASH_HOTLINK_OK === 'co') ds.push(timUnsplash);
   if (env.PEXELS_API_KEY) ds.push(timPexels);
   if (env.PIXABAY_API_KEY) ds.push(timPixabay);
   ds.push(timOpenverse);

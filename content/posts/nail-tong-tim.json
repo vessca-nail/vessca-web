@@ -15,7 +15,7 @@
     "nail tím đậm",
     "nail tím nhạt"
   ],
-  "coverAlt": "Bộ nail tông tím",
+  "coverAlt": "Ảnh minh hoạ: Nail tông tím: chọn sắc tím nào để không bị tối tay",
   "faq": [
     {
       "q": "Da ngăm làm tím được không?",
@@ -36,7 +36,8 @@
         "zh": "紫色調美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T06:31:57.228Z"
   },
   "content": "<p>Tím có khoảng màu rộng hơn hầu hết các màu khác, từ lavender nhạt gần trắng tới tím đậm gần đen. Vì vậy câu hỏi không phải tím có hợp không, mà là sắc tím nào.</p>\n<h2>Ba sắc và ai nên dùng</h2>\n<ul>\n<li><b>Tím khói nhạt</b> — pha xám, trầm, dễ mặc đi làm. Hợp hầu hết tông da vì nó không rực.</li>\n<li><b>Lavender</b> — nhạt và lạnh, nổi nhất trên da sáng. Da ngăm dùng sắc này dễ bị bạc màu, nên chọn lavender đục hơn.</li>\n<li><b>Tím đậm, tím nho</b> — hút mắt, hợp mùa cuối năm và tiệc tối. Cùng nhóm với burgundy nên dùng được tới Tết.</li>\n</ul>\n<h2>Lý do tím hay bị nói là làm tối tay</h2>\n<p>Tím là màu lạnh và đậm. Trên tông da ấm, màu lạnh đậm tạo tương phản mạnh, khiến mắt đọc phần da là tối hơn. Cách xử lý: hạ độ đậm xuống, hoặc chọn sắc tím ngả đỏ, hoặc dùng tím ở dạng hai móng nhấn trong bộ nude.</p>\n<h2>Hướng dễ nhất cho người mới thử</h2>\n<p>Tím khói nhạt trơn mười móng. Nó đủ khác nude để thấy mình đã làm màu, nhưng không đủ rực để phải cân nhắc khi mặc đồ.</p>\n<h2>Chất liệu ăn với tím</h2>\n<p>Tím là một trong những nền ăn nhũ nhất. Nhũ bạc mịn và nhũ ánh ngũ sắc nổi rõ trên nền tím mà không gắt. Bài <a href=\"/blog/nail-nhu-aurora-han-quoc/\">nail nhũ aurora Hàn Quốc</a> nói về nhóm chất liệu này.</p>\n<p>Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -109,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-tong-tim.jpg",
+  "coverCredit": {
+    "ten": "Makarand Mane",
+    "link": "https://wordpress.org/photos/photo/15966215e6/",
+    "nguon": "Openverse",
+    "id": "ov-a37a2fed-9f0f-4326-a20a-2c468dd94d0f"
   }
 }

@@ -15,7 +15,7 @@
     "nail trơn kiểu hàn",
     "nail tối giản hàn quốc"
   ],
-  "coverAlt": "Bộ nail basic kiểu Hàn",
+  "coverAlt": "Ảnh minh hoạ: Nail basic Hàn Quốc: bộ nền ai cũng nên làm một lần",
   "faq": [
     {
       "q": "Bộ basic có rẻ hơn không?",
@@ -36,7 +36,8 @@
         "zh": "韓式基本款美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T13:31:24.314Z"
   },
   "content": "<p>Basic trong nail Hàn Quốc không có nghĩa là làm cho có. Nó chỉ một bộ sơn trơn, không hoạ tiết, nhưng phần nền được làm rất kỹ. Và đây chính là loại bộ nail khó giấu tay nghề nhất.</p>\n<h2>Vì sao bộ trơn lại khó</h2>\n<p>Khi có hoạ tiết, mắt người nhìn bị kéo về phần vẽ. Khi không có gì cả, mắt nhìn thẳng vào nền: đường cắt da, độ đều của form mười móng, lớp sơn có tràn vào da không, có hở ở chân móng không, bề mặt có phẳng không. Một bộ trơn làm cẩu thả lộ ra ngay, trong khi bộ nhiều chi tiết thì che được.</p>\n<h2>Bốn thứ làm nên bộ basic đạt</h2>\n<ul>\n<li><b>Da quanh móng gọn</b> — không còn xơ, không đỏ, không cắt phạm.</li>\n<li><b>Mười móng cùng một form</b> — nhìn cả bàn tay thấy đều, không móng nào lệch.</li>\n<li><b>Viền sơn sát mà không tràn</b> — cách da một khoảng rất mảnh, đều quanh móng.</li>\n<li><b>Bề mặt phẳng, bóng đều</b> — không lồi lõm, không vệt cọ.</li>\n</ul>\n<h2>Màu nào là basic</h2>\n<p>Nhóm màu basic kiểu Hàn là các sắc gần da và các sắc sữa: nude hồng, be hồng, trắng sữa, hồng sữa, nâu trà. Chúng sống được với mọi trang phục và không gắn với mùa nào.</p>\n<h2>Vì sao nên làm một lần</h2>\n<p>Bộ basic là cách tốt nhất để biết một tiệm làm nền có kỹ hay không, trước khi bạn đặt một bộ phức tạp và tốn kém hơn. Nếu bộ trơn của họ sạch, các bộ còn lại thường cũng sạch.</p>\n<p>Bài <a href=\"/blog/nail-tron-mot-mau-kieu-han/\">nail trơn một màu kiểu Hàn</a> và <a href=\"/blog/quy-trinh-lam-nail-tai-vessca/\">quy trình làm nail tại VESSCA</a> nói thêm. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -109,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-basic-han-quoc.jpg",
+  "coverCredit": {
+    "ten": "Eric Nopanen",
+    "link": "https://stocksnap.io/photo/people-woman-X9KRF6WMPN",
+    "nguon": "Openverse",
+    "id": "ov-7ecba684-0224-40f6-9953-a273257daa56"
   }
 }

@@ -29,14 +29,15 @@
   "anh": {
     "bia": {
       "tim": "green nails manicure",
-      "alt": "Bộ nail màu xanh lá",
+      "alt": "Bộ nail mắt mèo màu xanh lá",
       "altI18n": {
-        "en": "A green manicure",
-        "ko": "그린 네일",
-        "zh": "綠色美甲"
+        "en": "A green cat-eye set",
+        "ko": "그린 캣아이 네일",
+        "zh": "綠色貓眼美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T03:00:00.000Z"
   },
   "content": "<p>Xanh lá hay bị gạt khỏi danh sách vì người ta hình dung xanh lá tươi kiểu lá non. Nhưng nhóm xanh lá rộng hơn thế, và hai sắc trong đó thuộc nhóm dễ mặc nhất.</p>\n<h2>Xanh rêu và xanh olive: dễ nhất</h2>\n<p>Hai sắc này có xám và vàng pha vào nên trầm, gần nhóm màu đất. Chúng cùng nhiệt độ với tông da ngả vàng, nên đặt lên tay không tạo tương phản gắt. Đây là lý do xanh olive đi làm được trong khi xanh lá tươi thì không.</p>\n<h2>Xanh lá tươi: dùng ở dạng nhấn</h2>\n<p>Xanh lá tươi rất hút mắt và lạnh. Nếu bạn muốn dùng, làm hai móng nhấn trong bộ nền trắng sữa hoặc nude, thay vì cả mười móng. Dịp Noel thì xanh lá tươi ghép với đỏ là bộ kinh điển, nhưng nên chia tỷ lệ chứ không để hai màu bằng nhau.</p>\n<h2>Xanh lá đậm gần đen</h2>\n<p>Sắc này trầm và sang, hợp mùa cuối năm, và là nền rất tốt cho đá trắng trong hoặc nhũ vàng. Nó cùng nhóm với burgundy và nâu tây nên dùng được qua Tết.</p>\n<h2>Phối với chất liệu gì</h2>\n<p>Trên nền xanh đậm, nhũ vàng mịn ăn hơn nhũ bạc, vì vàng cùng nhiệt độ ấm với phần vàng có trong sắc xanh. Đá trắng trong nổi rõ. Nên dùng một chất liệu cho cả bộ.</p>\n<h2>Form nào cân đối</h2>\n<p>Màu đậm thu nhỏ bề mặt móng, nên móng rất ngắn sơn xanh đậm kín sẽ trông cụt. Chừa khoảng mảnh ở chân móng hoặc chọn form oval.</p>\n<p>Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>. Bộ Noel đỏ xanh có ở bài <a href=\"/blog/nail-noel-do-xanh/\">nail Noel đỏ xanh</a>.</p>",
   "i18n": {
@@ -109,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-mau-xanh-la.jpg",
+  "coverCredit": {
+    "ten": "VESSCA",
+    "link": "https://www.instagram.com/vessca.nail/p/DgCwWubpKXu/",
+    "nguon": "Instagram VESSCA",
+    "id": "ig-DgCwWubpKXu"
   }
 }

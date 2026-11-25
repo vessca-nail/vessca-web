@@ -28,14 +28,15 @@
   "anh": {
     "bia": {
       "tim": "scalp massage",
-      "alt": "Khu gội đầu và dụng cụ tại tiệm",
+      "alt": "Góc ngồi riêng tại tiệm",
       "altI18n": {
-        "en": "The wash area and its tools",
-        "ko": "샴푸 공간과 도구",
-        "zh": "洗髮區與器具"
+        "en": "A private seat at the lounge",
+        "ko": "라운지의 프라이빗 좌석",
+        "zh": "店內的私人座位"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T03:00:00.000Z"
   },
   "content": "<p>Nhiều tiệm gội đầu ở Việt Nam gộp lấy ráy tai vào gói. VESSCA không làm dịch vụ này, và nên nói trước để bạn khỏi mất công tới.</p>\n<h2>Vì sao tiệm không làm</h2>\n<p>Lấy ráy tai bằng que ở tiệm là thao tác có rủi ro: dễ đẩy ráy vào sâu hơn, dễ xước ống tai, và dụng cụ dùng cho nhiều người là đường lây nhiễm nếu không tiệt trùng đúng cách. Khuyến nghị chung của giới y khoa là ống tai tự làm sạch, không cần can thiệp thường xuyên; ráy tai gây bít tắc, đau hay giảm nghe thì nên để bác sĩ tai mũi họng xử lý.</p>\n<p>VESSCA chọn làm đúng phạm vi của mình là da đầu, tóc, da mặt và cơ cổ vai gáy, thay vì nhận thêm một việc cần chuyên môn y tế.</p>\n<h2>Trong gói có những gì</h2>\n<p>Thay cho phần đó, bốn gói tập trung vào các bước sau:</p>\n<ul>\n<li>Tẩy trang và rửa mặt trước khi gội</li>\n<li>Tẩy tế bào chết da đầu, gội hai lần, xả dầu xả</li>\n<li>Massage đầu, hoặc massage đầu cùng cổ vai gáy</li>\n<li>Mặt nạ Hàn Quốc, massage mặt, chiếu đèn ánh sáng sinh học ở các gói có phần da mặt</li>\n<li>Sấy bằng máy sấy ion âm, dầu dưỡng tóc L’Oréal, dưỡng da tay</li>\n</ul>\n<h2>Nếu bạn vẫn muốn dịch vụ đó</h2>\n<p>Nên tới phòng khám tai mũi họng. Việc này được làm có đèn soi và dụng cụ tiệt trùng, an toàn hơn hẳn làm ở tiệm. Sau đó bạn vẫn có thể đi gội đầu bình thường.</p>\n<p>Danh sách bước đầy đủ ở trang <a href=\"/goi-dau/\">Gội đầu dưỡng sinh</a>.</p>",
   "i18n": {
@@ -108,5 +109,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/goi-dau-duong-sinh-co-lay-ray-tai-khong.jpg",
+  "coverCredit": {
+    "ten": "VESSCA",
+    "link": "https://www.instagram.com/vessca.nail/p/DeboQHqCTB5/",
+    "nguon": "Instagram VESSCA",
+    "id": "ig-DeboQHqCTB5"
   }
 }

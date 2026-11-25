@@ -29,14 +29,15 @@
   "anh": {
     "bia": {
       "tim": "pastel nails manicure",
-      "alt": "Bộ nail kiểu Hàn dễ thương",
+      "alt": "Bộ nail hồng kiểu Hàn với charm sao bạc",
       "altI18n": {
-        "en": "A cute Korean-style set",
-        "ko": "귀여운 한국식 네일",
-        "zh": "可愛的韓式美甲"
+        "en": "Korean-style pink nails with silver star charms",
+        "ko": "실버 별 참을 올린 한국식 핑크 네일",
+        "zh": "銀色星星飾品的韓式粉色美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T03:00:00.000Z"
   },
   "content": "<p>Khi khách đưa ảnh mẫu và nói muốn kiểu Hàn dễ thương, thứ họ đang chỉ vào thường không phải hoạ tiết cụ thể mà là một cách tiết chế. Có ba điểm phân biệt rõ.</p>\n<h2>Bảng màu đục nhẹ, không rực</h2>\n<p>Hướng dễ thương thường dùng màu tươi và tương phản mạnh: hồng rực, xanh dương tươi, vàng chanh. Kiểu Hàn lùi về nhóm đục nhẹ: hồng sữa, kem, xanh bạc hà nhạt, xám sương, be hồng. Cùng là màu sáng nhưng độ bão hoà thấp hơn nên bộ nail trông dịu.</p>\n<h2>Hoạ tiết nhỏ hơn nhiều</h2>\n<p>Đây là khác biệt dễ thấy nhất. Hoạ tiết kiểu Hàn thường nhỏ bằng hạt gạo hoặc nhỏ hơn: một bông hoa mảnh, hai chấm tròn, một đường viền ở chân móng. Hình lớn chiếm nửa mặt móng gần như không xuất hiện.</p>\n<h2>Khoảng trống được giữ lại</h2>\n<p>Phần lớn móng để trơn. Thường chỉ một hoặc hai móng có chi tiết, và ngay trên móng đó phần giữa vẫn trống. Cảm giác sạch sẽ đến từ phần không vẽ chứ không từ phần vẽ.</p>\n<h2>Ba mẫu theo hướng này</h2>\n<ul>\n<li>Nền hồng sữa mười móng, một móng có hai chấm trắng nhỏ ở chân móng.</li>\n<li>Nền be hồng, một móng vẽ một nhánh lá mảnh sát cạnh móng.</li>\n<li>Nền kem, hai móng rắc nhũ mịn, không vẽ hình nào.</li>\n</ul>\n<h2>Vì sao hướng này hợp người đi làm</h2>\n<p>Vì tiết chế nên nó không lệch khỏi môi trường công sở, trong khi vẫn khác với một bộ sơn trơn hoàn toàn. Đây là lý do nó được chọn nhiều cho ngày thường.</p>\n<p>Bài <a href=\"/blog/nail-van-phong-kieu-han/\">nail văn phòng kiểu Hàn</a> và <a href=\"/blog/nail-han-quoc-khac-gi-nail-thuong/\">nail Hàn Quốc khác gì nail thường</a> nói thêm. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -109,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-han-quoc-de-thuong.jpg",
+  "coverCredit": {
+    "ten": "VESSCA",
+    "link": "https://www.instagram.com/vessca.nail/p/DgAZYgNST3L/",
+    "nguon": "Instagram VESSCA",
+    "id": "ig-DgAZYgNST3L"
   }
 }

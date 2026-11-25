@@ -41,10 +41,7 @@
       }
     },
     "trong_bai": [],
-    "thu": 1,
-    "lam_lai": [
-      "bia"
-    ]
+    "xong": "2026-11-25T05:31:17.200Z"
   },
   "content": "<p>Câu trả lời thường gặp là hai tới ba tuần. Nhưng con số này dao động khá rộng tuỳ người, nên biết yếu tố nào quyết định thì hữu ích hơn một con số.</p>\n<h2>Bốn yếu tố quyết định</h2>\n<ul>\n<li><b>Tốc độ móng thật mọc.</b> Móng mọc nhanh thì phần chân móng hở ra sớm hơn, và đó mới là lý do phải đi làm lại, không phải vì móng úp hỏng.</li>\n<li><b>Phần nền làm có kỹ không.</b> Móng còn dầu hoặc bụi mài thì lớp keo bám kém và bong sớm, dù sản phẩm tốt tới đâu.</li>\n<li><b>Độ dài chọn.</b> Móng càng dài thì đòn bẩy càng lớn, càng dễ bật khi va chạm.</li>\n<li><b>Công việc hằng ngày.</b> Rửa bát, giặt tay, làm vườn, bế trẻ nhỏ đều rút ngắn thời gian giữ.</li>\n</ul>\n<h2>Dấu hiệu nên đi làm lại</h2>\n<ul>\n<li>Phần chân móng hở rõ, nhìn thấy đường ranh giới.</li>\n<li>Một góc móng bị kênh lên, cạy vào thấy có khe.</li>\n<li>Móng bị nứt dọc hoặc bong một phần.</li>\n</ul>\n<h2>Vì sao không nên để quá lâu</h2>\n<p>Khi một góc đã kênh, khe hở giữa móng thật và lớp úp là chỗ nước và bụi lọt vào. Để lâu trong môi trường ẩm có thể dẫn tới nhiễm nấm ở móng. Thấy kênh là nên đi xử lý, đừng đợi tới khi bong hẳn.</p>\n<h2>Tuyệt đối không tự cạy</h2>\n<p>Cạy móng úp ra sẽ kéo theo lớp bề mặt của móng thật, làm móng mỏng và yếu đi nhiều tháng sau đó. Tháo ở tiệm mất khoảng 20 phút bằng dung dịch và không làm tổn thương móng. Bài <a href=\"/blog/tu-thao-gel-o-nha-co-duoc-khong/\">tự tháo gel ở nhà có được không</a> nói kỹ hơn.</p>\n<p>Giá úp móng và phá gel cũ ở trang <a href=\"/bang-gia/\">Bảng giá</a>. Bài <a href=\"/blog/up-mong-va-dap-gel-khac-nhau/\">úp móng và đắp gel khác nhau</a> phân biệt hai kỹ thuật.</p>",
   "i18n": {
@@ -117,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/up-mong-giu-duoc-bao-lau.jpg",
+  "coverCredit": {
+    "ten": "StockSnap",
+    "link": "https://pixabay.com/photos/table-kitchen-hand-woman-manicure-2559952/",
+    "nguon": "Pixabay",
+    "id": "pb-2559952"
   }
 }

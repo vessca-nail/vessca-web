@@ -15,7 +15,7 @@
     "nail sang chảnh",
     "nail đẹp sang"
   ],
-  "coverAlt": "Bộ nail tông sang chảnh",
+  "coverAlt": "Ảnh minh hoạ: Nail đẹp sang chảnh: ba thứ tạo cảm giác sang, không phải giá tiền",
   "faq": [
     {
       "q": "Có cần làm móng dài mới sang không?",
@@ -40,7 +40,8 @@
         "zh": "高雅的美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T14:31:23.020Z"
   },
   "content": "<p>Từ sang chảnh hay được hiểu thành làm thêm: thêm đá, thêm charm, thêm hoạ tiết, chọn món đắt nhất trong bảng giá. Trên thực tế, cảm giác sang đến từ ba thứ khác, và không thứ nào trong đó là số lượng.</p>\n<h2>Một: chất sơn</h2>\n<p>Sơn có chất — ánh xà cừ, ánh ngọc trai, nhũ mịn — tạo chiều sâu dưới ánh đèn mà sơn trơn phẳng không có. Đây là chỗ sơn nhập khẩu chênh lệch rõ nhất: hạt nhũ nhỏ và đều hơn nên bề mặt mịn chứ không lộm cộm. Một bộ xà cừ trơn không chi tiết nào vẫn trông đắt hơn một bộ nhiều đá nhưng sơn thô.</p>\n<h2>Hai: phần nền</h2>\n<p>Thứ khiến bộ nail trông rẻ thường là nền chứ không phải màu: da quanh móng chưa gọn, mười móng không cùng form, sơn tràn vào da hoặc hở ở chân móng, bề mặt gợn. Ảnh chụp gần phóng to tất cả những điều này.</p>\n<h2>Ba: biết dừng</h2>\n<p>Giới hạn một chất liệu nhấn cho cả bộ. Ngọc trai thì thôi đá lấp lánh. Đá thì thôi charm vàng. Ba chất liệu trên một bàn tay là lúc bộ nail mất sự tĩnh, và sự tĩnh mới là thứ đọc ra sang.</p>\n<h2>Thứ không quyết định</h2>\n<p>Độ dài móng không quyết định. Số lượng đá không quyết định. Giá tiền cũng không, vì một bộ đắt làm ẩu vẫn trông ẩu. Nếu ngân sách có hạn, nên dồn vào chất sơn và phần cắt da chỉnh form, giảm phần phụ kiện.</p>\n<h2>Ba hướng cụ thể</h2>\n<ul>\n<li>Xà cừ ánh trai trơn mười móng, không chi tiết nào.</li>\n<li>Nude ngọc trai với hai hạt ngọc nhỏ ở chân móng một ngón.</li>\n<li>Nâu tây ánh nhũ mịn, form oval, không phụ kiện.</li>\n</ul>\n<p>Bài <a href=\"/blog/nail-xa-cu-anh-trai/\">nail xà cừ ánh trai</a> và <a href=\"/blog/nail-co-dau-hao-mon/\">nail cô dâu hào môn</a> nói kỹ hơn về chất liệu. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -113,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-dep-sang-chanh.jpg",
+  "coverCredit": {
+    "ten": "Prabesh Ghimire",
+    "link": "https://wordpress.org/photos/photo/5926978f39/",
+    "nguon": "Openverse",
+    "id": "ov-ed04fa10-d7d6-432c-a8fd-68aaf7fdd3a1"
   }
 }

@@ -15,7 +15,7 @@
     "nail áo dài",
     "nail tết chụp ảnh"
   ],
-  "coverAlt": "Bộ nail hợp chụp ảnh áo dài",
+  "coverAlt": "Ảnh minh hoạ: Nail chụp ảnh áo dài Tết: màu nào không đánh nhau với áo",
   "faq": [
     {
       "q": "Áo dài đỏ nên làm móng màu gì?",
@@ -40,7 +40,8 @@
         "zh": "適合長衫拍照的美甲"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T14:31:22.201Z"
   },
   "content": "<p>Mùa chụp ảnh áo dài Tết bắt đầu từ trước Tết cả tháng. Trong những bộ ảnh đó, tay xuất hiện liên tục: cầm cành hoa, vuốt tà áo, đặt lên nón lá, chắp trước ngực. Vì vậy màu móng không phải chuyện phụ.</p>\n<h2>Nguyên tắc: móng nhường áo</h2>\n<p>Áo dài Tết thường đã nhiều màu và nhiều hoa văn. Nếu móng cũng nổi thì hai thứ tranh nhau trong khung hình, và kết quả là ảnh rối. Nguyên tắc an toàn nhất là để móng ở nhóm trung tính, trừ khi áo bạn là màu trơn.</p>\n<h2>Chọn theo màu áo</h2>\n<ul>\n<li><b>Áo đỏ, áo hồng sen:</b> móng nên nhạt, nude hoặc trắng sữa. Móng đỏ cạnh áo đỏ mà khác sắc đỏ là lỗi hay gặp nhất, vì hai sắc đỏ lệch nhau nhìn rất rõ trong ảnh.</li>\n<li><b>Áo vàng, áo cam:</b> nude ngả be hoặc nâu trà. Tránh hồng lạnh.</li>\n<li><b>Áo trắng, áo kem:</b> đây là lúc bạn được làm móng đỏ hoặc burgundy, vì áo trơn và nhạt nên móng nổi được.</li>\n<li><b>Áo xanh, áo tím:</b> nude hoặc trắng sữa. Tránh màu lạnh trùng nhóm với áo.</li>\n</ul>\n<h2>Sắc nên tránh khi chụp ngoài nắng</h2>\n<p>Nhũ hạt lớn bắt nắng thành đốm trắng loá, mất hết chi tiết móng. Màu neon lệch tông so với da dưới nắng gắt. Xám và xanh lạnh dễ làm tay trông thiếu sức sống trong ảnh.</p>\n<h2>Độ dài và form</h2>\n<p>Dài vừa phải, form oval hoặc almond nhẹ. Trong ảnh cầm cành hoa hay chắp tay, móng quá dài che mất đường ngón và hút mắt khỏi khuôn mặt.</p>\n<h2>Thời điểm làm</h2>\n<p>Trước buổi chụp một tới hai ngày. Nếu buổi chụp cách Tết vài tuần thì thường cần làm lại một bộ cho mùng 1, vì phần chân móng mọc ra sẽ thấy rõ trong ảnh cận.</p>\n<p>Mùng 1 Tết 2027 là thứ Bảy 6/2/2027. Bài <a href=\"/blog/nail-co-dau-chup-anh-cuoi/\">nail cô dâu chụp ảnh cưới</a> nói thêm về màu lên ảnh. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -113,5 +114,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/nail-tet-chup-anh-ao-dai.jpg",
+  "coverCredit": {
+    "ten": "Mutebi Ivan Junior",
+    "link": "https://wordpress.org/photos/photo/4126a26620/",
+    "nguon": "Openverse",
+    "id": "ov-6cba0e3c-320f-4cd8-96c4-834cf8bb6f76"
   }
 }

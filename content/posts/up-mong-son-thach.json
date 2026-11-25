@@ -36,7 +36,8 @@
         "zh": "貼片上的果凍色"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T07:31:18.232Z"
   },
   "content": "<p>Sơn thạch có độ trong, ánh sáng xuyên qua lớp màu. Trên móng thật thì hiệu ứng là móng trông ẩm và khoẻ. Trên móng úp thì câu chuyện phức tạp hơn một chút.</p>\n<h2>Vấn đề: đường ranh giới lộ ra</h2>\n<p>Móng úp là một lớp vật liệu đặt lên móng thật, nên luôn có một đường ranh giới ở chỗ móng úp kết thúc và móng thật bắt đầu. Sơn đục che kín đường này. Sơn thạch thì không, nên đường ranh giới nhìn thấy được, nhất là dưới ánh sáng mạnh.</p>\n<h2>Ba cách xử lý</h2>\n<ul>\n<li><b>Mài phẳng kỹ phần tiếp giáp.</b> Đây là việc của kỹ thuật viên, và là lý do bộ này mất thời gian hơn. Nếu bạn muốn làm sơn thạch trên móng úp, nên nói từ khi đặt lịch.</li>\n<li><b>Chọn sắc thạch đục hơn.</b> Thạch gạo và thạch hồng sữa đục hơn thạch trong hoàn toàn, nên che được phần nào.</li>\n<li><b>Đặt một chi tiết ở vùng ranh giới.</b> Một đường nhũ mảnh hoặc vài hạt nhũ ở chân móng kéo mắt đi chỗ khác.</li>\n</ul>\n<h2>Khi nào nên chọn sơn đục thay thế</h2>\n<p>Nếu bạn úp móng dài, phần ranh giới sẽ nằm ở giữa móng và khó giấu hơn. Trường hợp này sơn đục hoặc ombre là lựa chọn gọn hơn. Sơn thạch hợp nhất với móng úp dài vừa phải, nơi phần tiếp giáp nằm gần chân móng.</p>\n<h2>Về độ bền</h2>\n<p>Sơn thạch không bền kém hơn sơn đục, vì cả hai đều là gel hấp đèn. Khác biệt duy nhất là khi móng thật mọc ra, phần chân móng trong suốt làm khoảng hở nhìn rõ hơn, nên cảm giác phải đi làm lại sớm hơn dù thực tế lớp sơn vẫn còn nguyên.</p>\n<p>Bài <a href=\"/blog/nail-thach-han-quoc/\">nail thạch Hàn Quốc</a> nói về nhóm sơn này, bài <a href=\"/blog/up-mong-va-dap-gel-khac-nhau/\">úp móng và đắp gel khác nhau</a> phân biệt kỹ thuật. Bảng giá ở trang <a href=\"/bang-gia/\">Bảng giá</a>.</p>",
   "i18n": {
@@ -109,5 +110,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/up-mong-son-thach.jpg",
+  "coverCredit": {
+    "ten": "churbakovatanya",
+    "link": "https://pixabay.com/photos/manicure-red-dandelion-wish-beauty-7102042/",
+    "nguon": "Pixabay",
+    "id": "pb-7102042"
   }
 }

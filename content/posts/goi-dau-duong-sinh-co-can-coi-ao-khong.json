@@ -39,7 +39,8 @@
         "zh": "顧客躺在洗髮床上"
       }
     },
-    "trong_bai": []
+    "trong_bai": [],
+    "xong": "2026-11-25T02:31:36.768Z"
   },
   "content": "<p>Đây là lo lắng thường thấy của người đi lần đầu, nhất là khi đọc thấy chữ dưỡng sinh và tưởng là một liệu trình toàn thân. Câu trả lời ngắn: không cần cởi áo.</p>\n<h2>Vì sao không cần</h2>\n<p>Nhìn vào danh sách bước của cả bốn gói sẽ thấy mọi thao tác đều nằm ở bốn vùng: đầu và da đầu, mặt, cổ vai gáy, và bàn tay. Không có bước nào làm ở lưng, bụng hay chân. Bạn nằm trên giường gội, mặc nguyên bộ đang mặc.</p>\n<h2>Nên mặc gì cho dễ chịu</h2>\n<ul>\n<li><b>Cổ áo rộng hoặc cổ tròn thấp</b> dễ hơn cổ cao, vì phần cổ vai gáy được massage.</li>\n<li><b>Áo không quá dày ở vai</b> giúp kỹ thuật viên ấn đúng vùng vai.</li>\n<li><b>Tóc không buộc chặt</b>, không gôm nhiều thì bước đầu nhanh hơn. Dù vậy tóc đang bết hay vừa xịt gôm cũng không sao, đó là việc của buổi gội.</li>\n<li>Bỏ tai nghe, kẹp tóc kim loại và trang sức ở cổ trước khi nằm.</li>\n</ul>\n<h2>Áo có bị ướt không</h2>\n<p>Bạn sẽ được choàng khăn và áo choàng trước khi gội. Phần cổ áo có thể hơi ẩm nếu áo cổ cao, đó là lý do nên chọn cổ rộng. Nếu bạn vừa tới từ chỗ làm và mặc áo sơ mi quan trọng, nói với kỹ thuật viên để họ che kỹ hơn.</p>\n<h2>Trang điểm thì sao</h2>\n<p>Không cần tẩy trang trước khi tới. Cả bốn gói đều bắt đầu bằng bước tẩy trang Garnier và rửa mặt SVR, nên lớp trang điểm được xử lý ngay tại tiệm. Nếu bạn còn hẹn ngay sau buổi gội thì nên mang theo đồ trang điểm để dặm lại, vì mặt sẽ được làm sạch.</p>\n<p>Các bước đầy đủ của từng gói có ở trang <a href=\"/goi-dau/\">Gội đầu dưỡng sinh</a>.</p>",
   "i18n": {
@@ -112,5 +113,12 @@
         }
       ]
     }
+  },
+  "coverImage": "/media/blog/goi-dau-duong-sinh-co-can-coi-ao-khong.jpg",
+  "coverCredit": {
+    "ten": "Sam Droege",
+    "link": "https://www.flickr.com/photos/54563451@N08/36504352635",
+    "nguon": "Openverse",
+    "id": "ov-139078e7-5d05-47cb-81f0-fc587888aa5a"
   }
 }

@@ -221,6 +221,21 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 26/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới.** Hàng chờ có **54 bài hẹn ngày**
+  (tới 30/12/2026), prompt chỉ cho viết khi hàng chờ dưới 6 bài. Đã push commit để Cloudflare dựng lại.
+  Kiểm trước khi push: `node build.mjs` sạch (142 bài đã đăng, 54 bài hẹn ngày), 0 link nội bộ thiếu,
+  0 thẻ meta quá dài trên cả 4 ngôn ngữ.
+  **Cửa chặn của prompt vẫn đang khoá bước viết bài — lần thứ bảy ghi nhận** (xem 23/11, 19/11, 18/11, 17/11, 15/11, 03/11).
+  Có tin tốt: một phiên khác đã đắp đủ **5 bài/ngày từ 27/11 tới 3/12** (26/11 còn 3 bài). Nhưng **từ 4/12 tới
+  15/12 mỗi ngày vẫn đúng 1 bài**, rồi 18/12, 21/12, 28/12, 30/12 mỗi ngày 1 bài (16–17/12, 19–20/12,
+  22–27/12, 29/12, 31/12 trống). Tức là nhịp 5 bài/ngày chỉ còn đủ **một tuần nữa**, sau đó tụt về 1 bài/ngày.
+  **Cách sửa (giữ nguyên từ các ghi chú trước):** trong prompt, đếm **số bài của ngày trống gần nhất**
+  thay vì đếm tổng hàng chờ, và nâng giới hạn 2 bài/lần chạy. Lịch chủ đề đã có ở
+  `tools/viet-bai/lich-5-bai-ngay.json`, chỉ thiếu khâu cho phép viết.
+  **Việc gấp:** còn khoảng 5 tuần tới giai đoạn 3 (1/1/2027) — cần **giờ mở cửa dịp Tết** từ chủ tiệm
+  trước khi viết cụm bài Tết, không được đoán.
+  Vẫn chờ: **ba chỗ lệch trong prompt** (`coverImage`, thiếu `i18n`, giờ mở cửa 10:00–20:00 và khung giờ đăng).
+
 - 23/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới.** Hàng chờ có **26 bài hẹn ngày**
   (tới 30/12/2026), prompt chỉ cho viết khi hàng chờ dưới 6 bài. Đã push commit để Cloudflare dựng lại.
   Kiểm trước khi push: `node build.mjs` sạch (120 bài đã đăng, 26 bài hẹn ngày), 0 link nội bộ thiếu,

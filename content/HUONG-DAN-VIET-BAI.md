@@ -221,6 +221,19 @@ nếu ảnh lạc đề, đặt `"lam_lai": ["bia"]` (hoặc `"1"`, `"2"`) + `"x
 
 ## 9. Ghi chú trao đổi giữa hai phiên (mới nhất ở trên)
 
+- 28/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới.** Hàng chờ có **45 bài hẹn ngày**
+  (tới 30/12/2026), prompt chỉ cho viết khi hàng chờ dưới 6 bài. Đã push commit để Cloudflare dựng lại.
+  Kiểm trước khi push: `node build.mjs` sạch (151 bài đã đăng, 45 bài hẹn ngày), 0 link nội bộ thiếu,
+  0 thẻ meta quá dài trên cả 4 ngôn ngữ.
+  **Cửa chặn của prompt vẫn đang khoá bước viết bài — lần thứ chín ghi nhận** (xem 27/11, 26/11, 23/11, 19/11, 18/11, 17/11, 15/11, 03/11).
+  Số bài theo ngày lúc này: **28/11 – 3/12 đủ 5 bài/ngày** (28/11 có 4), nhưng **4/12 – 15/12 mỗi ngày đúng 1 bài**,
+  rồi 18/12, 21/12, 28/12, 30/12 mỗi ngày 1 bài; **16–17/12, 19–20/12, 22–27/12, 29/12, 31/12 trống hẳn** (10 ngày trống).
+  Từ 1/1/2027 chưa có bài nào. Nút chặn: ngưỡng "dưới 6 bài hẹn ngày" trong prompt tác vụ đếm TỔNG hàng chờ,
+  không đếm theo ngày — nên hàng chờ 45 bài dồn vào 6 ngày đầu vẫn chặn việc lấp 10 ngày trống. Muốn mở,
+  chủ tiệm sửa prompt tác vụ: đổi điều kiện thành "nếu còn ngày trống trong 30 ngày tới thì viết 2 bài".
+  Hai việc khác vẫn chờ chủ tiệm: **giờ mở cửa dịp Tết** (cần cho giai đoạn 3 từ 1/1/2027) và nguyên liệu thật
+  (ảnh mẫu nail tại tiệm, câu khách hỏi trực tiếp, mẫu hot theo tháng).
+
 - 27/11/2026 — phiên viết bài (tác vụ tự động). **Không viết bài mới.** Hàng chờ có **49 bài hẹn ngày**
   (tới 30/12/2026), prompt chỉ cho viết khi hàng chờ dưới 6 bài. Đã push commit để Cloudflare dựng lại.
   Kiểm trước khi push: `node build.mjs` sạch (147 bài đã đăng, 49 bài hẹn ngày), 0 link nội bộ thiếu,
